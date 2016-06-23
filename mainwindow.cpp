@@ -1,5 +1,9 @@
 #include "mainwindow.h"
+#ifdef Q_OS_OSX
 #include "ui_mainwindow.h"
+#else
+#include "ui_mainwindowwin.h"
+#endif
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -509,7 +513,7 @@ void MainWindow::fillPRFG(){
         QFont newFont("Courier", 12, QFont::Normal, true);
 #else
         // Windows Q_OS_WIN
-        // QFont newFont("Courier", 10, QFont::Normal, true);
+        QFont newFont("Courier", 10, QFont::Normal, true);
 #endif
         ui->listViewPRFG->setStyleSheet("background-color:lightgray;");
         ui->listViewPRFG->setFont(newFont);

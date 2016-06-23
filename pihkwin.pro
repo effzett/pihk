@@ -17,6 +17,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindowwin.ui
 
-RC_ICONS = Icon1024.ico
+RC_ICONS = pihk2.ico
