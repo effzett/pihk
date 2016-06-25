@@ -21,6 +21,7 @@
 %\usepackage{svn}
 \usepackage{marginnote}
 \usepackage{xcolor}
+\usepackage{tcolorbox}
 \graphicspath{{./jpg/}}
 \DeclareGraphicsExtensions{.jpg,.eps,.png}
 %\usepackage{courier}
@@ -54,7 +55,7 @@
 \newcommand{\cfile}[1]{{\texttt{#1}}}
 \newcommand{\ttctable}[1]{\centerline{\texttt{#1}}}
 \newcommand{\sname}[1]{\emph{#1}}
-\definecolor{listinggray}{gray}{0.9}
+\definecolor{listinggray}{gray}{0.95}
 \definecolor{OliveGreen}{rgb}{0,0.5,0}
 \definecolor{pastellblau}{rgb}{0.85,0.95,1.0} 
 
@@ -62,7 +63,7 @@
 
 \lstset{numbers=left,numbersep=5pt,numberstyle=\tiny,%
     frame=none,basicstyle=\scriptsize\ttfamily,breaklines=true,%
-    captionpos=b,backgroundcolor=\color{listinggray}}
+    captionpos=b,backgroundcolor=\color{listinggray},frame=single}
 
 % \parindent0cm
 % \parskip1ex
@@ -153,16 +154,14 @@ in das IHK--Prüfungsformular eingetragen werden. Hierbei soll eine Rundung auf 
 Bei einer korrekten 2-maligen Rundung wird also zum ersten mal bei der Berechnung des nachgeprüften Prüfbereiches inklusive der mündlichen Ergänzungsprüfung gerundet und das zweite mal bei der Berechnung aller Prüfungsbereiche.
 \vskip2ex
 
-\fcolorbox{red}{lightgray}{\parbox{\linewidth}{%
-Gegeben seien beispielsweise folgende Punkte im Bereich B:
-
-GA1=30,  GA2=49,  WISO=82, MEPR in GA2E= 60\\
-
-Mit \emph{einer} Rundung ergäbe sich als Note für Teilbereich B 49 Punkte und damit mangelhaft:
+\fcolorbox{black}{listinggray}{\parbox{\linewidth}{%
+\vskip1ex
+Gegeben seien beispielsweise folgende Punkte im Teilbereich B:
+\begin{center}GA1=30,  GA2=49,  WISO=82, MEPR in GA2E= 60\end{center}
+Mit \emph{einer} Rundung ergäbe sich als Note für Teilbereich B =49 Punkte und damit mangelhaft:
 $$Round( ( ((GA2*2+MEPR)/3) * 2 + GA1 * 2 + WISO)/5)$$
 $$Round( ( ((49*2+60)/3) * 2 + 30*2+82)/5)=49,47=49$$
-Mit \emph{zwei} Rundungen ergibt sich als Note für den Teilbereich B 50 Punkte und damit ausreichend:
-
+Mit \emph{zwei} Rundungen ergibt sich als Note für den Teilbereich B =50 Punkte und damit ausreichend:
 $$Round( ( Round((GA2*2+MEPR)/3)*2+GA1*2+WISO)/5) $$
 $$Round( ( Round((49*2+60)/3) * 2 + 30*2+82 )/5)=49,6=50$$
 
