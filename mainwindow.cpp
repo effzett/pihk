@@ -10,13 +10,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     // gui independent initialization
+    // app specific
+    const QString appversion="2.0.1";
+    const QString appdate="23.06.2016";
+    const QString appname="PIHK";
+    const QString appauthor="Frank Zimmermann";
+    const QString appemail="fz@zenmeister.de";
+
     // Timer related
     isTimerStarted=false;
     timerValue=0;
     offset=0;
-    const QString version =  "PIHK (Version 2.0.1)";
+    const QString version =  appname + "   (V" +appversion +", vom " + appdate + ")";
     timer = new QTimer(this);
-    const QString author = "fz@zenmeister.de";
+
 
     ui->setupUi(this);
 
@@ -29,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowIcon(QIcon("pihk2.ico"));
 #endif
     statusLabel = new QLabel(this);
-    statusLabel->setText(author);
+    statusLabel->setText(appemail);
     this->setFixedSize(this->geometry().width(),this->geometry().height());
     ui->listViewPRFG->setStyleSheet("background-color:lightgray;");
     ui->listViewMEPR->setStyleSheet("background-color:lightgray;");
