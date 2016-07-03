@@ -88,6 +88,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->saveFile,SIGNAL(clicked(bool)),this,SLOT(saveData()));
     connect(ui->buttonSimPRFG,SIGNAL(clicked()),this,SLOT(fillPRFG()));
     connect(ui->buttonSimMEPR,SIGNAL(clicked()),this,SLOT(fillMEPR()));
+    connect(ui->listViewPRFG,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsPRFG(const QModelIndex &)));
+    connect(ui->listViewMEPR,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsMEPR(const QModelIndex &)));
 }
 
 // each shot: increment timerValue and show in progressBar and LCD
@@ -613,6 +615,30 @@ void MainWindow::fillMEPR(){
     ui->listViewMEPR->setStyleSheet("background-color:lightgray;");
     ui->listViewMEPR->setFont(newFont);
     ui->listViewMEPR->setModel(model);
+}
+
+void MainWindow::setPointsPRFG(const QModelIndex &index){
+    if(index.isValid()){
+        QString exam = index.data().toString();
+        QString subString = exam.mid(0,3);
+        ui->spinboxExamination->setValue(subString.toDouble());
+    }
+}
+
+void MainWindow::setPointsMEPR(const QModelIndex &index){
+    if(index.isValid()){
+        QString mepr = index.data().toString();
+        QString subString = mepr.mid(0,3);
+        if(ui->radioButton1->isChecked()){
+            ui->spinboxGa1E->setValue(subString.toDouble());
+        }
+        if(ui->radioButton2->isChecked()){
+            ui->spinboxGa2E->setValue(subString.toDouble());
+        }
+        if(ui->radioButton3->isChecked()){
+            ui->spinboxWisoE->setValue(subString.toDouble());
+        }
+    }
 }
 
 MainWindow::~MainWindow()
