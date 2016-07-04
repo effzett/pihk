@@ -60,6 +60,8 @@ private slots:
     void saveData();
     void fillPRFG();
     void fillMEPR();
+    void setPointsPRFG(const QModelIndex &index);
+    void setPointsMEPR(const QModelIndex &index);
 };
 
 #endif // MAINWINDOW_H
