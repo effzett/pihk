@@ -8,7 +8,7 @@
 #include <QPalette>
 #include <QDir>
 #include <math.h>
-#include <Qlabel.h>
+#include <QLabel>
 #include <QString>
 #include <QFile>
 #include <QTextStream>
