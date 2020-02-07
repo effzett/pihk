@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>886</width>
-    <height>638</height>
+    <width>955</width>
+    <height>621</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -36,16 +36,11 @@
    <widget class="QPushButton" name="buttonSimPRFG">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>500</x>
       <y>20</y>
-      <width>331</width>
+      <width>431</width>
       <height>32</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
     </property>
     <property name="text">
      <string>Simulation Präsentation+Fachgespräch</string>
@@ -54,16 +49,11 @@
    <widget class="QPushButton" name="buttonSimMEPR">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>500</x>
       <y>270</y>
-      <width>331</width>
+      <width>431</width>
       <height>32</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
     </property>
     <property name="text">
      <string>Simulation Mündliche Ergänzungsprüfung</string>
@@ -74,25 +64,20 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>411</width>
+      <width>471</width>
       <height>141</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
     <property name="title">
-     <string>Teilprüfung A</string>
+     <string> Teilprüfung A  </string>
     </property>
     <widget class="QDoubleSpinBox" name="spinboxDocumentation">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>400</x>
        <y>30</y>
        <width>51</width>
        <height>24</height>
@@ -125,16 +110,11 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>150</x>
        <y>30</y>
-       <width>111</width>
+       <width>241</width>
        <height>20</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>Dokumentation</string>
@@ -146,7 +126,7 @@
     <widget class="QDoubleSpinBox" name="spinboxExamination">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>400</x>
        <y>60</y>
        <width>51</width>
        <height>24</height>
@@ -173,16 +153,11 @@
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>150</x>
        <y>60</y>
-       <width>201</width>
+       <width>241</width>
        <height>20</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>Präsentation+Fachgespräch</string>
@@ -194,16 +169,11 @@
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>110</x>
        <y>110</y>
        <width>91</width>
        <height>31</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>Ergebnis</string>
@@ -212,7 +182,7 @@
     <widget class="QLabel" name="labelPointsA">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>410</x>
        <y>110</y>
        <width>41</width>
        <height>31</height>
@@ -220,7 +190,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="text">
@@ -233,16 +203,11 @@
     <widget class="QLabel" name="labelGradeA">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>180</x>
        <y>110</y>
-       <width>101</width>
+       <width>211</width>
        <height>31</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>ungenügend</string>
@@ -259,11 +224,6 @@
        <width>51</width>
        <height>21</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
      </property>
      <property name="toolTip">
       <string>Startet/Stoppt den 15min Zähler</string>
@@ -305,7 +265,7 @@
       <rect>
        <x>10</x>
        <y>90</y>
-       <width>391</width>
+       <width>441</width>
        <height>20</height>
       </rect>
      </property>
@@ -336,11 +296,6 @@
        <height>21</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
      <property name="toolTip">
       <string>Setzt 15min Zähler auf 0</string>
      </property>
@@ -353,17 +308,12 @@
       <rect>
        <x>10</x>
        <y>110</y>
-       <width>31</width>
+       <width>51</width>
        <height>20</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
      <property name="text">
-      <string>15min</string>
+      <string> 15min  </string>
      </property>
     </widget>
    </widget>
@@ -372,25 +322,20 @@
      <rect>
       <x>20</x>
       <y>160</y>
-      <width>411</width>
+      <width>471</width>
       <height>141</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
     <property name="title">
-     <string>Teilprüfung B</string>
+     <string> Teilprüfung B  </string>
     </property>
     <widget class="QDoubleSpinBox" name="spinboxGa1">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>240</x>
        <y>30</y>
        <width>51</width>
        <height>24</height>
@@ -429,7 +374,7 @@
     <widget class="QLabel" name="label_20">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>240</x>
        <y>10</y>
        <width>51</width>
        <height>16</height>
@@ -441,11 +386,6 @@
        <height>16777215</height>
       </size>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string>GA1</string>
      </property>
@@ -456,16 +396,11 @@
     <widget class="QLabel" name="label_21">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>320</x>
        <y>10</y>
        <width>51</width>
        <height>20</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>GA2</string>
@@ -477,7 +412,7 @@
     <widget class="QDoubleSpinBox" name="spinboxGa2">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>320</x>
        <y>30</y>
        <width>51</width>
        <height>24</height>
@@ -510,7 +445,7 @@
     <widget class="QDoubleSpinBox" name="spinboxWiso">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>400</x>
        <y>30</y>
        <width>51</width>
        <height>24</height>
@@ -543,16 +478,11 @@
     <widget class="QLabel" name="label_22">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>400</x>
        <y>10</y>
        <width>51</width>
        <height>20</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>WISO</string>
@@ -564,34 +494,24 @@
     <widget class="QLabel" name="label_23">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>140</x>
        <y>60</y>
-       <width>101</width>
+       <width>91</width>
        <height>20</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
-      <string>MüErgPrüfung</string>
+      <string> MüErgPrüfung  </string>
      </property>
     </widget>
     <widget class="QLabel" name="labelGradeB">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>110</y>
-       <width>101</width>
+       <width>201</width>
        <height>31</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>ungenügend</string>
@@ -603,16 +523,11 @@
     <widget class="QLabel" name="label_25">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>110</x>
        <y>110</y>
        <width>81</width>
        <height>31</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>Ergebnis</string>
@@ -621,7 +536,7 @@
     <widget class="QLabel" name="labelPointsB">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>410</x>
        <y>110</y>
        <width>41</width>
        <height>31</height>
@@ -629,7 +544,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="text">
@@ -645,7 +560,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>400</x>
        <y>80</y>
        <width>51</width>
        <height>24</height>
@@ -681,7 +596,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>320</x>
        <y>80</y>
        <width>51</width>
        <height>24</height>
@@ -717,7 +632,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>240</x>
        <y>80</y>
        <width>51</width>
        <height>24</height>
@@ -759,7 +674,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>250</x>
        <y>60</y>
        <width>19</width>
        <height>18</height>
@@ -778,7 +693,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>330</x>
        <y>60</y>
        <width>19</width>
        <height>18</height>
@@ -797,7 +712,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>410</x>
        <y>60</y>
        <width>19</width>
        <height>18</height>
@@ -816,36 +731,24 @@
      <rect>
       <x>20</x>
       <y>310</y>
-      <width>411</width>
+      <width>471</width>
       <height>201</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
     <property name="title">
-     <string>Gesamtergebnis</string>
+     <string> Gesamtergebnis  </string>
     </property>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>121</width>
+       <width>151</width>
        <height>31</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>Prüfungsdatum</string>
@@ -856,14 +759,9 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>111</width>
+       <width>151</width>
        <height>24</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
     </widget>
     <widget class="QLabel" name="label_11">
@@ -912,11 +810,6 @@
        </disabled>
       </palette>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string>Teilprüfung A</string>
      </property>
@@ -924,10 +817,10 @@
     <widget class="QLabel" name="labelGradeResultA">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>252</x>
        <y>110</y>
-       <width>93</width>
-       <height>19</height>
+       <width>141</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="palette">
@@ -967,11 +860,6 @@
        </disabled>
       </palette>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string>ungenügend</string>
      </property>
@@ -982,7 +870,7 @@
     <widget class="QLabel" name="labelResultA">
      <property name="geometry">
       <rect>
-       <x>357</x>
+       <x>410</x>
        <y>110</y>
        <width>41</width>
        <height>20</height>
@@ -1027,7 +915,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1040,7 +928,7 @@
     <widget class="QLabel" name="labelResultB">
      <property name="geometry">
       <rect>
-       <x>357</x>
+       <x>410</x>
        <y>140</y>
        <width>41</width>
        <height>20</height>
@@ -1085,7 +973,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1141,11 +1029,6 @@
        </disabled>
       </palette>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string>Teilprüfung B</string>
      </property>
@@ -1153,10 +1036,10 @@
     <widget class="QLabel" name="labelGradeResultB">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>252</x>
        <y>140</y>
-       <width>93</width>
-       <height>19</height>
+       <width>141</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="palette">
@@ -1196,11 +1079,6 @@
        </disabled>
       </palette>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string>ungenügend</string>
      </property>
@@ -1211,7 +1089,7 @@
     <widget class="QLabel" name="labelResultAll">
      <property name="geometry">
       <rect>
-       <x>357</x>
+       <x>410</x>
        <y>170</y>
        <width>41</width>
        <height>20</height>
@@ -1256,7 +1134,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1269,10 +1147,10 @@
     <widget class="QLabel" name="labelGradeResult">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>252</x>
        <y>170</y>
-       <width>93</width>
-       <height>19</height>
+       <width>141</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="palette">
@@ -1311,11 +1189,6 @@
         </colorrole>
        </disabled>
       </palette>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
      </property>
      <property name="text">
       <string>ungenügend</string>
@@ -1370,11 +1243,6 @@
        </disabled>
       </palette>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string>Gesamt</string>
      </property>
@@ -1382,7 +1250,7 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>131</x>
+       <x>190</x>
        <y>70</y>
        <width>271</width>
        <height>31</height>
@@ -1391,23 +1259,13 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLabel" name="label_10">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
         <property name="text">
-         <string>Prüflingsnummer</string>
+         <string> Prüflingsnummer  </string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLineEdit" name="pnummer">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>IHK Prüfungsnummer</string>
         </property>
@@ -1424,7 +1282,7 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>190</x>
        <y>31</y>
        <width>271</width>
        <height>31</height>
@@ -1433,23 +1291,13 @@
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QLabel" name="label_5">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
         <property name="text">
-         <string>Prüfling</string>
+         <string> Prüfling  </string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLineEdit" name="pname">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Name des Prüflings: Vorname Nachname</string>
         </property>
@@ -1466,18 +1314,13 @@
      <rect>
       <x>20</x>
       <y>550</y>
-      <width>851</width>
+      <width>911</width>
       <height>33</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
       <widget class="QPushButton" name="saveFile">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>Sichern</string>
        </property>
@@ -1495,22 +1338,17 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>99</x>
+      <x>20</x>
       <y>520</y>
-      <width>771</width>
+      <width>911</width>
       <height>30</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="label_27">
-       <property name="font">
-        <font>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
        <property name="text">
-        <string>In vorhandenen Ordner</string>
+        <string> In vorhandenen Ordner  </string>
        </property>
       </widget>
      </item>
@@ -1526,9 +1364,9 @@
    <widget class="QListView" name="listViewPRFG">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>500</x>
       <y>60</y>
-      <width>421</width>
+      <width>431</width>
       <height>201</height>
      </rect>
     </property>
@@ -1548,9 +1386,9 @@
    <widget class="QListView" name="listViewMEPR">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>500</x>
       <y>310</y>
-      <width>421</width>
+      <width>431</width>
       <height>201</height>
      </rect>
     </property>
