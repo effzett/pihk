@@ -36,3 +36,5 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user
 
+pihk_plugin_import.cpp
+pihk_resource.rc
