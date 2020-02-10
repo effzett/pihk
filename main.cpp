@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
 #ifdef Q_OS_WIN
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    //QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::RoundPreferFloor);
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #endif
     QApplication a(argc, argv);
