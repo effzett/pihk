@@ -38,3 +38,9 @@ CMakeLists.txt.user
 
 pihk_plugin_import.cpp
 pihk_resource.rc
+pihk2.aux
+pihk2.fdb_latexmk
+pihk2.fls
+pihk2.log
+pihk2.synctex.gz
+pihk2.toc
