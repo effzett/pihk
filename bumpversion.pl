@@ -26,7 +26,7 @@ my $date = strftime "%d.%m.%Y", localtime;
 # Script is changing follwing files
 # (this has to be adapted for a new project)
 #####################################################
-my $file1 = "./documentation/pihk2.tex";
+my $file1 = "./documentation/pihk3.tex";
 my $cnt1=0;	# counts the changed lines
 my $cnt1expectation=1;	# expected changed lines
 

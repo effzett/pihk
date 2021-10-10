@@ -5,7 +5,7 @@
 # Originaldateien werden mit .oldversion gekennzeichnet
 
 # Script verändert per sed folgende Dateien
-texfile1="./documentation/pihk2.tex"
+texfile1="./documentation/pihk3.tex"
 cppfile1="./mainwindow.cpp"
 nv=$1
 date=$(date +%d.%m.%Y)
