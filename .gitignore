@@ -44,3 +44,9 @@ pihk2.fls
 pihk2.log
 pihk2.synctex.gz
 pihk2.toc
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+pihk3.synctex.gz
+pihk3.toc
