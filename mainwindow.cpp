@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     // gui independent initialization
     // app specific
-    const QString appversion="2.2.0";
-    const QString appdate="10.02.2020";
+    const QString appversion="3.0.0";
+    const QString appdate="10.10.2021";
     const QString appname="PIHK";
     const QString appauthor="Frank Zimmermann";
     const QString appemail="fz@zenmeister.de";
@@ -38,8 +38,8 @@ MainWindow::MainWindow(QWidget *parent) :
     statusLabel = new QLabel(this);
     statusLabel->setText(appemail);
     this->setFixedSize(this->geometry().width(),this->geometry().height());
-    ui->listViewPRFG->setStyleSheet("background-color:lightgray;");
-    ui->listViewMEPR->setStyleSheet("background-color:lightgray;");
+//    ui->listViewPRFG->setStyleSheet("background-color:lightgray;");
+//    ui->listViewMEPR->setStyleSheet("background-color:lightgray;");
 
     // gui stuff
     ui->pDate->setDate(QDate::currentDate());   // set current Date
@@ -432,26 +432,26 @@ void MainWindow::saveData(){
    QFile outFile(ui->path->text());
    outFile.open(QIODevice::WriteOnly|QIODevice::Text);
    QTextStream out(&outFile);
-   out<<"Datum     : " + ui->pDate->text()<<endl;
-   out<<"Name      : " + ui->pname->text()<<endl;
-   out<<"Id-Nummer : " + ui->pnummer->text()<<endl;
-   out<<"Doku      : " + ui->spinboxDocumentation->text()<<endl;
-   out<<"PRFG      : " + ui->spinboxExamination->text()<<endl;
-   out<<"GA1       : " + ui->spinboxGa1->text()<<endl;
-   out<<"GA2       : " + ui->spinboxGa2->text()<<endl;
-   out<<"Wiso      : " + ui->spinboxWiso->text()<<endl;
-   out<<"MEP-GA1   : " + ui->spinboxGa1E->text()<<endl;
-   out<<"MEP-GA2   : " + ui->spinboxGa2E->text()<<endl;
-   out<<"MEP-WISO  : " + ui->spinboxWisoE->text()<<endl;
-   out<<"Ergebnis A: " + ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")"<<endl;
-   out<<"Ergebnis B: " + ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")"<<endl;
-   out<<"Ergebnis  : " + ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")"<<endl<<endl;
+   out<<"Datum     : " + ui->pDate->text()<<Qt::endl;
+   out<<"Name      : " + ui->pname->text()<<Qt::endl;
+   out<<"Id-Nummer : " + ui->pnummer->text()<<Qt::endl;
+   out<<"Doku      : " + ui->spinboxDocumentation->text()<<Qt::endl;
+   out<<"PRFG      : " + ui->spinboxExamination->text()<<Qt::endl;
+   out<<"GA1       : " + ui->spinboxGa1->text()<<Qt::endl;
+   out<<"GA2       : " + ui->spinboxGa2->text()<<Qt::endl;
+   out<<"Wiso      : " + ui->spinboxWiso->text()<<Qt::endl;
+   out<<"MEP-GA1   : " + ui->spinboxGa1E->text()<<Qt::endl;
+   out<<"MEP-GA2   : " + ui->spinboxGa2E->text()<<Qt::endl;
+   out<<"MEP-WISO  : " + ui->spinboxWisoE->text()<<Qt::endl;
+   out<<"Ergebnis A: " + ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")"<<Qt::endl;
+   out<<"Ergebnis B: " + ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")"<<Qt::endl;
+   out<<"Ergebnis  : " + ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")"<<Qt::endl<<Qt::endl;
 
    if(hasPassed){
-       out<<"---BESTANDEN---"<<endl;
+       out<<"---BESTANDEN---"<<Qt::endl;
    }
    else{
-       out<<"---NICHT bestanden---"<<endl;
+       out<<"---NICHT bestanden---"<<Qt::endl;
    }
    outFile.close();
    ui->saveFile->setEnabled(false);
@@ -524,7 +524,7 @@ void MainWindow::fillPRFG(){
         // Windows Q_OS_WIN
         QFont newFont("Courier", 10, QFont::Normal, true);
 #endif
-        ui->listViewPRFG->setStyleSheet("background-color:lightgray;");
+//        ui->listViewPRFG->setStyleSheet("background-color:lightgray;");
         ui->listViewPRFG->setFont(newFont);
         ui->listViewPRFG->setModel(model);
 }
@@ -612,7 +612,7 @@ void MainWindow::fillMEPR(){
         // Windows Q_OS_WIN
         QFont newFont("Courier", 10, QFont::Normal, true);
 #endif
-    ui->listViewMEPR->setStyleSheet("background-color:lightgray;");
+//    ui->listViewMEPR->setStyleSheet("background-color:lightgray;");
     ui->listViewMEPR->setFont(newFont);
     ui->listViewMEPR->setModel(model);
 }

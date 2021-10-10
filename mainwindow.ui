@@ -38,7 +38,7 @@
      <rect>
       <x>450</x>
       <y>10</y>
-      <width>411</width>
+      <width>421</width>
       <height>32</height>
      </rect>
     </property>
@@ -848,6 +848,8 @@
      <property name="font">
       <font>
        <pointsize>16</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -903,6 +905,8 @@
      <property name="font">
       <font>
        <pointsize>16</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -961,6 +965,8 @@
      <property name="font">
       <font>
        <pointsize>20</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1019,6 +1025,8 @@
      <property name="font">
       <font>
        <pointsize>20</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1077,6 +1085,8 @@
      <property name="font">
       <font>
        <pointsize>16</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1132,6 +1142,8 @@
      <property name="font">
       <font>
        <pointsize>16</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1190,6 +1202,8 @@
      <property name="font">
       <font>
        <pointsize>20</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1248,6 +1262,8 @@
      <property name="font">
       <font>
        <pointsize>16</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1306,6 +1322,8 @@
      <property name="font">
       <font>
        <pointsize>16</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1327,6 +1345,8 @@
         <property name="font">
          <font>
           <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
         <property name="text">
@@ -1364,6 +1384,8 @@
         <property name="font">
          <font>
           <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
         <property name="text">
@@ -1440,7 +1462,7 @@
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>50</y>
+      <y>40</y>
       <width>421</width>
       <height>211</height>
      </rect>
