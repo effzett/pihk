@@ -15,6 +15,11 @@
 #include <QStringListModel>
 #include <QFont>
 #include <QWindow>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QDebug>
+#include <QFileDialog>
+#include <QDate>
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +32,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QString version;        // Versionsstring
 
 private:
     Ui::MainWindow *ui;
@@ -38,6 +44,7 @@ QLabel *statusLabel;    // line in statusbar
 bool hasPassed;         // Bestanden=true, Nicht bestanden=false
 QStringListModel *model;
 
+
 quint32 calcA(qint32 docu, qint32 exam);
 quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
 quint32 calcAll(quint32 pointsA, quint32 pointsB);
@@ -48,6 +55,11 @@ QTimer *timer;
 bool checkPassedA(quint32 docu, quint32 exam);     // checks if passed
 bool checkPassedB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr=0,quint32 points=0); // checks if passed
 bool checkMAllowed(quint32 ga1, quint32 ga2, quint32 wiso); // checks if oral is possible
+
+void unpackQJO(QJsonObject json);
+QJsonObject packQJD();
+QJsonObject loadJson(QString fileName);
+void saveJson(QJsonObject json, QString fileName);
 
 private slots:
     // timer
@@ -62,6 +74,10 @@ private slots:
     void fillMEPR();
     void setPointsPRFG(const QModelIndex &index);
     void setPointsMEPR(const QModelIndex &index);
+    void about();
+    void on_actionQuit_triggered();
+    void on_actionOeffnen_triggered();
+    void on_actionSichernAls_triggered();
 };
 
 #endif // MAINWINDOW_H

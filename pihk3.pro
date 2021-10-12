@@ -8,15 +8,18 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = pihk
+TARGET = PIHK
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
+        about.cpp \
         mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    about.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    about.ui
 
 ICON = pihk2.icns

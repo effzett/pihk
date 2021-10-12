@@ -1,4 +1,7 @@
 #include "mainwindow.h"
+#include "about.h"
+
+
 #ifdef Q_OS_OSX
 #include "ui_mainwindow.h"
 #else
@@ -12,7 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // gui independent initialization
     // app specific
     const QString appversion="3.0.0";
-    const QString appdate="10.10.2021";
+//    const QString appdate="10.10.2021";
+    const QString appdate=QDate::currentDate().toString("dd.MM.yyyy");
     const QString appname="PIHK";
     const QString appauthor="Frank Zimmermann";
     const QString appemail="fz@zenmeister.de";
@@ -21,8 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
     isTimerStarted=false;
     timerValue=0;
     offset=0;
-    const QString version =  appname + "   (V" +appversion +", vom " + appdate + ")";
+    version =  appname + "   (V" +appversion +", vom " + appdate + ")";
     timer = new QTimer(this);
+
 
 
     ui->setupUi(this);
@@ -90,6 +95,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->buttonSimMEPR,SIGNAL(clicked()),this,SLOT(fillMEPR()));
     connect(ui->listViewPRFG,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsPRFG(const QModelIndex &)));
     connect(ui->listViewMEPR,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsMEPR(const QModelIndex &)));
+    connect(ui->actionAbout,SIGNAL(triggered()),this,SLOT(about()));
+//    connect(ui->actionSichernAls,SIGNAL(triggered()),this,SLOT(on_actionSichernAls_triggered()));
+//    connect(ui->actionOeffnen,SIGNAL(triggered()),this,SLOT(on_actionOeffnen_triggered()));
 }
 
 // each shot: increment timerValue and show in progressBar and LCD
@@ -429,6 +437,8 @@ bool MainWindow::checkMAllowed(quint32 ga1,quint32 ga2,quint32 wiso){
 }
 
 void MainWindow::saveData(){
+
+   // old
    QFile outFile(ui->path->text());
    outFile.open(QIODevice::WriteOnly|QIODevice::Text);
    QTextStream out(&outFile);
@@ -666,3 +676,76 @@ QString MainWindow::getGrade(qint32 points){
     }
     return grade;
 }
+
+void MainWindow::about(){
+    About *ap = new About(this);
+    ap->show();
+}
+
+void MainWindow::on_actionQuit_triggered()
+{
+    QCoreApplication::quit();
+}
+
+QJsonObject MainWindow::packQJD(){
+    QJsonObject json;
+
+    json["Datum"] = ui->pDate->text();
+    json["Name"] = ui->pname->text();
+    json["Id-Nummer"] = ui->pnummer->text();
+    json["Doku"] = ui->spinboxDocumentation->text();
+    json["PRFG"] = ui->spinboxExamination->text();
+    json["GA1"] = ui->spinboxGa1->text();
+    json["GA2"] = ui->spinboxGa2->text();
+    json["Wiso"] = ui->spinboxWiso->text();
+    json["MEP-GA1"] = ui->spinboxGa1E->text();
+    json["MEP-GA2"] = ui->spinboxGa2E->text();
+    json["MEP-WISO"] = ui->spinboxWisoE->text();
+    json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";
+    json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";
+    json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";
+
+    if(hasPassed){
+        json["Prüfung"] ="---BESTANDEN---";
+    }
+    else{
+        json["Prüfung"] ="---NICHT bestanden---";
+    }
+    return json;
+}
+
+void MainWindow::unpackQJO(QJsonObject json ){
+    ui->pDate->setDate(QDate::fromString(json.value("Datum").toString(),"dd.MM.yy"));
+    ui->pname->setText(json.value("Name").toString());
+    ui->pnummer->setText(json.value("Id-Nummer").toString());
+}
+
+QJsonObject MainWindow::loadJson(QString fileName) {
+    QFile jsonFile(fileName);
+    jsonFile.open(QFile::ReadOnly);
+    QJsonDocument doc =  QJsonDocument().fromJson(jsonFile.readAll());
+    return doc.object();
+}
+
+void MainWindow::saveJson(QJsonObject json, QString fileName) {
+    QFile jsonFile(fileName);
+    jsonFile.open(QFile::WriteOnly);
+    jsonFile.write(QJsonDocument(json).toJson());
+}
+
+
+void MainWindow::on_actionOeffnen_triggered()
+{
+    QString f = QFileDialog::getOpenFileName(this,tr("Öffnen"),".",tr("JSON (*.json)"));
+    QJsonObject json = loadJson(f);
+    unpackQJO(json);
+}
+
+
+void MainWindow::on_actionSichernAls_triggered()
+{
+    QJsonObject json = packQJD();
+    QString f = QFileDialog::getSaveFileName(this,tr("Sichern"),".",tr("JSON (*.json)"));
+    saveJson(json,f);
+}
+

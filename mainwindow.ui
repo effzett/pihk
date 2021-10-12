@@ -1498,6 +1498,97 @@
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>886</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatei">
+    <property name="title">
+     <string>Datei</string>
+    </property>
+    <addaction name="actionOeffnen"/>
+    <addaction name="actionSichern"/>
+    <addaction name="actionSichernAls"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionPreferences"/>
+   </widget>
+   <widget class="QMenu" name="menuAnsicht">
+    <property name="title">
+     <string>Ansicht</string>
+    </property>
+    <addaction name="actionAusgabeblatt"/>
+   </widget>
+   <widget class="QMenu" name="menuHilfe">
+    <property name="title">
+     <string>Hilfe</string>
+    </property>
+    <addaction name="actionRegularien"/>
+    <addaction name="actionLizenz"/>
+   </widget>
+   <addaction name="menuDatei"/>
+   <addaction name="menuAnsicht"/>
+   <addaction name="menuHilfe"/>
+  </widget>
+  <action name="actionOeffnen">
+   <property name="text">
+    <string>Öffnen</string>
+   </property>
+  </action>
+  <action name="actionSichern">
+   <property name="text">
+    <string>Sichern</string>
+   </property>
+  </action>
+  <action name="actionSichernAls">
+   <property name="text">
+    <string>Sichern als...</string>
+   </property>
+  </action>
+  <action name="actionUpdates">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Nach Updates suchen...</string>
+   </property>
+  </action>
+  <action name="actionRegularien">
+   <property name="text">
+    <string>Regularien</string>
+   </property>
+  </action>
+  <action name="actionLizenz">
+   <property name="text">
+    <string>Lizenz</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionAusgabeblatt">
+   <property name="text">
+    <string>Ausgabeblatt</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences...</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
