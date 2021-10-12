@@ -798,6 +798,9 @@
        <height>24</height>
       </rect>
      </property>
+     <property name="displayFormat">
+      <string>dd.MM.yyyy</string>
+     </property>
     </widget>
     <widget class="QLabel" name="label_11">
      <property name="geometry">
@@ -1540,15 +1543,24 @@
    <property name="text">
     <string>Öffnen</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionSichern">
    <property name="text">
     <string>Sichern</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionSichernAls">
    <property name="text">
     <string>Sichern als...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="actionUpdates">
@@ -1563,10 +1575,16 @@
    <property name="text">
     <string>Regularien</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="actionLizenz">
    <property name="text">
     <string>Lizenz</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
   <action name="actionAbout">

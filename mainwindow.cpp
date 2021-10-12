@@ -715,9 +715,22 @@ QJsonObject MainWindow::packQJD(){
 }
 
 void MainWindow::unpackQJO(QJsonObject json ){
-    ui->pDate->setDate(QDate::fromString(json.value("Datum").toString(),"dd.MM.yy"));
+    ui->pDate->setDate(QDate::fromString(json.value("Datum").toString(),"dd.MM.yyyy"));
     ui->pname->setText(json.value("Name").toString());
     ui->pnummer->setText(json.value("Id-Nummer").toString());
+    ui->spinboxDocumentation->setValue(json.value("Doku").toString().toInt());
+    ui->spinboxExamination->setValue(json.value("PRFG").toString().toInt());
+    ui->spinboxGa1->setValue(json.value("GA1").toString().toInt());
+    ui->spinboxGa2->setValue(json.value("GA2").toString().toInt());
+    ui->spinboxWiso->setValue(json.value("Wiso").toString().toInt());
+    ui->spinboxGa1E->setValue(json.value("MEP-GA1").toString().toInt());
+    ui->spinboxGa2E->setValue(json.value("MEP-GA2").toString().toInt());
+    ui->spinboxWisoE->setValue(json.value("MEP-WISO").toString().toInt());
+
+    // Wird automatisch ermittelt:
+    //    json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";
+    //    json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";
+    //    json["Ergebnis"]   = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";
 }
 
 QJsonObject MainWindow::loadJson(QString fileName) {
