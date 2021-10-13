@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "about.h"
-
+#include "preferences.h"
 
 #ifdef Q_OS_OSX
 #include "ui_mainwindow.h"
@@ -29,7 +29,6 @@ MainWindow::MainWindow(QWidget *parent) :
     timer = new QTimer(this);
 
 
-
     ui->setupUi(this);
 
     // gui dependent initialization
@@ -40,17 +39,18 @@ MainWindow::MainWindow(QWidget *parent) :
     // Windows Q_OS_WIN
     setWindowIcon(QIcon("pihk2.ico"));
 #endif
-    statusLabel = new QLabel(this);
-    statusLabel->setText(appemail);
+    QString sp= "          ";
+    QString grades = "0-29=ungenügend,"+sp+"30-49=mangelhaft,"+sp+"50-66=ausreichend,"+sp+"67-80=befriedigend,"+sp+"81-91=gut,"+sp+"92-100=sehr gut";
+    statusLabel = new QLabel(grades);
+    statusLabel->setAlignment(Qt::AlignCenter);
+    statusLabel->setStyleSheet("QLabel { color : darkgray; }");
+    ui->statusBar->insertPermanentWidget(0,statusLabel,1);
     this->setFixedSize(this->geometry().width(),this->geometry().height());
-//    ui->listViewPRFG->setStyleSheet("background-color:lightgray;");
-//    ui->listViewMEPR->setStyleSheet("background-color:lightgray;");
 
     // gui stuff
     ui->pDate->setDate(QDate::currentDate());   // set current Date
     ui->lcdNumber->setPalette(Qt::black);       // set color for LCD
     this->setWindowTitle(version);              // set title
-    ui->statusBar->addPermanentWidget(statusLabel);
     makeFilename();                             // construct basic file name
     ui->labelGradeA->setStyleSheet("QLabel { color : red; }");
     ui->labelGradeB->setStyleSheet("QLabel { color : red; }");
@@ -69,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->radioButton1->setEnabled(false);
     ui->radioButton2->setEnabled(false);
     ui->radioButton3->setEnabled(false);
-
+    ui->folder->setPlaceholderText(QDir::homePath());
 
     // Connections
     connect(timer,SIGNAL(timeout()),this,SLOT(updateProgressBar()));
@@ -159,6 +159,7 @@ void MainWindow::makeFilename(){
             ui->path->setText(QDir::homePath() + QDir::separator() + currentdate + currentName + currentNumber + ".txt");
         }
     }
+    ui->path->setText(currentdate + currentName + currentNumber + ".json");
     ui->saveFile->setEnabled(true);
 }
 
@@ -690,6 +691,7 @@ void MainWindow::on_actionQuit_triggered()
 QJsonObject MainWindow::packQJD(){
     QJsonObject json;
 
+    json["Pruefung"] = ui->comboBoxExam->currentText();
     json["Datum"] = ui->pDate->text();
     json["Name"] = ui->pname->text();
     json["Id-Nummer"] = ui->pnummer->text();
@@ -715,6 +717,7 @@ QJsonObject MainWindow::packQJD(){
 }
 
 void MainWindow::unpackQJO(QJsonObject json ){
+    ui->comboBoxExam->setCurrentText(json.value("Pruefung").toString());
     ui->pDate->setDate(QDate::fromString(json.value("Datum").toString(),"dd.MM.yyyy"));
     ui->pname->setText(json.value("Name").toString());
     ui->pnummer->setText(json.value("Id-Nummer").toString());
@@ -750,15 +753,51 @@ void MainWindow::saveJson(QJsonObject json, QString fileName) {
 void MainWindow::on_actionOeffnen_triggered()
 {
     QString f = QFileDialog::getOpenFileName(this,tr("Öffnen"),".",tr("JSON (*.json)"));
-    QJsonObject json = loadJson(f);
-    unpackQJO(json);
+    if(f.length() != 0){
+        QJsonObject json = loadJson(f);
+        unpackQJO(json);
+    }
 }
 
 
 void MainWindow::on_actionSichernAls_triggered()
 {
-    QJsonObject json = packQJD();
     QString f = QFileDialog::getSaveFileName(this,tr("Sichern"),".",tr("JSON (*.json)"));
-    saveJson(json,f);
+    if(f.length() != 0){
+        QJsonObject json = packQJD();
+        saveJson(json,f);
+    }
+}
+
+
+void MainWindow::on_pushButton_DeleteAll_clicked()
+{
+    ui->pname->setText("");
+    ui->pnummer->setText("");
+    ui->spinboxDocumentation->setValue(0);
+    ui->spinboxExamination->setValue(0);
+    ui->spinboxGa1->setValue(0);
+    ui->spinboxGa2->setValue(0);
+    ui->spinboxWiso->setValue(0);
+    ui->spinboxGa1E->setValue(0);
+    ui->spinboxGa2E->setValue(0);
+    ui->spinboxWisoE->setValue(0);
+    ui->saveFile->setEnabled(true);
+}
+
+
+void MainWindow::on_actionPreferences_triggered()
+{
+    Preferences *pp = new Preferences(this);
+    pp->show();
+}
+
+
+void MainWindow::on_pushButton_SelectDir_clicked()
+{
+        QString folder = QFileDialog::getExistingDirectory(this,tr("Default Ordner"),QDir::homePath(),QFileDialog::ShowDirsOnly|QFileDialog::DontResolveSymlinks);
+        if(folder.length() != 0){
+            ui->folder->setText(folder);
+        }
 }
 

@@ -78,6 +78,9 @@ private slots:
     void on_actionQuit_triggered();
     void on_actionOeffnen_triggered();
     void on_actionSichernAls_triggered();
+    void on_pushButton_DeleteAll_clicked();
+    void on_actionPreferences_triggered();
+    void on_pushButton_SelectDir_clicked();
 };
 
 #endif // MAINWINDOW_H

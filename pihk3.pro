@@ -14,12 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         about.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        preferences.cpp
 
 HEADERS  += mainwindow.h \
-    about.h
+    about.h \
+    preferences.h
 
 FORMS    += mainwindow.ui \
-    about.ui
+    about.ui \
+    preferences.ui
 
 ICON = pihk2.icns

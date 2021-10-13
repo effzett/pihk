@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>886</width>
-    <height>638</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Pihk Version 2.0.0</string>
+   <string>Pihk Version 3.0.0</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -760,7 +760,7 @@
       <x>20</x>
       <y>310</y>
       <width>411</width>
-      <height>201</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="font">
@@ -780,7 +780,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
+       <y>60</y>
        <width>121</width>
        <height>16</height>
       </rect>
@@ -793,7 +793,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>80</y>
        <width>91</width>
        <height>24</height>
       </rect>
@@ -806,7 +806,7 @@
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>110</y>
+       <y>250</y>
        <width>97</width>
        <height>19</height>
       </rect>
@@ -863,7 +863,7 @@
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>110</y>
+       <y>250</y>
        <width>93</width>
        <height>19</height>
       </rect>
@@ -923,7 +923,7 @@
      <property name="geometry">
       <rect>
        <x>357</x>
-       <y>110</y>
+       <y>250</y>
        <width>41</width>
        <height>20</height>
       </rect>
@@ -983,7 +983,7 @@
      <property name="geometry">
       <rect>
        <x>357</x>
-       <y>140</y>
+       <y>280</y>
        <width>41</width>
        <height>20</height>
       </rect>
@@ -1043,7 +1043,7 @@
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>140</y>
+       <y>280</y>
        <width>97</width>
        <height>19</height>
       </rect>
@@ -1100,7 +1100,7 @@
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>140</y>
+       <y>280</y>
        <width>93</width>
        <height>19</height>
       </rect>
@@ -1160,7 +1160,7 @@
      <property name="geometry">
       <rect>
        <x>357</x>
-       <y>170</y>
+       <y>310</y>
        <width>41</width>
        <height>20</height>
       </rect>
@@ -1220,7 +1220,7 @@
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>170</y>
+       <y>310</y>
        <width>93</width>
        <height>19</height>
       </rect>
@@ -1280,7 +1280,7 @@
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>170</y>
+       <y>310</y>
        <width>97</width>
        <height>19</height>
       </rect>
@@ -1336,49 +1336,10 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>131</x>
+       <x>130</x>
        <y>60</y>
        <width>271</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="label_10">
-        <property name="font">
-         <font>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Prüflingsnummer</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="pnummer">
-        <property name="toolTip">
-         <string>IHK Prüfungsnummer</string>
-        </property>
-        <property name="whatsThis">
-         <string/>
-        </property>
-        <property name="inputMask">
-         <string>9999999999</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>31</y>
-       <width>271</width>
-       <height>23</height>
+       <height>20</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1404,6 +1365,270 @@
         <property name="inputMask">
          <string/>
         </property>
+        <property name="placeholderText">
+         <string>Max Mustermann</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QComboBox" name="comboBoxExam">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>271</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>FI Systemintegration</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FI Anwendungsentwicklung</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>391</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="showGrid">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <row>
+      <property name="text">
+       <string>P1</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>P2</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>P3</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>P4</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>P5</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>P6</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>P7</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>P8</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>Prüfer</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1.Korr.</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>2.Korr.</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Anwesend</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </column>
+    </widget>
+    <widget class="QComboBox" name="comboBoxExam_2">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>30</y>
+       <width>121</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>FISI 5</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FISI 6</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>85</y>
+       <width>271</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <property name="labelAlignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="formAlignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Prüflingsnummer</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="pnummer">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>IHK Prüfungsnummer</string>
+        </property>
+        <property name="whatsThis">
+         <string/>
+        </property>
+        <property name="inputMask">
+         <string/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="cursorPosition">
+         <number>0</number>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="placeholderText">
+         <string>1234567890</string>
+        </property>
+        <property name="cursorMoveStyle">
+         <enum>Qt::LogicalMoveStyle</enum>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -1412,17 +1637,17 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>540</y>
-      <width>851</width>
+      <x>450</x>
+      <y>550</y>
+      <width>421</width>
       <height>33</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QPushButton" name="saveFile">
+      <widget class="QLabel" name="label_9">
        <property name="text">
-        <string>Sichern</string>
+        <string>Default Datei</string>
        </property>
       </widget>
      </item>
@@ -1431,6 +1656,19 @@
        <property name="toolTip">
         <string>Vollständiger Dateiname</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>aktuelle Datei</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="saveFile">
+       <property name="text">
+        <string>Sichern</string>
+       </property>
       </widget>
      </item>
     </layout>
@@ -1438,17 +1676,17 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>109</x>
-      <y>510</y>
-      <width>761</width>
-      <height>30</height>
+      <x>450</x>
+      <y>520</y>
+      <width>421</width>
+      <height>33</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="label_27">
        <property name="text">
-        <string>In vorhandenen Ordner</string>
+        <string>Default Ordner</string>
        </property>
       </widget>
      </item>
@@ -1456,6 +1694,19 @@
       <widget class="QLineEdit" name="folder">
        <property name="toolTip">
         <string>Existierender Ordner im Home-Verzeichnis</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>aktueller Ordner</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_SelectDir">
+       <property name="text">
+        <string>Wähle...</string>
        </property>
       </widget>
      </item>
@@ -1498,6 +1749,58 @@
     <property name="selectionMode">
      <enum>QAbstractItemView::SingleSelection</enum>
     </property>
+   </widget>
+   <widget class="QSplitter" name="splitter">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>610</y>
+      <width>421</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <widget class="QPushButton" name="pushButton_DeleteAll">
+     <property name="minimumSize">
+      <size>
+       <width>127</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Prüfling Reset</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>85</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Email...</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>145</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Zeige IHK Seite...</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -1626,7 +1929,6 @@
   <tabstop>pDate</tabstop>
   <tabstop>pname</tabstop>
   <tabstop>pnummer</tabstop>
-  <tabstop>saveFile</tabstop>
   <tabstop>path</tabstop>
   <tabstop>folder</tabstop>
   <tabstop>buttonSimPRFG</tabstop>
