@@ -53,11 +53,11 @@ $retval=0;
 $cnt2=0;
 local @ARGV = "$file2";
 while(<>){
-	$retval = s/(const\s+QString\s+appversion=\s*\")\d+\.\d+\.\d+/$1$version/ ;
+	$retval = s/(const\s+QString\s+app.version=\s*\")\d+\.\d+\.\d+/$1$version/ ;
 	if($retval){
 		$cnt2++;
 	}
-	$retval = s/(const\s+QString\s+appdate=\s*\")\d+\.\d+\.\d\d+/$1$date/ ;
+	$retval = s/(const\s+QString\s+app.date=\s*\")\d+\.\d+\.\d\d+/$1$date/ ;
 	if($retval){
 		$cnt2++;
 	}

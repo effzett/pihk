@@ -7,7 +7,9 @@ About::About(QWidget *parent) :
     ui(new Ui::About)
 {
     ui->setupUi(this);
-    ui->label_version->setText(((MainWindow*)parent)->version);
+    MainWindow  *main= ((MainWindow*)parent);
+    ui->label_version->setText(main->app.versionLong);
+    ui->label_author->setText(main->app.author + " (" + main->app.email+")");
 }
 
 

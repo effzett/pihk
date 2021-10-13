@@ -25,6 +25,16 @@ namespace Ui {
 class MainWindow;
 }
 
+struct appInfo{
+    QString version;
+    QString versionLong;
+    QString date;
+    QString name;
+    QString author;
+    QString email;
+};
+typedef appInfo APPINFO;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -32,7 +42,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QString version;        // Versionsstring
+    APPINFO app;
 
 private:
     Ui::MainWindow *ui;

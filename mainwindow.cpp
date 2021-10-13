@@ -14,18 +14,18 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     // gui independent initialization
     // app specific
-    const QString appversion="3.0.0";
-//    const QString appdate="10.10.2021";
-    const QString appdate=QDate::currentDate().toString("dd.MM.yyyy");
-    const QString appname="PIHK";
-    const QString appauthor="Frank Zimmermann";
-    const QString appemail="fz@zenmeister.de";
+    app.version="3.0.0";
+    app.date=QDate::currentDate().toString("dd.MM.yyyy");
+    // oder QDate::currentDate().toString("dd.MM.yyyy");
+    app.name="PIHK";
+    app.author="Frank Zimmermann";
+    app.email="fz@zenmeister.de";
+    app.versionLong = app.name + "   (V" +app.version +", vom " + app.date + ")";
 
     // Timer related
     isTimerStarted=false;
     timerValue=0;
     offset=0;
-    version =  appname + "   (V" +appversion +", vom " + appdate + ")";
     timer = new QTimer(this);
 
 
@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Windows Q_OS_WIN
     setWindowIcon(QIcon("pihk2.ico"));
 #endif
+    // Setting statusbar and fix geometry
     QString sp= "          ";
     QString grades = "0-29=ungenügend,"+sp+"30-49=mangelhaft,"+sp+"50-66=ausreichend,"+sp+"67-80=befriedigend,"+sp+"81-91=gut,"+sp+"92-100=sehr gut";
     statusLabel = new QLabel(grades);
@@ -50,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // gui stuff
     ui->pDate->setDate(QDate::currentDate());   // set current Date
     ui->lcdNumber->setPalette(Qt::black);       // set color for LCD
-    this->setWindowTitle(version);              // set title
+    this->setWindowTitle(app.versionLong);              // set title
     makeFilename();                             // construct basic file name
     ui->labelGradeA->setStyleSheet("QLabel { color : red; }");
     ui->labelGradeB->setStyleSheet("QLabel { color : red; }");
