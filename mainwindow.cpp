@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "about.h"
 #include "preferences.h"
+#include "lizenz.h"
+#include "regularien.h"
 
 #ifdef Q_OS_OSX
 #include "ui_mainwindow.h"
@@ -679,10 +681,6 @@ QString MainWindow::getGrade(qint32 points){
     return grade;
 }
 
-void MainWindow::about(){
-    About *ap = new About(this);
-    ap->show();
-}
 
 void MainWindow::on_actionQuit_triggered()
 {
@@ -800,5 +798,23 @@ void MainWindow::on_pushButton_SelectDir_clicked()
         if(folder.length() != 0){
             ui->folder->setText(folder);
         }
+}
+
+void MainWindow::about(){
+    About *ap = new About(this);
+    ap->show();
+}
+
+
+void MainWindow::on_actionLizenz_triggered(){
+    Lizenz *lp = new Lizenz(this);
+    lp->show();
+}
+
+
+void MainWindow::on_actionRegularien_triggered(){
+    Regularien *rp = new Regularien(this);
+    rp->show();
+
 }
 

@@ -20,6 +20,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QDate>
+#include <QTextBrowser>
 
 namespace Ui {
 class MainWindow;
@@ -91,6 +92,8 @@ private slots:
     void on_pushButton_DeleteAll_clicked();
     void on_actionPreferences_triggered();
     void on_pushButton_SelectDir_clicked();
+    void on_actionLizenz_triggered();
+    void on_actionRegularien_triggered();
 };
 
 #endif // MAINWINDOW_H

@@ -14,15 +14,26 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         about.cpp \
+        lizenz.cpp \
         mainwindow.cpp \
-        preferences.cpp
+        preferences.cpp \
+        regularien.cpp
 
 HEADERS  += mainwindow.h \
     about.h \
-    preferences.h
+    lizenz.h \
+    preferences.h \
+    regularien.h
 
 FORMS    += mainwindow.ui \
     about.ui \
-    preferences.ui
+    lizenz.ui \
+    preferences.ui \
+    regularien.ui
 
 ICON = pihk2.icns
+
+RESOURCES += \
+    resourcen.qrc
+
+DISTFILES +=
