@@ -17,13 +17,17 @@ SOURCES += main.cpp\
         lizenz.cpp \
         mainwindow.cpp \
         preferences.cpp \
-        regularien.cpp
+        regularien.cpp \
+        treeitem.cpp \
+        treemodel.cpp
 
 HEADERS  += mainwindow.h \
     about.h \
     lizenz.h \
     preferences.h \
-    regularien.h
+    regularien.h \
+    treeitem.h \
+    treemodel.h
 
 FORMS    += mainwindow.ui \
     about.ui \

@@ -1563,16 +1563,6 @@
      </row>
      <column>
       <property name="text">
-       <string>Aktiv</string>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-     </column>
-     <column>
-      <property name="text">
        <string>Prüfer</string>
       </property>
       <property name="font">
@@ -1707,7 +1697,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>9</x>

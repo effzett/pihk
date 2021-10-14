@@ -283,7 +283,7 @@
     <rect>
      <x>10</x>
      <y>130</y>
-     <width>411</width>
+     <width>381</width>
      <height>271</height>
     </rect>
    </property>
@@ -293,120 +293,14 @@
     </font>
    </property>
    <property name="title">
-    <string>Wegen Kompatibilität: nur aktiv/passiv setzen</string>
+    <string>Wird gespeichert und wird als Vorschlag für die Liste genutzt</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTreeWidget" name="treeWidget">
-      <column>
-       <property name="text">
-        <string>Fachrichtung / Ausschuss / Prüfer</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Aktiv</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Passiv</string>
-       </property>
-      </column>
-      <item>
-       <property name="text">
-        <string>Systemintegration</string>
-       </property>
-       <item>
-        <property name="text">
-         <string>FISI5</string>
-        </property>
-        <property name="flags">
-         <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-        </property>
-        <item>
-         <property name="text">
-          <string>Frank Zimmermann</string>
-         </property>
-         <property name="flags">
-          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Joachim Kemmries</string>
-         </property>
-         <property name="flags">
-          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Laurents Schwartz</string>
-         </property>
-         <property name="flags">
-          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Frank Wolters</string>
-         </property>
-         <property name="flags">
-          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Fabian Beckmann</string>
-         </property>
-         <property name="flags">
-          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Klaus Nagel</string>
-         </property>
-         <property name="flags">
-          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-         </property>
-        </item>
-       </item>
-      </item>
-      <item>
-       <property name="text">
-        <string>Anwendungsentwicklung</string>
-       </property>
-       <item>
-        <property name="text">
-         <string>FIAE6</string>
-        </property>
-        <property name="flags">
-         <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-        </property>
-        <item>
-         <property name="text">
-          <string>Prüfer 5</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Prüfer 6</string>
-         </property>
-        </item>
-       </item>
-      </item>
-      <item>
-       <property name="text">
-        <string>Daten- und Prozeßanalyse</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Digitale Vernetzung</string>
-       </property>
-      </item>
+     <widget class="QTreeView" name="treeView">
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
      </widget>
     </item>
    </layout>
@@ -440,6 +334,70 @@
     </item>
    </layout>
   </widget>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>150</y>
+     <width>161</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(254, 235, 117);</string>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Einträge der Prüfer&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Diese Einträge werden nur zur Auswahl der Prüfer genutzt.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sie werden nach jeder Sitzung gespeichert.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Werden Prüfer gelöscht, und wurden diese in vorigen Sitzungen verwendet, werden sie hier nicht neu eingetragen.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mit rechter Maustaste lassen sich &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;* Zeilen/Zweige löschen&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;* Zeilen hinzufügen&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;* Untereinträge hinzufügen.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Zeile löschen</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionInsertRow">
+   <property name="text">
+    <string>Zeile einfügen</string>
+   </property>
+   <property name="toolTip">
+    <string>Zeile einfügen</string>
+   </property>
+  </action>
+  <action name="actionInsertChild">
+   <property name="text">
+    <string>Kind einfügen</string>
+   </property>
+   <property name="toolTip">
+    <string>Kind einfügen</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>

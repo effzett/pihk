@@ -3,6 +3,7 @@
 #include "preferences.h"
 #include "lizenz.h"
 #include "regularien.h"
+#include "treemodel.h"
 
 #ifdef Q_OS_OSX
 #include "ui_mainwindow.h"
@@ -37,6 +38,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QSettings settings;
 
     ui->setupUi(this);
+
+    // Read in Tester model
+    const QStringList headers({tr("Prüfer")});
+    QFile file(":/tree.txt");
+    file.open(QIODevice::ReadOnly);
+    treeModel = new TreeModel(headers, file.readAll());
+    file.close();
 
     // gui dependent initialization
 #ifdef Q_OS_OSX

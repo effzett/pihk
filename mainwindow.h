@@ -22,6 +22,7 @@
 #include <QDate>
 #include <QTextBrowser>
 #include <QSettings>
+#include <treemodel.h>
 
 namespace Ui {
 class MainWindow;
@@ -45,6 +46,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     APPINFO app;
+    TreeModel *treeModel;
 
 private:
     Ui::MainWindow *ui;
