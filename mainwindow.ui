@@ -169,19 +169,22 @@
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>0</y>
-       <width>131</width>
-       <height>31</height>
+       <width>151</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>20</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
-      <string>Teilprüfung A</string>
+      <string>Teil 21</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -348,7 +351,7 @@
       <x>20</x>
       <y>160</y>
       <width>411</width>
-      <height>151</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="font">
@@ -365,19 +368,25 @@
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>0</y>
-       <width>131</width>
-       <height>31</height>
+       <width>71</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>20</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
+     <property name="lineWidth">
+      <number>-2</number>
+     </property>
      <property name="text">
-      <string>Teilprüfung B</string>
+      <string>Teil 1+2</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QDoubleSpinBox" name="spinboxGa1">
@@ -420,7 +429,7 @@
        <x>180</x>
        <y>10</y>
        <width>51</width>
-       <height>16</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="maximumSize">
@@ -430,7 +439,7 @@
       </size>
      </property>
      <property name="text">
-      <string>GA1</string>
+      <string>T22</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -446,7 +455,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>GA2</string>
+      <string>T23</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -541,7 +550,7 @@
      <property name="geometry">
       <rect>
        <x>220</x>
-       <y>120</y>
+       <y>110</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -562,7 +571,7 @@
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>120</y>
+       <y>110</y>
        <width>71</width>
        <height>31</height>
       </rect>
@@ -580,7 +589,7 @@
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>120</y>
+       <y>110</y>
        <width>41</width>
        <height>31</height>
       </rect>
@@ -753,14 +762,70 @@
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QDoubleSpinBox" name="spinboxGa1_2">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>30</y>
+       <width>51</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>51</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>51</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>GA1</string>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="decimals">
+      <number>0</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_24">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>10</y>
+       <width>51</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>51</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>T1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>310</y>
+      <y>300</y>
       <width>411</width>
-      <height>341</height>
+      <height>351</height>
      </rect>
     </property>
     <property name="font">
@@ -776,37 +841,11 @@
     <property name="title">
      <string>Gesamtergebnis</string>
     </property>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>121</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Prüfungsdatum</string>
-     </property>
-    </widget>
-    <widget class="QDateEdit" name="pDate">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>91</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="displayFormat">
-      <string>dd.MM.yyyy</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_11">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>250</y>
+       <x>140</x>
+       <y>260</y>
        <width>97</width>
        <height>19</height>
       </rect>
@@ -862,8 +901,8 @@
     <widget class="QLabel" name="labelGradeResultA">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>250</y>
+       <x>260</x>
+       <y>260</y>
        <width>93</width>
        <height>19</height>
       </rect>
@@ -923,7 +962,7 @@
      <property name="geometry">
       <rect>
        <x>357</x>
-       <y>250</y>
+       <y>260</y>
        <width>41</width>
        <height>20</height>
       </rect>
@@ -983,7 +1022,7 @@
      <property name="geometry">
       <rect>
        <x>357</x>
-       <y>280</y>
+       <y>290</y>
        <width>41</width>
        <height>20</height>
       </rect>
@@ -1042,8 +1081,8 @@
     <widget class="QLabel" name="label_15">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>280</y>
+       <x>140</x>
+       <y>290</y>
        <width>97</width>
        <height>19</height>
       </rect>
@@ -1099,8 +1138,8 @@
     <widget class="QLabel" name="labelGradeResultB">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>280</y>
+       <x>260</x>
+       <y>290</y>
        <width>93</width>
        <height>19</height>
       </rect>
@@ -1160,7 +1199,7 @@
      <property name="geometry">
       <rect>
        <x>357</x>
-       <y>310</y>
+       <y>320</y>
        <width>41</width>
        <height>20</height>
       </rect>
@@ -1219,8 +1258,8 @@
     <widget class="QLabel" name="labelGradeResult">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>310</y>
+       <x>260</x>
+       <y>320</y>
        <width>93</width>
        <height>19</height>
       </rect>
@@ -1279,8 +1318,8 @@
     <widget class="QLabel" name="label_19">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>310</y>
+       <x>140</x>
+       <y>320</y>
        <width>97</width>
        <height>19</height>
       </rect>
@@ -1336,9 +1375,9 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>60</y>
-       <width>271</width>
+       <x>10</x>
+       <y>200</y>
+       <width>381</width>
        <height>23</height>
       </rect>
      </property>
@@ -1375,10 +1414,10 @@
     <widget class="QComboBox" name="comboBoxExam">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>30</y>
-       <width>271</width>
-       <height>32</height>
+       <width>281</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="editable">
@@ -1394,13 +1433,23 @@
        <string>FI Anwendungsentwicklung</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>FI Daten- und Prozeßanalyse</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FI Digitale Vernetzung</string>
+      </property>
+     </item>
     </widget>
     <widget class="QTableWidget" name="tableWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>110</y>
-       <width>391</width>
+       <y>60</y>
+       <width>381</width>
        <height>131</height>
       </rect>
      </property>
@@ -1411,7 +1460,16 @@
        <bold>false</bold>
       </font>
      </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
      <property name="showGrid">
+      <bool>true</bool>
+     </property>
+     <property name="gridStyle">
+      <enum>Qt::SolidLine</enum>
+     </property>
+     <property name="sortingEnabled">
       <bool>true</bool>
      </property>
      <attribute name="horizontalHeaderVisible">
@@ -1419,6 +1477,9 @@
      </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+      <bool>true</bool>
      </attribute>
      <row>
       <property name="text">
@@ -1502,6 +1563,16 @@
      </row>
      <column>
       <property name="text">
+       <string>Aktiv</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>Prüfer</string>
       </property>
       <property name="font">
@@ -1512,7 +1583,7 @@
      </column>
      <column>
       <property name="text">
-       <string>1.Korr.</string>
+       <string>1. Korr.</string>
       </property>
       <property name="font">
        <font>
@@ -1547,7 +1618,7 @@
        <x>280</x>
        <y>30</y>
        <width>121</width>
-       <height>32</height>
+       <height>30</height>
       </rect>
      </property>
      <property name="editable">
@@ -1567,18 +1638,21 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>85</y>
-       <width>271</width>
+       <x>10</x>
+       <y>230</y>
+       <width>381</width>
        <height>23</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
       <property name="labelAlignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
       <property name="formAlignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
       </property>
       <item row="0" column="0">
        <widget class="QLabel" name="label_10">
@@ -1628,6 +1702,35 @@
         </property>
         <property name="clearButtonEnabled">
          <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>290</y>
+       <width>111</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout_2">
+      <property name="labelAlignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Prüfungsdatum</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QDateEdit" name="pDate">
+        <property name="displayFormat">
+         <string>dd.MM.yyyy</string>
         </property>
        </widget>
       </item>

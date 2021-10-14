@@ -29,7 +29,12 @@ MainWindow::MainWindow(QWidget *parent) :
     timerValue=0;
     offset=0;
     timer = new QTimer(this);
+    maxMinutes=15;
 
+    QCoreApplication::setOrganizationName("zenmeister");
+    QCoreApplication::setOrganizationDomain("zenmeister.de");
+    QCoreApplication::setApplicationName("PIHK");
+    QSettings settings;
 
     ui->setupUi(this);
 
@@ -41,6 +46,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Windows Q_OS_WIN
     setWindowIcon(QIcon("pihk2.ico"));
 #endif
+
+    // Initialization
+    // Basic
     // Setting statusbar and fix geometry
     QString sp= "          ";
     QString grades = "0-29=ungenügend,"+sp+"30-49=mangelhaft,"+sp+"50-66=ausreichend,"+sp+"67-80=befriedigend,"+sp+"81-91=gut,"+sp+"92-100=sehr gut";
@@ -49,12 +57,11 @@ MainWindow::MainWindow(QWidget *parent) :
     statusLabel->setStyleSheet("QLabel { color : darkgray; }");
     ui->statusBar->insertPermanentWidget(0,statusLabel,1);
     this->setFixedSize(this->geometry().width(),this->geometry().height());
-
-    // gui stuff
-    ui->pDate->setDate(QDate::currentDate());   // set current Date
-    ui->lcdNumber->setPalette(Qt::black);       // set color for LCD
     this->setWindowTitle(app.versionLong);              // set title
-    makeFilename();                             // construct basic file name
+
+    // gui stuff (new candidate)
+    ui->lcdNumber->setPalette(Qt::black);       // set color for LCD
+    ui->pDate->setDate(QDate::currentDate());   // set current Date
     ui->labelGradeA->setStyleSheet("QLabel { color : red; }");
     ui->labelGradeB->setStyleSheet("QLabel { color : red; }");
     ui->labelGradeResultA->setStyleSheet("QLabel { color : red; }");
@@ -73,6 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->radioButton2->setEnabled(false);
     ui->radioButton3->setEnabled(false);
     ui->folder->setPlaceholderText(QDir::homePath());
+    makeFilename();                             // construct basic file name
 
     // Connections
     connect(timer,SIGNAL(timeout()),this,SLOT(updateProgressBar()));
@@ -99,23 +107,21 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->listViewPRFG,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsPRFG(const QModelIndex &)));
     connect(ui->listViewMEPR,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsMEPR(const QModelIndex &)));
     connect(ui->actionAbout,SIGNAL(triggered()),this,SLOT(about()));
-//    connect(ui->actionSichernAls,SIGNAL(triggered()),this,SLOT(on_actionSichernAls_triggered()));
-//    connect(ui->actionOeffnen,SIGNAL(triggered()),this,SLOT(on_actionOeffnen_triggered()));
 }
 
+// Timer and progressbar stuff
 // each shot: increment timerValue and show in progressBar and LCD
 void MainWindow::updateProgressBar(){
     timerValue++;
-    if(timerValue<=15){
+    if(timerValue<=maxMinutes){
         ui->progressBar->setValue(timerValue);
     }
     else{
-        offset=15;
+        offset=maxMinutes;
         ui->lcdNumber->setPalette(Qt::red);
     }
     ui->lcdNumber->display(timerValue-offset);
 }
-
 // start or stop timer
 void MainWindow::toggleStartStop(){
     if(isTimerStarted==false){
@@ -131,7 +137,6 @@ void MainWindow::toggleStartStop(){
         timer->stop();
     }
 }
-
 // resets progressBar and LCD
 void MainWindow::timerReset(){
     if(isTimerStarted==false){
@@ -143,7 +148,7 @@ void MainWindow::timerReset(){
     }
 }
 
-// make file name from home/folder/date/name/number.txt
+// make file name from selected categories TODO
 void MainWindow::makeFilename(){
     QString fn="";
     QString currentdate = ui->pDate->date().toString("yyyyMMdd");

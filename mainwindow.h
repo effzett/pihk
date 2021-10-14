@@ -21,6 +21,7 @@
 #include <QFileDialog>
 #include <QDate>
 #include <QTextBrowser>
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
@@ -54,7 +55,7 @@ int offset;             // 15, after that time the excess is counted
 QLabel *statusLabel;    // line in statusbar
 bool hasPassed;         // Bestanden=true, Nicht bestanden=false
 QStringListModel *model;
-
+qint32 maxMinutes;      // maximale Vortragszeit
 
 quint32 calcA(qint32 docu, qint32 exam);
 quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);

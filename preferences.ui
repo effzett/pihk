@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>580</width>
-    <height>452</height>
+    <height>478</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,26 +54,13 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>40</y>
-     <width>131</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Default Prüfungsart</string>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>70</y>
+     <y>30</y>
      <width>561</width>
-     <height>121</height>
+     <height>101</height>
     </rect>
    </property>
    <property name="title">
@@ -109,7 +96,12 @@
      </item>
      <item>
       <property name="text">
-       <string>Prüfungsart</string>
+       <string>Fachrichtung</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ausschuss</string>
       </property>
      </item>
      <item>
@@ -136,6 +128,11 @@
      </item>
      <item>
       <property name="text">
+       <string>_</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>&lt;leer&gt;</string>
       </property>
      </item>
@@ -143,22 +140,27 @@
     <widget class="QComboBox" name="comboBoxD2">
      <item>
       <property name="text">
-       <string>Name</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Prüfungsart</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
        <string>Datum</string>
       </property>
      </item>
      <item>
       <property name="text">
+       <string>Name</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>P.Nummer</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Fachrichtung</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ausschuss</string>
       </property>
      </item>
      <item>
@@ -185,6 +187,11 @@
      </item>
      <item>
       <property name="text">
+       <string>_</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>&lt;leer&gt;</string>
       </property>
      </item>
@@ -192,12 +199,7 @@
     <widget class="QComboBox" name="comboBoxD3">
      <item>
       <property name="text">
-       <string>P.-Nummer</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Prüfungsart</string>
+       <string>Datum</string>
       </property>
      </item>
      <item>
@@ -207,7 +209,17 @@
      </item>
      <item>
       <property name="text">
-       <string>Datum</string>
+       <string>P.-Nummer</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Fachrichtung</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ausschuss</string>
       </property>
      </item>
      <item>
@@ -217,18 +229,18 @@
      </item>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
+      <y>50</y>
       <width>311</width>
       <height>31</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_2">
      <item row="0" column="1">
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="comboBoxSpacher">
        <item>
         <property name="text">
          <string>Unterstrich (_)</string>
@@ -270,9 +282,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>190</y>
-     <width>561</width>
-     <height>211</height>
+     <y>130</y>
+     <width>411</width>
+     <height>271</height>
     </rect>
    </property>
    <property name="font">
@@ -281,83 +293,129 @@
     </font>
    </property>
    <property name="title">
-    <string>Vorsicht: Löschungen können Kompatibilität mit alten Dateien zerstören</string>
+    <string>Wegen Kompatibilität: nur aktiv/passiv setzen</string>
    </property>
-   <widget class="QListWidget" name="listWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>50</y>
-      <width>241</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>60</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Prüfer</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>30</y>
-      <width>131</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Prüfungsausschuss</string>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="listWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>50</y>
-      <width>141</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>30</y>
-      <width>131</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Prüfungsart</string>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="listWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>50</y>
-      <width>141</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTreeWidget" name="treeWidget">
+      <column>
+       <property name="text">
+        <string>Fachrichtung / Ausschuss / Prüfer</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Aktiv</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Passiv</string>
+       </property>
+      </column>
+      <item>
+       <property name="text">
+        <string>Systemintegration</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>FISI5</string>
+        </property>
+        <property name="flags">
+         <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+        </property>
+        <item>
+         <property name="text">
+          <string>Frank Zimmermann</string>
+         </property>
+         <property name="flags">
+          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Joachim Kemmries</string>
+         </property>
+         <property name="flags">
+          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Laurents Schwartz</string>
+         </property>
+         <property name="flags">
+          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Frank Wolters</string>
+         </property>
+         <property name="flags">
+          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Fabian Beckmann</string>
+         </property>
+         <property name="flags">
+          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Klaus Nagel</string>
+         </property>
+         <property name="flags">
+          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+         </property>
+        </item>
+       </item>
+      </item>
+      <item>
+       <property name="text">
+        <string>Anwendungsentwicklung</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>FIAE6</string>
+        </property>
+        <property name="flags">
+         <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+        </property>
+        <item>
+         <property name="text">
+          <string>Prüfer 5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Prüfer 6</string>
+         </property>
+        </item>
+       </item>
+      </item>
+      <item>
+       <property name="text">
+        <string>Daten- und Prozeßanalyse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Digitale Vernetzung</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>40</y>
+     <x>10</x>
+     <y>450</y>
      <width>201</width>
      <height>23</height>
     </rect>
