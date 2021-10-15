@@ -106,12 +106,12 @@ void Preferences::updateActions()
 //    removeRowAction->setEnabled(hasSelection);
 //    removeColumnAction->setEnabled(hasSelection);
 
-//    const bool hasCurrent = ui->treeView->selectionModel()->currentIndex().isValid();
+    const bool hasCurrent = ui->treeView->selectionModel()->currentIndex().isValid();
 //    insertRowAction->setEnabled(hasCurrent);
 //    insertColumnAction->setEnabled(hasCurrent);
 
-//    if (hasCurrent) {
-//        ui->treeView->closePersistentEditor(view->selectionModel()->currentIndex());
+    if (hasCurrent) {
+        ui->treeView->closePersistentEditor(ui->treeView->selectionModel()->currentIndex());
 
 //        const int row = ui->treeView->selectionModel()->currentIndex().row();
 //        const int column = ui->treeView->selectionModel()->currentIndex().column();
@@ -119,7 +119,7 @@ void Preferences::updateActions()
 //            qDebug()<<(tr("Position: (%1,%2)").arg(row).arg(column));
 //        else
 //            qDebug()<<(tr("Position: (%1,%2) in top level").arg(row).arg(column));
-//    }
+    }
 }
 
 

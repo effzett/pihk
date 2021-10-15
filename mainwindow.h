@@ -23,7 +23,8 @@
 #include <QTextBrowser>
 #include <QSettings>
 #include <treemodel.h>
-
+#include <QCheckBox>
+#include <QHeaderView>
 namespace Ui {
 class MainWindow;
 }
