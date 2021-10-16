@@ -26,6 +26,7 @@
 #include <QCheckBox>
 #include <QHeaderView>
 #include <QScrollBar>
+#include <QSortFilterProxyModel>
 
 namespace Ui {
 class MainWindow;

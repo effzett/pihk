@@ -138,13 +138,24 @@ MainWindow::MainWindow(QWidget *parent) :
     QHeaderView* header=ui->tableView->verticalHeader();
     header->setDefaultSectionSize(20); // 20 px height
     header->sectionResizeMode(QHeaderView::Fixed);
-    ui->tableView->setColumnWidth(0,259);
+    ui->tableView->setColumnWidth(0,260);
     ui->tableView->setColumnWidth(1,40);
     ui->tableView->setColumnWidth(2,40);
     ui->tableView->setColumnWidth(3,40);
     ui->tableView->horizontalScrollBar()->setDisabled(true);
+    ui->tableView->setSortingEnabled(true);
+    QHeaderView *headerView = ui->tableView->horizontalHeader();
+    headerView->setSectionResizeMode(0,QHeaderView::Fixed);
+    headerView->setSectionResizeMode(1,QHeaderView::Fixed);
+    headerView->setSectionResizeMode(2,QHeaderView::Fixed);
+    headerView->setSectionResizeMode(3,QHeaderView::Fixed);
+//    QSortFilterProxyModel proxyModel;
+//    proxyModel.setSourceModel( treeModel );
+//    ui->tableView->setModel( &proxyModel );
+
     ui->comboBoxExam->setModel(treeModel);
     ui->comboBoxExam_2->setModel(treeModel);
+
     emit ui->comboBoxExam->currentIndexChanged(0);
     emit ui->comboBoxExam_2->currentIndexChanged(0);
     makeFilename();                             // construct basic file name

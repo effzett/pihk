@@ -13,8 +13,11 @@ Preferences::Preferences(QWidget *parent) :
 
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->treeView->setModel(w->treeModel);
-    for (int column = 0; column < (w->treeModel)->columnCount(); ++column)
-        ui->treeView->resizeColumnToContents(column);
+//    for (int column = 0; column < (w->treeModel)->columnCount(); ++column){
+//        ui->treeView->resizeColumnToContents(column);
+//    }
+    ui->treeView->setColumnWidth(0,351);
+    ui->treeView->horizontalScrollBar()->setDisabled(true);
 }
 
 Preferences::~Preferences()
