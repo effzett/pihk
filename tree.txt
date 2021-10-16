@@ -1,0 +1,28 @@
+FI Systemintegration
+    FISI 5
+        Frank Zimmermann
+        Fabian Beckmann
+        Joachim Kemmries
+        Klaus Nagel
+        Laurents Schwartz
+        Frank Wolters
+    FISI 6
+        Prüfer 1 aus FISI 6
+        Prüfer 2 aus FISI 6
+    FISI 7
+FI Anwendungsentwicklung
+    FIAE 1
+    FIAE 2
+FI Daten- und Prozeßanalyse
+    Dummy-Ausschuss
+        Prüfer1 aus Dummy Ausschuss
+        Prüfer2 aus Dummy Ausschuss
+        Prüfer3 aus Dummy Ausschuss
+        Prüfer4 aus Dummy Ausschuss
+        Prüfer5 aus Dummy Ausschuss
+        Prüfer6 aus Dummy Ausschuss
+        Prüfer7 aus Dummy Ausschuss
+        Prüfer8 aus Dummy Ausschuss
+        Prüfer9 aus Dummy Ausschuss
+FI Digitale Vernetzung
+    Dummy-Ausschuss

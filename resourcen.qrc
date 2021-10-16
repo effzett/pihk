@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lgpl3.html</file>
+        <file>pordBund.html</file>
+        <file>tree.txt</file>
+    </qresource>
+</RCC>
