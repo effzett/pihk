@@ -25,6 +25,8 @@
 #include <treemodel.h>
 #include <QCheckBox>
 #include <QHeaderView>
+#include <QScrollBar>
+
 namespace Ui {
 class MainWindow;
 }
@@ -98,6 +100,8 @@ private slots:
     void on_pushButton_SelectDir_clicked();
     void on_actionLizenz_triggered();
     void on_actionRegularien_triggered();
+    void on_comboBoxExam_currentIndexChanged(int index);
+    void on_comboBoxExam_2_currentIndexChanged(int index);
 };
 
 #endif // MAINWINDOW_H
