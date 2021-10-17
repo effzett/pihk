@@ -1,28 +1,45 @@
-FI Systemintegration
-    FISI 5
-        Frank Zimmermann
-        Fabian Beckmann
-        Joachim Kemmries
-        Klaus Nagel
-        Laurents Schwartz
-        Frank Wolters
-    FISI 6
-        Prüfer 1 aus FISI 6
-        Prüfer 2 aus FISI 6
-    FISI 7
-FI Anwendungsentwicklung
-    FIAE 1
-    FIAE 2
-FI Daten- und Prozeßanalyse
-    Dummy-Ausschuss
-        Prüfer1 aus Dummy Ausschuss
-        Prüfer2 aus Dummy Ausschuss
-        Prüfer3 aus Dummy Ausschuss
-        Prüfer4 aus Dummy Ausschuss
-        Prüfer5 aus Dummy Ausschuss
-        Prüfer6 aus Dummy Ausschuss
-        Prüfer7 aus Dummy Ausschuss
-        Prüfer8 aus Dummy Ausschuss
-        Prüfer9 aus Dummy Ausschuss
-FI Digitale Vernetzung
-    Dummy-Ausschuss
+FI Systemintegration		1	1	1
+    FISI 5		1	1	1
+        Frank Zimmermann		1	0	1
+        Fabian Beckmann		1	1	1
+        Joachim Kemmries		1	1	1
+        Klaus Nagel		1	1	1
+        Laurents Schwartz		1	1	1
+        Frank Wolters		1	1	1
+    FISI 6		1	1	1
+        Prüfer 1 aus FISI 6		1	1	1
+        Prüfer 2 aus FISI 6		1	1	1
+    FISI 7                 		1	1	1
+        Prüfer 1 aus FISI 7		1	1	1
+        Prüfer 2 aus FISI 7		1	1	1
+        Prüfer 3 aus FISI 7		1	1	1
+FI Anwendungsentwicklung   		1	1	1
+    FIAE 1                 		1	1	1
+        Prüfer 1 aus FIAE 1		1	1	1
+        Prüfer 2 aus FIAE 1		1	1	1
+    FIAE 2                 		1	1	1
+        Prüfer 1 aus FIAE 2		1	1	1
+        Prüfer 2 aus FIAE 2		1	1	1
+        Prüfer 3 aus FIAE 2		1	1	1
+        Prüfer 4 aus FIAE 2		1	1	1
+FI Daten- und Prozeßanalyse		1	1	1
+    Dummy-1                		1	1	1
+        Prüfer1 aus Dummy-1		1	1	1
+        Prüfer2 aus Dummy-1		1	1	1
+        Prüfer3 aus Dummy-1		1	1	1
+        Prüfer4 aus Dummy-1		1	1	1
+        Prüfer5 aus Dummy-1		1	1	1
+        Prüfer6 aus Dummy-1		1	1	1
+        Prüfer7 aus Dummy-1		1	1	1
+        Prüfer8 aus Dummy-1		1	1	1
+        Prüfer9 aus Dummy-1		1	1	1
+    Dummy-2                		1	1	1
+        Prüfer1 aus Dummy-2		1	1	1
+        Prüfer2 aus Dummy-2		1	1	1
+        Prüfer3 aus Dummy-2		1	1	1
+        Prüfer4 aus Dummy-2		1	1	1
+        Prüfer5 aus Dummy-2		1	1	1
+        Prüfer6 aus Dummy-2		1	1	1
+        Prüfer7 aus Dummy-2		1	1	1
+FI Digitale Vernetzung     		1	1	1
+    Dummy-3                		1	1	1

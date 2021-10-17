@@ -10,14 +10,17 @@ Preferences::Preferences(QWidget *parent) :
     w = qobject_cast<MainWindow*>(parent);
 
     ui->setupUi(this);
-
+    oldModel = w->treeModel;    // leider kein deepcopy: TODO
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
-    ui->treeView->setModel(w->treeModel);
+    ui->treeView->setModel(oldModel);
 //    for (int column = 0; column < (w->treeModel)->columnCount(); ++column){
 //        ui->treeView->resizeColumnToContents(column);
 //    }
-    ui->treeView->setColumnWidth(0,351);
-    ui->treeView->horizontalScrollBar()->setDisabled(true);
+    //ui->treeView->setColumnWidth(0,351);  // alles dahinter wollen wir nicht sehen
+    ui->treeView->setColumnHidden(1,true);
+    ui->treeView->setColumnHidden(2,true);
+    ui->treeView->setColumnHidden(3,true);
+    ui->treeView->horizontalScrollBar()->setDisabled(true);  // und der user soll sich das nicht zurechtschieben können
 }
 
 Preferences::~Preferences()
@@ -26,15 +29,13 @@ Preferences::~Preferences()
 }
 
 void Preferences::on_treeView_customContextMenuRequested(const QPoint &pos)
-{
-    qDebug()<< pos.x() << pos.y();
+{   // the context menu
     QMenu menu(this); // add menu items
     menu.addAction(ui->actionDelete);
     menu.addAction(ui->actionInsertRow);
     menu.addAction(ui->actionInsertChild);
 
     //ui->actionDelete->setData(QVariant(pos)); // if you will need the position data save it to the action
-
     menu.exec( ui->treeView->mapToGlobal(pos) );
 }
 
@@ -54,6 +55,7 @@ void Preferences::on_actionInsertChild_triggered()
     insertChild();
 }
 
+// we dont use
 void Preferences::removeRow()
 {
     const QModelIndex index = ui->treeView->selectionModel()->currentIndex();
@@ -74,7 +76,14 @@ void Preferences::insertRow()
 
     for (int column = 0; column < model->columnCount(index.parent()); ++column) {
         const QModelIndex child = model->index(index.row() + 1, column, index.parent());
-        model->setData(child, QVariant(tr("[No data]")), Qt::EditRole);
+        if(column==0){
+            model->setData(child, QVariant(tr("[No data]")), Qt::EditRole);
+            qDebug()<<tr("[No data]")<<"insert Row-Preferences";
+        }
+        else{
+            model->setData(child, Qt::Checked, Qt::CheckStateRole);
+            qDebug()<<"Qt::Checked"<<"insert Row-Preferences";
+        }
     }
 }
 
@@ -93,7 +102,15 @@ void Preferences::insertChild()
 
     for (int column = 0; column < model->columnCount(index); ++column) {
         const QModelIndex child = model->index(0, column, index);
-        model->setData(child, QVariant(tr("[No data]")), Qt::EditRole);
+        if(column==0){
+            model->setData(child, QVariant(tr("[No data]")), Qt::EditRole);
+            qDebug()<<tr("[No data]")<<"insert Child-Preferences";
+
+        }
+        else{
+            model->setData(child, Qt::Unchecked, Qt::CheckStateRole);
+            qDebug()<<"Qt::Checked"<<"insert Child-Preferences";
+        }
         if (!model->headerData(column, Qt::Horizontal).isValid())
             model->setHeaderData(column, Qt::Horizontal, QVariant(tr("[No header]")), Qt::EditRole);
     }
@@ -125,8 +142,14 @@ void Preferences::updateActions()
     }
 }
 
+void Preferences::on_buttonBox_accepted()
+{
+    w->treeModel = oldModel;
+}
 
 
-
-
+void Preferences::on_buttonBox_rejected()
+{
+    
+}
 

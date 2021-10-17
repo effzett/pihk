@@ -25,9 +25,14 @@ private slots:
     void on_actionInsertRow_triggered();
     void on_actionInsertChild_triggered();
 
+    void on_buttonBox_accepted();
+    
+    void on_buttonBox_rejected();
+    
 private:
     Ui::Preferences *ui;
     MainWindow *w;
+    TreeModel *oldModel;
     void removeRow();
     void insertRow();
     void insertChild();

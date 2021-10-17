@@ -89,52 +89,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->radioButton3->setEnabled(false);
     ui->folder->setPlaceholderText(QDir::homePath());
 
-//    // tableWidget initialisieren
-//    ui->tableWidget->setColumnWidth(0,259);
-//    ui->tableWidget->setColumnWidth(1,40);
-//    ui->tableWidget->setColumnWidth(2,40);
-//    ui->tableWidget->setColumnWidth(3,40);
-//    for(int i=0; i < ui->tableWidget->rowCount();i++){
-//        QWidget *p1Widget = new QWidget();
-//        QWidget *p2Widget = new QWidget();
-//        QWidget *p3Widget = new QWidget();
-//        QCheckBox *p1CheckBox = new QCheckBox();
-//        QCheckBox *p2CheckBox = new QCheckBox();
-//        QCheckBox *p3CheckBox = new QCheckBox();
-//        QHBoxLayout * p1Layout = new QHBoxLayout(p1Widget);
-//        QHBoxLayout * p2Layout = new QHBoxLayout(p2Widget);
-//        QHBoxLayout * p3Layout = new QHBoxLayout(p3Widget);
-//        p1Layout->addWidget(p1CheckBox);
-//        p2Layout->addWidget(p2CheckBox);
-//        p3Layout->addWidget(p3CheckBox);
-//        p1Layout->setAlignment(Qt::AlignCenter);
-//        p2Layout->setAlignment(Qt::AlignCenter);
-//        p3Layout->setAlignment(Qt::AlignCenter);
-//        p1Layout->setContentsMargins(0,0,0,0);
-//        p2Layout->setContentsMargins(0,0,0,0);
-//        p3Layout->setContentsMargins(0,0,0,0);
-//        p1Widget->setLayout(p1Layout);
-//        p2Widget->setLayout(p2Layout);
-//        p3Widget->setLayout(p3Layout);
-//        // ui->tableWidget->setCellWidget(i,0,new QComboBox);
-//        ui->tableWidget->setCellWidget(i,1,p1Widget);
-//        ui->tableWidget->setCellWidget(i,2,p2Widget);
-//        ui->tableWidget->setCellWidget(i,3,p3Widget);
-//    }
-//    ui->tableWidget->horizontalHeaderItem(0)->setText("Prüfer");
-//    ui->tableWidget->horizontalHeaderItem(1)->setText("1.Ko");
-//    ui->tableWidget->horizontalHeaderItem(2)->setText("2.Ko");
-//    ui->tableWidget->horizontalHeaderItem(3)->setText("Anw.");
-//    QHeaderView *headerView = ui->tableWidget->horizontalHeader();
-//    headerView->setSectionResizeMode(0,QHeaderView::Fixed);
-//    headerView->setSectionResizeMode(1,QHeaderView::Fixed);
-//    headerView->setSectionResizeMode(2,QHeaderView::Fixed);
-//    headerView->setSectionResizeMode(3,QHeaderView::Fixed);
-
-
     // Table View
     // tableWidget initialisieren
     ui->tableView->setModel(treeModel);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     QHeaderView* header=ui->tableView->verticalHeader();
     header->setDefaultSectionSize(20); // 20 px height
     header->sectionResizeMode(QHeaderView::Fixed);
@@ -143,7 +101,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView->setColumnWidth(2,40);
     ui->tableView->setColumnWidth(3,40);
     ui->tableView->horizontalScrollBar()->setDisabled(true);
-    ui->tableView->setSortingEnabled(true);
     QHeaderView *headerView = ui->tableView->horizontalHeader();
     headerView->setSectionResizeMode(0,QHeaderView::Fixed);
     headerView->setSectionResizeMode(1,QHeaderView::Fixed);
