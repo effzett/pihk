@@ -27,6 +27,7 @@
 #include <QHeaderView>
 #include <QScrollBar>
 #include <QSortFilterProxyModel>
+#include <prefs.h>
 
 namespace Ui {
 class MainWindow;
@@ -51,33 +52,35 @@ public:
     ~MainWindow();
     APPINFO app;
     TreeModel *treeModel;
+    Prefs *mypref;
 
 private:
     Ui::MainWindow *ui;
 
-bool isTimerStarted;    // state of timer
-int timerValue;         // timer value in minutes
-int offset;             // 15, after that time the excess is counted
-QLabel *statusLabel;    // line in statusbar
-bool hasPassed;         // Bestanden=true, Nicht bestanden=false
-QStringListModel *model;
-qint32 maxMinutes;      // maximale Vortragszeit
+    QString fileName;
+    bool isTimerStarted;    // state of timer
+    int timerValue;         // timer value in minutes
+    int offset;             // 15, after that time the excess is counted
+    QLabel *statusLabel;    // line in statusbar
+    bool hasPassed;         // Bestanden=true, Nicht bestanden=false
+    QStringListModel *model;
+    qint32 maxMinutes;      // maximale Vortragszeit
 
-quint32 calcA(qint32 docu, qint32 exam);
-quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
-quint32 calcAll(quint32 pointsA, quint32 pointsB);
-QString getGrade(qint32 points);
+    quint32 calcA(qint32 docu, qint32 exam);
+    quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
+    quint32 calcAll(quint32 pointsA, quint32 pointsB);
+    QString getGrade(qint32 points);
 
-QTimer *timer;
+    QTimer *timer;
 
-bool checkPassedA(quint32 docu, quint32 exam);     // checks if passed
-bool checkPassedB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr=0,quint32 points=0); // checks if passed
-bool checkMAllowed(quint32 ga1, quint32 ga2, quint32 wiso); // checks if oral is possible
+    bool checkPassedA(quint32 docu, quint32 exam);     // checks if passed
+    bool checkPassedB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr=0,quint32 points=0); // checks if passed
+    bool checkMAllowed(quint32 ga1, quint32 ga2, quint32 wiso); // checks if oral is possible
 
-void unpackQJO(QJsonObject json);
-QJsonObject packQJD();
-QJsonObject loadJson(QString fileName);
-void saveJson(QJsonObject json, QString fileName);
+    void unpackQJO(QJsonObject json);
+    QJsonObject packQJD();
+    QJsonObject loadJson(QString fileName);
+    void saveJson(QJsonObject json, QString fileName);
 
 private slots:
     // timer
@@ -85,9 +88,10 @@ private slots:
     void updateProgressBar();   // progress bar
     void timerReset();
     // GUI
-    void makeFilename();
+    QString makeFilename();
+    QString makeFilePart(qint32 index, QString filler);
+    QString makeFileDelim(qint32 index);
     void writeResults();
-    void saveData();
     void fillPRFG();
     void fillMEPR();
     void setPointsPRFG(const QModelIndex &index);
@@ -104,6 +108,8 @@ private slots:
     void on_comboBoxExam_currentIndexChanged(int index);
     void on_comboBoxExam_2_currentIndexChanged(int index);
     void on_tableView_clicked(const QModelIndex &index);
+    void on_saveFile_clicked();
+    void on_actionSichern_triggered();
 };
 
 #endif // MAINWINDOW_H

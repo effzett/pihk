@@ -2,6 +2,7 @@
 #include "ui_preferences.h"
 #include "treeitem.h"
 #include "treemodel.h"
+#include "prefs.h"
 
 Preferences::Preferences(QWidget *parent) :
     QDialog(parent),
@@ -11,11 +12,11 @@ Preferences::Preferences(QWidget *parent) :
 
     ui->setupUi(this);
     
-    TreeModel* oldModel;
-    oldModel = w->treeModel;
+    //TreeModel* oldModel;
+    //oldModel = w->treeModel;    // noch nicht ausprogrammiert TODO
     //copy(oldModel,w->treeModel);    // leider kein deepcopy: TODO
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
-    ui->treeView->setModel(oldModel);
+    ui->treeView->setModel(w->treeModel);
 //    for (int column = 0; column < (w->treeModel)->columnCount(); ++column){
 //        ui->treeView->resizeColumnToContents(column);
 //    }
@@ -24,6 +25,13 @@ Preferences::Preferences(QWidget *parent) :
     ui->treeView->setColumnHidden(2,true);
     ui->treeView->setColumnHidden(3,true);
     ui->treeView->horizontalScrollBar()->setDisabled(true);  // und der user soll sich das nicht zurechtschieben können
+
+    ui->comboBoxD1->setCurrentIndex(w->mypref->d1());
+    ui->comboBoxD2->setCurrentIndex(w->mypref->d2());
+    ui->comboBoxD3->setCurrentIndex(w->mypref->d3());
+    ui->comboBoxT1->setCurrentIndex(w->mypref->t1());
+    ui->comboBoxT1->setCurrentIndex(w->mypref->t1());
+    ui->comboBoxSpacher->setCurrentIndex(w->mypref->space());
 }
 
 Preferences::~Preferences()
@@ -156,12 +164,54 @@ void Preferences::updateActions()
 
 void Preferences::on_buttonBox_accepted()
 {
-    w->treeModel = oldModel;
+    //w->treeModel = oldModel;
 }
 
 
 void Preferences::on_buttonBox_rejected()
 {
     
+}
+
+
+void Preferences::on_comboBoxD1_currentIndexChanged(int index)
+{
+    w->mypref->setD1(index);
+}
+
+
+void Preferences::on_comboBoxD2_currentIndexChanged(int index)
+{
+    w->mypref->setD2(index);
+}
+
+
+void Preferences::on_comboBoxD3_currentIndexChanged(int index)
+{
+    w->mypref->setD3(index);
+}
+
+
+void Preferences::on_comboBoxT1_currentIndexChanged(int index)
+{
+    w->mypref->setT1(index);
+}
+
+
+void Preferences::on_comboBoxT2_currentIndexChanged(int index)
+{
+    w->mypref->setT2(index);
+}
+
+
+void Preferences::on_comboBoxSpacher_currentIndexChanged(int index)
+{
+    w->mypref->setSpace(index);
+}
+
+
+void Preferences::on_spinBoxMinutes_valueChanged(int arg1)
+{
+    w->mypref->setMinutes(arg1);
 }
 

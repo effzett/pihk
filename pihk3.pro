@@ -17,6 +17,7 @@ SOURCES += main.cpp\
         lizenz.cpp \
         mainwindow.cpp \
         preferences.cpp \
+        prefs.cpp \
         regularien.cpp \
         treeitem.cpp \
         treemodel.cpp
@@ -24,7 +25,9 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     about.h \
     lizenz.h \
+    mypihk.h \
     preferences.h \
+    prefs.h \
     regularien.h \
     treeitem.h \
     treemodel.h

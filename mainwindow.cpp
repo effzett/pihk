@@ -4,6 +4,7 @@
 #include "lizenz.h"
 #include "regularien.h"
 #include "treemodel.h"
+#include <mypihk.h>
 
 #ifdef Q_OS_OSX
 #include "ui_mainwindow.h"
@@ -88,6 +89,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->radioButton2->setEnabled(false);
     ui->radioButton3->setEnabled(false);
     ui->folder->setPlaceholderText(QDir::homePath());
+    ui->folder->setText(QDir::homePath());
+
 
     // Table View
     // tableWidget initialisieren
@@ -115,7 +118,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     emit ui->comboBoxExam->currentIndexChanged(0);
     emit ui->comboBoxExam_2->currentIndexChanged(0);
-    makeFilename();                             // construct basic file name
+
+    mypref = new Prefs(maxMinutes,DATUM,MINUS,NAME,MINUS,NUMMER,UNDERSCORE);
+
+    fileName = makeFilename();                             // construct basic file name
 
     // Connections
     connect(timer,SIGNAL(timeout()),this,SLOT(updateProgressBar()));
@@ -136,7 +142,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->radioButton1,SIGNAL(toggled(bool)),this,SLOT(writeResults()));
     connect(ui->radioButton2,SIGNAL(toggled(bool)),this,SLOT(writeResults()));
     connect(ui->radioButton3,SIGNAL(toggled(bool)),this,SLOT(writeResults()));
-    connect(ui->saveFile,SIGNAL(clicked(bool)),this,SLOT(saveData()));
     connect(ui->buttonSimPRFG,SIGNAL(clicked()),this,SLOT(fillPRFG()));
     connect(ui->buttonSimMEPR,SIGNAL(clicked()),this,SLOT(fillMEPR()));
     connect(ui->listViewPRFG,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsPRFG(const QModelIndex &)));
@@ -183,28 +188,6 @@ void MainWindow::timerReset(){
     }
 }
 
-// make file name from selected categories TODO
-void MainWindow::makeFilename(){
-    QString fn="";
-    QString currentdate = ui->pDate->date().toString("yyyyMMdd");
-    QString currentName = ui->pname->text().replace(" ","_");
-    QString currentNumber = ui->pnummer->text();
-
-    if(ui->folder->text().isEmpty()){
-        ui->path->setText(QDir::homePath() + QDir::separator() + currentdate + currentName + currentNumber + ".txt");
-    }
-    else{
-
-        if(QDir(QDir::homePath() + QDir::separator()+ui->folder->text()).exists()){// folder exist
-            ui->path->setText(QDir::homePath() + QDir::separator() + ui->folder->text() + QDir::separator() + currentdate + currentName + currentNumber + ".txt");
-        }
-        else{
-            ui->path->setText(QDir::homePath() + QDir::separator() + currentdate + currentName + currentNumber + ".txt");
-        }
-    }
-    ui->path->setText(currentdate + currentName + currentNumber + ".json");
-    ui->saveFile->setEnabled(true);
-}
 
 // calculates pointsA
 quint32 MainWindow::calcA(qint32 docu, qint32 exam){
@@ -478,37 +461,6 @@ bool MainWindow::checkMAllowed(quint32 ga1,quint32 ga2,quint32 wiso){
         retVal=false;
     }
     return retVal;
-}
-
-void MainWindow::saveData(){
-
-   // old
-   QFile outFile(ui->path->text());
-   outFile.open(QIODevice::WriteOnly|QIODevice::Text);
-   QTextStream out(&outFile);
-   out<<"Datum     : " + ui->pDate->text()<<Qt::endl;
-   out<<"Name      : " + ui->pname->text()<<Qt::endl;
-   out<<"Id-Nummer : " + ui->pnummer->text()<<Qt::endl;
-   out<<"Doku      : " + ui->spinboxDocumentation->text()<<Qt::endl;
-   out<<"PRFG      : " + ui->spinboxExamination->text()<<Qt::endl;
-   out<<"GA1       : " + ui->spinboxGa1->text()<<Qt::endl;
-   out<<"GA2       : " + ui->spinboxGa2->text()<<Qt::endl;
-   out<<"Wiso      : " + ui->spinboxWiso->text()<<Qt::endl;
-   out<<"MEP-GA1   : " + ui->spinboxGa1E->text()<<Qt::endl;
-   out<<"MEP-GA2   : " + ui->spinboxGa2E->text()<<Qt::endl;
-   out<<"MEP-WISO  : " + ui->spinboxWisoE->text()<<Qt::endl;
-   out<<"Ergebnis A: " + ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")"<<Qt::endl;
-   out<<"Ergebnis B: " + ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")"<<Qt::endl;
-   out<<"Ergebnis  : " + ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")"<<Qt::endl<<Qt::endl;
-
-   if(hasPassed){
-       out<<"---BESTANDEN---"<<Qt::endl;
-   }
-   else{
-       out<<"---NICHT bestanden---"<<Qt::endl;
-   }
-   outFile.close();
-   ui->saveFile->setEnabled(false);
 }
 
 void MainWindow::fillPRFG(){
@@ -828,7 +780,8 @@ void MainWindow::on_pushButton_DeleteAll_clicked()
 void MainWindow::on_actionPreferences_triggered()
 {
     Preferences *pp = new Preferences(this);
-    pp->show();
+    pp->exec();
+    fileName = makeFilename();
 }
 
 
@@ -897,8 +850,100 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     else{
             treeModel->setData(index,Qt::Unchecked,Qt::CheckStateRole);
         //qDebug()<<"("<<index.row()<<","<<index.column()<<")  is not checked";
+    } 
+}
+
+QString MainWindow::makeFilePart(qint32 index, QString filler){
+    QString retVal = "";
+    switch(index){
+    case DATUM: retVal = ui->pDate->date().toString("yyyyMMdd");break;
+    case NAME: retVal = ui->pname->text().replace(" ",filler);break;
+    case NUMMER: retVal = ui->pnummer->text();break;
+    case FACHRICHTUNG: retVal = ui->comboBoxExam->currentText().replace(" ",filler);break;
+    case AUSSCHUSS: retVal = ui->comboBoxExam_2->currentText().replace(" ",filler);break;
+    case LEER: retVal = "" ;break;
+    }
+    return retVal;
+}
+
+QString MainWindow::makeFileDelim(qint32 index){
+    QString retVal = "";
+    switch(index){
+    case MINUS: retVal = "-";break;
+    case PLUS: retVal = "+" ;break;
+    case PUNKT: retVal = "." ;break;
+    case UNTERSTRICH: retVal = "_" ;break;
+    case EMPTY: retVal = "";break;
+    }
+    return retVal;
+}
+
+// make file name from selected categories TODO
+QString MainWindow::makeFilename(){
+    QString fnd1="";
+    QString fnd2="";
+    QString fnd3="";
+    QString fnt1="";
+    QString fnt2="";
+    QString fn="";
+
+    QString filler;
+
+    // baue Filenamen aus mypref auf...
+    // filler ermitteln
+    switch(mypref->space()){
+    case UNDERSCORE: filler = "_"; break;
+    case ADD: filler = "+"; break;
+    case SUB: filler = "-"; break;
+    case ORIGINAL: filler = " "; break;
+    case DELETE: filler = ""; break;
     }
 
-    
+    fnd1 = makeFilePart(mypref->d1(),filler);
+    fnd2 = makeFilePart(mypref->d2(),filler);
+    fnd3 = makeFilePart(mypref->d3(),filler);
+
+    if(fnd1.isEmpty()){
+        fnt1="";
+    }
+    else{
+        fnt1 = makeFileDelim(mypref->t1());
+    }
+
+    if(fnd3.isEmpty()){
+        fnt2="";
+    }
+    else{
+        fnt2 = makeFileDelim(mypref->t2());
+    }
+
+    if((fnd1.isEmpty() && fnd2.isEmpty()) || (fnd2.isEmpty() && fnd3.isEmpty())){
+        fnt1="";
+        fnt2="";
+    }
+
+    fn = fnd1 + fnt1 + fnd2 + fnt2 + fnd3 + ".json";
+
+    ui->path->setText(fn);
+    ui->saveFile->setEnabled(true);
+    this->fileName=fn;
+    return fn;
+}
+
+
+void MainWindow::on_saveFile_clicked()
+{
+    QString filepath="";
+    filepath = ui->folder->text() + QDir::separator() + fileName;
+    QJsonObject json = packQJD();
+    saveJson(json,filepath);
+    qDebug()<<"Gesichert unter " + filepath;
+    ui->saveFile->setEnabled(false);
+}
+
+
+void MainWindow::on_actionSichern_triggered()
+{
+    on_saveFile_clicked();
 }
 
