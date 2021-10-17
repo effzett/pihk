@@ -326,7 +326,7 @@
       <string>Reset</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_8">
+    <widget class="QLabel" name="label_minutes">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1783,7 +1783,7 @@
      <x>0</x>
      <y>0</y>
      <width>886</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">

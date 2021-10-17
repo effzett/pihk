@@ -154,13 +154,19 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::updateProgressBar(){
     timerValue++;
     if(timerValue<=maxMinutes){
+        offset=0;
         ui->progressBar->setValue(timerValue);
     }
     else{
         offset=maxMinutes;
-        ui->lcdNumber->setPalette(Qt::red);
+        ui->lcdNumber->setSegmentStyle(QLCDNumber::Filled);
+        ui->lcdNumber->setPalette(QColor(255,165,0,255));
+        //ui->lcdNumber->setPalette(Qt::red);
     }
     ui->lcdNumber->display(timerValue-offset);
+    qDebug()<<timerValue;
+    qDebug()<<offset;
+    qDebug()<<maxMinutes;
 }
 // start or stop timer
 void MainWindow::toggleStartStop(){
@@ -782,6 +788,7 @@ void MainWindow::on_actionPreferences_triggered()
     Preferences *pp = new Preferences(this);
     pp->exec();
     fileName = makeFilename();
+    makeNewTimer();
 }
 
 
@@ -947,3 +954,20 @@ void MainWindow::on_actionSichern_triggered()
     on_saveFile_clicked();
 }
 
+void MainWindow::makeNewTimer(){
+    bool runflag=false;
+    qint32 newValue = mypref->minutes();
+    if (newValue == maxMinutes)
+        return;
+    if(isTimerStarted){
+        toggleStartStop();
+        runflag = true;
+    }
+    timerReset();
+    ui->progressBar->setMaximum(newValue);
+    maxMinutes = newValue;
+    ui->label_minutes->setText(QString::number(newValue) +"min");
+    if(runflag){
+        toggleStartStop();
+    }
+}

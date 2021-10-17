@@ -89,6 +89,7 @@ private slots:
     void timerReset();
     // GUI
     QString makeFilename();
+    void makeNewTimer();
     QString makeFilePart(qint32 index, QString filler);
     QString makeFileDelim(qint32 index);
     void writeResults();
