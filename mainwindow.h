@@ -103,6 +103,7 @@ private slots:
     void on_actionRegularien_triggered();
     void on_comboBoxExam_currentIndexChanged(int index);
     void on_comboBoxExam_2_currentIndexChanged(int index);
+    void on_tableView_clicked(const QModelIndex &index);
 };
 
 #endif // MAINWINDOW_H

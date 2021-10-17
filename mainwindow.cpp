@@ -877,3 +877,28 @@ void MainWindow::on_comboBoxExam_2_currentIndexChanged(int index)
     ui->tableView->setRootIndex(treeModel->index(midx.row(),midx.column(),ui->comboBoxExam_2->rootModelIndex()));
 }
 
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    if(!index.isValid()){
+        qDebug()<<"ungültiger Modelindex!";
+        return;
+    }
+    
+    if(index.column() == 0){
+        qDebug()<<"Modelindex für Name ineteressiert nicht";
+        return;
+    }
+    
+    if(index.data(Qt::CheckStateRole)==Qt::Checked){
+            treeModel->setData(index,Qt::Checked,Qt::CheckStateRole);
+        qDebug()<<"("<<index.row()<<","<<index.column()<<")  is checked";  
+    }
+    else{
+            treeModel->setData(index,Qt::Unchecked,Qt::CheckStateRole);
+        qDebug()<<"("<<index.row()<<","<<index.column()<<")  is not checked";        
+    }
+
+    
+}
+
