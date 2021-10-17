@@ -248,7 +248,7 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
             return (Qt::CheckState)Qt::Unchecked;
         }
     }
-    if (role == Qt::DisplayRole && index.column() == 0)  // sollte nicht passierten, passiert aber!!
+    if ((role == Qt::EditRole || role == Qt::DisplayRole) && index.column() == 0)  // sollte nicht passierten, passiert aber!!
         return item->data(index.column());
    
     return QVariant();
