@@ -1,45 +1,45 @@
-FI Systemintegration		1	1	1
-    FISI 5		1	1	1
-        Frank Zimmermann		1	0	1
-        Fabian Beckmann		1	1	1
-        Joachim Kemmries		1	1	1
-        Klaus Nagel		1	1	1
-        Laurents Schwartz		1	1	1
-        Frank Wolters		1	1	1
-    FISI 6		1	1	1
-        Prüfer 1 aus FISI 6		1	1	1
-        Prüfer 2 aus FISI 6		1	1	1
-    FISI 7                 		1	1	1
-        Prüfer 1 aus FISI 7		1	1	1
-        Prüfer 2 aus FISI 7		1	1	1
-        Prüfer 3 aus FISI 7		1	1	1
-FI Anwendungsentwicklung   		1	1	1
-    FIAE 1                 		1	1	1
-        Prüfer 1 aus FIAE 1		1	1	1
-        Prüfer 2 aus FIAE 1		1	1	1
-    FIAE 2                 		1	1	1
-        Prüfer 1 aus FIAE 2		1	1	1
-        Prüfer 2 aus FIAE 2		1	1	1
-        Prüfer 3 aus FIAE 2		1	1	1
-        Prüfer 4 aus FIAE 2		1	1	1
-FI Daten- und Prozeßanalyse		1	1	1
-    Dummy-1                		1	1	1
-        Prüfer1 aus Dummy-1		1	1	1
-        Prüfer2 aus Dummy-1		1	1	1
-        Prüfer3 aus Dummy-1		1	1	1
-        Prüfer4 aus Dummy-1		1	1	1
-        Prüfer5 aus Dummy-1		1	1	1
-        Prüfer6 aus Dummy-1		1	1	1
-        Prüfer7 aus Dummy-1		1	1	1
-        Prüfer8 aus Dummy-1		1	1	1
-        Prüfer9 aus Dummy-1		1	1	1
-    Dummy-2                		1	1	1
-        Prüfer1 aus Dummy-2		1	1	1
-        Prüfer2 aus Dummy-2		1	1	1
-        Prüfer3 aus Dummy-2		1	1	1
-        Prüfer4 aus Dummy-2		1	1	1
-        Prüfer5 aus Dummy-2		1	1	1
-        Prüfer6 aus Dummy-2		1	1	1
-        Prüfer7 aus Dummy-2		1	1	1
-FI Digitale Vernetzung     		1	1	1
-    Dummy-3                		1	1	1
+FI Systemintegration		0	0	0
+    FISI 5		0	0	0
+        Frank Zimmermann		0	0	0
+        Fabian Beckmann		0	0	0
+        Joachim Kemmries		0	0	0
+        Klaus Nagel		0	0	0
+        Laurents Schwartz		0	0	0
+        Frank Wolters		0	0	0
+    FISI 6		0	0	0
+        Prüfer 1 aus FISI 6		0	0	0
+        Prüfer 2 aus FISI 6		0	0	0
+    FISI 7                 		0	0	0
+        Prüfer 1 aus FISI 7		0	0	0
+        Prüfer 2 aus FISI 7		0	0	0
+        Prüfer 3 aus FISI 7		0	0	0
+FI Anwendungsentwicklung   		0	0	0
+    FIAE 1                		0	0	0
+        Prüfer 1 aus FIAE 1		0	0	0
+        Prüfer 2 aus FIAE 1		0	0	0
+    FIAE 2                 		0	0	0
+        Prüfer 1 aus FIAE 2		0	0	0
+        Prüfer 2 aus FIAE 2		0	0	0
+        Prüfer 3 aus FIAE 2		0	0	0
+        Prüfer 4 aus FIAE 2		0	0	0
+FI Daten- und Prozeßanalyse		0	0	0
+    Dummy-1                		0	0	0
+        Prüfer0 aus Dummy-1		0	0	0
+        Prüfer2 aus Dummy-1		0	0	0
+        Prüfer3 aus Dummy-1		0	0	0
+        Prüfer4 aus Dummy-1		0	0	0
+        Prüfer5 aus Dummy-1		0	0	0
+        Prüfer6 aus Dummy-1		0	0	0
+        Prüfer7 aus Dummy-1		0	0	0
+        Prüfer8 aus Dummy-1		0	0	0
+        Prüfer9 aus Dummy-1		0	0	0
+    Dummy-2                		0	0	0
+        Prüfer1 aus Dummy-2		0	0	0
+        Prüfer2 aus Dummy-2		0	0	0
+        Prüfer3 aus Dummy-2		0	0	0
+        Prüfer4 aus Dummy-2		0	0	0
+        Prüfer5 aus Dummy-2		0	0	0
+        Prüfer6 aus Dummy-2		0	0	0
+        Prüfer7 aus Dummy-2		0	0	0
+FI Digitale Vernetzung     		0	0	0
+    Dummy-3                		0	0	0

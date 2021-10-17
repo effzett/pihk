@@ -896,7 +896,7 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     }
     else{
             treeModel->setData(index,Qt::Unchecked,Qt::CheckStateRole);
-        qDebug()<<"("<<index.row()<<","<<index.column()<<")  is not checked";        
+        //qDebug()<<"("<<index.row()<<","<<index.column()<<")  is not checked";
     }
 
     

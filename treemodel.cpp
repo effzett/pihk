@@ -320,7 +320,7 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
                     parent->child(parent->childCount() - 1)->setData(column, columnData[column]);
                     qDebug()<<tr("[No data]")<<"setupModelData-Treemodel";
                 }else{
-                    Qt::CheckState input = (columnData[column] == 1)?Qt::Checked :Qt::Unchecked;
+                    Qt::CheckState input = (columnData[column] == 1 || columnData[column] == 2)?Qt::Checked :Qt::Unchecked;
                     parent->child(parent->childCount() - 1)->setData(column, input);
                     qDebug()<<"Qt::Checked"<<"setupModelData-Treemodel";
                 }
