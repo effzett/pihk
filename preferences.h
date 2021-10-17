@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QMenu>
 #include "mainwindow.h"
+//#include <QStandardItemModel>
 
 namespace Ui {
 class Preferences;
@@ -24,15 +25,14 @@ private slots:
     void on_actionDelete_triggered();
     void on_actionInsertRow_triggered();
     void on_actionInsertChild_triggered();
-
     void on_buttonBox_accepted();
-    
     void on_buttonBox_rejected();
     
 private:
     Ui::Preferences *ui;
     MainWindow *w;
     TreeModel *oldModel;
+//    void copy(QStandardItemModel*,QStandardItemModel*);
     void removeRow();
     void insertRow();
     void insertChild();

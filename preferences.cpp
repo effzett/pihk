@@ -10,7 +10,10 @@ Preferences::Preferences(QWidget *parent) :
     w = qobject_cast<MainWindow*>(parent);
 
     ui->setupUi(this);
-    oldModel = w->treeModel;    // leider kein deepcopy: TODO
+    
+    TreeModel* oldModel;
+    oldModel = w->treeModel;
+    //copy(oldModel,w->treeModel);    // leider kein deepcopy: TODO
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->treeView->setModel(oldModel);
 //    for (int column = 0; column < (w->treeModel)->columnCount(); ++column){
@@ -27,6 +30,15 @@ Preferences::~Preferences()
 {
     delete ui;
 }
+
+//void Preferences::copy(QStandardItemModel* from, QStandardItemModel* to)
+//{
+//   to->clear();
+//   for (int i = 0 ; i < from->rowCount() ; i++)
+//   {
+//      to->appendRow(from->item(i)->clone());
+//   }
+//}
 
 void Preferences::on_treeView_customContextMenuRequested(const QPoint &pos)
 {   // the context menu
