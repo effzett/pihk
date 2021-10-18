@@ -30,7 +30,7 @@ Preferences::Preferences(QWidget *parent) :
     ui->comboBoxD2->setCurrentIndex(w->mypref->d2());
     ui->comboBoxD3->setCurrentIndex(w->mypref->d3());
     ui->comboBoxT1->setCurrentIndex(w->mypref->t1());
-    ui->comboBoxT1->setCurrentIndex(w->mypref->t1());
+    ui->comboBoxT2->setCurrentIndex(w->mypref->t2());
     ui->comboBoxSpacher->setCurrentIndex(w->mypref->space());
     ui->spinBoxMinutes->setValue(w->mypref->minutes());
 }

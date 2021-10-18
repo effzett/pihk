@@ -924,7 +924,9 @@ QString MainWindow::makeFilename(){
         fnt2 = makeFileDelim(mypref->t2());
     }
 
-    if((fnd1.isEmpty() && fnd2.isEmpty()) || (fnd2.isEmpty() && fnd3.isEmpty())){
+    if(     (fnd1.isEmpty() && fnd2.isEmpty()) ||
+            (fnd2.isEmpty() && fnd3.isEmpty()) ||
+            (fnd1.isEmpty() && fnd3.isEmpty())){
         fnt1="";
         fnt2="";
     }
