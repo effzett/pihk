@@ -38,9 +38,17 @@ FORMS    += mainwindow.ui \
     preferences.ui \
     regularien.ui
 
+#ifdef Q_OS_DARWIN
 ICON = pihk2.icns
+#elif defined(Q_OS_WIN)
+RC_ICONS = pihk2.ico
+#else
+#error "Is not supported!" 
+#endif
+
 
 RESOURCES += \
     resourcen.qrc
+    
 
 DISTFILES +=
