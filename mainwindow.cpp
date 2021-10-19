@@ -804,6 +804,7 @@ void MainWindow::on_pushButton_DeleteAll_clicked()
     ui->pnummer->setText("");
     ui->spinboxDocumentation->setValue(0);
     ui->spinboxExamination->setValue(0);
+    ui->spinboxGa0->setValue(0);
     ui->spinboxGa1->setValue(0);
     ui->spinboxGa2->setValue(0);
     ui->spinboxWiso->setValue(0);
@@ -816,6 +817,7 @@ void MainWindow::on_pushButton_DeleteAll_clicked()
         toggleStartStop();
         timerReset();
     }
+    // model checkboxen löschen
 }
 
 
