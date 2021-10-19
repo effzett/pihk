@@ -697,6 +697,7 @@ QJsonObject MainWindow::packQJD(){
     json["Id-Nummer"] = ui->pnummer->text();
     json["Doku"] = ui->spinboxDocumentation->text();
     json["PRFG"] = ui->spinboxExamination->text();
+    json["GA0"] = ui->spinboxGa0->text();
     json["GA1"] = ui->spinboxGa1->text();
     json["GA2"] = ui->spinboxGa2->text();
     json["Wiso"] = ui->spinboxWiso->text();
@@ -745,6 +746,7 @@ void MainWindow::unpackQJO(QJsonObject json ){
     ui->pnummer->setText(json.value("Id-Nummer").toString());
     ui->spinboxDocumentation->setValue(json.value("Doku").toString().toInt());
     ui->spinboxExamination->setValue(json.value("PRFG").toString().toInt());
+    ui->spinboxGa0->setValue(json.value("GA0").toString().toInt()); 
     ui->spinboxGa1->setValue(json.value("GA1").toString().toInt());
     ui->spinboxGa2->setValue(json.value("GA2").toString().toInt());
     ui->spinboxWiso->setValue(json.value("Wiso").toString().toInt());
@@ -809,6 +811,11 @@ void MainWindow::on_pushButton_DeleteAll_clicked()
     ui->spinboxGa2E->setValue(0);
     ui->spinboxWisoE->setValue(0);
     ui->saveFile->setEnabled(true);
+    ui->lcdNumber->display(0);
+    if(isTimerStarted){
+        toggleStartStop();
+        timerReset();
+    }
 }
 
 

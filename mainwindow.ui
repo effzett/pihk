@@ -762,7 +762,7 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QDoubleSpinBox" name="spinboxGa1_2">
+    <widget class="QDoubleSpinBox" name="spinboxGa0">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -1783,7 +1783,7 @@
      <x>0</x>
      <y>0</y>
      <width>886</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
