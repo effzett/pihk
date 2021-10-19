@@ -737,7 +737,9 @@ QJsonObject MainWindow::packQJD(){
 }
 
 void MainWindow::unpackQJO(QJsonObject json ){
-    ui->comboBoxExam->setCurrentText(json.value("Pruefung").toString());
+    app.version =  json["PIHKVersion"].toString();
+    ui->comboBoxExam->currentText() = json["Fachrichtung"].toString();
+    ui->comboBoxExam_2->currentText() = json["Ausschuss"].toString();
     ui->pDate->setDate(QDate::fromString(json.value("Datum").toString(),"dd.MM.yyyy"));
     ui->pname->setText(json.value("Name").toString());
     ui->pnummer->setText(json.value("Id-Nummer").toString());
@@ -749,6 +751,8 @@ void MainWindow::unpackQJO(QJsonObject json ){
     ui->spinboxGa1E->setValue(json.value("MEP-GA1").toString().toInt());
     ui->spinboxGa2E->setValue(json.value("MEP-GA2").toString().toInt());
     ui->spinboxWisoE->setValue(json.value("MEP-WISO").toString().toInt());
+    ui->comboBoxExam->setCurrentText(json.value("Pruefung").toString());
+    ui->lcdNumber->display((qint32)json["Prüfungszeit"].toInteger());
 
     // Wird automatisch ermittelt:
     //    json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";
