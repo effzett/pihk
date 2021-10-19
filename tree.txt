@@ -1,7 +1,7 @@
 FI Systemintegration		0	0	0
     FISI 5		0	0	0
-        Frank Zimmermann		0	0	0
-        Fabian Beckmann		0	0	0
+        Frank Zimmermann		1	0	0
+        Fabian Beckmann		0	0	2
         Joachim Kemmries		0	0	0
         Klaus Nagel		0	0	0
         Laurents Schwartz		0	0	0

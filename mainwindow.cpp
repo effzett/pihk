@@ -687,8 +687,11 @@ void MainWindow::on_actionQuit_triggered()
 
 QJsonObject MainWindow::packQJD(){
     QJsonObject json;
+    QJsonArray anwesend;
 
-    json["Pruefung"] = ui->comboBoxExam->currentText();
+    json["PIHKVersion"] = app.version;
+    json["Fachrichtung"] = ui->comboBoxExam->currentText();
+    json["Ausschuss"] = ui->comboBoxExam_2->currentText();
     json["Datum"] = ui->pDate->text();
     json["Name"] = ui->pname->text();
     json["Id-Nummer"] = ui->pnummer->text();
@@ -703,13 +706,33 @@ QJsonObject MainWindow::packQJD(){
     json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";
     json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";
     json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";
+    json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";
+    json["Prüfungszeit"] = ui->lcdNumber->value();
 
-    if(hasPassed){
-        json["Prüfung"] ="---BESTANDEN---";
+    QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
+    qint32 i = ui->comboBoxExam_2->currentIndex();
+    QModelIndex start = ui->tableView->model()->index(i,0,parent);
+    for( int row = 0; row < ui->tableView->model()->rowCount(start); ++row ) {
+        QString name = QVariant(ui->tableView->model()->index(row,0,start).data(Qt::ItemIsEditable)).toString();
+        for ( int col = 1; col < ui->tableView->model()->columnCount(start); ++col ) {
+            if(ui->tableView->model()->index(row,col,start).data(Qt::CheckStateRole).toUInt()>0){
+                switch(col){
+                case 1: // 1.Korr
+                    json.insert( "1.Korr",name);
+                    break;
+                case 2: // 2.Korr
+                    json.insert( "2.Korr",name);
+                    break;
+                case 3: // Anwesend
+                    anwesend.append(name);
+                default:
+                    break;
+                }
+            }
+        }
     }
-    else{
-        json["Prüfung"] ="---NICHT bestanden---";
-    }
+    json.insert("Anwesend",anwesend);
+    
     return json;
 }
 
@@ -759,10 +782,12 @@ void MainWindow::on_actionOeffnen_triggered()
 
 void MainWindow::on_actionSichernAls_triggered()
 {
-    QString f = QFileDialog::getSaveFileName(this,tr("Sichern"),".",tr("JSON (*.json)"));
-    if(f.length() != 0){
-        QJsonObject json = packQJD();
-        saveJson(json,f);
+    if(checkModel()){
+        QString f = QFileDialog::getSaveFileName(this,tr("Sichern"),".",tr("JSON (*.json)"));
+        if(f.length() != 0){
+            QJsonObject json = packQJD();
+            saveJson(json,f);
+        }
     }
 }
 
@@ -851,13 +876,14 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     }
     
     if(index.data(Qt::CheckStateRole)==Qt::Checked){
-            treeModel->setData(index,Qt::Checked,Qt::CheckStateRole);
+        treeModel->setData(index,Qt::Checked,Qt::CheckStateRole);
         qDebug()<<"("<<index.row()<<","<<index.column()<<")  is checked";  
     }
     else{
             treeModel->setData(index,Qt::Unchecked,Qt::CheckStateRole);
         //qDebug()<<"("<<index.row()<<","<<index.column()<<")  is not checked";
     } 
+    ui->saveFile->setEnabled(true);
 }
 
 QString MainWindow::makeFilePart(qint32 index, QString filler){
@@ -942,18 +968,20 @@ QString MainWindow::makeFilename(){
 
 void MainWindow::on_saveFile_clicked()
 {
-    QString filepath="";
-    filepath = ui->folder->text() + QDir::separator() + fileName;
-    QJsonObject json = packQJD();
-    saveJson(json,filepath);
-    qDebug()<<"Gesichert unter " + filepath;
-    ui->saveFile->setEnabled(false);
+    if(checkModel()){
+        QString filepath="";
+        filepath = ui->folder->text() + QDir::separator() + fileName;
+        QJsonObject json = packQJD();
+        saveJson(json,filepath);
+        qDebug()<<"Gesichert unter " + filepath;
+        ui->saveFile->setEnabled(false);
+    }    
 }
 
 
 void MainWindow::on_actionSichern_triggered()
 {
-    on_saveFile_clicked();
+        on_saveFile_clicked();
 }
 
 void MainWindow::makeNewTimer(){
@@ -972,4 +1000,100 @@ void MainWindow::makeNewTimer(){
     if(runflag){
         toggleStartStop();
     }
+}
+
+bool MainWindow::checkModel(){
+    // checkt ob mehrere 1. oder 2. Korrektoren  oder weniger als 3 Prüfer anwesend sind
+    bool b1=false,b2=false;
+    bool b3=false,b4=false;
+    bool b5=false;
+    bool retVal=true;
+    QString Err1String="";
+    QString Err2String="";
+    QString Err3String="";
+    QString Err4String="";
+    QString ErrString="";
+    qint32 checkKorr1 = 0;
+    qint32 checkKorr2 = 0;
+    qint32 checkCount = 0;
+    qint32 countKorr= 0;
+    QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
+    qint32 i = ui->comboBoxExam_2->currentIndex();
+    QModelIndex start = ui->tableView->model()->index(i,0,parent);
+    for( int row = 0; row < ui->tableView->model()->rowCount(start); ++row ) {
+        QString name = QVariant(ui->tableView->model()->index(row,0,start).data(Qt::ItemIsEditable)).toString();
+        countKorr=0;
+        for ( int col = 1; col < ui->tableView->model()->columnCount(start); ++col ) {
+            if(ui->tableView->model()->index(row,col,start).data(Qt::CheckStateRole).toUInt()>0){
+                switch(col){
+                case 1: // 1.Korr
+                    checkKorr1  += 1;
+                    countKorr++;
+                    break;
+                case 2: // 2.Korr
+                    checkKorr2 +=1;
+                    countKorr++;
+                    break;
+                case 3: // Anwesend
+                    checkCount += 1;
+                default:
+                    break;
+                }
+            }
+        }
+        if(countKorr>1){
+            b5 = true;
+        }
+    }
+    b1 = (checkKorr1 > 1);
+    b2 = (checkKorr2 > 1);
+    if(b1 || b2){
+        Err1String = "Zuviele ";
+        if(b1 && b2){
+            Err1String += "Erst und Zweitkorrektoren";
+        }
+        else{
+            Err1String += (b1)?"Erstkorrektoren":"Zweitkorrektoren";
+        }
+        Err1String +="!";
+    }
+    if(checkCount<3){
+        Err4String = "Weniger als 3 anwesende Prüfer!";
+    }
+    
+    b3 = (checkKorr1 < 1);
+    b4 = (checkKorr2 < 1);
+    if(b3 || b4){
+        Err2String = "Zuwenig ";
+        if(b3 && b4){
+            Err2String += "Erst und Zweitkorrektoren";
+        }
+        else{
+            Err2String += (b3)?"Erstkorrektoren":"Zweitkorrektoren";
+        }
+        Err2String +="!";
+    }
+    
+    if(b5){
+        Err3String = "Korrektor mit 1. UND 2. Korrektur!";
+    }
+    Err1String += (!Err1String.isEmpty())?"\n":"";
+    Err2String += (!Err2String.isEmpty())?"\n":"";
+    Err3String += (!Err3String.isEmpty())?"\n":"";
+    ErrString = Err1String + Err2String + Err3String + Err4String;
+  
+    
+    
+    if(!ErrString.isEmpty()){
+        ErrString += "\n\nTrotzdem weitermachen?";
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::warning(this,tr("Warnung"),ErrString,QMessageBox::Yes|QMessageBox::No);
+        if(reply == QMessageBox::Yes){
+            retVal = true;
+        }
+        else{
+            retVal= false;
+        }
+    }
+    return retVal;
 }

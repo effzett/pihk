@@ -16,6 +16,7 @@
 #include <QFont>
 #include <QWindow>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QDebug>
 #include <QFileDialog>
@@ -27,6 +28,7 @@
 #include <QHeaderView>
 #include <QScrollBar>
 #include <QSortFilterProxyModel>
+#include <QMessageBox>
 #include <prefs.h>
 
 namespace Ui {
@@ -70,7 +72,7 @@ private:
     quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
     quint32 calcAll(quint32 pointsA, quint32 pointsB);
     QString getGrade(qint32 points);
-
+    bool checkModel();
     QTimer *timer;
 
     bool checkPassedA(quint32 docu, quint32 exam);     // checks if passed
