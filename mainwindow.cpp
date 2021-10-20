@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowIcon(QIcon("myLogoPIHK3a.icns"));
 #else
     // Windows Q_OS_WIN
-    setWindowIcon(QIcon("pihk2.ico"));
+    setWindowIcon(QIcon("myLogoPIHK3a.ico"));
 #endif
 
     // Initialization

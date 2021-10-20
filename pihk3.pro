@@ -41,7 +41,7 @@ FORMS    += mainwindow.ui \
 #ifdef Q_OS_DARWIN
 ICON = myLogoPIHK3a.icns
 #elif defined(Q_OS_WIN)
-RC_ICONS = pihk2.ico
+RC_ICONS = myLogoPIHK3a.ico
 #else
 #error "Is not supported!" 
 #endif
