@@ -39,7 +39,7 @@ FORMS    += mainwindow.ui \
     regularien.ui
 
 #ifdef Q_OS_DARWIN
-ICON = pihk2.icns
+ICON = myLogoPIHK3a.icns
 #elif defined(Q_OS_WIN)
 RC_ICONS = pihk2.ico
 #else

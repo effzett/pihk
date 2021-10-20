@@ -20,8 +20,7 @@
    <string>Pihk Version 3.0.0</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>pihk2.icns</normaloff>pihk2.icns</iconset>
+   <iconset theme="myLogoPIHK3a.icns"/>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
@@ -1783,7 +1782,7 @@
      <x>0</x>
      <y>0</y>
      <width>886</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">

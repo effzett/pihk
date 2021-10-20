@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // gui dependent initialization
 #ifdef Q_OS_OSX
     // OSX---
-    setWindowIcon(QIcon("pihk2.icns"));
+    setWindowIcon(QIcon("myLogoPIHK3a.icns"));
 #else
     // Windows Q_OS_WIN
     setWindowIcon(QIcon("pihk2.ico"));
