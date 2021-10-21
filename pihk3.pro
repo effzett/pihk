@@ -32,11 +32,22 @@ HEADERS  += mainwindow.h \
     treeitem.h \
     treemodel.h
 
+#ifdef Q_OS_DARWIN
 FORMS    += mainwindow.ui \
     about.ui \
     lizenz.ui \
     preferences.ui \
     regularien.ui
+#elif defined(Q_OS_WIN)
+FORMS    += mainwindowwin.ui \
+    about.ui \
+    lizenz.ui \
+    preferences.ui \
+    regularien.ui
+#else
+#error "Is not supported!" 
+#endif
+
 
 #ifdef Q_OS_DARWIN
 ICON = myLogoPIHK3a.icns

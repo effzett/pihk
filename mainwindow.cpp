@@ -8,8 +8,10 @@
 
 #ifdef Q_OS_OSX
 #include "ui_mainwindow.h"
-#else
+#elif defined(Q_OS_WIN)
 #include "ui_mainwindowwin.h"
+#else
+#error  "Is not supported!"
 #endif
 
 MainWindow::MainWindow(QWidget *parent) :
