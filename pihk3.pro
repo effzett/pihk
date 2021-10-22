@@ -33,21 +33,21 @@ HEADERS  += mainwindow.h \
     treemodel.h
 
 #ifdef Q_OS_DARWIN
-FORMS    += mainwindow.ui \
-    about.ui \
-    lizenz.ui \
-    preferences.ui \
-    regularien.ui
+FORMS    += mainwindow.ui
 #elif defined(Q_OS_WIN)
-FORMS    += mainwindowwin.ui \
-    about.ui \
-    lizenz.ui \
-    preferences.ui \
-    regularien.ui
+FORMS    += mainwindowwin.ui
 #else
-#error "Is not supported!" 
+#error "System not supported!"
 #endif
 
+FORMS += about.ui \
+    lizenz.ui \
+    preferences.ui \
+    regularien.ui \
+    about.ui \
+    lizenz.ui \
+    preferences.ui \
+    regularien.ui
 
 #ifdef Q_OS_DARWIN
 ICON = myLogoPIHK3a.icns
@@ -61,5 +61,3 @@ RC_ICONS = myLogoPIHK3a.ico
 RESOURCES += \
     resourcen.qrc
     
-
-DISTFILES +=
