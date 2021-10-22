@@ -240,7 +240,7 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
     // für checkboxen
     if (role == Qt::CheckStateRole && index.column() > 0)  // this shows the checkbox
     {
-        qDebug()<<"im data Model wird auch der richtige Zweig angesprungen";
+        //qDebug()<<"im data Model wird auch der richtige Zweig angesprungen";
         if(item->data(index.column()) == Qt::Checked){
             return (Qt::CheckState)Qt::Checked;
         }
@@ -260,11 +260,11 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
         return Qt::NoItemFlags;
 
     if(index.column() > 0){
-        qDebug()<<"ItemIsUserCheckable wird gesetzt";
+        //qDebug()<<"ItemIsUserCheckable wird gesetzt";
         return Qt::ItemIsEnabled | QAbstractItemModel::flags(index) | Qt::ItemIsUserCheckable;
     }
     else{
-        qDebug()<<"Nur Editable wird gesetzt";
+        //qDebug()<<"Nur Editable wird gesetzt";
         return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
     }
 }
@@ -318,11 +318,11 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
             for (int column = 0; column < columnData.size(); ++column){
                 if(column==0){
                     parent->child(parent->childCount() - 1)->setData(column, columnData[column]);
-                    qDebug()<<tr("[No data]")<<"setupModelData-Treemodel";
+                    //qDebug()<<tr("[No data]")<<"setupModelData-Treemodel";
                 }else{
                     Qt::CheckState input = (columnData[column] == 1 || columnData[column] == 2)?Qt::Checked :Qt::Unchecked;
                     parent->child(parent->childCount() - 1)->setData(column, input);
-                    qDebug()<<"Qt::Checked"<<"setupModelData-Treemodel";
+                    //qDebug()<<"Qt::Checked"<<"setupModelData-Treemodel";
                 }
             }
         }
