@@ -40,7 +40,7 @@ FORMS    += mainwindowwin.ui
 #error "System not supported!"
 #endif
 
-FORMS += about.ui \
+FORMS *= about.ui \
     lizenz.ui \
     preferences.ui \
     regularien.ui \
