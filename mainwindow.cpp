@@ -166,9 +166,9 @@ void MainWindow::updateProgressBar(){
         //ui->lcdNumber->setPalette(Qt::red);
     }
     ui->lcdNumber->display(timerValue-offset);
-    qDebug()<<timerValue;
-    qDebug()<<offset;
-    qDebug()<<maxMinutes;
+    //qDebug()<<timerValue;
+    //qDebug()<<offset;
+    //qDebug()<<maxMinutes;
 }
 // start or stop timer
 void MainWindow::toggleStartStop(){
@@ -690,13 +690,15 @@ void MainWindow::on_actionQuit_triggered()
 QJsonObject MainWindow::packQJD(){
     QJsonObject json;
     QJsonArray anwesend;
-
+    QJsonArray korr1;
+    QJsonArray korr2;
+    
     json["PIHKVersion"] = app.version;
-    json["Fachrichtung"] = ui->comboBoxExam->currentText();
-    json["Ausschuss"] = ui->comboBoxExam_2->currentText();
+    json["Fachrichtung"] = ui->comboBoxExam->currentText().trimmed();
+    json["Ausschuss"] = ui->comboBoxExam_2->currentText().trimmed();
     json["Datum"] = ui->pDate->text();
-    json["Name"] = ui->pname->text();
-    json["Id-Nummer"] = ui->pnummer->text();
+    json["Name"] = ui->pname->text().trimmed();
+    json["Id-Nummer"] = ui->pnummer->text().trimmed();
     json["Doku"] = ui->spinboxDocumentation->text();
     json["PRFG"] = ui->spinboxExamination->text();
     json["GA0"] = ui->spinboxGa0->text();
@@ -706,12 +708,13 @@ QJsonObject MainWindow::packQJD(){
     json["MEP-GA1"] = ui->spinboxGa1E->text();
     json["MEP-GA2"] = ui->spinboxGa2E->text();
     json["MEP-WISO"] = ui->spinboxWisoE->text();
-    json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";
-    json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";
-    json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";
-    json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";
     json["Prüfungszeit"] = ui->lcdNumber->value();
+    json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";   // Wird nicht wieder eingelesen
+    json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";   // Wird nicht wieder eingelesen
+    json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";    // Wird nicht wieder eingelesen
+    json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";   // Wird nicht wieder eingelesen
 
+    // Auslesen der Prüfer aus dem Model
     QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
     qint32 i = ui->comboBoxExam_2->currentIndex();
     QModelIndex start = ui->tableView->model()->index(i,0,parent);
@@ -721,10 +724,10 @@ QJsonObject MainWindow::packQJD(){
             if(ui->tableView->model()->index(row,col,start).data(Qt::CheckStateRole).toUInt()>0){
                 switch(col){
                 case 1: // 1.Korr
-                    json.insert( "1.Korr",name);
+                    korr1.append(name);
                     break;
                 case 2: // 2.Korr
-                    json.insert( "2.Korr",name);
+                    korr2.append(name);
                     break;
                 case 3: // Anwesend
                     anwesend.append(name);
@@ -734,18 +737,22 @@ QJsonObject MainWindow::packQJD(){
             }
         }
     }
+    json.insert("Korr1",korr1);
+    json.insert("Korr2",korr2);
     json.insert("Anwesend",anwesend);
     
     return json;
 }
 
 void MainWindow::unpackQJO(QJsonObject json ){
+    QList<QVariantList> prueferListe;
+    
     app.version =  json["PIHKVersion"].toString();
-    ui->comboBoxExam->currentText() = json["Fachrichtung"].toString();
-    ui->comboBoxExam_2->currentText() = json["Ausschuss"].toString();
+    ui->comboBoxExam->setCurrentText(json["Fachrichtung"].toString().trimmed());
+    ui->comboBoxExam_2->setCurrentText(json["Ausschuss"].toString().trimmed());
     ui->pDate->setDate(QDate::fromString(json.value("Datum").toString(),"dd.MM.yyyy"));
-    ui->pname->setText(json.value("Name").toString());
-    ui->pnummer->setText(json.value("Id-Nummer").toString());
+    ui->pname->setText(json.value("Name").toString().trimmed());
+    ui->pnummer->setText(json.value("Id-Nummer").toString().trimmed());
     ui->spinboxDocumentation->setValue(json.value("Doku").toString().toInt());
     ui->spinboxExamination->setValue(json.value("PRFG").toString().toInt());
     ui->spinboxGa0->setValue(json.value("GA0").toString().toInt()); 
@@ -755,13 +762,58 @@ void MainWindow::unpackQJO(QJsonObject json ){
     ui->spinboxGa1E->setValue(json.value("MEP-GA1").toString().toInt());
     ui->spinboxGa2E->setValue(json.value("MEP-GA2").toString().toInt());
     ui->spinboxWisoE->setValue(json.value("MEP-WISO").toString().toInt());
-    ui->comboBoxExam->setCurrentText(json.value("Pruefung").toString());
     ui->lcdNumber->display((qint32)json["Prüfungszeit"].toInteger());
 
     // Wird automatisch ermittelt:
-    //    json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";
-    //    json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";
-    //    json["Ergebnis"]   = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";
+    //   * json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";
+    //   * json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";
+    //   * json["Ergebnis"]   = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";
+    //   * Prüfungsergebnis
+    
+    // Einlesen der Prüfer
+    clearModelCheckboxes(ui->checkBoxAll->isChecked());
+    prueferListe = readPruefer(json);
+    for(int pv=0; pv< prueferListe.count();pv++){   // Über alle gefundenen Prüfer gehen
+        QVariantList v = prueferListe[pv];
+        insertPrueferIntoModel(v);  // ein Prüfer als QVariantList 
+    }
+}
+
+QList<QVariantList> MainWindow::readPruefer(QJsonObject json){
+    QList<QVariantList> listAll;
+    QVariant qv0,qv1,qv2,qv3;
+    QJsonArray anwesend;
+    QJsonArray korr1;
+    QJsonArray korr2;
+    QSet<QString> namen;
+    QString name;
+    anwesend = json.value("Anwesend").toArray();
+    korr1 = json.value("Korr1").toArray();
+    korr2 = json.value("Korr2").toArray();
+    for(int i=0;i<anwesend.count();i++){
+        namen.insert(anwesend.at(i).toString().trimmed());
+    }
+    for(int i=0;i<korr1.count();i++){
+        namen.insert(korr1.at(i).toString().trimmed());
+    }
+    for(int i=0;i<korr2.count();i++){
+        namen.insert(korr2.at(i).toString().trimmed());
+    }
+    QSet<QString>::iterator si;
+    for (si = namen.begin(); si != namen.end(); ++si){
+        QVariantList list;
+        name = *si;
+        qv0 = QVariant(name);
+        qv1 = (korr1.contains(name))?QVariant(Qt::Checked):QVariant(Qt::Unchecked);
+        qv2 = (korr2.contains(name))?QVariant(Qt::Checked):QVariant(Qt::Unchecked);
+        qv3 = (anwesend.contains(name))?QVariant(Qt::Checked):QVariant(Qt::Unchecked);
+        list.append(qv0);
+        list.append(qv1);
+        list.append(qv2);
+        list.append(qv3);
+        listAll.append(list);
+    }
+    return listAll;
 }
 
 QJsonObject MainWindow::loadJson(QString fileName) {
@@ -819,7 +871,7 @@ void MainWindow::on_pushButton_DeleteAll_clicked()
         toggleStartStop();
         timerReset();
     }
-    clearModelCheckboxes(false);
+    clearModelCheckboxes(ui->checkBoxAll->isChecked());
     // model checkboxen löschen
 }
 
@@ -863,6 +915,7 @@ void MainWindow::on_actionRegularien_triggered(){
 void MainWindow::on_comboBoxExam_currentIndexChanged(int index)
 {
     QModelIndex midx = ui->comboBoxExam->model()->index(index,0);
+    ui->comboBoxExam_2->setModel(treeModel);
     ui->comboBoxExam_2->setRootModelIndex(midx);
     ui->comboBoxExam_2->setCurrentIndex(0);
 }
@@ -981,7 +1034,7 @@ void MainWindow::on_saveFile_clicked()
         filepath = ui->folder->text() + QDir::separator() + fileName;
         QJsonObject json = packQJD();
         saveJson(json,filepath);
-        qDebug()<<"Gesichert unter " + filepath;
+        //qDebug()<<"Gesichert unter " + filepath;
         ui->saveFile->setEnabled(false);
     }    
 }
@@ -1112,7 +1165,7 @@ void MainWindow::clearModelCheckboxes(bool all){
     QModelIndex start = ui->tableView->model()->index(iAusschuss,0,parent);
     for( int row = 0; row < ui->tableView->model()->rowCount(start); ++row ) {
         for ( int col = 1; col < ui->tableView->model()->columnCount(start); ++col ) {
-            qDebug()<<row<<"("<< ui->tableView->model()->rowCount(start)<<"),"<<col<<"("<< ui->tableView->model()->columnCount(start)<<")";
+            //qDebug()<<row<<"("<< ui->tableView->model()->rowCount(start)<<"),"<<col<<"("<< ui->tableView->model()->columnCount(start)<<")";
             if( ui->tableView->model()->index(row,col,start).data(Qt::CheckStateRole).toUInt() > 0 ){
                 switch(col){
                 case 1: // 1.Korr
@@ -1133,3 +1186,33 @@ void MainWindow::clearModelCheckboxes(bool all){
     }
     ui->saveFile->setEnabled(true);
 }
+
+void MainWindow::insertPrueferIntoModel(QVariantList qvl){
+   // suchen nach Namen im entsprechenden Zweig
+    bool found = false;
+    QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
+    qint32 iAusschuss = ui->comboBoxExam_2->currentIndex();
+    QModelIndex start = ui->tableView->model()->index(iAusschuss,0,parent);
+    for( int row = 0; row < ui->tableView->model()->rowCount(start); ++row ) {
+        QString name = QVariant(ui->tableView->model()->index(row,0,start).data(Qt::ItemIsEditable)).toString();
+        if(name.compare(qvl.at(0).toString())==0){
+            found = true;
+            // Name vorhanden in allen 3 Spalten Checkstats setzen
+            for ( int col = 1; col < ui->tableView->model()->columnCount(start); ++col ) {
+                treeModel->setData(ui->tableView->model()->index(row,col,start),qvl.at(col),Qt::CheckStateRole);
+            }
+            break; // Name gefunden. Schleife kann verlassen werden
+        }
+    }
+    if(found==false){
+        QString msg = "Der Prüfer "+qvl.at(0).toString()+" aus der Datei ist noch nicht vorhanden\nSoll der neue Prüfer zugefügt werden?";
+        QMessageBox::StandardButton reply = QMessageBox::warning(this,"Prüfer nicht vorhande",msg,
+                             QMessageBox::Yes|QMessageBox::No,QMessageBox::No); 
+        if(reply == QMessageBox::Yes){
+            // Einfügen eines neuen Users in das Model
+            qDebug()<<"\nThis Part has to be still programmed!!!TODO...!!!!\n";
+        }
+    }
+    ui->saveFile->setEnabled(true);
+}
+

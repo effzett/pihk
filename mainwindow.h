@@ -84,8 +84,11 @@ private:
     QJsonObject loadJson(QString fileName);
     void saveJson(QJsonObject json, QString fileName);
     void clearModelCheckboxes(bool all);
+    QList<QVariantList> readPruefer(QJsonObject json);
+    void insertPrueferIntoModel(QVariantList qvl);
     
 private slots:
+    
     // timer
     void toggleStartStop();     // for timer control
     void updateProgressBar();   // progress bar

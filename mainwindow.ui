@@ -20,7 +20,8 @@
    <string>Pihk Version 3.0.0</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="myLogoPIHK3a.icns"/>
+   <iconset theme="myLogoPIHK3a.icns">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
@@ -1726,7 +1727,7 @@
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>610</y>
+      <y>590</y>
       <width>421</width>
       <height>32</height>
      </rect>
@@ -1774,6 +1775,19 @@
      </property>
     </widget>
    </widget>
+   <widget class="QCheckBox" name="checkBoxAll">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>620</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Incl. anwesende Prüfer</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
@@ -1782,7 +1796,7 @@
      <x>0</x>
      <y>0</y>
      <width>886</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
