@@ -83,7 +83,8 @@ private:
     QJsonObject packQJD();
     QJsonObject loadJson(QString fileName);
     void saveJson(QJsonObject json, QString fileName);
-
+    void clearModelCheckboxes(bool all);
+    
 private slots:
     // timer
     void toggleStartStop();     // for timer control

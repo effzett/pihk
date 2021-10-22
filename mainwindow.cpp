@@ -819,6 +819,7 @@ void MainWindow::on_pushButton_DeleteAll_clicked()
         toggleStartStop();
         timerReset();
     }
+    clearModelCheckboxes(false);
     // model checkboxen löschen
 }
 
@@ -862,9 +863,6 @@ void MainWindow::on_actionRegularien_triggered(){
 void MainWindow::on_comboBoxExam_currentIndexChanged(int index)
 {
     QModelIndex midx = ui->comboBoxExam->model()->index(index,0);
-    qDebug()<<"Combo 1 index changed:"<<"index"<<index<<"   row"<<midx.row()<<"   col"<<midx.column();
-    //QVariant data = myComboBox->model()->data(idx);
-    //int type_id = data.toInt();
     ui->comboBoxExam_2->setRootModelIndex(midx);
     ui->comboBoxExam_2->setCurrentIndex(0);
 }
@@ -873,7 +871,6 @@ void MainWindow::on_comboBoxExam_currentIndexChanged(int index)
 void MainWindow::on_comboBoxExam_2_currentIndexChanged(int index)
 {
     QModelIndex midx = ui->comboBoxExam_2->model()->index(index,0);
-    qDebug()<<"Combo 2 index changed:"<<"index"<<index<<"   row"<<midx.row()<<"   col"<<midx.column();
     ui->tableView->setRootIndex(treeModel->index(midx.row(),midx.column(),ui->comboBoxExam_2->rootModelIndex()));
 }
 
@@ -881,22 +878,18 @@ void MainWindow::on_comboBoxExam_2_currentIndexChanged(int index)
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
     if(!index.isValid()){
-        qDebug()<<"ungültiger Modelindex!";
         return;
     }
     
     if(index.column() == 0){
-        qDebug()<<"Modelindex für Name ineteressiert nicht";
         return;
     }
     
     if(index.data(Qt::CheckStateRole)==Qt::Checked){
-        treeModel->setData(index,Qt::Checked,Qt::CheckStateRole);
-        qDebug()<<"("<<index.row()<<","<<index.column()<<")  is checked";  
+        treeModel->setData(index,Qt::Checked,Qt::CheckStateRole); 
     }
     else{
-            treeModel->setData(index,Qt::Unchecked,Qt::CheckStateRole);
-        //qDebug()<<"("<<index.row()<<","<<index.column()<<")  is not checked";
+        treeModel->setData(index,Qt::Unchecked,Qt::CheckStateRole);
     } 
     ui->saveFile->setEnabled(true);
 }
@@ -1111,4 +1104,32 @@ bool MainWindow::checkModel(){
         }
     }
     return retVal;
+}
+
+void MainWindow::clearModelCheckboxes(bool all){
+    QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
+    qint32 iAusschuss = ui->comboBoxExam_2->currentIndex();
+    QModelIndex start = ui->tableView->model()->index(iAusschuss,0,parent);
+    for( int row = 0; row < ui->tableView->model()->rowCount(start); ++row ) {
+        for ( int col = 1; col < ui->tableView->model()->columnCount(start); ++col ) {
+            qDebug()<<row<<"("<< ui->tableView->model()->rowCount(start)<<"),"<<col<<"("<< ui->tableView->model()->columnCount(start)<<")";
+            if( ui->tableView->model()->index(row,col,start).data(Qt::CheckStateRole).toUInt() > 0 ){
+                switch(col){
+                case 1: // 1.Korr
+                    treeModel->setData(ui->tableView->model()->index(row,col,start),Qt::Unchecked,Qt::CheckStateRole);
+                    break;
+                case 2: // 2.Korr
+                    treeModel->setData(ui->tableView->model()->index(row,col,start),Qt::Unchecked,Qt::CheckStateRole);
+                    break;
+                case 3: // Anwesend
+                    if(all){
+                        treeModel->setData(ui->tableView->model()->index(row,col,start),Qt::Unchecked,Qt::CheckStateRole);                       
+                    }
+                default:
+                    break;
+                }
+            }
+        }
+    }
+    ui->saveFile->setEnabled(true);
 }
