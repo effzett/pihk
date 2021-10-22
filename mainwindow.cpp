@@ -780,7 +780,7 @@ void MainWindow::saveJson(QJsonObject json, QString fileName) {
 
 void MainWindow::on_actionOeffnen_triggered()
 {
-    QString f = QFileDialog::getOpenFileName(this,tr("Öffnen"),".",tr("JSON (*.json)"));
+    QString f = QFileDialog::getOpenFileName(this,tr("Öffnen"),ui->folder->text(),tr("JSON (*.json)"));
     if(f.length() != 0){
         QJsonObject json = loadJson(f);
         unpackQJO(json);
@@ -791,7 +791,7 @@ void MainWindow::on_actionOeffnen_triggered()
 void MainWindow::on_actionSichernAls_triggered()
 {
     if(checkModel()){
-        QString f = QFileDialog::getSaveFileName(this,tr("Sichern"),".",tr("JSON (*.json)"));
+        QString f = QFileDialog::getSaveFileName(this,tr("Sichern"),ui->folder->text(),tr("JSON (*.json)"));
         if(f.length() != 0){
             QJsonObject json = packQJD();
             saveJson(json,f);
