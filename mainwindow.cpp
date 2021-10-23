@@ -238,7 +238,7 @@ void MainWindow::writeResults(){
     quint32 docu = (quint32) ui->spinboxDocumentation->value();
     quint32 exam  = (quint32) ui->spinboxExamination->value();
     qint32 pointsA = calcA(docu,exam);
-    QString gradeA = getGrade(pointsA);
+    //QString gradeA = getGrade(pointsA);
     ui->labelPointsA->setText(QString::number(pointsA).rightJustified(3,' '));
     if(checkPassedA(docu,exam)){
         ui->labelGradeA->setStyleSheet("QLabel { color : green; }");
@@ -368,7 +368,7 @@ void MainWindow::writeResults(){
     }
 
     qint32 pointsB = calcB(ga1,ga2,wiso,nr,points);
-    QString gradeB = getGrade(pointsB);
+    //QString gradeB = getGrade(pointsB);
     ui->labelPointsB->setText(QString::number(pointsB).rightJustified(3,' '));
 
     ui->labelGradeB->setText(getGrade(pointsB).rightJustified(12,' '));
@@ -397,7 +397,7 @@ void MainWindow::writeResults(){
 
     // All
     quint32 pointsAll = calcAll(pointsA,pointsB);
-    QString gradeAll = getGrade(pointsAll);
+    //QString gradeAll = getGrade(pointsAll);
     ui->labelResultAll->setText(QString::number(pointsAll).rightJustified(3,' '));
     if(checkPassedB(ga1,ga2,wiso,nr,points) && checkPassedA(docu,exam)){
         ui->labelGradeResult->setStyleSheet("QLabel { color : green; }");
@@ -759,9 +759,21 @@ void MainWindow::unpackQJO(QJsonObject json ){
     ui->spinboxGa1->setValue(json.value("GA1").toString().toInt());
     ui->spinboxGa2->setValue(json.value("GA2").toString().toInt());
     ui->spinboxWiso->setValue(json.value("Wiso").toString().toInt());
-    ui->spinboxGa1E->setValue(json.value("MEP-GA1").toString().toInt());
-    ui->spinboxGa2E->setValue(json.value("MEP-GA2").toString().toInt());
-    ui->spinboxWisoE->setValue(json.value("MEP-WISO").toString().toInt());
+    if(json.value("MEP-GA1").toString().toInt() != 0){
+        ui->radioButton1->setEnabled(true);
+        ui->radioButton1->setChecked(true);
+        ui->spinboxGa1E->setValue(json.value("MEP-GA1").toString().toInt());
+    }
+    if(json.value("MEP-GA2").toString().toInt() != 0){
+        ui->radioButton2->setEnabled(true);
+        ui->radioButton2->setChecked(true);
+        ui->spinboxGa2E->setValue(json.value("MEP-GA2").toString().toInt());
+    }
+    if(json.value("MEP-WISO").toString().toInt() != 0){
+        ui->radioButton3->setEnabled(true);
+        ui->radioButton3->setChecked(true);
+        ui->spinboxWisoE->setValue(json.value("MEP-WISO").toString().toInt());
+    }
     ui->lcdNumber->display((qint32)json["Prüfungszeit"].toInteger());
 
     // Wird automatisch ermittelt:
@@ -1082,7 +1094,7 @@ bool MainWindow::checkModel(){
     qint32 i = ui->comboBoxExam_2->currentIndex();
     QModelIndex start = ui->tableView->model()->index(i,0,parent);
     for( int row = 0; row < ui->tableView->model()->rowCount(start); ++row ) {
-        QString name = QVariant(ui->tableView->model()->index(row,0,start).data(Qt::ItemIsEditable)).toString();
+        //QString name = QVariant(ui->tableView->model()->index(row,0,start).data(Qt::ItemIsEditable)).toString();
         countKorr=0;
         for ( int col = 1; col < ui->tableView->model()->columnCount(start); ++col ) {
             if(ui->tableView->model()->index(row,col,start).data(Qt::CheckStateRole).toUInt()>0){
