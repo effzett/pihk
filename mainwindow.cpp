@@ -1244,8 +1244,6 @@ void saveModelAndConfiguration(){
     QSettings set;
 }
 
-
-
 void MainWindow::on_actionQuit_2_triggered()
 {
     // Aktuelles Model sichern?
@@ -1254,8 +1252,28 @@ void MainWindow::on_actionQuit_2_triggered()
                         tr("Soll die aktuelle Prüferliste gesichert werden?"),QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
     if(reply == QMessageBox::Yes){
         // Sichern
+        saveSettings(true);
         qDebug()<<"Es wird gesichert...";
     }
     QCoreApplication::quit();
 }
+
+void MainWindow::saveSettings(bool withModel){
+    if(withModel){
+        // save the Model
+    }
+    // Save other settings
+    settings.beginGroup("/Examination");
+        settings.setValue("maxMinutes",QString::number(this->maxMinutes));
+    settings.endGroup();
+    settings.beginGroup("/FilenamePattern");
+        settings.setValue("d1",QString::number(mypref->d1()));
+        settings.setValue("d2",QString::number(mypref->d2()));
+        settings.setValue("d3",QString::number(mypref->d3()));
+        settings.setValue("t1",QString::number(mypref->t1()));
+        settings.setValue("d1",QString::number(mypref->t2()));        
+        settings.setValue("space",QString::number(mypref->space()));
+    settings.endGroup();
+}
+
 

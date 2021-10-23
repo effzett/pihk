@@ -67,7 +67,7 @@ private:
     bool hasPassed;         // Bestanden=true, Nicht bestanden=false
     QStringListModel *model;
     qint32 maxMinutes;      // maximale Vortragszeit
-    QSettings setting;      // zum Abspeichern in pList/Registry
+    QSettings settings;      // zum Abspeichern in pList/Registry
 
     quint32 calcA(qint32 docu, qint32 exam);
     quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
@@ -87,6 +87,7 @@ private:
     void clearModelCheckboxes(bool all);
     QList<QVariantList> readPruefer(QJsonObject json);
     void insertPrueferIntoModel(QVariantList qvl);
+    void saveSettings(bool withModel);
     
 private slots:
     
