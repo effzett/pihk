@@ -1189,6 +1189,7 @@ void MainWindow::clearModelCheckboxes(bool all){
 
 void MainWindow::insertPrueferIntoModel(QVariantList qvl){
    // suchen nach Namen im entsprechenden Zweig
+    QModelIndex child;
     bool found = false;
     QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
     qint32 iAusschuss = ui->comboBoxExam_2->currentIndex();
@@ -1210,7 +1211,22 @@ void MainWindow::insertPrueferIntoModel(QVariantList qvl){
                              QMessageBox::Yes|QMessageBox::No,QMessageBox::No); 
         if(reply == QMessageBox::Yes){
             // Einfügen eines neuen Users in das Model
-            qDebug()<<"\nThis Part has to be still programmed!!!TODO...!!!!\n";
+            const QModelIndex index = start;
+
+            if (treeModel->columnCount(index) == 0) {
+                if (!treeModel->insertColumn(0, index))
+                    return;
+            }
+            if (!treeModel->insertRow(0, index))
+                return;
+            child = treeModel->index(0, 0, index);
+            treeModel->setData(child, qvl.at(0), Qt::EditRole);
+            child = treeModel->index(0, 1, index);
+            treeModel->setData(child, qvl.at(1), Qt::CheckStateRole);
+            child = treeModel->index(0, 2, index);
+            treeModel->setData(child, qvl.at(2), Qt::CheckStateRole);
+            child = treeModel->index(0, 3, index);
+            treeModel->setData(child, qvl.at(3), Qt::CheckStateRole);
         }
     }
     ui->saveFile->setEnabled(true);
