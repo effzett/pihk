@@ -24,8 +24,7 @@ private slots:
     void on_actionDelete_triggered();
     void on_actionInsertRow_triggered();
     void on_actionInsertChild_triggered();
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();    
+    void on_buttonBox_accepted();   
     void on_comboBoxD1_currentIndexChanged(int index);
     void on_comboBoxD2_currentIndexChanged(int index);
     void on_comboBoxD3_currentIndexChanged(int index);

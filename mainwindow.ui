@@ -1810,6 +1810,7 @@
     <addaction name="actionAbout"/>
     <addaction name="separator"/>
     <addaction name="actionPreferences"/>
+    <addaction name="actionQuit_2"/>
    </widget>
    <widget class="QMenu" name="menuAnsicht">
     <property name="title">
@@ -1890,10 +1891,24 @@
    <property name="text">
     <string>Quit</string>
    </property>
+   <property name="toolTip">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="actionPreferences">
    <property name="text">
     <string>Preferences...</string>
+   </property>
+  </action>
+  <action name="actionQuit_2">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
  </widget>

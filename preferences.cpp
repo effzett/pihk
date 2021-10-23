@@ -166,12 +166,10 @@ void Preferences::updateActions()
 void Preferences::on_buttonBox_accepted()
 {
     //w->treeModel = oldModel;
-}
-
-
-void Preferences::on_buttonBox_rejected()
-{
-    
+    // treeModel sichern
+    // Dateimuster sichern
+    // position sichern
+    // Minuten sichern
 }
 
 

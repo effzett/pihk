@@ -67,6 +67,7 @@ private:
     bool hasPassed;         // Bestanden=true, Nicht bestanden=false
     QStringListModel *model;
     qint32 maxMinutes;      // maximale Vortragszeit
+    QSettings setting;      // zum Abspeichern in pList/Registry
 
     quint32 calcA(qint32 docu, qint32 exam);
     quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
@@ -104,7 +105,6 @@ private slots:
     void setPointsPRFG(const QModelIndex &index);
     void setPointsMEPR(const QModelIndex &index);
     void about();
-    void on_actionQuit_triggered();
     void on_actionOeffnen_triggered();
     void on_actionSichernAls_triggered();
     void on_pushButton_DeleteAll_clicked();
@@ -117,6 +117,7 @@ private slots:
     void on_tableView_clicked(const QModelIndex &index);
     void on_saveFile_clicked();
     void on_actionSichern_triggered();
+    void on_actionQuit_2_triggered();
 };
 
 #endif // MAINWINDOW_H

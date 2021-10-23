@@ -38,9 +38,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setOrganizationName("zenmeister");
     QCoreApplication::setOrganizationDomain("zenmeister.de");
     QCoreApplication::setApplicationName("PIHK");
-    QSettings settings;
+    // Config und Model liegen im settings
 
     ui->setupUi(this);
+    
 
     // Read in Tester model
     const QStringList headers({tr("Prüfer"),tr("K1"),tr("K2"),tr("Anw")});
@@ -149,6 +150,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->listViewPRFG,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsPRFG(const QModelIndex &)));
     connect(ui->listViewMEPR,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsMEPR(const QModelIndex &)));
     connect(ui->actionAbout,SIGNAL(triggered()),this,SLOT(about()));
+    //connect(ui->actionQuit,SIGNAL(triggered()),this,SLOT(on_actionQuit_triggered()));
 }
 
 // Timer and progressbar stuff
@@ -679,12 +681,6 @@ QString MainWindow::getGrade(qint32 points){
         grade="sehr gut";
     }
     return grade;
-}
-
-
-void MainWindow::on_actionQuit_triggered()
-{
-    QCoreApplication::quit();
 }
 
 QJsonObject MainWindow::packQJD(){
@@ -1242,5 +1238,24 @@ void MainWindow::insertPrueferIntoModel(QVariantList qvl){
         }
     }
     ui->saveFile->setEnabled(true);
+}
+
+void saveModelAndConfiguration(){
+    QSettings set;
+}
+
+
+
+void MainWindow::on_actionQuit_2_triggered()
+{
+    // Aktuelles Model sichern?
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::warning(this,tr("Aktuelle Prüferliste sichern?"),
+                        tr("Soll die aktuelle Prüferliste gesichert werden?"),QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
+    if(reply == QMessageBox::Yes){
+        // Sichern
+        qDebug()<<"Es wird gesichert...";
+    }
+    QCoreApplication::quit();
 }
 
