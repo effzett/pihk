@@ -1318,3 +1318,44 @@ void MainWindow::on_actionAusgabeblatt_triggered()
     ihk->exec(); 
 }
 
+qint32 MainWindow::t11(){
+    return (ui->spinboxGa0->text().toInt());
+}
+
+qint32 MainWindow::t21(){
+    
+    return (qRound((ui->spinboxDocumentation->text().toDouble() + ui->spinboxExamination->text().toDouble())/2.0));
+}
+
+qint32 MainWindow::t22(bool mPruefung){
+    qint32 retVal=0;
+    if(mPruefung){
+        retVal = qRound((ui->spinboxGa1->text().toDouble()*2.0 + ui->spinboxGa1E->text().toDouble())/3.0);
+    }
+    else{
+        retVal = ui->spinboxGa1->text().toInt();
+    }
+    return retVal;
+}
+
+qint32 MainWindow::t23(bool mPruefung){
+    qint32 retVal=0;
+    if(mPruefung){
+        retVal = qRound((ui->spinboxGa2->text().toDouble()*2.0 + ui->spinboxGa2E->text().toDouble())/3.0);
+    }
+    else{
+        retVal = ui->spinboxGa2->text().toInt();
+    }
+    return retVal;
+}
+
+qint32 MainWindow::t24(bool mPruefung){
+    qint32 retVal=0;
+    if(mPruefung){
+        retVal = qRound((ui->spinboxWiso->text().toDouble()*2.0 + ui->spinboxWisoE->text().toDouble())/3.0);
+    }
+    else{
+        retVal = ui->spinboxWiso->text().toInt();
+    }
+    return retVal;
+}

@@ -95,6 +95,12 @@ private:
     void saveSettings(bool withModel);
     void loadSettings(bool withModel);
     void closeEvent (QCloseEvent *event);
+    qint32 t11();
+    qint32 t21();
+    qint32 t22(bool mPruefung);    
+    qint32 t23(bool mPruefung);    
+    qint32 t24(bool mPruefung);
+    qint32 t2();
     
 private slots:
     
