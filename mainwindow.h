@@ -29,7 +29,10 @@
 #include <QScrollBar>
 #include <QSortFilterProxyModel>
 #include <QMessageBox>
-#include <prefs.h>
+#include <QCloseEvent>
+#include "mypihk.h"
+#include "prefs.h"
+#include "app.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +45,8 @@ struct appInfo{
     QString name;
     QString author;
     QString email;
+    QString domain;
+    QString organization;
 };
 typedef appInfo APPINFO;
 
@@ -67,7 +72,7 @@ private:
     bool hasPassed;         // Bestanden=true, Nicht bestanden=false
     QStringListModel *model;
     qint32 maxMinutes;      // maximale Vortragszeit
-    QSettings settings;      // zum Abspeichern in pList/Registry
+    QSettings settings = QSettings("zenmeister.de", "PIHK");      // zum Abspeichern in pList/Registry
 
     quint32 calcA(qint32 docu, qint32 exam);
     quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
@@ -88,6 +93,8 @@ private:
     QList<QVariantList> readPruefer(QJsonObject json);
     void insertPrueferIntoModel(QVariantList qvl);
     void saveSettings(bool withModel);
+    void loadSettings(bool withModel);
+    void closeEvent (QCloseEvent *event);
     
 private slots:
     
@@ -119,6 +126,7 @@ private slots:
     void on_saveFile_clicked();
     void on_actionSichern_triggered();
     void on_actionQuit_2_triggered();
+    void on_actionAusgabeblatt_triggered();
 };
 
 #endif // MAINWINDOW_H

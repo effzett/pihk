@@ -73,6 +73,9 @@
       <pointsize>14</pointsize>
      </font>
     </property>
+    <property name="toolTip">
+     <string>Ergebnisse der Dokumentation+Fachgespräch</string>
+    </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
@@ -93,6 +96,9 @@
        <width>51</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string>Ergebnis der Dokumentation</string>
      </property>
      <property name="autoFillBackground">
       <bool>true</bool>
@@ -142,6 +148,9 @@
       <font>
        <pointsize>14</pointsize>
       </font>
+     </property>
+     <property name="toolTip">
+      <string>Summe aus Präsentation un Fachgespräch</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -257,7 +266,7 @@
       </rect>
      </property>
      <property name="toolTip">
-      <string>Startet/Stoppt den 15min Zähler</string>
+      <string>Startet/Stoppt den konfigurierbaren Zähler</string>
      </property>
      <property name="text">
       <string>Start</string>
@@ -271,6 +280,9 @@
        <width>61</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Zeigt den Timerwert/Überschreitung an</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -320,7 +332,7 @@
       </rect>
      </property>
      <property name="toolTip">
-      <string>Setzt 15min Zähler auf 0</string>
+      <string>Setzt konfigurierbaren Zähler auf 0</string>
      </property>
      <property name="text">
       <string>Reset</string>
@@ -358,6 +370,9 @@
      <font>
       <pointsize>14</pointsize>
      </font>
+    </property>
+    <property name="toolTip">
+     <string>Ergebnisse der Klausuren</string>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
@@ -784,7 +799,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>GA1</string>
+      <string>Ergebnis der ersten Klausur in Teil 1</string>
      </property>
      <property name="autoFillBackground">
       <bool>true</bool>
@@ -834,6 +849,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="toolTip">
+     <string>Ergebnisse der Prüfung</string>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
@@ -1420,6 +1438,9 @@
        <height>30</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Auswahl der Fachrichtung</string>
+     </property>
      <property name="editable">
       <bool>false</bool>
      </property>
@@ -1452,6 +1473,9 @@
        <width>161</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Auswahl des Prüfungsausschuss</string>
      </property>
      <property name="editable">
       <bool>false</bool>
@@ -1561,6 +1585,9 @@
       </item>
       <item row="1" column="0">
        <widget class="QDateEdit" name="pDate">
+        <property name="toolTip">
+         <string>Datum der Prüfung</string>
+        </property>
         <property name="displayFormat">
          <string>dd.MM.yyyy</string>
         </property>
@@ -1583,6 +1610,9 @@
        <weight>50</weight>
        <bold>false</bold>
       </font>
+     </property>
+     <property name="toolTip">
+      <string>Prüfer werden namentlich im Einstellungsmenü eingepflegt</string>
      </property>
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOn</enum>
@@ -1639,6 +1669,9 @@
      </item>
      <item row="0" column="2">
       <widget class="QPushButton" name="saveFile">
+       <property name="toolTip">
+        <string>Sichere in die angegebene Datei</string>
+       </property>
        <property name="text">
         <string>Sichern</string>
        </property>
@@ -1678,6 +1711,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_SelectDir">
+       <property name="toolTip">
+        <string>Wahl des Default-Ordners</string>
+       </property>
        <property name="text">
         <string>Wähle...</string>
        </property>
@@ -1693,6 +1729,9 @@
       <width>421</width>
       <height>211</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Zeigt die Grenzen (Präs.+Fach.) für eine Notenänderung an</string>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
@@ -1715,6 +1754,9 @@
       <width>421</width>
       <height>211</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Zeigt die Grenzen (Mü.Erg.Prüfung) für eine Notenänderung an</string>
     </property>
     <property name="horizontalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1741,6 +1783,9 @@
        <width>127</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string>Setzt die Daten für den Prüfling zurück</string>
      </property>
      <property name="text">
       <string>Prüfling Reset</string>
@@ -1783,6 +1828,9 @@
       <width>161</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Setzt auch alle Prüfer auf NICHT anwesend</string>
     </property>
     <property name="text">
      <string>Incl. anwesende Prüfer</string>

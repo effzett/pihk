@@ -4,7 +4,7 @@
 #include "lizenz.h"
 #include "regularien.h"
 #include "treemodel.h"
-#include <mypihk.h>
+#include "ihk.h"
 
 #ifdef Q_OS_OSX
 #include "ui_mainwindow.h"
@@ -20,12 +20,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     // gui independent initialization
     // app specific
-    app.version="3.0.0";
+    app.version=APP_VERSION;
+    app.name=APP_NAME;
+    app.author=APP_AUTHOR;
+    app.email= APP_EMAIL;
+    app.domain = APP_DOMAIN;
+    app.organization = APP_ORGANIZATION;
     app.date=QDate::currentDate().toString("dd.MM.yyyy");
-    // oder QDate::currentDate().toString("dd.MM.yyyy");
-    app.name="PIHK";
-    app.author="Frank Zimmermann";
-    app.email="fz@zenmeister.de";
+    // "xx.xx.2021";
     app.versionLong = app.name + "   (V" +app.version +", vom " + app.date + ")";
 
     // Timer related
@@ -33,15 +35,14 @@ MainWindow::MainWindow(QWidget *parent) :
     timerValue=0;
     offset=0;
     timer = new QTimer(this);
-    maxMinutes=15;
 
-    QCoreApplication::setOrganizationName("zenmeister");
-    QCoreApplication::setOrganizationDomain("zenmeister.de");
-    QCoreApplication::setApplicationName("PIHK");
+    QCoreApplication::setOrganizationName(app.organization);
+    QCoreApplication::setApplicationName(app.name);
+    QCoreApplication::setOrganizationDomain(app.domain);
+    QCoreApplication::setApplicationVersion(app.version);
     // Config und Model liegen im settings
 
     ui->setupUi(this);
-    
 
     // Read in Tester model
     const QStringList headers({tr("Prüfer"),tr("K1"),tr("K2"),tr("Anw")});
@@ -123,7 +124,9 @@ MainWindow::MainWindow(QWidget *parent) :
     emit ui->comboBoxExam_2->currentIndexChanged(0);
 
     mypref = new Prefs(maxMinutes,DATUM,MINUS,NAME,MINUS,NUMMER,UNDERSCORE);
-
+    loadSettings(true);
+    maxMinutes=mypref->minutes();
+    
     fileName = makeFilename();                             // construct basic file name
 
     // Connections
@@ -1246,22 +1249,21 @@ void saveModelAndConfiguration(){
 
 void MainWindow::on_actionQuit_2_triggered()
 {
-    // Aktuelles Model sichern?
-    QMessageBox::StandardButton reply;
-    reply = QMessageBox::warning(this,tr("Aktuelle Prüferliste sichern?"),
-                        tr("Soll die aktuelle Prüferliste gesichert werden?"),QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
-    if(reply == QMessageBox::Yes){
-        // Sichern
-        saveSettings(true);
-        qDebug()<<"Es wird gesichert...";
-    }
+// Falls noch aufzuräumen ist....wäre das dann hier.
     QCoreApplication::quit();
 }
 
 void MainWindow::saveSettings(bool withModel){
     if(withModel){
         // save the Model
+        settings.beginGroup("/Model");
+        settings.endGroup();
+        settings.beginGroup("/ModelDefaultSelection");
+            settings.setValue("Fachrichtung","");
+            settings.setValue("Pruefungsausschuss","");
+        settings.endGroup();        
     }
+    
     // Save other settings
     settings.beginGroup("/Examination");
         settings.setValue("maxMinutes",QString::number(this->maxMinutes));
@@ -1271,9 +1273,51 @@ void MainWindow::saveSettings(bool withModel){
         settings.setValue("d2",QString::number(mypref->d2()));
         settings.setValue("d3",QString::number(mypref->d3()));
         settings.setValue("t1",QString::number(mypref->t1()));
-        settings.setValue("d1",QString::number(mypref->t2()));        
+        settings.setValue("t2",QString::number(mypref->t2()));        
         settings.setValue("space",QString::number(mypref->space()));
+    settings.endGroup();
+    settings.sync();
+}
+
+void MainWindow::loadSettings(bool withModel){
+    if(withModel){
+        // save the Model
+    }
+    settings.beginGroup("/Examination"); 
+        mypref->setMinutes(settings.value("maxMinutes","15").toInt());
+    settings.endGroup();
+    ui->label_minutes->setText(QString::number(mypref->minutes())+ "min");
+    settings.beginGroup("/FilenamePattern");
+        mypref->setD1(settings.value("d1","0").toInt());
+        mypref->setD2(settings.value("d2","1").toInt());
+        mypref->setD3(settings.value("d3","2").toInt());
+        mypref->setT1(settings.value("t1","0").toInt());
+        mypref->setT2(settings.value("t2","0").toInt());
+        mypref->setSpace(QVariant(settings.value("space","0")).toInt());
     settings.endGroup();
 }
 
+
+void MainWindow::closeEvent (QCloseEvent *event)
+{
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, APP_NAME,
+                                                                tr("Wollen Sie vorher die Einstellungen sichern?\n"),
+                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                QMessageBox::Yes);
+    if (resBtn == QMessageBox::Yes) {
+        saveSettings(true);
+        event->accept();
+    } else if (resBtn == QMessageBox::No)  {
+        event->accept();
+    }
+    else{
+        event->ignore();
+    }
+}
+
+void MainWindow::on_actionAusgabeblatt_triggered()
+{
+    Ihk *ihk = new Ihk(this);
+    ihk->exec(); 
+}
 
