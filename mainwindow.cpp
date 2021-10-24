@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     // gui independent initialization
-    // app specific
+    // app specific (initial data from app.h)
     app.version=APP_VERSION;
     app.name=APP_NAME;
     app.author=APP_AUTHOR;
@@ -27,24 +27,24 @@ MainWindow::MainWindow(QWidget *parent) :
     app.domain = APP_DOMAIN;
     app.organization = APP_ORGANIZATION;
     app.date=QDate::currentDate().toString("dd.MM.yyyy");
-    // "xx.xx.2021";
-    app.versionLong = app.name + "   (V" +app.version +", vom " + app.date + ")";
+    // "xx.xx.2021";  // static
+    app.versionLong = app.name + "   (V" +app.version +", vom " + app.date + ")"; // for printing as window title 
 
+    // other needful variables
+    QCoreApplication::setOrganizationName(app.organization);
+    QCoreApplication::setApplicationName(app.name);
+    QCoreApplication::setOrganizationDomain(app.domain);
+    QCoreApplication::setApplicationVersion(app.version);
+    
     // Timer related
     isTimerStarted=false;
     timerValue=0;
     offset=0;
     timer = new QTimer(this);
 
-    QCoreApplication::setOrganizationName(app.organization);
-    QCoreApplication::setApplicationName(app.name);
-    QCoreApplication::setOrganizationDomain(app.domain);
-    QCoreApplication::setApplicationVersion(app.version);
-    // Config und Model liegen im settings
-
     ui->setupUi(this);
 
-    // Read in Tester model
+    // Read in Basic Tester model for treeModel
     const QStringList headers({tr("Prüfer"),tr("K1"),tr("K2"),tr("Anw")});
     QFile file(":/tree.txt");
     file.open(QIODevice::ReadOnly);
@@ -72,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setFixedSize(this->geometry().width(),this->geometry().height());
     this->setWindowTitle(app.versionLong);              // set title
 
+    
     // gui stuff (new candidate)
     ui->lcdNumber->setPalette(Qt::black);       // set color for LCD
     ui->pDate->setDate(QDate::currentDate());   // set current Date
@@ -103,19 +104,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QHeaderView* header=ui->tableView->verticalHeader();
     header->setDefaultSectionSize(20); // 20 px height
     header->sectionResizeMode(QHeaderView::Fixed);
-    ui->tableView->setColumnWidth(0,260);
-    ui->tableView->setColumnWidth(1,40);
-    ui->tableView->setColumnWidth(2,40);
-    ui->tableView->setColumnWidth(3,40);
+    ui->tableView->setColumnWidth(0,290);
+    ui->tableView->setColumnWidth(1,30);
+    ui->tableView->setColumnWidth(2,30);
+    ui->tableView->setColumnWidth(3,30);
     ui->tableView->horizontalScrollBar()->setDisabled(true);
     QHeaderView *headerView = ui->tableView->horizontalHeader();
     headerView->setSectionResizeMode(0,QHeaderView::Fixed);
     headerView->setSectionResizeMode(1,QHeaderView::Fixed);
     headerView->setSectionResizeMode(2,QHeaderView::Fixed);
     headerView->setSectionResizeMode(3,QHeaderView::Fixed);
-//    QSortFilterProxyModel proxyModel;
-//    proxyModel.setSourceModel( treeModel );
-//    ui->tableView->setModel( &proxyModel );
 
     ui->comboBoxExam->setModel(treeModel);
     ui->comboBoxExam_2->setModel(treeModel);
@@ -123,11 +121,12 @@ MainWindow::MainWindow(QWidget *parent) :
     emit ui->comboBoxExam->currentIndexChanged(0);
     emit ui->comboBoxExam_2->currentIndexChanged(0);
 
+    // start values will be overwritten by loadSettings(), just for first use
     mypref = new Prefs(maxMinutes,DATUM,MINUS,NAME,MINUS,NUMMER,UNDERSCORE);
     loadSettings(true);
-    maxMinutes=mypref->minutes();
-    
-    fileName = makeFilename();                             // construct basic file name
+    // current preference values are now loaded
+    maxMinutes=mypref->minutes();   // for convenience as member variable    
+    fileName = makeFilename();      // construct basic file name from preference values
 
     // Connections
     connect(timer,SIGNAL(timeout()),this,SLOT(updateProgressBar()));
@@ -153,7 +152,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->listViewPRFG,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsPRFG(const QModelIndex &)));
     connect(ui->listViewMEPR,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsMEPR(const QModelIndex &)));
     connect(ui->actionAbout,SIGNAL(triggered()),this,SLOT(about()));
-    //connect(ui->actionQuit,SIGNAL(triggered()),this,SLOT(on_actionQuit_triggered()));
+    connect(ui->pushButtonIhk,SIGNAL(clicked()),ui->actionAusgabeblatt,SIGNAL(triggered()));
 }
 
 // Timer and progressbar stuff
@@ -168,12 +167,8 @@ void MainWindow::updateProgressBar(){
         offset=maxMinutes;
         ui->lcdNumber->setSegmentStyle(QLCDNumber::Filled);
         ui->lcdNumber->setPalette(QColor(255,165,0,255));
-        //ui->lcdNumber->setPalette(Qt::red);
     }
     ui->lcdNumber->display(timerValue-offset);
-    //qDebug()<<timerValue;
-    //qDebug()<<offset;
-    //qDebug()<<maxMinutes;
 }
 // start or stop timer
 void MainWindow::toggleStartStop(){
@@ -181,7 +176,7 @@ void MainWindow::toggleStartStop(){
         ui->startTimer->setText("Stop");
         ui->resetTimer->hide();
         isTimerStarted = true;
-        timer->start(60000);
+        timer->start(60000);    // every minute
     }
     else{
         ui->startTimer->setText("Start");
@@ -203,9 +198,9 @@ void MainWindow::timerReset(){
 
 
 // calculates pointsA
-quint32 MainWindow::calcA(qint32 docu, qint32 exam){
+quint32 MainWindow::calcA(qint32 docu, qint32 exam){    // this should be valid for 3.0
     quint32 pointsA=0;
-    pointsA = round((docu + exam)/2.0);
+    pointsA = round((docu + exam)/2.0); 
     return pointsA;
 }
 
@@ -232,7 +227,7 @@ quint32 MainWindow::calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr, q
     return pointsB;
 }
 
-quint32 MainWindow::calcAll(quint32 pointsA, quint32 pointsB){
+quint32 MainWindow::calcAll(quint32 pointsA, quint32 pointsB){  // this should be valid for 3.0
     quint32 pointsAll=0;
     pointsAll = round( (pointsA+pointsB)/2.0 );
     return pointsAll;
@@ -1243,13 +1238,9 @@ void MainWindow::insertPrueferIntoModel(QVariantList qvl){
     ui->saveFile->setEnabled(true);
 }
 
-void saveModelAndConfiguration(){
-    QSettings set;
-}
-
 void MainWindow::on_actionQuit_2_triggered()
 {
-// Falls noch aufzuräumen ist....wäre das dann hier.
+    // Falls noch aufzuräumen ist....wäre das dann hier.
     QCoreApplication::quit();
 }
 
@@ -1282,6 +1273,12 @@ void MainWindow::saveSettings(bool withModel){
 void MainWindow::loadSettings(bool withModel){
     if(withModel){
         // save the Model
+//        settings.beginGroup("/Model");
+//        settings.endGroup();
+//        settings.beginGroup("/ModelDefaultSelection");
+//            settings.setValue("Fachrichtung","");
+//            settings.setValue("Pruefungsausschuss","");
+//        settings.endGroup();        
     }
     settings.beginGroup("/Examination"); 
         mypref->setMinutes(settings.value("maxMinutes","15").toInt());

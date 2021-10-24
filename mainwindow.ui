@@ -1805,9 +1805,9 @@
       <string>Email...</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="pushButtonIhk">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="minimumSize">
       <size>
@@ -1927,12 +1927,18 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>Über</string>
+   </property>
+   <property name="toolTip">
+    <string>Über PIHK</string>
    </property>
   </action>
   <action name="actionAusgabeblatt">
    <property name="text">
     <string>Ausgabeblatt</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
    </property>
   </action>
   <action name="actionQuit">
@@ -1948,12 +1954,21 @@
   </action>
   <action name="actionPreferences">
    <property name="text">
-    <string>Preferences...</string>
+    <string>Einstellungen...</string>
+   </property>
+   <property name="toolTip">
+    <string>Einstellungen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
    </property>
   </action>
   <action name="actionQuit_2">
    <property name="text">
-    <string>Quit</string>
+    <string>Beenden</string>
+   </property>
+   <property name="toolTip">
+    <string>Beenden</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
