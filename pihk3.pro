@@ -14,6 +14,7 @@ CONFIG += app_bundle
 
 SOURCES += main.cpp\
         about.cpp \
+        ihk.cpp \
         lizenz.cpp \
         mainwindow.cpp \
         preferences.cpp \
@@ -24,6 +25,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     about.h \
+    app.h \
+    ihk.h \
     lizenz.h \
     mypihk.h \
     preferences.h \
@@ -33,7 +36,8 @@ HEADERS  += mainwindow.h \
     treemodel.h
 
 #ifdef Q_OS_DARWIN
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    ihk.ui
 #elif defined(Q_OS_WIN)
 FORMS    += mainwindowwin.ui
 #else
@@ -56,7 +60,6 @@ RC_ICONS = myLogoPIHK3a.ico
 #else
 #error "Is not supported!" 
 #endif
-
 
 RESOURCES += \
     resourcen.qrc
