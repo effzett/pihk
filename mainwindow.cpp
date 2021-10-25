@@ -42,7 +42,10 @@ MainWindow::MainWindow(QWidget *parent) :
     offset=0;
     timer = new QTimer(this);
 
+
     ui->setupUi(this);
+    
+    ui->lcdNumber->setPalette(Qt::black);
 
     // Read in Basic Tester model for treeModel
     const QStringList headers({tr("Prüfer"),tr("K1"),tr("K2"),tr("Anw")});
@@ -78,7 +81,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pDate->setDate(QDate::currentDate());   // set current Date
     ui->labelGradeA->setStyleSheet("QLabel { color : red; }");
     ui->labelGradeB->setStyleSheet("QLabel { color : red; }");
-    ui->labelGradeResultA->setStyleSheet("QLabel { color : red; }");
     ui->labelGradeResultB->setStyleSheet("QLabel { color : red; }");
     ui->labelGradeResult->setStyleSheet("QLabel { color : red; }");
     ui->spinboxGa1E->setEnabled(false);
@@ -165,7 +167,6 @@ void MainWindow::updateProgressBar(){
     }
     else{
         offset=maxMinutes;
-        ui->lcdNumber->setSegmentStyle(QLCDNumber::Filled);
         ui->lcdNumber->setPalette(QColor(255,165,0,255));
     }
     ui->lcdNumber->display(timerValue-offset);
@@ -198,7 +199,7 @@ void MainWindow::timerReset(){
 
 
 // calculates pointsA
-quint32 MainWindow::calcA(qint32 docu, qint32 exam){    // this should be valid for 3.0
+quint32 MainWindow::calcT21(qint32 docu, qint32 exam){    // this should be valid for 3.0
     quint32 pointsA=0;
     pointsA = round((docu + exam)/2.0); 
     return pointsA;
@@ -227,20 +228,37 @@ quint32 MainWindow::calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr, q
     return pointsB;
 }
 
-quint32 MainWindow::calcAll(quint32 pointsA, quint32 pointsB){  // this should be valid for 3.0
+quint32 MainWindow::calcAll(qint32 epnr,qint32 mueergpr){  
     quint32 pointsAll=0;
-    pointsAll = round( (pointsA+pointsB)/2.0 );
+    qint32 pointst1 = ui->spinboxGa0->text().toInt();
+    switch(epnr){
+    case 0:
+        pointsAll = qRound((pointst1*2 + t21()*5 +t22() +t23() +t24())/10.0);
+        break;
+    case 1:
+        pointsAll = qRound((pointst1*2 + t21()*5 +t22(mueergpr) +t23() +t24())/10.0);       
+        break;
+    case 2:
+        pointsAll = qRound((pointst1*2 + t21()*5 +t22() +t23(mueergpr) +t24())/10.0);       
+        break;
+    case 3:
+        pointsAll = qRound((pointst1*2 + t21()*5 +t22() +t23() +t24(mueergpr))/10.0);       
+        break;
+    default:
+        //error
+        ;
+    }
     return pointsAll;
 }
 
 void MainWindow::writeResults(){
-    // Part A
+    // Part T21    fuer Version 3 nur inoffizielle Informationswerte
     quint32 docu = (quint32) ui->spinboxDocumentation->value();
     quint32 exam  = (quint32) ui->spinboxExamination->value();
-    qint32 pointsA = calcA(docu,exam);
-    //QString gradeA = getGrade(pointsA);
+    qint32 pointsA = calcT21(docu,exam);
+    QString gradeA = getGrade(pointsA);
     ui->labelPointsA->setText(QString::number(pointsA).rightJustified(3,' '));
-    if(checkPassedA(docu,exam)){
+    if(checkPassedT21(docu,exam)){
         ui->labelGradeA->setStyleSheet("QLabel { color : green; }");
     }
     else{
@@ -248,6 +266,7 @@ void MainWindow::writeResults(){
     }
     ui->labelGradeA->setText(getGrade(pointsA).rightJustified(12,' '));
 
+    
     // Part B
     quint32 nr=0;
     quint32 points=0;
@@ -376,14 +395,14 @@ void MainWindow::writeResults(){
 
     // Results
     // Part A
-    ui->labelResultA->setText(QString::number(pointsA).rightJustified(3,' '));
-    if(checkPassedA(docu,exam)){
-        ui->labelGradeResultA->setStyleSheet("QLabel { color : green; }");
+//    ui->labelResultA->setText(QString::number(pointsA).rightJustified(3,' '));
+    if(checkPassedT21(docu,exam)){
+//        ui->labelGradeResultA->setStyleSheet("QLabel { color : green; }");
     }
     else{
-        ui->labelGradeResultA->setStyleSheet("QLabel { color : red; }");
+//        ui->labelGradeResultA->setStyleSheet("QLabel { color : red; }");
     }
-    ui->labelGradeResultA->setText(getGrade(pointsA).rightJustified(12,' '));
+//    ui->labelGradeResultA->setText(getGrade(pointsA).rightJustified(12,' '));
 
     // Part B
     ui->labelResultB->setText(QString::number(pointsB).rightJustified(3,' '));
@@ -399,7 +418,7 @@ void MainWindow::writeResults(){
     quint32 pointsAll = calcAll(pointsA,pointsB);
     //QString gradeAll = getGrade(pointsAll);
     ui->labelResultAll->setText(QString::number(pointsAll).rightJustified(3,' '));
-    if(checkPassedB(ga1,ga2,wiso,nr,points) && checkPassedA(docu,exam)){
+    if(checkPassedB(ga1,ga2,wiso,nr,points) && checkPassedT21(docu,exam)){
         ui->labelGradeResult->setStyleSheet("QLabel { color : green; }");
         hasPassed=true;
     }
@@ -414,9 +433,9 @@ void MainWindow::writeResults(){
     ui->saveFile->setEnabled(true);
 }
 
-bool MainWindow::checkPassedA(quint32 docu, quint32 exam){
+bool MainWindow::checkPassedT21(quint32 docu, quint32 exam){
     bool retVal=true;
-    if(calcA(docu,exam)<50 || docu<30 || exam<30){
+    if(calcT21(docu,exam)<50 || docu<30 || exam<30){
         retVal = false;
     }
     return retVal;
@@ -509,10 +528,10 @@ void MainWindow::fillPRFG(){
             quint32 g = round((a+resultB)/2.0);
             QString aString = getGrade(a);
             QString gString = getGrade(g);
-            passed=(checkPassedA(docu,i) && checkPassedB(ga1,ga2,wiso,nr,points));
+            passed=(checkPassedT21(docu,i) && checkPassedB(ga1,ga2,wiso,nr,points));
             if(atmp.compare(aString)!=0 || btmp.compare(bString)!=0 || gtmp.compare(gString)!=0 || (passed!=passedtmp)){
                 QString item;
-                if(checkPassedA(docu,i) && checkPassedB(ga1,ga2,wiso,nr,points)){
+                if(checkPassedT21(docu,i) && checkPassedB(ga1,ga2,wiso,nr,points)){
                     item = QString("%1: A=%2 B=%3 +G=%4").arg(i,3).arg(aString,-12).arg(bString,-12).arg(gString,-12);
                 }else
                 {
@@ -593,7 +612,7 @@ void MainWindow::fillMEPR(){
             QString aString = getGrade(a);
             QString bString = getGrade(b);
             QString gString = getGrade(g);
-            passed=(checkPassedA(docu,exam) && checkPassedB(ga1,ga2,wiso,nr,points));
+            passed=(checkPassedT21(docu,exam) && checkPassedB(ga1,ga2,wiso,nr,points));
             if(atmp.compare(aString)!=0 || btmp.compare(bString)!=0 || gtmp.compare(gString)!=0 || (passed!=passedtmp)){
                 QString item;
                 if(passed){
@@ -703,7 +722,7 @@ QJsonObject MainWindow::packQJD(){
     json["MEP-GA2"] = ui->spinboxGa2E->text();
     json["MEP-WISO"] = ui->spinboxWisoE->text();
     json["Prüfungszeit"] = ui->lcdNumber->value();
-    json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";   // Wird nicht wieder eingelesen
+    //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";   // Wird nicht wieder eingelesen
     json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";   // Wird nicht wieder eingelesen
     json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";    // Wird nicht wieder eingelesen
     json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";   // Wird nicht wieder eingelesen
@@ -1327,10 +1346,10 @@ qint32 MainWindow::t21(){
     return (qRound((ui->spinboxDocumentation->text().toDouble() + ui->spinboxExamination->text().toDouble())/2.0));
 }
 
-qint32 MainWindow::t22(bool mPruefung){
+qint32 MainWindow::t22(qint32 mueergpr){ // ohne argumente keine Muendliche Pruefung
     qint32 retVal=0;
-    if(mPruefung){
-        retVal = qRound((ui->spinboxGa1->text().toDouble()*2.0 + ui->spinboxGa1E->text().toDouble())/3.0);
+    if(mueergpr !=  -1){
+        retVal = qRound((ui->spinboxGa1->text().toDouble()*2.0 + mueergpr)/3.0);
     }
     else{
         retVal = ui->spinboxGa1->text().toInt();
@@ -1338,9 +1357,9 @@ qint32 MainWindow::t22(bool mPruefung){
     return retVal;
 }
 
-qint32 MainWindow::t23(bool mPruefung){
+qint32 MainWindow::t23(qint32 mueergpr){// ohne argumente keine Muendliche Pruefung
     qint32 retVal=0;
-    if(mPruefung){
+    if(mueergpr !=  -1){
         retVal = qRound((ui->spinboxGa2->text().toDouble()*2.0 + ui->spinboxGa2E->text().toDouble())/3.0);
     }
     else{
@@ -1349,9 +1368,9 @@ qint32 MainWindow::t23(bool mPruefung){
     return retVal;
 }
 
-qint32 MainWindow::t24(bool mPruefung){
+qint32 MainWindow::t24(qint32 mueergpr){
     qint32 retVal=0;
-    if(mPruefung){
+    if(mueergpr !=  -1){
         retVal = qRound((ui->spinboxWiso->text().toDouble()*2.0 + ui->spinboxWisoE->text().toDouble())/3.0);
     }
     else{
