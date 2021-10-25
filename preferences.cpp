@@ -99,11 +99,11 @@ void Preferences::insertRow()
         const QModelIndex child = model->index(index.row() + 1, column, index.parent());
         if(column==0){
             model->setData(child, QVariant(tr("[No data]")), Qt::EditRole);
-            qDebug()<<tr("[No data]")<<"insert Row-Preferences";
+            //qDebug()<<tr("[No data]")<<"insert Row-Preferences";
         }
         else{
             model->setData(child, Qt::Checked, Qt::CheckStateRole);
-            qDebug()<<"Qt::Checked"<<"insert Row-Preferences";
+            //qDebug()<<"Qt::Checked"<<"insert Row-Preferences";
         }
     }
 }
@@ -125,12 +125,12 @@ void Preferences::insertChild()
         const QModelIndex child = model->index(0, column, index);
         if(column==0){
             model->setData(child, QVariant(tr("[No data]")), Qt::EditRole);
-            qDebug()<<tr("[No data]")<<"insert Child-Preferences";
+            //qDebug()<<tr("[No data]")<<"insert Child-Preferences";
 
         }
         else{
             model->setData(child, Qt::Unchecked, Qt::CheckStateRole);
-            qDebug()<<"Qt::Checked"<<"insert Child-Preferences";
+            //qDebug()<<"Qt::Checked"<<"insert Child-Preferences";
         }
         if (!model->headerData(column, Qt::Horizontal).isValid())
             model->setHeaderData(column, Qt::Horizontal, QVariant(tr("[No header]")), Qt::EditRole);
