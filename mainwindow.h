@@ -101,6 +101,7 @@ private:
     qint32 t23(qint32 mueergpr=-1);    
     qint32 t24(qint32 mueergpr=-1);
     qint32 t2();
+    void saveTreeQsettings(const QModelIndex & index, const QAbstractItemModel * model,QString str="");
     
 private slots:
     

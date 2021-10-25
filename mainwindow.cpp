@@ -1264,13 +1264,14 @@ void MainWindow::on_actionQuit_2_triggered()
 }
 
 void MainWindow::saveSettings(bool withModel){
+    settings.clear();
     if(withModel){
         // save the Model
         settings.beginGroup("/Model");
         settings.endGroup();
         settings.beginGroup("/ModelDefaultSelection");
-            settings.setValue("Fachrichtung","");
-            settings.setValue("Pruefungsausschuss","");
+            settings.setValue("Fachrichtung",QString::number(ui->comboBoxExam->currentIndex()) );
+            settings.setValue("Pruefungsausschuss",QString::number(ui->comboBoxExam_2->currentIndex()));
         settings.endGroup();        
     }
     
@@ -1286,6 +1287,7 @@ void MainWindow::saveSettings(bool withModel){
         settings.setValue("t2",QString::number(mypref->t2()));        
         settings.setValue("space",QString::number(mypref->space()));
     settings.endGroup();
+    saveTreeQsettings(QModelIndex(),treeModel);
     settings.sync();
 }
 
@@ -1294,10 +1296,10 @@ void MainWindow::loadSettings(bool withModel){
         // save the Model
 //        settings.beginGroup("/Model");
 //        settings.endGroup();
-//        settings.beginGroup("/ModelDefaultSelection");
-//            settings.setValue("Fachrichtung","");
-//            settings.setValue("Pruefungsausschuss","");
-//        settings.endGroup();        
+        settings.beginGroup("/ModelDefaultSelection");
+            ui->comboBoxExam->setCurrentIndex(settings.value("Fachrichtung","0").toInt());
+            ui->comboBoxExam_2->setCurrentIndex(settings.value("Pruefungsausschuss","0").toInt());
+        settings.endGroup(); 
     }
     settings.beginGroup("/Examination"); 
         mypref->setMinutes(settings.value("maxMinutes","15").toInt());
@@ -1377,4 +1379,20 @@ qint32 MainWindow::t24(qint32 mueergpr){
         retVal = ui->spinboxWiso->text().toInt();
     }
     return retVal;
+}
+
+void MainWindow::saveTreeQsettings(const QModelIndex & index, const QAbstractItemModel * model,QString str)
+{
+     if (index.isValid()){
+        str+=(model->data(index).toString()).trimmed();
+        str+="/";      
+     }
+     if (!model->hasChildren(index) || (index.flags() & Qt::ItemNeverHasChildren)){
+          settings.setValue(str,"x");
+          return;
+     }
+     auto rows = model->rowCount(index);
+     for (int i = 0; i < rows; ++i){
+         saveTreeQsettings(model->index(i, 0, index), model,str);
+     }
 }
