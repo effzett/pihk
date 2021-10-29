@@ -84,7 +84,8 @@ private:
     bool checkPassedT21(quint32 docu, quint32 exam);     // checks if passed
     bool checkPassedB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr=0,quint32 points=0); // checks if passed
     bool checkMAllowed(quint32 ga1, quint32 ga2, quint32 wiso); // checks if oral is possible
-
+    void recurseGroups(QString group, QString tab, QString &lines);
+    
     void unpackQJO(QJsonObject json);
     QJsonObject packQJD();
     QJsonObject loadJson(QString fileName);
@@ -93,7 +94,7 @@ private:
     QList<QVariantList> readPruefer(QJsonObject json);
     void insertPrueferIntoModel(QVariantList qvl);
     void saveSettings(bool withModel);
-    void loadSettings(bool withModel);
+    void loadSettings(bool withModel,QStringList headers);
     void closeEvent (QCloseEvent *event);
     qint32 t11();
     qint32 t21();
@@ -102,6 +103,7 @@ private:
     qint32 t24(qint32 mueergpr=-1);
     qint32 t2();
     void saveTreeQsettings(const QModelIndex & index, const QAbstractItemModel * model,QString str="");
+
     
 private slots:
     

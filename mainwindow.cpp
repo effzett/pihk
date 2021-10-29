@@ -47,13 +47,15 @@ MainWindow::MainWindow(QWidget *parent) :
     
     ui->lcdNumber->setPalette(Qt::black);
 
-    // Read in Basic Tester model for treeModel
+    // start values will be overwritten by loadSettings(), just for first use
+    mypref = new Prefs(maxMinutes,DATUM,MINUS,NAME,MINUS,NUMMER,UNDERSCORE);
+    QByteArray lines;
     const QStringList headers({tr("Prüfer"),tr("K1"),tr("K2"),tr("Anw")});
-    QFile file(":/tree.txt");
-    file.open(QIODevice::ReadOnly);
-    treeModel = new TreeModel(headers, file.readAll());
-    file.close();
+    loadSettings(true,headers);  // setzt auch das Model fuer Tree und comboboxen
+    // From resource file (1. Nutzung)  or from Qsettings data (Einmal Werte abgespeichert.)...
 
+
+    
     // gui dependent initialization
 #ifdef Q_OS_OSX
     // OSX---
@@ -101,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Table View
     // tableWidget initialisieren
-    ui->tableView->setModel(treeModel);
+
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     QHeaderView* header=ui->tableView->verticalHeader();
     header->setDefaultSectionSize(20); // 20 px height
@@ -117,15 +119,13 @@ MainWindow::MainWindow(QWidget *parent) :
     headerView->setSectionResizeMode(2,QHeaderView::Fixed);
     headerView->setSectionResizeMode(3,QHeaderView::Fixed);
 
-    ui->comboBoxExam->setModel(treeModel);
-    ui->comboBoxExam_2->setModel(treeModel);
+
 
     emit ui->comboBoxExam->currentIndexChanged(0);
     emit ui->comboBoxExam_2->currentIndexChanged(0);
 
-    // start values will be overwritten by loadSettings(), just for first use
-    mypref = new Prefs(maxMinutes,DATUM,MINUS,NAME,MINUS,NUMMER,UNDERSCORE);
-    loadSettings(true);
+
+    
     // current preference values are now loaded
     maxMinutes=mypref->minutes();   // for convenience as member variable    
     fileName = makeFilename();      // construct basic file name from preference values
@@ -256,7 +256,7 @@ void MainWindow::writeResults(){
     quint32 docu = (quint32) ui->spinboxDocumentation->value();
     quint32 exam  = (quint32) ui->spinboxExamination->value();
     qint32 pointsA = calcT21(docu,exam);
-    QString gradeA = getGrade(pointsA);
+    //QString gradeA = getGrade(pointsA);
     ui->labelPointsA->setText(QString::number(pointsA).rightJustified(3,' '));
     if(checkPassedT21(docu,exam)){
         ui->labelGradeA->setStyleSheet("QLabel { color : green; }");
@@ -1268,6 +1268,7 @@ void MainWindow::saveSettings(bool withModel){
     if(withModel){
         // save the Model
         settings.beginGroup("/Model");
+            saveTreeQsettings(QModelIndex(),treeModel);
         settings.endGroup();
         settings.beginGroup("/ModelDefaultSelection");
             settings.setValue("Fachrichtung",QString::number(ui->comboBoxExam->currentIndex()) );
@@ -1287,24 +1288,85 @@ void MainWindow::saveSettings(bool withModel){
         settings.setValue("t2",QString::number(mypref->t2()));        
         settings.setValue("space",QString::number(mypref->space()));
     settings.endGroup();
-    saveTreeQsettings(QModelIndex(),treeModel);
     settings.sync();
 }
 
-void MainWindow::loadSettings(bool withModel){
+void MainWindow::recurseGroups(QString group,QString tab, QString &lines){
+    QStringList g1;
+    QString str="";
+    QString aLine="";
+    tab += "    ";
+    settings.beginGroup(group);
+        g1 = settings.childGroups();
+        // erstmalrekursiv in die einzelnen Gruppen...
+        if(g1.length() > 0){
+            for(int i=0; i<g1.length();i++){
+                str = (tab+ g1[i].trimmed() + "\n");
+                lines.append(str);
+                recurseGroups(g1[i],tab,lines);
+            }
+        }
+        g1.clear();
+        // ...dann alle keys einsammeln
+        g1 = settings.childKeys();
+        if(g1.length()> 0){
+            for(int i=0; i<g1.length();i++){
+                aLine = tab + g1[i].trimmed() + "\n";
+                lines.append(aLine);
+            }
+        }
+    settings.endGroup();
+}
+
+void MainWindow::loadSettings(bool withModel,QStringList headers){
+    QByteArray larr;
+    QString lines="";
+    QStringList linesList;
     if(withModel){
-        // save the Model
-//        settings.beginGroup("/Model");
-//        settings.endGroup();
+        // load the Model
+        recurseGroups("/Model","", lines);
+        // im 3. Level die 0en für Spalten hinzufügen
+        linesList.append(lines.split('\n'));
+        for(int i=0;i<linesList.length();i++){
+            // Erstmal nach links schieben...
+            if(linesList[i].startsWith("    ")){
+                linesList[i] = linesList[i].remove(0,4);
+            }
+            else{
+                linesList[i] = linesList[i];
+            }
+            if(linesList[i].startsWith("        ") && !linesList[i].startsWith("            ")){
+                linesList[i].append("\t0\t0\t0");                
+            }
+            larr.append((linesList[i]+"\n").toUtf8());
+        }
+        qDebug().noquote().nospace()<<larr.length();
+        if(larr.length()>1){
+            treeModel = new TreeModel(headers,larr);
+            ui->tableView->setModel(treeModel);
+            ui->comboBoxExam->setModel(treeModel);
+            ui->comboBoxExam_2->setModel(treeModel);
+        }
+        else{
+            // Read in Basic Tester model for treeModel
+            QFile file(":/tree.txt");
+            file.open(QIODevice::ReadOnly);
+            treeModel = new TreeModel(headers, file.readAll());
+            file.close();
+            ui->tableView->setModel(treeModel);
+            ui->comboBoxExam->setModel(treeModel);
+            ui->comboBoxExam_2->setModel(treeModel);   
+        }
         settings.beginGroup("/ModelDefaultSelection");
             ui->comboBoxExam->setCurrentIndex(settings.value("Fachrichtung","0").toInt());
             ui->comboBoxExam_2->setCurrentIndex(settings.value("Pruefungsausschuss","0").toInt());
         settings.endGroup(); 
     }
     settings.beginGroup("/Examination"); 
-        mypref->setMinutes(settings.value("maxMinutes","15").toInt());
+        maxMinutes = settings.value("maxMinutes","15").toInt();
+        mypref->setMinutes(maxMinutes);
+        ui->label_minutes->setText(QString::number(mypref->minutes())+ "min");
     settings.endGroup();
-    ui->label_minutes->setText(QString::number(mypref->minutes())+ "min");
     settings.beginGroup("/FilenamePattern");
         mypref->setD1(settings.value("d1","0").toInt());
         mypref->setD2(settings.value("d2","1").toInt());
