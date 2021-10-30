@@ -1,18 +1,3 @@
-FI Systemintegration		0	0	0
-    FISI 5		0	0	0
-        Frank Zimmermann		1	0	0
-        Fabian Beckmann		0	0	2
-        Joachim Kemmries		0	0	0
-        Klaus Nagel		0	0	0
-        Laurents Schwartz		0	0	0
-        Frank Wolters		0	0	0
-    FISI 6		0	0	0
-        Prüfer 1 aus FISI 6		0	0	0
-        Prüfer 2 aus FISI 6		0	0	0
-    FISI 7                 		0	0	0
-        Prüfer 1 aus FISI 7		0	0	0
-        Prüfer 2 aus FISI 7		0	0	0
-        Prüfer 3 aus FISI 7		0	0	0
 FI Anwendungsentwicklung   		0	0	0
     FIAE 1                		0	0	0
         Prüfer 1 aus FIAE 1		0	0	0
@@ -42,4 +27,19 @@ FI Daten- und Prozeßanalyse		0	0	0
         Prüfer6 aus Dummy-2		0	0	0
         Prüfer7 aus Dummy-2		0	0	0
 FI Digitale Vernetzung     		0	0	0
-    Dummy-3                		0	0	0
+        Dummy-3                		0	0	0
+FI Systemintegration		0	0	0
+    FISI 5		0	0	0
+        Frank Zimmermann		1	0	0
+        Fabian Beckmann		0	0	2
+        Joachim Kemmries		0	0	0
+        Klaus Nagel		0	0	0
+        Laurents Schwartz		0	0	0
+        Frank Wolters		0	0	0
+    FISI 6		0	0	0
+        Prüfer 1 aus FISI 6		0	0	0
+        Prüfer 2 aus FISI 6		0	0	0
+    FISI 7                 		0	0	0
+        Prüfer 1 aus FISI 7		0	0	0
+        Prüfer 2 aus FISI 7		0	0	0
+        Prüfer 3 aus FISI 7		0	0	0
