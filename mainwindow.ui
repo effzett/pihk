@@ -693,13 +693,16 @@
        <pointsize>14</pointsize>
       </font>
      </property>
+     <property name="toolTip">
+      <string>Ergebnis aus Dokumentation und PRFG</string>
+     </property>
      <property name="title">
       <string>T21</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -722,6 +725,9 @@
            <pointsize>12</pointsize>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Ergebnis aus Dokumentation und PRFG</string>
+         </property>
          <property name="text">
           <string>ungenügend</string>
          </property>
@@ -736,6 +742,9 @@
           <font>
            <pointsize>16</pointsize>
           </font>
+         </property>
+         <property name="toolTip">
+          <string>Ergebnis aus Dokumentation und PRFG</string>
          </property>
          <property name="text">
           <string>0</string>

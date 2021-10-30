@@ -121,13 +121,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-    emit ui->comboBoxExam->currentIndexChanged(0);
-    emit ui->comboBoxExam_2->currentIndexChanged(0);
+    //emit ui->comboBoxExam->currentIndexChanged(0);
+    //emit ui->comboBoxExam_2->currentIndexChanged(0);
 
 
     
     // current preference values are now loaded
+    qDebug()<<mypref->minutes();
+    qDebug()<<maxMinutes;
     maxMinutes=mypref->minutes();   // for convenience as member variable    
+    qDebug()<<mypref->minutes();
+    qDebug()<<maxMinutes;
     fileName = makeFilename();      // construct basic file name from preference values
 
     // Connections
@@ -140,6 +144,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->folder,SIGNAL(textChanged(QString)),this,SLOT(makeFilename()));
     connect(ui->spinboxDocumentation,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
     connect(ui->spinboxExamination,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
+    connect(ui->spinboxGa0,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
     connect(ui->spinboxGa1,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
     connect(ui->spinboxGa2,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
     connect(ui->spinboxWiso,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
@@ -234,6 +239,7 @@ quint32 MainWindow::calcAll(qint32 epnr,qint32 mueergpr){
     switch(epnr){
     case 0:
         pointsAll = qRound((pointst1*2 + t21()*5 +t22() +t23() +t24())/10.0);
+        qDebug()<<"calcAll:"<<pointsAll;
         break;
     case 1:
         pointsAll = qRound((pointst1*2 + t21()*5 +t22(mueergpr) +t23() +t24())/10.0);       
@@ -256,7 +262,6 @@ void MainWindow::writeResults(){
     quint32 docu = (quint32) ui->spinboxDocumentation->value();
     quint32 exam  = (quint32) ui->spinboxExamination->value();
     qint32 pointsA = calcT21(docu,exam);
-    //QString gradeA = getGrade(pointsA);
     ui->labelPointsA->setText(QString::number(pointsA).rightJustified(3,' '));
     if(checkPassedT21(docu,exam)){
         ui->labelGradeA->setStyleSheet("QLabel { color : green; }");
@@ -359,7 +364,7 @@ void MainWindow::writeResults(){
             ui->spinboxWisoE->hide();
         }
     }
-    else{   // oral not possible
+    else{   // oral not possible. hide and reset radio buttons and spinboxees
         ui->radioButton1->setAutoExclusive(false);
         ui->radioButton2->setAutoExclusive(false);
         ui->radioButton3->setAutoExclusive(false);
@@ -387,9 +392,7 @@ void MainWindow::writeResults(){
     }
 
     qint32 pointsB = calcB(ga1,ga2,wiso,nr,points);
-    //QString gradeB = getGrade(pointsB);
     ui->labelPointsB->setText(QString::number(pointsB).rightJustified(3,' '));
-
     ui->labelGradeB->setText(getGrade(pointsB).rightJustified(12,' '));
 
 
@@ -415,7 +418,7 @@ void MainWindow::writeResults(){
     ui->labelGradeResultB->setText(getGrade(pointsB).rightJustified(12,' '));
 
     // All
-    quint32 pointsAll = calcAll(pointsA,pointsB);
+    quint32 pointsAll = calcAll(nr,points);
     //QString gradeAll = getGrade(pointsAll);
     ui->labelResultAll->setText(QString::number(pointsAll).rightJustified(3,' '));
     if(checkPassedB(ga1,ga2,wiso,nr,points) && checkPassedT21(docu,exam)){
@@ -532,10 +535,10 @@ void MainWindow::fillPRFG(){
             if(atmp.compare(aString)!=0 || btmp.compare(bString)!=0 || gtmp.compare(gString)!=0 || (passed!=passedtmp)){
                 QString item;
                 if(checkPassedT21(docu,i) && checkPassedB(ga1,ga2,wiso,nr,points)){
-                    item = QString("%1: A=%2 B=%3 +G=%4").arg(i,3).arg(aString,-12).arg(bString,-12).arg(gString,-12);
+                    item = QString("%1: T21=%2 T2=%3 +G=%4").arg(i,3).arg(aString,-12).arg(bString,-12).arg(gString,-12);
                 }else
                 {
-                    item = QString("%1: A=%2 B=%3 -G=%4").arg(i,3).arg(aString,-12).arg(bString,-12).arg(gString,-12);
+                    item = QString("%1: T21=%2 T2=%3 -G=%4").arg(i,3).arg(aString,-12).arg(bString,-12).arg(gString,-12);
                 }
                 List << item;
                 atmp=aString;
@@ -722,10 +725,10 @@ QJsonObject MainWindow::packQJD(){
     json["MEP-GA2"] = ui->spinboxGa2E->text();
     json["MEP-WISO"] = ui->spinboxWisoE->text();
     json["Prüfungszeit"] = ui->lcdNumber->value();
-    //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";   // Wird nicht wieder eingelesen
-    json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";   // Wird nicht wieder eingelesen
-    json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";    // Wird nicht wieder eingelesen
-    json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";   // Wird nicht wieder eingelesen
+    //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")"; // Wird nicht wieder eingelesen!
+    json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";   // Wird nicht wieder eingelesen!
+    json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";    // Wird nicht wieder eingelesen!
+    json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";                   // Wird nicht wieder eingelesen!
 
     // Auslesen der Prüfer aus dem Model
     QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
@@ -1322,48 +1325,7 @@ void MainWindow::loadSettings(bool withModel,QStringList headers){
     QByteArray larr;
     QString lines="";
     QStringList linesList;
-    if(withModel){
-        // load the Model
-        recurseGroups("/Model","", lines);
-        // im 3. Level die 0en für Spalten hinzufügen
-        linesList.append(lines.split('\n'));
-        for(int i=0;i<linesList.length();i++){
-            // Erstmal nach links schieben...
-            if(linesList[i].startsWith("    ")){
-                linesList[i] = linesList[i].remove(0,4);
-            }
-            else{
-                linesList[i] = linesList[i];
-            }
-            if(linesList[i].startsWith("        ") && !linesList[i].startsWith("            ")){
-                linesList[i].append("\t0\t0\t0");                
-            }
-            larr.append((linesList[i]+"\n").toUtf8());
-        }
-        if(larr.length()>1){    // QSettingswerte wurden eingelesen
-            treeModel = new TreeModel(headers,larr);
-            ui->tableView->setModel(treeModel);
-            ui->comboBoxExam->setModel(treeModel);
-            ui->comboBoxExam_2->setModel(treeModel);
-        }
-        else{
-            // Read in Basic Tester model for treeModel
-            QFile file(":/tree.txt");
-            file.open(QIODevice::ReadOnly);
-            treeModel = new TreeModel(headers, file.readAll());
-            file.close();
-            ui->tableView->setModel(treeModel);
-            ui->comboBoxExam->setModel(treeModel);
-            ui->comboBoxExam_2->setModel(treeModel);   
-        }
-        settings.beginGroup("/ModelDefaultSelection");
-            ui->comboBoxExam->setCurrentIndex(settings.value("Fachrichtung","0").toInt());
-            ui->comboBoxExam_2->setCurrentIndex(settings.value("Pruefungsausschuss","0").toInt());
-        settings.endGroup();
-        // keine Gruppen/Prefixe erkannt -> keine Defaultwerte werden gesetzt
-        ui->comboBoxExam->setCurrentIndex(settings.value("Fachrichtung","0").toInt());
-        ui->comboBoxExam_2->setCurrentIndex(settings.value("Pruefungsausschuss","0").toInt());
-    }
+    // Zunächst nur die Einstellungsparameter lesen...
     settings.beginGroup("/Examination"); 
         maxMinutes = settings.value("maxMinutes","15").toInt();
         mypref->setMinutes(maxMinutes);
@@ -1377,6 +1339,47 @@ void MainWindow::loadSettings(bool withModel,QStringList headers){
         mypref->setT2(settings.value("t2","0").toInt());
         mypref->setSpace(QVariant(settings.value("space","0")).toInt());
     settings.endGroup();
+    // jetzt versuchen, die Prüfer einzulesen... 
+    if(withModel){
+        recurseGroups("/Model","", lines);
+        if(lines.length()>1){
+            // im 3. Level die 0en für Spalten hinzufügen
+            linesList.append(lines.split('\n'));
+            for(int i=0;i<linesList.length();i++){
+                // die ersten 4 spaces jeder Zeile löschen
+                if(linesList[i].startsWith("    ")){
+                    linesList[i] = linesList[i].remove(0,4);
+                }
+                else{
+                    linesList[i] = linesList[i];
+                }
+                // Einrückungen für Prüfer erkannt, Scheckstastes intialisieren
+                if(linesList[i].startsWith("        ") && !linesList[i].startsWith("            ")){
+                    linesList[i].append("\t0\t0\t0");                
+                }
+                larr.append((linesList[i]+"\n").toUtf8());
+            }
+            treeModel = new TreeModel(headers,larr);
+            ui->tableView->setModel(treeModel);
+            ui->comboBoxExam->setModel(treeModel);
+            ui->comboBoxExam_2->setModel(treeModel);
+        }
+        else{ //Nothing found in QSettings...trying to read in basic Tester model for treeModel
+            QFile file(":/tree.txt");
+            file.open(QIODevice::ReadOnly);
+            treeModel = new TreeModel(headers, file.readAll());
+            file.close();
+            ui->tableView->setModel(treeModel);
+            ui->comboBoxExam->setModel(treeModel);
+            ui->comboBoxExam_2->setModel(treeModel);   
+        }     
+        // Default indizes wählen für Comboboxen.... 
+        settings.beginGroup("/ModelDefaultSelection");
+            ui->comboBoxExam->setCurrentIndex(settings.value("Fachrichtung","0").toInt());
+            ui->comboBoxExam_2->setCurrentIndex(settings.value("Pruefungsausschuss","0").toInt());
+        settings.endGroup();
+    }
+    ui->progressBar->setMaximum(maxMinutes);
 }
 
 
@@ -1408,7 +1411,6 @@ qint32 MainWindow::t11(){
 }
 
 qint32 MainWindow::t21(){
-    
     return (qRound((ui->spinboxDocumentation->text().toDouble() + ui->spinboxExamination->text().toDouble())/2.0));
 }
 
@@ -1429,7 +1431,7 @@ qint32 MainWindow::t23(qint32 mueergpr){// ohne argumente keine Muendliche Pruef
         retVal = qRound((ui->spinboxGa2->text().toDouble()*2.0 + ui->spinboxGa2E->text().toDouble())/3.0);
     }
     else{
-        retVal = ui->spinboxGa2->text().toInt();
+        retVal = qRound(ui->spinboxGa2->text().toDouble());
     }
     return retVal;
 }
