@@ -1340,8 +1340,7 @@ void MainWindow::loadSettings(bool withModel,QStringList headers){
             }
             larr.append((linesList[i]+"\n").toUtf8());
         }
-        qDebug().noquote().nospace()<<larr.length();
-        if(larr.length()>1){
+        if(larr.length()>1){    // QSettingswerte wurden eingelesen
             treeModel = new TreeModel(headers,larr);
             ui->tableView->setModel(treeModel);
             ui->comboBoxExam->setModel(treeModel);
@@ -1360,7 +1359,10 @@ void MainWindow::loadSettings(bool withModel,QStringList headers){
         settings.beginGroup("/ModelDefaultSelection");
             ui->comboBoxExam->setCurrentIndex(settings.value("Fachrichtung","0").toInt());
             ui->comboBoxExam_2->setCurrentIndex(settings.value("Pruefungsausschuss","0").toInt());
-        settings.endGroup(); 
+        settings.endGroup();
+        // keine Gruppen/Prefixe erkannt -> keine Defaultwerte werden gesetzt
+        ui->comboBoxExam->setCurrentIndex(settings.value("Fachrichtung","0").toInt());
+        ui->comboBoxExam_2->setCurrentIndex(settings.value("Pruefungsausschuss","0").toInt());
     }
     settings.beginGroup("/Examination"); 
         maxMinutes = settings.value("maxMinutes","15").toInt();
