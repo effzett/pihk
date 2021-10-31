@@ -78,6 +78,8 @@ private:
     quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
     quint32 calcAll(qint32 epnr, qint32 mueergpr);
     QString getGrade(qint32 points);
+    void colorLabel(QLabel *label, qint32 points);
+    bool minXgeX(qint32 points);
     bool checkModel();
     QTimer *timer;
 

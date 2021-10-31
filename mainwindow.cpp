@@ -433,6 +433,28 @@ void MainWindow::writeResults(){
 
     fillPRFG();
     fillMEPR();
+    
+    ui->label_t21->setText(QString::number(t21()));
+    colorLabel(ui->label_t21,t21());
+    ui->label_t22->setText((nr==1)?QString::number(t22(points)):QString::number(t22()));
+    colorLabel(ui->label_t22,((nr==1)?t22(points):t22()));
+    ui->label_t23->setText((nr==2)?QString::number(t23(points)):QString::number(t23()));
+    colorLabel(ui->label_t23,((nr==2)?t23(points):t23()));
+    ui->label_t24->setText((nr==3)?QString::number(t24(points)):QString::number(t24()));
+    colorLabel(ui->label_t24,((nr==1)?t24(points):t24()));
+    
+    if(!minXgeX(50)){
+        ui->label_info1->setText("Weniger als 3 PB in T2 mit ausreichend!!");
+    }else{
+        ui->label_info1->setText("");
+    }
+    
+    if(!minXgeX(30)){
+        ui->label_info2->setText("Mindestens ein PB in T2 mit ungenügend!!");
+    }else{
+        ui->label_info2->setText("");
+    }
+    
     ui->saveFile->setEnabled(true);
 }
 
@@ -1461,4 +1483,51 @@ void MainWindow::saveTreeQsettings(const QModelIndex & index, const QAbstractIte
      for (int i = 0; i < rows; ++i){
          saveTreeQsettings(model->index(i, 0, index), model,str);
      }
+}
+
+void MainWindow::colorLabel(QLabel *label, qint32 points){
+    label->setStyleSheet("QLabel { color : red; }");
+    if(points>=30){
+        label->setStyleSheet("QLabel { color : orange; }");
+    }
+    if(points>=50){
+        label->setStyleSheet("QLabel { color : green; }");
+    }
+    if(points>=67){
+        label->setStyleSheet("QLabel { color : green; }");
+    }
+    if(points>=81){
+        label->setStyleSheet("QLabel { color : green; }");
+    }
+    if(points>=92){
+        label->setStyleSheet("QLabel { color : green; }");
+    }
+}
+
+bool MainWindow::minXgeX(qint32 points){
+    int cnt=0;
+    int min=3;
+    bool retVal=false;
+    
+    if(points==30){
+        min = 4;
+    }
+
+    if(ui->label_t21->text().toInt()>=points){
+        cnt++;
+    }
+    if(ui->label_t22->text().toInt()>=points){
+        cnt++;
+    }
+    if(ui->label_t23->text().toInt()>=points){
+        cnt++;
+    }
+    if(ui->label_t24->text().toInt()>=points){
+       cnt++;
+    }
+    
+    if(cnt>=min){
+        retVal = true;
+    }
+    return retVal;
 }

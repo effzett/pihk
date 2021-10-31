@@ -210,7 +210,7 @@
     <widget class="QDoubleSpinBox" name="spinboxGa1">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>180</x>
        <y>110</y>
        <width>51</width>
        <height>24</height>
@@ -244,7 +244,7 @@
     <widget class="QLabel" name="label_20">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>180</x>
        <y>90</y>
        <width>51</width>
        <height>20</height>
@@ -266,7 +266,7 @@
     <widget class="QLabel" name="label_21">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>260</x>
        <y>90</y>
        <width>51</width>
        <height>20</height>
@@ -282,7 +282,7 @@
     <widget class="QDoubleSpinBox" name="spinboxGa2">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>260</x>
        <y>110</y>
        <width>51</width>
        <height>24</height>
@@ -310,7 +310,7 @@
     <widget class="QDoubleSpinBox" name="spinboxWiso">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>340</x>
        <y>110</y>
        <width>51</width>
        <height>24</height>
@@ -338,7 +338,7 @@
     <widget class="QLabel" name="label_22">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>340</x>
        <y>90</y>
        <width>51</width>
        <height>20</height>
@@ -354,14 +354,14 @@
     <widget class="QLabel" name="label_23">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>110</x>
        <y>140</y>
-       <width>101</width>
+       <width>71</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>MüErgPrüfung</string>
+      <string>MüErgPrü.</string>
      </property>
     </widget>
     <widget class="QLabel" name="labelGradeB">
@@ -448,7 +448,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>340</x>
        <y>160</y>
        <width>51</width>
        <height>24</height>
@@ -479,7 +479,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>260</x>
        <y>160</y>
        <width>51</width>
        <height>24</height>
@@ -510,7 +510,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>180</x>
        <y>160</y>
        <width>51</width>
        <height>24</height>
@@ -547,7 +547,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>190</x>
        <y>140</y>
        <width>19</width>
        <height>18</height>
@@ -566,7 +566,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>270</x>
        <y>140</y>
        <width>19</width>
        <height>18</height>
@@ -585,7 +585,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>350</x>
        <y>140</y>
        <width>19</width>
        <height>18</height>
@@ -753,6 +753,172 @@
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>81</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="title">
+      <string>Prüfungsbereiche</string>
+     </property>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>60</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>T21 =</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_t21">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>T22 =</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_t22">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_12">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>T23 =</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_t23">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>T24 =</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_t24">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -1709,26 +1875,53 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>620</x>
       <y>620</y>
-      <width>251</width>
-      <height>21</height>
+      <width>259</width>
+      <height>40</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Info</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
+    <layout class="QGridLayout" name="gridLayout_6">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_info1">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: red</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_info2">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: red</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
