@@ -603,7 +603,7 @@
       <rect>
        <x>10</x>
        <y>22</y>
-       <width>289</width>
+       <width>292</width>
        <height>54</height>
       </rect>
      </property>
@@ -719,7 +719,7 @@
         <number>3</number>
        </property>
        <item>
-        <widget class="QLabel" name="labelGradeA">
+        <widget class="QLabel" name="labelGradeT21">
          <property name="font">
           <font>
            <pointsize>12</pointsize>
@@ -737,7 +737,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="labelPointsA">
+        <widget class="QLabel" name="labelPointsT21">
          <property name="font">
           <font>
            <pointsize>16</pointsize>
@@ -745,6 +745,9 @@
          </property>
          <property name="toolTip">
           <string>Ergebnis aus Dokumentation und PRFG</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : red</string>
          </property>
          <property name="text">
           <string>0</string>
@@ -774,7 +777,7 @@
      <property name="title">
       <string>Prüfungsbereiche</string>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1875,7 +1878,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -1931,7 +1934,7 @@
      <x>0</x>
      <y>0</y>
      <width>886</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">

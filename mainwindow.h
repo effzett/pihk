@@ -74,10 +74,9 @@ private:
     qint32 maxMinutes;      // maximale Vortragszeit
     QSettings settings = QSettings("zenmeister.de", "PIHK");      // zum Abspeichern in pList/Registry
 
-    quint32 calcT21(qint32 docu, qint32 exam);
     quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
     quint32 calcAll(qint32 epnr, qint32 mueergpr);
-    QString getGrade(qint32 points);
+    QString getGrade(qint32 points, QUALITY  q=LONG);
     void colorLabel(QLabel *label, qint32 points);
     bool minXgeX(qint32 points);
     bool checkModel();
@@ -85,7 +84,7 @@ private:
 
     bool checkPassedT21(quint32 docu, quint32 exam);     // checks if passed
     bool checkPassedB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr=0,quint32 points=0); // checks if passed
-    bool checkMAllowed(quint32 ga1, quint32 ga2, quint32 wiso); // checks if oral is possible
+    bool checkMAllowed(qint32 t1, qint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso); // checks if oral is possible
     void recurseGroups(QString group, QString tab, QString &lines);
     
     void unpackQJO(QJsonObject json);
@@ -99,11 +98,11 @@ private:
     void loadSettings(bool withModel,QStringList headers);
     void closeEvent (QCloseEvent *event);
     qint32 t11();
-    qint32 t21();
+    qint32 t21(qint32 exam=-1);
     qint32 t22(qint32 mueergpr=-1);    
     qint32 t23(qint32 mueergpr=-1);    
     qint32 t24(qint32 mueergpr=-1);
-    qint32 t2();
+    qint32 t2(qint32 nr, qint32 mueergpr);  // mit Mündliche
     void saveTreeQsettings(const QModelIndex & index, const QAbstractItemModel * model,QString str="");
 
     
