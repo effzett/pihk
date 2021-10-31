@@ -21,11 +21,18 @@
 %\usepackage{svn}
 \usepackage{marginnote}
 \usepackage{xcolor}
-\usepackage{tcolorbox}
 \graphicspath{{./jpg/}}
 \DeclareGraphicsExtensions{.jpg,.eps,.png}
 %\usepackage{courier}
- 
+
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+\usetikzlibrary{
+  arrows,
+  decorations.pathreplacing,
+  shapes.symbols
+}
 
 % Wenn pdflatex benutzt wird sollen die 
 % installierten! frutiger-Fonts verwendet werden
@@ -65,6 +72,21 @@
 % \parskip1ex
 \setlength{\parindent}{0em}
 
+%\usepackage{courier}
+\newtcolorbox{marker}[1][]{enhanced,
+  before skip=2mm,after skip=3mm,
+  boxrule=0.4pt,left=5mm,right=2mm,top=1mm,bottom=1mm,
+  colback=yellow!50,
+  colframe=yellow!20!black,
+  sharp corners,rounded corners=southeast,arc is angular,arc=3mm,
+  underlay={%
+    \path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+    \path[draw=tcbcolframe,shorten <=-0.05mm,shorten >=-0.05mm] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+    \path[fill=yellow!50!black,draw=none] (interior.south west) rectangle node[red!20!white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
+    },
+  drop fuzzy shadow,#1}
+
+
 \begin{document}
 
 \titlehead{\centerline{Frank Zimmermann \ding{70} Software \ding{70} Tools }}
@@ -87,6 +109,7 @@ Diese Dokumentation beschreibt das Programm \pihk in der Version \vnr.\\
 
 \newpage
 
+
 \section{Motivation}
 Das Programm \pihk wurde geschrieben, um bei IHK--Prüfungen der Fachinformatiker
 bei der IHK--Hannover eine Hilfe bei der Berechnung und Vergabe der Punkte zu sein. Dabei wurden die 
@@ -99,12 +122,14 @@ Die genauen Regularien stammen aus dem Dokument:
 \end{quote}
 
 
+
 \section{Funktion des Programms}
-Die erste Funktion des Programms ist die Berechnung der Punkte/Noten in den Teilbereichen A und B der Prüfung und die Berechnung der Gesamtpunktzahl/Gesamtnote.
+Die erste Funktion des Programms ist die Berechnung der Punkte/Noten in den Teilen 1 und 2 der Prüfung und die Berechnung der Gesamtpunktzahl/Gesamtnote.
 
-Dabei ist die Berechnung der Punkte gerade bei einer mündlichen Ergänzungsprüfung (MEPR) von großem Nutzen, da in einer Prüfung das Berechnungsverfahren recht unübersichtlich ist.
+Dabei ist die Berechnung der Punkte gerade bei einer mündlichen Ergänzungsprüfung (MEPR) von großem Nutzen, da während einer Prüfung  das Berechnungsverfahren recht unübersichtlich ist.
 
-Die zweite Funktion des Programms ist eine Simulation der Ergebnisse in den Teilprüfungen und in der Gesamtnote bei Vergabe der Punkte für die Präsentation und Fachgespräch und bei der Vergabe der Punkte in der MEPR.
+Die zweite Funktion des Programms ist eine Simulation der Gesamtergebnisse und der Teilergebnisse in der Teilprüfung T21 (Präsentation und Fachgespräch )  und bei der Vergabe der Punkte in der MEPR (für T22,T23 oder T24).
+
 Damit ist es leicht möglich, Notengrenzen zu erkennen und ggfs. Notengrenzen bei der Vergabe der Punkte zu beachten.
 
 \section{Das Programm}
@@ -116,15 +141,33 @@ Damit ist es leicht möglich, Notengrenzen zu erkennen und ggfs. Notengrenzen be
 	\label{fig:pihk}
 \end{figure}
 
-Das Programm (siehe Abb.\ref{fig:pihk}) gliedert sich grob in 2 Bereiche:
+Das Programm (siehe Abb.\ref{fig:pihk}) gliedert sich grob in 2 Bereiche, links und rechts:
 
 Links ist der Bereich zur Eingabe und Berechnung der Punktzahlen und Noten.
 
-Der obere Bereich ist für die Teilprüfung A mit Punkten zur Dokumentation und Punkten zur Präsentation und Fachgespräch zuständig.
+In den oberen Bereich trägt man die Klausurergebnisse für den Teilbereich~1 ein, der mit 20 \% in die Gesamtnote eingeht.
 
-Da die Teilprüfung A in der Prüfung eine Präsentation von etwa 15 Minuten erfordert, wird in diesem Bereich auch eine kleine Stoppuhr zur Verfügung gestellt. Diese startet bei Drücken des \framebox{Start}--Buttons und wird durch Drücken des \framebox{Stop}--Buttons wieder gestoppt. Der \framebox{Start}--Button wird bei Laufen der Stoppuhr zum \framebox{Stop}--Button umbenannt.
+\subsection{Prüfungsbereich Teil 1} 
+Da die Präsentation während der Prüfung ca. 15 Minuten dauern soll, findet man oben auch eine kleine Stopp-Uhr, mit der man die tatsächlich gehaltene Vortragszeit messen kann.
+
+Diese startet bei Drücken des \framebox{Start}--Buttons und wird durch Drücken des \framebox{Stop}--Buttons wieder gestoppt. 
 Mit \framebox{Reset} setzt man alles wieder zurück.
+Bei Unterbrechungen kann man die Uhr stoppen und wieder starten.
 Bei Überschreitung der 15 Minuten wird neu hochgezählt (mit 1 beginnend) damit man sofort die Überziehungszeit ablesen kann.
+
+Die 15 Minuten Prüfungszeit sind im Einstellungsdialog konfigurierbar (1..99 Minuten) und können mit dem Programm abgespeichert werden.
+
+\subsection{Prüfungsbereich Teil 2}
+Im nächsten linken Bereich können die Daten für den Prüfungsbereich 2 eingegeben werden.
+
+\subsubsection{Prüfungsbereich T21}
+Im Prüfungsbereich T21 wird eine Dokumentation (T21a) über ein durchgeführtes Projekt und eine Präsentation mit anschliessendem Fachgespräch (T21b) durchgeführt. Beide Teilprüfungen gehen mit gleichem Gewicht in das Ergebnis von T21 ein. Während das Ergebnis der Präsentation (T21a) in der Regel schon feststeht und einfach eingetragen werden kann, wird das Ergebnis der anderen Teilprüfung erst nach Beratung des Prüfungsausschusses am Prüfungstag ermittelt.
+Die Note für den Prüfungsbereich T21 geht zur Ermittlung des Note im Teilbereich 2 ein (Gewichtung 25~\%) und bestimmt die Endnote mit einer Gewichtung von 50~\%.
+
+Um die zu vergebenen Punkte in T21b nicht so ungünstig zu vergeben, dass eine Endnote womöglich nur um einen (oder rechnerisch sogar einen halben) Punkt unter der nächsten Notengrenze liegt, dient die im rechten Bereich durchgeführte Simulation für das Ergebnis des Teilbereichs T21b. 
+
+
+\subsubsection{Prüfungsbereich T22,T23 und T24}
 
 Links unten findet man Angaben zur Prüfung, wie Datum der Prüfung und Name und Nummer des Prüflings.
 Die Angaben werden dabei benutzt um einen Dateinamen zu generieren, der unten angezeigt wird. Dabei erfolgt die Speicherung der Datei automatisch im \framebox{Home}--Verzeichnis des Benutzers.
@@ -238,12 +281,18 @@ Es sei darauf hingewiesen, dass die IHK--Hannover keinerlei Verantwortlichkeiten
 \hline
 Datum & Änderung &Version\\
 \hline
-20.6.2016&	Initiale, ungetestete Version		&  2.0.0\\
+x.11.2021&	Anpassung an neue Prüfungsordnung	&  3.0.0\\
+11.2.2020&	Windows Version						&  2.2.0\\
+4.7.2016&	Initiale, ungetestete Version		&  2.1.0\\
 23.6.2016&	XPlattform-Version, doppelte Rundung&  2.0.1\\
 04.7.2016&	Klick in Simulation trägt Punkte ein&  2.0.2\\
 \hline
 \end{tabular}
 \caption{Änderungshistorie}
 \end{table}
+
+\begin{marker}
+In der heutigen Zeit verlangen viele Platformen eine relativ teure Registrierung für Entwickler, damit die Programme leicht auf den Platformen installiert werden können. Erfolgt keine Signierung und Authentfizierung melden die Platformen i.a. gefährlichen Code. 
+\end{marker}
 
 \end{document}
