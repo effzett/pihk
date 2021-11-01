@@ -368,26 +368,13 @@ void MainWindow::writeResults(){
 
     // Part T2
     ui->labelResultT2->setText(QString::number(pointsT2).rightJustified(3,' '));
-    if(checkPassedT2(pointsT21,ga1,ga2,wiso,nr,points)){
-        ui->labelGradeResultT2->setStyleSheet("QLabel { color : green; }");
-    }
-    else{
-        ui->labelGradeResultT2->setStyleSheet("QLabel { color : red; }");
-    }
     ui->labelGradeResultT2->setText(getGrade(pointsT2).rightJustified(12,' '));
+    colorLabel(ui->labelResultT2,pointsT2);
+    colorLabel(ui->labelGradeResultT2,pointsT2);
 
     // All
     quint32 pointsAll = calcAll(nr,points);
-    //QString gradeAll = getGrade(pointsAll);
     ui->labelResultAll->setText(QString::number(pointsAll).rightJustified(3,' '));
-    if(checkPassedT2(ga1,ga2,wiso,nr,points) && checkPassedT21(docu,exam)){
-        ui->labelGradeResult->setStyleSheet("QLabel { color : green; }");
-        hasPassed=true;
-    }
-    else{
-        ui->labelGradeResult->setStyleSheet("QLabel { color : red; }");
-        hasPassed=false;
-    }
     ui->labelGradeResult->setText(getGrade(pointsAll).rightJustified(12,' '));
 
     fillPRFG();
@@ -416,6 +403,14 @@ void MainWindow::writeResults(){
         ui->label_info2->setText("");
     }
     
+    if(simplePassed()){
+        ui->labelGradeResult->setStyleSheet("QLabel {color:green;}");
+        ui->labelResultAll->setStyleSheet("QLabel {color:green;}");
+    }else{
+        ui->labelGradeResult->setStyleSheet("QLabel {color:red;}");
+        ui->labelResultAll->setStyleSheet("QLabel {color:red;}");
+    }
+    
     ui->saveFile->setEnabled(true);
 }
 
@@ -427,6 +422,43 @@ bool MainWindow::checkPassedT21(quint32 docu, quint32 exam){
     return retVal;
 }
 
+// prüft, ob Gesamtprüfung alle Bedingungen mit den aktuellen Werten erfüllt
+bool MainWindow::simplePassed(){
+    qint32 cnt=0;
+    // keine Prüfung unter 30
+    if(t21()<30 || t22()<30 || t23()<30 || t24()<30){
+        return false;
+    }
+    
+    // nur ein mangelhaft erlaubt
+    if(t21()<50)
+        cnt++;
+    if(t22()<50)
+        cnt++;
+    if(t23()<50)
+        cnt++;
+    if(t24()<50)
+        cnt++;
+    if(cnt>1){
+        qDebug()<<"2:"<<cnt<<":"<<t21()<<t22()<<t23()<<t24();
+        return false;
+    }
+    
+    // Teil B muss mindestens ausreichend sein
+    if(t2(0,0)<50){
+        return false;
+    }
+    
+    // Gesamtprüfung muss mindestens ausreichend sein
+    if(qRound((t11()*2.0+t21()*5.0+t22()+t23()+t24())/10.0)<50){
+        return false;
+    }
+    
+    return true;
+}
+// werden nr (1,2,3) und points angegeben, ist die MueErgPr aktiv und die Daten werden mit den aktuellen,
+// um die MueErgpr ergänzten Daten, berechnet 
+// ist nr = 0 , so ist keine MueErgPr aktiv und die Daten (können) verbesserungen durch MueErgPr enthalten
 bool MainWindow::checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr, quint32 points){
     qint32 cnt=0;
     bool retVal=true;
@@ -471,6 +503,7 @@ bool MainWindow::checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quin
 
 bool MainWindow::checkMAllowed(qint32 t1, qint32 pointsT21, quint32 ga1,quint32 ga2,quint32 wiso){
     qint32 cnt=0;
+    bool ausgleich5 = false;
     bool retVal=false;  // Default
 
     // Es folgen die einzigen 3 Möglichkeiten
@@ -496,16 +529,23 @@ bool MainWindow::checkMAllowed(qint32 t1, qint32 pointsT21, quint32 ga1,quint32 
         retVal=true;
     }
 
-    // Ab hier wird wieder zu gemacht:
-    if(ga1<50)
+    // Ab hier wird wieder zu gemacht. (eine 5 kann nur durch EINE MüErgPr ausgeglichen werden)
+    if(qRound((ga1*2.0+100.0)/3.0) < 50 && !ausgleich5){ // eine dauerhafte 5
+        ausgleich5 = true;
         cnt++;
-    if(ga2<50)
+    }
+    if(qRound((ga2*2.0+100.0)/3.0) < 50 && !ausgleich5){   // eine dauerhafte 5
+        ausgleich5 = true;
         cnt++;
-    if(pointsT21<50)
+    }
+    if(qRound((wiso*2.0+100.0)/3.0) < 50 && !ausgleich5){  // eine dauerhafte 5
+        ausgleich5 = true;
         cnt++;
-    if(wiso<50)
+    }
+    if(pointsT21<50){ // nicht mehr korrigierbare 5
         cnt++;
-    if(cnt>2){    // mehr als 2 5en. Eine 5 kann durch müErPr u.U. umgewandelt werden. Mit einer 5 kann bestanden werden
+    }
+    if(cnt>1){    // mehr als eine 5. Eine 5 kann evtl. durch müErPr u.U. umgewandelt werden. Mit einer 5 kann bestanden werden
         retVal=false;
     }
 
