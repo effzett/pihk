@@ -74,7 +74,6 @@ private:
     qint32 maxMinutes;      // maximale Vortragszeit
     QSettings settings = QSettings("zenmeister.de", "PIHK");      // zum Abspeichern in pList/Registry
 
-    quint32 calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr=0, quint32 mueergpr=0);
     quint32 calcAll(qint32 epnr, qint32 mueergpr);
     QString getGrade(qint32 points, QUALITY  q=LONG);
     void colorLabel(QLabel *label, qint32 points);
@@ -83,7 +82,7 @@ private:
     QTimer *timer;
 
     bool checkPassedT21(quint32 docu, quint32 exam);     // checks if passed
-    bool checkPassedB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr=0,quint32 points=0); // checks if passed
+    bool checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr=0,quint32 points=0); // checks if passed
     bool checkMAllowed(qint32 t1, qint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso); // checks if oral is possible
     void recurseGroups(QString group, QString tab, QString &lines);
     

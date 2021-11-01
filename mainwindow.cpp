@@ -82,8 +82,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lcdNumber->setPalette(Qt::black);       // set color for LCD
     ui->pDate->setDate(QDate::currentDate());   // set current Date
     ui->labelGradeT21->setStyleSheet("QLabel { color : red; }");
-    ui->labelGradeB->setStyleSheet("QLabel { color : red; }");
-    ui->labelGradeResultB->setStyleSheet("QLabel { color : red; }");
+    ui->labelGradeT2->setStyleSheet("QLabel { color : red; }");
+    ui->labelGradeResultT2->setStyleSheet("QLabel { color : red; }");
     ui->labelGradeResult->setStyleSheet("QLabel { color : red; }");
     ui->spinboxGa1E->setEnabled(false);
     ui->spinboxGa1E->hide();
@@ -139,6 +139,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pnummer,SIGNAL(textChanged(QString)),this,SLOT(makeFilename()));
     connect(ui->pDate,SIGNAL(dateChanged(QDate)),this,SLOT(makeFilename()));
     connect(ui->folder,SIGNAL(textChanged(QString)),this,SLOT(makeFilename()));
+
     connect(ui->spinboxDocumentation,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
     connect(ui->spinboxExamination,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
     connect(ui->spinboxGa0,SIGNAL(valueChanged(double)),this,SLOT(writeResults()));
@@ -151,6 +152,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->radioButton1,SIGNAL(toggled(bool)),this,SLOT(writeResults()));
     connect(ui->radioButton2,SIGNAL(toggled(bool)),this,SLOT(writeResults()));
     connect(ui->radioButton3,SIGNAL(toggled(bool)),this,SLOT(writeResults()));
+
     connect(ui->buttonSimPRFG,SIGNAL(clicked()),this,SLOT(fillPRFG()));
     connect(ui->buttonSimMEPR,SIGNAL(clicked()),this,SLOT(fillMEPR()));
     connect(ui->listViewPRFG,SIGNAL(clicked(const QModelIndex &)),this,SLOT(setPointsPRFG(const QModelIndex &)));
@@ -200,29 +202,6 @@ void MainWindow::timerReset(){
 }
 
 
-// calculates pointsB
-quint32 MainWindow::calcB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 epnr, quint32 mueergpr){
-    quint32 pointsB =0;
-    switch(epnr){
-    case 0: // no oral
-        pointsB = round((ga1*2.0+ga2*2.0+wiso)/5.0);
-        break;
-    case 1: // oral ga1
-        pointsB = round( ( round((ga1*2.0+mueergpr)/3.0)*2.0+ga2*2.0+wiso)/5.0 );
-        break;
-    case 2: // oral ga2
-        pointsB = round( ( round((ga2*2.0+mueergpr)/3.0)*2.0+ga1*2.0+wiso)/5.0 );
-        break;
-    case 3: // oral wiso
-        pointsB = round( ( ga1*2.0+ga2*2.0 + round((wiso*2.0+mueergpr)/3.0))/5.0 );
-        break;
-    default:
-        // error
-        ;
-    }
-    return pointsB;
-}
-
 quint32 MainWindow::calcAll(qint32 epnr,qint32 mueergpr){  
     quint32 pointsAll=0;
     qint32 pointst1 = ui->spinboxGa0->text().toInt();
@@ -256,12 +235,12 @@ void MainWindow::writeResults(){
     // Gelesen:
     quint32 docu = (quint32) ui->spinboxDocumentation->value();
     quint32 exam  = (quint32) ui->spinboxExamination->value();
-    qint32 pointsT21 = t21(exam);
+    qint32 pointsT21 = t21();
     // Geschrieben:
     ui->labelPointsT21->setText(QString::number(pointsT21));
+    colorLabel(ui->labelPointsT21,pointsT21);
     ui->labelGradeT21->setText(getGrade(pointsT21));
     colorLabel(ui->labelGradeT21,pointsT21);
-    colorLabel(ui->labelPointsT21,pointsT21);
     
     // Part T22,T23,T24
     quint32 nr=0;
@@ -269,9 +248,6 @@ void MainWindow::writeResults(){
     quint32 ga1 = (quint32) ui->spinboxGa1->value();
     quint32 ga2  = (quint32) ui->spinboxGa2->value();
     quint32 wiso  = (quint32) ui->spinboxWiso->value();
-//    quint32 ga1E = (quint32) ui->spinboxGa1E->value();
-//    quint32 ga2E  = (quint32) ui->spinboxGa2E->value();
-//    quint32 wisoE  = (quint32) ui->spinboxWisoE->value();
 
     if(checkMAllowed(t1, pointsT21, ga1,ga2,wiso)){    // oral is possible
         if(round((round((ga1*2.0+100.0)/3.0)+ga2+wiso+pointsT21)/4.0)>=50 &&    // Teil2 muss bestanden werden können sein
@@ -284,7 +260,7 @@ void MainWindow::writeResults(){
                 nr=1;
                 points=ui->spinboxGa1E->value();
             }
-            else{ // mit 0 initialisieren
+            else{ // mit 0 initialisieren und verstecken
                 ui->spinboxGa1E->setValue(0);
                 ui->spinboxGa1E->setEnabled(false);
                 ui->spinboxGa1E->hide();
@@ -312,7 +288,7 @@ void MainWindow::writeResults(){
                  nr=2;
                  points=ui->spinboxGa2E->value();
              }
-             else{ // mit 0 initialisieren
+             else{ // mit 0 initialisieren und verstecken
                  ui->spinboxGa2E->setValue(0);
                  ui->spinboxGa2E->setEnabled(false);
                  ui->spinboxGa2E->hide();
@@ -340,7 +316,7 @@ void MainWindow::writeResults(){
                 nr=3;
                 points=ui->spinboxWisoE->value();
             }
-            else{
+            else{   // mit 0 initialisieren und verstecken
                 ui->spinboxWisoE->setValue(0);
                 ui->spinboxWisoE->setEnabled(false);
                 ui->spinboxWisoE->hide();
@@ -382,40 +358,29 @@ void MainWindow::writeResults(){
         ui->spinboxWisoE->hide();
     }
 
-    qint32 pointsB = t2(nr,points);
-    colorLabel(ui->labelGradeB,pointsB);
-
-
-    ui->labelPointsB->setText(QString::number(pointsB).rightJustified(3,' '));
-    ui->labelGradeB->setText(getGrade(pointsB).rightJustified(12,' '));
+    qint32 pointsT2 = t2(nr,points);
+    colorLabel(ui->labelGradeT2,pointsT2);
+    ui->labelPointsB->setText(QString::number(pointsT2).rightJustified(3,' '));
+    ui->labelGradeT2->setText(getGrade(pointsT2).rightJustified(12,' '));
 
 
     // Results
-    // Part A
-//    ui->labelResultA->setText(QString::number(pointsA).rightJustified(3,' '));
-    if(checkPassedT21(docu,exam)){
-//        ui->labelGradeResultA->setStyleSheet("QLabel { color : green; }");
-    }
-    else{
-//        ui->labelGradeResultA->setStyleSheet("QLabel { color : red; }");
-    }
-//    ui->labelGradeResultA->setText(getGrade(pointsA).rightJustified(12,' '));
 
-    // Part B
-    ui->labelResultB->setText(QString::number(pointsB).rightJustified(3,' '));
-    if(checkPassedB(ga1,ga2,wiso,nr,points)){
-        ui->labelGradeResultB->setStyleSheet("QLabel { color : green; }");
+    // Part T2
+    ui->labelResultT2->setText(QString::number(pointsT2).rightJustified(3,' '));
+    if(checkPassedT2(pointsT21,ga1,ga2,wiso,nr,points)){
+        ui->labelGradeResultT2->setStyleSheet("QLabel { color : green; }");
     }
     else{
-        ui->labelGradeResultB->setStyleSheet("QLabel { color : red; }");
+        ui->labelGradeResultT2->setStyleSheet("QLabel { color : red; }");
     }
-    ui->labelGradeResultB->setText(getGrade(pointsB).rightJustified(12,' '));
+    ui->labelGradeResultT2->setText(getGrade(pointsT2).rightJustified(12,' '));
 
     // All
     quint32 pointsAll = calcAll(nr,points);
     //QString gradeAll = getGrade(pointsAll);
     ui->labelResultAll->setText(QString::number(pointsAll).rightJustified(3,' '));
-    if(checkPassedB(ga1,ga2,wiso,nr,points) && checkPassedT21(docu,exam)){
+    if(checkPassedT2(ga1,ga2,wiso,nr,points) && checkPassedT21(docu,exam)){
         ui->labelGradeResult->setStyleSheet("QLabel { color : green; }");
         hasPassed=true;
     }
@@ -428,6 +393,7 @@ void MainWindow::writeResults(){
     fillPRFG();
     fillMEPR();
     
+    // Prüfbereiche aus T2 füllen
     ui->label_t21->setText(QString::number(t21()));
     colorLabel(ui->label_t21,t21());
     ui->label_t22->setText((nr==1)?QString::number(t22(points)):QString::number(t22()));
@@ -435,9 +401,9 @@ void MainWindow::writeResults(){
     ui->label_t23->setText((nr==2)?QString::number(t23(points)):QString::number(t23()));
     colorLabel(ui->label_t23,((nr==2)?t23(points):t23()));
     ui->label_t24->setText((nr==3)?QString::number(t24(points)):QString::number(t24()));
-    colorLabel(ui->label_t24,((nr==1)?t24(points):t24()));
+    colorLabel(ui->label_t24,((nr==3)?t24(points):t24()));
 
-    // Aktueller Stand der Berechnungen
+    // Aktueller Stand der Berechnungen  (sperrt/färbt nichts)
     if(!minXgeX(50)){
         ui->label_info1->setText("Weniger als 3 PB in T2 mit ausreichend!!");
     }else{
@@ -461,26 +427,27 @@ bool MainWindow::checkPassedT21(quint32 docu, quint32 exam){
     return retVal;
 }
 
-bool MainWindow::checkPassedB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr, quint32 points){
+bool MainWindow::checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr, quint32 points){
+    qint32 cnt=0;
     bool retVal=true;
     switch(nr){
     case 0:
-        if(calcB(ga1,ga2,wiso)<50 || ga1<30 || ga2<30 || wiso<30){
+        if(t2(0,0)<50 || pointsT21<30 || ga1<30 || ga2<30 || wiso<30){
             retVal = false;
         }
         break;
     case 1:
-        if(calcB(ga1,ga2,wiso,nr,points)<50 || round((2.0*ga1+points)/3.0)<30 || ga2<30 || wiso<30){
+        if(t2(nr,points)<50 || pointsT21<30 ||  t22(points)<30 || ga2<30 || wiso<30){
             retVal = false;
         }
         break;
     case 2:
-        if(calcB(ga1,ga2,wiso,nr,points)<50 || round((2.0*ga2+points)/3.0)<30 || ga1<30 || wiso<30){
+        if(t2(nr,points)<50 || pointsT21<30 ||  t23(points)<30 || ga1<30 || wiso<30){
             retVal = false;
         }
         break;
     case 3:
-        if(calcB(ga1,ga2,wiso,nr,points)<50 || round((2.0*wiso+points)/3.0)<30 || ga2<30 || ga1<30){
+        if(t2(nr,points)<50 || pointsT21<30 || t24(points)<30 || ga2<30 || ga1<30){
             retVal = false;
         }
         break;
@@ -488,6 +455,17 @@ bool MainWindow::checkPassedB(quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr,
         ;
         // error
     }
+    if(pointsT21<50)
+        cnt++;
+    if(ga1<50)
+        cnt++;
+    if(ga2<50)
+        cnt++;
+    if(wiso<50)
+        cnt++;
+    if(nr==0 && cnt>1)
+        retVal=false;
+
     return retVal;
 }
 
@@ -496,21 +474,24 @@ bool MainWindow::checkMAllowed(qint32 t1, qint32 pointsT21, quint32 ga1,quint32 
     bool retVal=false;  // Default
 
     // Es folgen die einzigen 3 Möglichkeiten
+    // in Ga1
     if(round((round((ga1*2.0+100.0)/3.0)+ga2+wiso+pointsT21)/4.0)>=50 &&    // Teil2 muss bestanden werden können sein
        round((round((ga1*2.0+100.0)/3.0)+ga2+wiso+5.0*pointsT21+2.0*t1)/10.0)>=50 &&    // UND Gesamtprüfung muss bestanden werden können
-       qRound((ga1*2.0+100.0)/3.0)>=30 &&  ga2>=30 && wiso >=30 && // darf mit mündlicher Prüfung kein ungenügend werden
+       qRound((ga1*2.0+100.0)/3.0)>=30 &&  ga2>=30 && wiso >=30 && pointsT21 >=30 &&// darf mit mündlicher Prüfung kein ungenügend werden
        ga1<50    ){
         retVal=true;
     }
+    // in Ga2
     if(round((round((ga2*2.0+100.0)/3.0)+ga1+wiso+pointsT21)/4.0)>=50 &&    // Teil2 muss bestanden werden können sein
        round((round((ga2*2.0+100.0)/3.0)+ga1+wiso+5.0*pointsT21+2.0*t1)/10.0)>=50 &&    // UND Gesamtprüfung muss bestanden werden können
-       qRound((ga2*2.0+100.0)/3.0)>=30 && ga1>=30 && wiso>=30 &&// darf mit mündlicher Prüfung kein ungenügend werden
+       qRound((ga2*2.0+100.0)/3.0)>=30 && ga1>=30 && wiso>=30 && pointsT21 >=30 && // darf mit mündlicher Prüfung kein ungenügend werden
        ga2<50   ){
         retVal=true;
     }
+    // in Wiso
     if(round((round((wiso*2.0+100.0)/3.0)+ga2+ga1+pointsT21)/4.0)>=50 &&    // Teil2 muss bestanden werden können sein
        round((round((wiso*2.0+100.0)/3.0)+ga2+ga1+5.0*pointsT21+2.0*t1)/10.0)>=50 &&    // UND Gesamtprüfung muss bestanden werden können
-       qRound((wiso*2.0+100.0)/3.0)>=30 && ga1>=30 && ga2>=30 &&// darf mit mündlicher Prüfung kein ungenügend werden
+       qRound((wiso*2.0+100.0)/3.0)>=30 && ga1>=30 && ga2>=30 && pointsT21 >=30 && // darf mit mündlicher Prüfung kein ungenügend werden
        wiso<50    ){
         retVal=true;
     }
@@ -530,7 +511,8 @@ bool MainWindow::checkMAllowed(qint32 t1, qint32 pointsT21, quint32 ga1,quint32 
 
 
     if(qRound((pointsT21+ga1+ga2+wiso)/4.0)>=50 &&
-       qRound((pointsT21*5.0+ga1+ga2+wiso+2.0*t1)/10.0)>=50){        // too good
+       qRound((pointsT21*5.0+ga1+ga2+wiso+2.0*t1)/10.0)>=50 &&
+            checkPassedT2(pointsT21,ga1,ga2,wiso,0,0)){        // too good
         retVal=false;
     }
 
@@ -578,10 +560,10 @@ void MainWindow::fillPRFG(){
             quint32 g = round((a+resultB)/2.0);
             QString aString = getGrade(a,SHORT);
             QString gString = getGrade(g,SHORT);
-            passed=(checkPassedT21(docu,i) && checkPassedB(ga1,ga2,wiso,nr,points));
+            passed=(checkPassedT21(docu,i) && checkPassedT2(ga1,ga2,wiso,nr,points));
             if(atmp.compare(aString)!=0 || btmp.compare(bString)!=0 || gtmp.compare(gString)!=0 || (passed!=passedtmp)){
                 QString item;
-                if(checkPassedT21(docu,i) && checkPassedB(ga1,ga2,wiso,nr,points)){
+                if(checkPassedT21(docu,i) && checkPassedT2(ga1,ga2,wiso,nr,points)){
                     item = QString("%1:    T21:%2    T22=%3    T23=%4    T24=%5    +G=%6")
                             .arg(i,2).arg(aString,2).arg(bString,2).arg(gString,2).arg(bString,2).arg(gString,2);
                 }else
@@ -666,7 +648,7 @@ void MainWindow::fillMEPR(){
             QString aString = getGrade(a,SHORT);
             QString bString = getGrade(b,SHORT);
             QString gString = getGrade(g,SHORT);
-            passed=(checkPassedT21(docu,exam) && checkPassedB(ga1,ga2,wiso,nr,points));
+            passed=(checkPassedT21(docu,exam) && checkPassedT2(ga1,ga2,wiso,nr,points));
             if(atmp.compare(aString)!=0 || btmp.compare(bString)!=0 || gtmp.compare(gString)!=0 || (passed!=passedtmp)){
                 QString item;
                 if(passed){
@@ -780,7 +762,7 @@ QJsonObject MainWindow::packQJD(){
     json["MEP-WISO"] = ui->spinboxWisoE->text();
     json["Prüfungszeit"] = ui->lcdNumber->value();
     //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")"; // Wird nicht wieder eingelesen!
-    json["Ergebnis B"] = ui->labelResultB->text()+" ("+ui->labelGradeResultB->text()+")";   // Wird nicht wieder eingelesen!
+    json["Ergebnis B"] = ui->labelResultT2->text()+" ("+ui->labelGradeResultT2->text()+")";   // Wird nicht wieder eingelesen!
     json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";    // Wird nicht wieder eingelesen!
     json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";                   // Wird nicht wieder eingelesen!
 
@@ -1462,7 +1444,7 @@ qint32 MainWindow::t11(){
     return (ui->spinboxGa0->text().toInt());
 }
 
-qint32 MainWindow::t21(qint32 exam){
+qint32 MainWindow::t21(qint32 exam){    // wenn ohne exam aufgerufen: Punkte aus GUI-Werten
     if(exam==-1){
         return (qRound((ui->spinboxDocumentation->text().toDouble() + ui->spinboxExamination->text().toDouble())/2.0));
     }else{
@@ -1503,9 +1485,11 @@ qint32 MainWindow::t24(qint32 mueergpr){
     return retVal;
 }
 
-qint32 MainWindow::t2(qint32 nr, qint32 mueergpr){    // mit mündliche
+qint32 MainWindow::t2(qint32 nr, qint32 mueergpr){    // mit mündliche: nr=1,2,3   ohne: nr=0
     qint32 result=0;
     switch(nr){
+    case 0: result = qRound((t21()+t22()+t23()+t24())/4.0);
+        break;
     case 1: result = qRound((t21()+t22(mueergpr)+t23()+t24())/4.0);
         break;
     case 2: result = qRound((t21()+t22()+t23(mueergpr)+t24())/4.0);
