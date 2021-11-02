@@ -424,33 +424,37 @@ bool MainWindow::checkPassedT21(quint32 docu, quint32 exam){
 
 // prüft, ob Gesamtprüfung alle Bedingungen mit den aktuellen Werten erfüllt
 bool MainWindow::simplePassed(){
-    qint32 cnt=0;
+    qint32  cnt=0;
+    qint32 pb21 = ui->label_t21->text().toInt();
+    qint32 pb22 = ui->label_t22->text().toInt();
+    qint32 pb23 = ui->label_t23->text().toInt();
+    qint32 pb24 = ui->label_t24->text().toInt();
+    
     // keine Prüfung unter 30
-    if(t21()<30 || t22()<30 || t23()<30 || t24()<30){
+    if(pb21<30 || pb22<30 || pb23<30 || pb24<30){
         return false;
     }
     
     // nur ein mangelhaft erlaubt
-    if(t21()<50)
+    if(pb21<50)
         cnt++;
-    if(t22()<50)
+    if(pb22<50)
         cnt++;
-    if(t23()<50)
+    if(pb23<50)
         cnt++;
-    if(t24()<50)
+    if(pb24<50)
         cnt++;
     if(cnt>1){
-        qDebug()<<"2:"<<cnt<<":"<<t21()<<t22()<<t23()<<t24();
         return false;
     }
     
     // Teil B muss mindestens ausreichend sein
-    if(t2(0,0)<50){
+    if(qRound((pb21+pb22+pb23+pb24)/4.0)<50){
         return false;
     }
     
     // Gesamtprüfung muss mindestens ausreichend sein
-    if(qRound((t11()*2.0+t21()*5.0+t22()+t23()+t24())/10.0)<50){
+    if(qRound((t11()*2.0+pb21*5.0+pb22+pb23+pb24)/10.0)<50){
         return false;
     }
     
