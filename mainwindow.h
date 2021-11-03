@@ -104,7 +104,6 @@ private:
     bool couldPass(qint32 nr=0);
     qint32 hasPassedExamination();
     bool passedSimExamination(qint32 t11,qint32 t21,qint32 t22,qint32 t23,qint32 t24);
-    bool checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr, quint32 points);
     void saveTreeQsettings(const QModelIndex & index, const QAbstractItemModel * model,QString str="");
  
     
@@ -139,6 +138,8 @@ private slots:
     void on_actionSichern_triggered();
     void on_actionQuit_2_triggered();
     void on_actionAusgabeblatt_triggered();
+    void on_buttonSimPRFG_clicked();
+    void on_buttonSimMEPR_clicked();
 };
 
 #endif // MAINWINDOW_H

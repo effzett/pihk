@@ -49,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // start values will be overwritten by loadSettings(), just for first use
     mypref = new Prefs(maxMinutes,DATUM,MINUS,NAME,MINUS,NUMMER,UNDERSCORE);
-    QByteArray lines;
     const QStringList headers({tr("Prüfer"),tr("K1"),tr("K2"),tr("Anw")});
     loadSettings(true,headers);  // setzt auch das Model fuer Tree und comboboxen
     // From resource file (1. Nutzung)  or from Qsettings data (Einmal Werte abgespeichert.)...
@@ -231,9 +230,6 @@ void MainWindow::writeResults(){
     qint32 status=0;
     
     // Relevante Werte einlesen
-    qint32 t1 = (qint32) ui->spinboxGa0->value();
-    qint32 docu = (qint32) ui->spinboxDocumentation->value();
-    qint32 exam  = (qint32) ui->spinboxExamination->value();
     qint32 ga1 = (qint32) ui->spinboxGa1->value();
     qint32 ga2  = (qint32) ui->spinboxGa2->value();
     qint32 wiso  = (qint32) ui->spinboxWiso->value();
@@ -512,54 +508,8 @@ bool MainWindow::couldPass(qint32 nr){
     return true;
 }
 
-//// werden nr (1,2,3) und points angegeben, ist die MueErgPr aktiv und die Daten werden mit den aktuellen,
-//// um die MueErgpr ergänzten Daten, berechnet 
-//// ist nr = 0 , so ist keine MueErgPr aktiv und die Daten (können) verbesserungen durch MueErgPr enthalten
-bool MainWindow::checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr, quint32 points){
-    bool retVal=true;
-//    qint32 cnt=0;
-//    switch(nr){
-//    case 0:
-//        if(t2(0,0)<50 || pointsT21<30 || ga1<30 || ga2<30 || wiso<30){
-//            retVal = false;
-//        }
-//        break;
-//    case 1:
-//        if(t2(nr,points)<50 || pointsT21<30 ||  t22(points)<30 || ga2<30 || wiso<30){
-//            retVal = false;
-//        }
-//        break;
-//    case 2:
-//        if(t2(nr,points)<50 || pointsT21<30 ||  t23(points)<30 || ga1<30 || wiso<30){
-//            retVal = false;
-//        }
-//        break;
-//    case 3:
-//        if(t2(nr,points)<50 || pointsT21<30 || t24(points)<30 || ga2<30 || ga1<30){
-//            retVal = false;
-//        }
-//        break;
-//    default:
-//        ;
-//        // error
-//    }
-//    if(pointsT21<50)
-//        cnt++;
-//    if(ga1<50)
-//        cnt++;
-//    if(ga2<50)
-//        cnt++;
-//    if(wiso<50)
-//        cnt++;
-//    if(nr==0 && cnt>1)
-//        retVal=false;
-
-    return retVal;
-}
 
 bool MainWindow::checkMAllowed(){
-    bool retVal= false;
-    qint32 nr=0;
     quint32 ga1 = ui->spinboxGa1->value();
     quint32 ga2 = ui->spinboxGa2->value();
     quint32 wiso = ui->spinboxWiso->value();
@@ -676,17 +626,17 @@ void MainWindow::fillPRFG(){
         case 1:
             b = qRound((a+t22(points)+t23()+t24())/4.0);
             g = qRound((t11()*2.0+a*5.0+t22(points)+t23()+t24())/10.0);
-            passed = passedSimExamination(t11(),a,t22(),t23(),t24());
+            passed = passedSimExamination(t11(),a,t22(points),t23(),t24());
             break;
         case 2:
             b = qRound((a+t22()+t23(points)+t24())/4.0);
             g = qRound((t11()*2.0+a*5.0+t22()+t23(points)+t24())/10.0);
-            passed = passedSimExamination(t11(),a,t22(),t23(),t24());
+            passed = passedSimExamination(t11(),a,t22(),t23(points),t24());
             break;
         case 3:
             b = qRound((a+t22()+t23()+t24(points))/4.0);
             g = qRound((t11()*2.0+a*5.0+t22()+t23()+t24(points))/10.0);
-            passed = passedSimExamination(t11(),a,t22(),t23(),t24());
+            passed = passedSimExamination(t11(),a,t22(),t23(),t24(points));
             break;
         default:
             b= qRound((a+t22()+t23()+t24())/4.0);
@@ -737,7 +687,7 @@ void MainWindow::fillMEPR(){
     // Make data
     QStringList list;
     qint32 nr=getOralNr();
-    qint32 a;
+    qint32 a;  // simulierte Ergebnisse in der Teilprüfung T2x
     qint32 b; //Teil2 simuliert
     qint32 g; // Resultat simuliert
     bool passed = false;
@@ -749,7 +699,7 @@ void MainWindow::fillMEPR(){
     if(checkMAllowed() && nr>0){
         for(int i=0;i<=100;i++){
             switch(nr){
-            case 0:
+            case 0: // sollte niemals auftreten
                 a=0;
                 b = qRound((t21()+t22()+t23()+t24())/4.0);
                 g = qRound((t11()*2.0+t21()*5.0+t22()+t23()+t24())/10.0);
@@ -773,7 +723,7 @@ void MainWindow::fillMEPR(){
                 g = qRound((t11()*2.0+t21()*5.0+t22()+t23()+t24(i))/10.0);
                 passed = passedSimExamination(t11(),t21(),t22(),t23(),t24(i));
                 break;
-            default:
+            default: // sollte niemals auftreten
                 a=0;
                 b= qRound((t21()+t22()+t23()+t24())/4.0);
                 g = qRound((t11()*2.0+t21()*5.0+t22()+t23()+t24())/10.0);
@@ -781,6 +731,7 @@ void MainWindow::fillMEPR(){
                 break;
             }
             
+            // es hat sich was verändert...
             if(     aGrade.compare(getGrade(a,LONG))!=0 || 
                     bGrade.compare(getGrade(b,LONG))!=0 || 
                     gGrade.compare(getGrade(g,LONG))!=0 || (passed!=passedOld)){
@@ -799,7 +750,7 @@ void MainWindow::fillMEPR(){
                 bGrade = getGrade(b,LONG);
                 gGrade = getGrade(g,LONG);
             }
-        }
+        } // for...
     }else{
         list.clear();
     }
@@ -1594,7 +1545,7 @@ qint32 MainWindow::t22(qint32 mueergpr){ // ohne argumente keine Muendliche Prue
 qint32 MainWindow::t23(qint32 mueergpr){// ohne argumente keine Muendliche Pruefung
     qint32 retVal=0;
     if(mueergpr !=  -1){
-        retVal = qRound((ui->spinboxGa2->text().toDouble()*2.0 + ui->spinboxGa2E->text().toDouble())/3.0);
+        retVal = qRound((ui->spinboxGa2->text().toDouble()*2.0 + mueergpr)/3.0);
     }
     else{
         retVal = qRound(ui->spinboxGa2->text().toDouble());
@@ -1605,7 +1556,7 @@ qint32 MainWindow::t23(qint32 mueergpr){// ohne argumente keine Muendliche Pruef
 qint32 MainWindow::t24(qint32 mueergpr){
     qint32 retVal=0;
     if(mueergpr !=  -1){
-        retVal = qRound((ui->spinboxWiso->text().toDouble()*2.0 + ui->spinboxWisoE->text().toDouble())/3.0);
+        retVal = qRound((ui->spinboxWiso->text().toDouble()*2.0 + mueergpr)/3.0);
     }
     else{
         retVal = ui->spinboxWiso->text().toInt();
@@ -1664,3 +1615,15 @@ void MainWindow::colorLabel(QLabel *label, qint32 points){
         label->setStyleSheet("QLabel { color : green; }");
     }
 }
+
+void MainWindow::on_buttonSimPRFG_clicked()
+{
+    fillPRFG();
+}
+
+
+void MainWindow::on_buttonSimMEPR_clicked()
+{
+    fillMEPR();
+}
+
