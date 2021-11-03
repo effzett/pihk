@@ -75,6 +75,8 @@ private:
     QSettings settings = QSettings("zenmeister.de", "PIHK");      // zum Abspeichern in pList/Registry
 
     quint32 calcAll(qint32 epnr, qint32 mueergpr);
+    qint32 getOralNr();
+    qint32 getOralPoints();
     QString getGrade(qint32 points, QUALITY  q=LONG);
     void colorLabel(QLabel *label, qint32 points);
     bool checkModel();
@@ -101,6 +103,7 @@ private:
     qint32 t2(qint32 nr, qint32 mueergpr);  // mit Mündliche
     bool couldPass(qint32 nr=0);
     qint32 hasPassedExamination();
+    bool passedSimExamination(qint32 t11,qint32 t21,qint32 t22,qint32 t23,qint32 t24);
     bool checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr, quint32 points);
     void saveTreeQsettings(const QModelIndex & index, const QAbstractItemModel * model,QString str="");
  
