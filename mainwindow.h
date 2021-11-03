@@ -77,13 +77,10 @@ private:
     quint32 calcAll(qint32 epnr, qint32 mueergpr);
     QString getGrade(qint32 points, QUALITY  q=LONG);
     void colorLabel(QLabel *label, qint32 points);
-    bool minXgeX(qint32 points);
     bool checkModel();
     QTimer *timer;
 
-    bool checkPassedT21(quint32 docu, quint32 exam);     // checks if passed
-    bool checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr=0,quint32 points=0); // checks if passed
-    bool checkMAllowed(qint32 t1, qint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso); // checks if oral is possible
+    bool checkMAllowed(); // checks if oral is possible
     void recurseGroups(QString group, QString tab, QString &lines);
     
     void unpackQJO(QJsonObject json);
@@ -102,9 +99,11 @@ private:
     qint32 t23(qint32 mueergpr=-1);    
     qint32 t24(qint32 mueergpr=-1);
     qint32 t2(qint32 nr, qint32 mueergpr);  // mit Mündliche
-    bool simplePassed();
+    bool couldPass(qint32 nr=0);
+    qint32 hasPassedExamination();
+    bool checkPassedT2(quint32 pointsT21, quint32 ga1, quint32 ga2, quint32 wiso,quint32 nr, quint32 points);
     void saveTreeQsettings(const QModelIndex & index, const QAbstractItemModel * model,QString str="");
-
+ 
     
 private slots:
     
