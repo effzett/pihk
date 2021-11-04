@@ -12,7 +12,7 @@
 \usepackage{url}
 \usepackage{booktabs}
 \usepackage{amsmath}
-\usepackage{listings}
+\usepackage{listingsutf8}
 \usepackage[german]{varioref}
 \usepackage{colortbl} % Farbige Tabellen
 \usepackage{tabularx} % Mehrzeilige Tabellenzellen (nicht benutzt)
@@ -64,6 +64,15 @@
 
 \newcolumntype{g}{>{\columncolor{pastellblau}}l}
 
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
 \lstset{numbers=left,numbersep=5pt,numberstyle=\tiny,%
     frame=none,basicstyle=\scriptsize\ttfamily,breaklines=true,%
     captionpos=b,backgroundcolor=\color{listinggray},frame=single}
@@ -126,9 +135,12 @@ Die genauen Regularien stammen aus dem Dokument:
 \section{Neue Prüfungordnung}
 Die neue Prüfungsordnung gliedert die Ausbildung neu und sieht eine etwas andere Berechnungsart vor. Details zeigt Abb.~\ref{fig:pihk}.
 
-\begin{center}
+\begin{figure}[ht]
+    \centering
 \includegraphics[width=15cm]{FIGrafik.png}
-\end{center}
+    \caption{Struktur der Prüfung mit Gewichtungen}
+    \label{fig:berechnung}
+\end{figure}
 
 \section{Funktion des Programms}
 Die erste Funktion des Programms ist die Berechnung der Punkte/Noten in den Teilen 1 und 2 der Prüfung und die Berechnung der Gesamtpunktzahl/Gesamtnote.
@@ -138,24 +150,27 @@ Dabei ist die Berechnung der Punkte gerade bei einer mündlichen Ergänzungsprü
 Die zweite Funktion des Programms ist eine Simulation der Gesamtergebnisse und der Teilergebnisse in der Teilprüfung T21 (Präsentation und Fachgespräch )  und bei der Vergabe der Punkte in der MEPR (für T22,T23 oder T24).
 
 Damit ist es leicht möglich, Notengrenzen zu erkennen und ggfs. Notengrenzen bei der Vergabe der Punkte zu beachten.
+Ein Klick auf diese Notengrenzen übertragt die Punktzahl in die simulierten Felder (T21b bzw. T2x in der mündlichen Ergänzungsprüfung).
 
 \section{Das Programm}
 
 \begin{figure}[ht]
 	\centering
-  \includegraphics[width=\textwidth]{pihk.png}
+    \includegraphics[width=\textwidth]{Hauptfenster.png}
 	\caption{Programmoberfläche}
 	\label{fig:pihk}
 \end{figure}
 
-Das Programm (siehe Abb.\ref{fig:pihk}) gliedert sich grob in 2 Bereiche, links und rechts:
+Das Programm (siehe Abb.\ref{fig:pihk}) gliedert sich grob in 5 Bereiche (A,B,C,D,E):
 
-Links ist der Bereich zur Eingabe und Berechnung der Punktzahlen und Noten.
+Links oben (A) ist der Bereich zur Eingabe und Berechnung der Punktzahlen und Noten. Rechts (B) befinden sich 2 Fenster zur Anzeige der Simulationsergebnisse.
 
-In den oberen Bereich trägt man die Klausurergebnisse für den Teilbereich~1 ein, der mit 20 \% in die Gesamtnote eingeht.
+\subsection{Prüfungsbereich Teil 1}
+In den oberen Bereich (A) trägt man die Klausurergebnisse für den Teilbereich~1 ein, der mit 20 \% in die Gesamtnote eingeht.
+Dieser Bereich hat keine Relevanz hinsichtlich einer Schwelle für die Bestehensregelung und dient lediglich zur \emph{Anfütterung} von Punkte
 
-\subsection{Prüfungsbereich Teil 1} 
-Da die Präsentation während der Prüfung ca. 15 Minuten dauern soll, findet man oben auch eine kleine Stopp-Uhr, mit der man die tatsächlich gehaltene Vortragszeit messen kann.
+\subsection{Prüfungsbereich Teil 2} 
+Da die Präsentation während der Prüfung ca. 15 Minuten dauern soll, findet man oben auch eine kleine Stopp-Uhr (A), mit der man die tatsächlich gehaltene Vortragszeit messen kann.
 
 Diese startet bei Drücken des \framebox{Start}--Buttons und wird durch Drücken des \framebox{Stop}--Buttons wieder gestoppt. 
 Mit \framebox{Reset} setzt man alles wieder zurück.
@@ -164,11 +179,11 @@ Bei Überschreitung der 15 Minuten wird neu hochgezählt (mit 1 beginnend) damit
 
 Die 15 Minuten Prüfungszeit sind im Einstellungsdialog konfigurierbar (1..99 Minuten) und können mit dem Programm abgespeichert werden.
 
-\subsection{Prüfungsbereich Teil 2}
-Im nächsten linken Bereich können die Daten für den Prüfungsbereich 2 eingegeben werden.
+Im nächsten linken Bereich (A) können die Daten für den Prüfungsbereich 2 eingegeben werden.
 
 \subsubsection{Prüfungsbereich T21}
 Im Prüfungsbereich T21 wird eine Dokumentation (T21a) über ein durchgeführtes Projekt und eine Präsentation mit anschliessendem Fachgespräch (T21b) durchgeführt. Beide Teilprüfungen gehen mit gleichem Gewicht in das Ergebnis von T21 ein. Während das Ergebnis der Präsentation (T21a) in der Regel schon feststeht und einfach eingetragen werden kann, wird das Ergebnis der anderen Teilprüfung erst nach Beratung des Prüfungsausschusses am Prüfungstag ermittelt.
+
 Die Note für den Prüfungsbereich T21 geht zur Ermittlung des Note im Teilbereich 2 ein (Gewichtung 25~\%) und bestimmt die Endnote mit einer Gewichtung von 50~\%.
 
 Um die zu vergebenen Punkte in T21b nicht so ungünstig zu vergeben, dass eine Endnote womöglich nur um einen (oder rechnerisch sogar einen halben) Punkt unter der nächsten Notengrenze liegt, dient die im rechten Bereich durchgeführte Simulation für das Ergebnis des Teilbereichs T21b. 
@@ -176,49 +191,59 @@ Um die zu vergebenen Punkte in T21b nicht so ungünstig zu vergeben, dass eine E
 
 \subsubsection{Prüfungsbereich T22,T23 und T24}
 
-Links unten findet man Angaben zur Prüfung, wie Datum der Prüfung und Name und Nummer des Prüflings.
+Links unten (D) findet man Angaben zur Prüfung, wie Datum der Prüfung und Name und Nummer des Prüflings.
 Die Angaben werden dabei benutzt um einen Dateinamen zu generieren, der unten angezeigt wird. Dabei erfolgt die Speicherung der Datei automatisch im \framebox{Home}--Verzeichnis des Benutzers.
-Soll die Speicherung in einem schon existierenden Ordner erfolgen, so kann dieser auch angegeben werden; nur wenn dieser existiert wird der entsprechende Speicherpfad entsprechend korrigiert (dabei ist zu beachten, dass z.B. der Dokumenten--Ordner oft intern als Documents anzugeben ist).
 
-Der \framebox{Sichern}--Button sichert die Datei mit allen erfassten Informationen unter dem aktuellen Namen und wird dann deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
+Soll die Speicherung in einem anderen Ordner erfolgen, so kann dieser mit dem \framebox{Wähle...}--Button rechts unten gewählt werden.
 
-Rechts ist der Bereich zur Simulation der Punkte. 
+Der \framebox{Sichern}--Button sichert die Datei mit allen gewählten Information (s.a. Abschnitt \emph{Einstellungen}) und wird anschließend deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
+
+\subsubsection{Einstellungen}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{Einstellungen.png}
+  \caption{Einstellungen}
+  \label{fig:einstellungen}
+\end{figure}
+
+\subsection{Einstellungen}
 
 Dabei wird rechts oben die Note für die Präsentation und das Fachgespräch simuliert. In einer Liste werden die Punkte aufgelistet, die eine Veränderung der Noten in den Teilbereichen und in der Gesamtbewertung zur Folge hätten.
 
 Rechts unten wird die Punktzahl der mündlichen Ergänzungsprüfung (MEPR) in dem angewählten Prüfungsbereich zur MEPR simuliert. Die Liste gibt wieder die Punktzahlen der MEPR an, bei denen eine Veränderung der Noten in den Teilbereichen und der Gesamtbewertung erfolgt. 
 
-\section{Rundung}
-Bei der Berechnung der Punkte nach dem Formular, das bei der Prüfung benutzt wird, ist darauf zu achten, wann die errechneten Werte gerundet werden (betrifft nur Teilbereich B).
+% \section{Rundung}
+% Bei der Berechnung der Punkte nach dem Formular, das bei der Prüfung benutzt wird, ist darauf zu achten, wann die errechneten Werte gerundet werden (betrifft nur Teilbereich B).
 
-Ohne mündliche Ergänzungsprüfung werden nur ganze Zahlen als Punktwerte eingetragen und am Ende für die 3 Prüfbereiche berechnet;
-hier erfolgt dann die einzige vorzunehmende Rundung des Ergebnisses.
+% Ohne mündliche Ergänzungsprüfung werden nur ganze Zahlen als Punktwerte eingetragen und am Ende für die 3 Prüfbereiche berechnet;
+% hier erfolgt dann die einzige vorzunehmende Rundung des Ergebnisses.
 
-Anders sieht es beim Vorhandensein einer mündlichen Ergänzunmgsprüfung aus. Diese geht mit ihrer ganzzahligen Punktzahl nur zu einem Drittel in die Punktzahl des Prüfbereichs ein. Das Ergebnis für diesen Prüfbereich ergibt sich daher durch eine Division und müsste
-in das IHK--Prüfungsformular eingetragen werden. Hierbei soll eine Rundung auf einen ganzahligen Wert erfolgen. Die weitere Rechnung ergibt dann wieder den Wert für alle Prüfbereiche und muss muss daher ebenfalls gerundet werden.
+% Anders sieht es beim Vorhandensein einer mündlichen Ergänzunmgsprüfung aus. Diese geht mit ihrer ganzzahligen Punktzahl nur zu einem Drittel in die Punktzahl des Prüfbereichs ein. Das Ergebnis für diesen Prüfbereich ergibt sich daher durch eine Division und müsste
+% in das IHK--Prüfungsformular eingetragen werden. Hierbei soll eine Rundung auf einen ganzahligen Wert erfolgen. Die weitere Rechnung ergibt dann wieder den Wert für alle Prüfbereiche und muss muss daher ebenfalls gerundet werden.
 
-Bei einer korrekten 2-maligen Rundung wird also zum ersten mal bei der Berechnung des nachgeprüften Prüfbereiches inklusive der mündlichen Ergänzungsprüfung gerundet und das zweite mal bei der Berechnung aller Prüfungsbereiche.
-\vskip2ex
+% Bei einer korrekten 2-maligen Rundung wird also zum ersten mal bei der Berechnung des nachgeprüften Prüfbereiches inklusive der mündlichen Ergänzungsprüfung gerundet und das zweite mal bei der Berechnung aller Prüfungsbereiche.
+% \vskip2ex
 
-\fcolorbox{black}{listinggray}{\parbox{\linewidth}{%
-\vskip1ex
-Gegeben seien beispielsweise folgende Punkte im Teilbereich B:
-\begin{center}GA1=30,  GA2=49,  WISO=82, MEPR in GA2E= 60\end{center}
-Mit \emph{einer} Rundung ergäbe sich als Note für Teilbereich B =49 Punkte und damit mangelhaft:
-$$Round( ( ((GA2*2+MEPR)/3) * 2 + GA1 * 2 + WISO)/5)$$
-$$Round( ( ((49*2+60)/3) * 2 + 30*2+82)/5)=49,47=49$$
-Mit \emph{zwei} Rundungen ergibt sich als Note für den Teilbereich B =50 Punkte und damit ausreichend:
-$$Round( ( Round((GA2*2+MEPR)/3)*2+GA1*2+WISO)/5) $$
-$$Round( ( Round((49*2+60)/3) * 2 + 30*2+82 )/5)=49,6=50$$
+% \fcolorbox{black}{listinggray}{\parbox{\linewidth}{%
+% \vskip1ex
+% Gegeben seien beispielsweise folgende Punkte im Teilbereich B:
+% \begin{center}GA1=30,  GA2=49,  WISO=82, MEPR in GA2E= 60\end{center}
+% Mit \emph{einer} Rundung ergäbe sich als Note für Teilbereich B =49 Punkte und damit mangelhaft:
+% $$Round( ( ((GA2*2+MEPR)/3) * 2 + GA1 * 2 + WISO)/5)$$
+% $$Round( ( ((49*2+60)/3) * 2 + 30*2+82)/5)=49,47=49$$
+% Mit \emph{zwei} Rundungen ergibt sich als Note für den Teilbereich B =50 Punkte und damit ausreichend:
+% $$Round( ( Round((GA2*2+MEPR)/3)*2+GA1*2+WISO)/5) $$
+% $$Round( ( Round((49*2+60)/3) * 2 + 30*2+82 )/5)=49,6=50$$
 
-}}
-\vskip2ex
+% }}
+% \vskip2ex
 
-Das zeigt, dass es für den Prüfling  manchmal sehr entscheidend ist, wann und wo gerundet wird!
+% Das zeigt, dass es für den Prüfling  manchmal sehr entscheidend ist, wann und wo gerundet wird!
 
-Die doppelte Rundung ist aus dem \emph{Prüfungskompass, IHK--Hannover (Handbuch zum Prüfungswesen~1,2014,S.147, ISBN:978-3-942951-13-5)} entnommen.
+% Die doppelte Rundung ist aus dem \emph{Prüfungskompass, IHK--Hannover (Handbuch zum Prüfungswesen~1,2014,S.147, ISBN:978-3-942951-13-5)} entnommen.
 
-Das Programm führt nach dieser Empfehlung daher zwei Rundungen aus.
+% Das Programm führt nach dieser Empfehlung daher zwei Rundungen aus.
 
 \section{Benutzung}
 Das Programm erfordert keine Installation und kann von jedem Ort gestartet werden.
@@ -227,15 +252,18 @@ Ein empfohlener Arbeitsfluss (kann ansonsten beliebig sein):
 
 \begin{enumerate}
 \item Prüfungsdatum eintragen
+\item Prüfungsausschuss wählen
+\item Anwesende Prüfer und 1.-- und 2.--Korrektoren wählen
 \item Prüfling (und bei Zweideutigkeiten ggfs. Nummer) eintragen
 \item (Optional) Eigenen Ordner eintragen
-\item Dokumentation, GA1,GA2,Wiso eintragen
+\item T1, Dokumentation, GA1,GA2,Wiso eintragen
 \item Nach Fachgespräch (unter Berücksichtigung der Simulation) die Punkte eintragen
 \item Bei MEPR: Prüfungsbereich anwählen und (Simulation!) Punkte eintragen
+\item Am Ende auf den \framebox{Sichern}--Button drücken und die Daten werden als JSON--Datei abgespeichert.
 \end{enumerate}
 
 Wird eine Zeile in der Simulation (PRFG oder MEPR) angeklickt, so werden die entsprechenden Punkte in die linke
-Maske eingetragen.
+Maske (T21b bzw. T2x (MErgPr)) eingetragen.
 
 \section{Ausgabe}
 Die Datei, die gespeichert wird hat folgenden Inhalt:
@@ -243,30 +271,48 @@ Die Datei, die gespeichert wird hat folgenden Inhalt:
 
 \begin{minipage}[t]{\textwidth}
 \begin{lstlisting}[numbers=none,caption={\cfile{Gesicherte Datei: $20160621Max\_Mustermann13145678.txt$}},label=lst:datei]
-Datum     : 21.06.16
-Name      : Max Mustermann
-Id-Nummer : 13145678
-Doku      : 77
-PRFG      : 66
-GA1       : 30
-GA2       : 50
-Wiso      : 80
-MEP-GA1   : 66
-MEP-GA2   : 0
-MEP-WISO  : 0
-Ergebnis A:  72 (befriedigend)
-Ergebnis B:  53 ( ausreichend)
-Ergebnis  :  63 ( ausreichend)
+{
+    "Anwesend": [
+        "Prüfer 1 aus FIAE 2",
+        "Prüfer 2 aus FIAE 2",
+        "Prüfer 4 aus FIAE 2"
+    ],
+    "Ausschuss": "FIAE 2",
+    "Datum": "01.11.2021",
+    "Doku": "61",
+    "Ergebnis": " 50 ( ausreichend)",
+    "Ergebnis B": " 52 ( ausreichend)",
+    "Fachrichtung": "FI Anwendungsentwicklung",
+    "GA0": "39",
+    "GA1": "49",
+    "GA2": "44",
+    "Id-Nummer": "007",
+    "Korr1": [
+        "Prüfer 1 aus FIAE 2"
+    ],
+    "Korr2": [
+        "Prüfer 2 aus FIAE 2"
+    ],
+    "MEP-GA1": "0",
+    "MEP-GA2": "61",
+    "MEP-WISO": "0",
+    "Name": "Max Mustermann",
+    "PIHKVersion": "3.0.0",
+    "PRFG": "44",
+    "Prüfungsergebnis": "NICHT bestanden",
+    "Prüfungszeit": 0,
+    "Wiso": "55"
+}
 
----BESTANDEN---
+
 \end{lstlisting}
 \end{minipage}
-Leerzeichen im Prüfungsnamen werden automagisch zu einem Unterstrich ($\_$) konvertiert, um Probleme mit dem Betriebssystem zu vermeiden.
+Leerzeichen im Prüfungsnamen werden automagisch zu einem Unterstrich ($\_$) konvertiert (lässt sich bei Einstellungen einstellen), um Probleme mit dem Betriebssystem zu vermeiden.
 
 \section{Plattform}
 Das Programm wurde sowohl für Microsoft Windows als auch für Apple OSX programmiert und steht für beide Plattformen zur Verfügung.
 
-Getestet und entwickelt wurde für MS Windows auf Win~10 und für Apple~OSX auf Yosemite(10.10.x).
+Getestet und entwickelt wurde für MS Windows auf Win~10 und für Apple~OSX auf Big Sur(11.x).
 
 Es wird für MS~Windows als \texttt{.exe} und für Apple~OSX als \texttt{.dmg} Datei zur Verfügung gestellt. 
 
@@ -288,7 +334,7 @@ Es sei darauf hingewiesen, dass die IHK--Hannover keinerlei Verantwortlichkeiten
 \hline
 Datum & Änderung &Version\\
 \hline
-x.11.2021&	Anpassung an neue Prüfungsordnung	&  3.0.0\\
+4.11.2021&	Anpassung an neue Prüfungsordnung	&  3.0.0\\
 11.2.2020&	Windows Version						&  2.2.0\\
 4.7.2016&	Initiale, ungetestete Version		&  2.1.0\\
 23.6.2016&	XPlattform-Version, doppelte Rundung&  2.0.1\\
@@ -299,7 +345,8 @@ x.11.2021&	Anpassung an neue Prüfungsordnung	&  3.0.0\\
 \end{table}
 
 \begin{marker}
-In der heutigen Zeit verlangen viele Platformen eine relativ teure Registrierung für Entwickler, damit die Programme leicht auf den Platformen installiert werden können. Erfolgt keine Signierung und Authentfizierung melden die Platformen i.a. gefährlichen Code. 
+In der heutigen Zeit verlangen viele Platformen eine relativ teure Registrierung für Entwickler, damit die Programme leicht auf den Platformen installiert werden können. Erfolgt keine Signierung und Authentfizierung melden die Platformen i.a. gefährlichen Code. Dieses Programm enthält keinen Schadcode und kann problemlos geöffnet werden. Bei macOS öffnet man das Kontextmenü und bestätigt, dass man dieses Programm öffnen möchte.
+Bei weiteren Starts wird keine Abfrage mehr vorgenommen. (Ein Doppelklick führt dagegen nur zu einer Sicherheitswarnung, die es verbietet dieses Programm zu öffnen)
 \end{marker}
 
 \end{document}
