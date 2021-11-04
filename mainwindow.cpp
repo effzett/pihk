@@ -737,12 +737,12 @@ void MainWindow::fillMEPR(){
                     gGrade.compare(getGrade(g,LONG))!=0 || (passed!=passedOld)){
                 QString item;
                 if(passed==true){
-                    item = QString("%1: T2x:%2 T2=%3 +G=%4").arg(i,3)
+                    item = QString("%1: T2%2:%3 T2=%4 +G=%5").arg(i,3).arg((nr+1),1)
                             .arg(getGrade(a,LONG),-12).arg(getGrade(b,LONG),-12).arg(getGrade(g,LONG),-12);
                     passedOld = passed;
                 }
                 else{
-                    item = QString("%1: T2x:%2 T2=%3 -G=%4").arg(i,3)
+                    item = QString("%1: T2%2:%3 T2=%4 -G=%5").arg(i,3).arg((nr+1),1)
                             .arg(getGrade(a,LONG),-12).arg(getGrade(b,LONG),-12).arg(getGrade(g,LONG),-12);
                 }
                 list << item;
