@@ -1723,7 +1723,7 @@
     </widget>
     <widget class="QPushButton" name="pushButtonIhk">
      <property name="enabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="minimumSize">
       <size>
@@ -1934,7 +1934,7 @@
      <x>0</x>
      <y>0</y>
      <width>886</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
@@ -2024,6 +2024,9 @@
    </property>
   </action>
   <action name="actionAusgabeblatt">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Ausgabeblatt</string>
    </property>
