@@ -44,6 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     ui->setupUi(this);
+    ui->pushButtonIhk->setVisible(false);
+    ui->menuAnsicht->menuAction()->setVisible(false);
     
     ui->lcdNumber->setPalette(Qt::black);
 
