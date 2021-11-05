@@ -36,8 +36,7 @@ HEADERS  += mainwindow.h \
     treemodel.h
 
 #ifdef Q_OS_DARWIN
-FORMS    += mainwindow.ui \
-    ihk.ui
+FORMS    += mainwindow.ui
 #elif defined(Q_OS_WIN)
 FORMS    += mainwindowwin.ui
 #else
@@ -48,10 +47,7 @@ FORMS *= about.ui \
     lizenz.ui \
     preferences.ui \
     regularien.ui \
-    about.ui \
-    lizenz.ui \
-    preferences.ui \
-    regularien.ui
+    ihk.ui
 
 #ifdef Q_OS_DARWIN
 ICON = myLogoPIHK3a.icns
