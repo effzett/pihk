@@ -4,6 +4,6 @@
 #define APP_DOMAIN "zenmeister.de"
 #define APP_AUTHOR "Frank Zimmermann"
 #define APP_VERSION "3.0.0"
-#define APP_EMAIL "fz@zenmeister.de"
+#define APP_EMAIL u8"fz@zenmeister.de"
 #define APP_ORGANIZATION "zenmeister"
 #endif // APP_H
