@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     // gui independent initialization
     // app specific
-    const QString appversion="2.1.1";
-    const QString appdate="07.02.2020";
+    const QString appversion="2.2.0";
+    const QString appdate="10.02.2020";
     const QString appname="PIHK";
     const QString appauthor="Frank Zimmermann";
     const QString appemail="fz@zenmeister.de";
