@@ -145,12 +145,11 @@ Die neue Prüfungsordnung gliedert die Ausbildung neu und sieht eine etwas ander
 \section{Funktion des Programms}
 Die erste Funktion des Programms ist die Berechnung der Punkte/Noten in den Teilen 1 und 2 der Prüfung und die Berechnung der Gesamtpunktzahl/Gesamtnote.
 
-Dabei ist die Berechnung der Punkte gerade bei einer mündlichen Ergänzungsprüfung (MEPR) von großem Nutzen, da während einer Prüfung  das Berechnungsverfahren recht unübersichtlich ist.
+Dabei ist die Berechnung der Punkte gerade bei einer mündlichen Ergänzungsprüfung (MEPR) von großem Nutzen, da unter dem Zeitdruck einer Prüfung  das Berechnungsverfahren (2:1 Gewichtung) fehleranfällig ist.
 
 Die zweite Funktion des Programms ist eine Simulation der Gesamtergebnisse und der Teilergebnisse in der Teilprüfung T21 (Präsentation und Fachgespräch )  und bei der Vergabe der Punkte in der MEPR (für T22,T23 oder T24).
 
-Damit ist es leicht möglich, Notengrenzen zu erkennen und ggfs. Notengrenzen bei der Vergabe der Punkte zu beachten.
-Ein Klick auf diese Notengrenzen übertragt die Punktzahl in die simulierten Felder (T21b bzw. T2x in der mündlichen Ergänzungsprüfung).
+Mit dieser Simulation ist es leicht möglich, Notengrenzen zu erkennen und ggfs. Notengrenzen bei der Vergabe der Punkte zu beachten. Ein Klick auf diese Notengrenzen überträgt die Punktzahl in die jeweils simulierten Felder (T21b bzw. T2x in der mündlichen Ergänzungsprüfung).
 
 \section{Das Programm}
 
@@ -168,47 +167,49 @@ Das Programm (siehe Abb.\ref{fig:pihk}) gliedert sich grob in 5 Bereiche (A,B,C,
 Hier werden alle bisher erreichten Punktzahlen sowie die in der Prüfung erzielten Punkte eingegeben.
 Weiterhin beinhaltet dieser Bereich auch einen Timer, mit dem man die Vortragszeit abstoppen kann.
 \item[(B)] Rechts oben und in der Mitte befinden sich 2 Fenster zur Anzeige der Simulationsergebnisse.
-\item[(C)] Im mittleren linken Bereich kann der Prüfungsausschuss eingegeben werden und die 1. und 2. Korrektoren sowie die anwesenden Prüfer. Die Prüfer, die hier gelistet werden können im Einstellungsdialog eingegeben werden und werden im System gespeichert.
+\item[(C)] Im mittleren linken Bereich kann der Prüfungsausschuss eingegeben werden und die 1. und 2. Korrektoren sowie die anwesenden Prüfer. Die Prüfer und die Ausschüsse, die hier gelistet werden, können im Einstellungsdialog eingegeben werden und werden im System gespeichert (plist bzw. Registry oder ini).
 \item[(D)] Im unteren linken Bereich werden Daten zur Prüfung und zum Prüfling eingegeben.
 \item[(E)] Im rechten unteren Bereich befinden sich die Funktionen zum Sichern der aktuellen Prüfung und zum Zurücksetzen der aktuellen Prüfung.
 \end{itemize} 
 
 \subsection{Prüfungsbereich Teil 1}
-In den oberen Bereich (A) trägt man die Klausurergebnisse für den Teilbereich~1 ein, der mit 20\% in die Gesamtnote eingeht.
-Dieser Bereich hat keine Relevanz hinsichtlich einer Schwelle für die Bestehensregelung und dient lediglich zur \emph{Anfütterung} von Punkten. Ein \emph{ungenügend} ist hier nicht möglich, denn alle Punkte zählen zu 20\% für die Gesamtnote.
+In den oberen Bereich (A) trägt man die Klausurergebnisse für den Teilbereich~1 ein, der mit 20\% in die Gesamtnote eingeht und schon vor der Prüfung bekannt ist.
 
-\subsection{Prüfungsbereich Teil 2} 
+Dieser Bereich hat keine Relevanz hinsichtlich einer Schwelle für die Bestehensregelung und dient lediglich zur \emph{Anfütterung} von Punkten. Ein \emph{ungenügend} ist hier nicht möglich, denn alle Punkte zählen zu 20\% für die Gesamtnote. Laut Prüfungsverordnung werden zum Bestehen der Gesamtprüfung in diesem Prüfungsbereich keine Anforderungen gestellt.
+
+\subsection{Prüfungsbereich Teil 2}
+Der Prüfungteil 2 untergliedert sich in 4 verschiedene Prüfungsbereiche. Zum Bestehen der Gesamtprüfung müssen hier mindestens 3 Prüfungsbereiche mit ausreichend oder besser abgeschlossen werden und in keinem Prüfungsbereich darf ein ungenügend erzielt worden sein.
+
+Der erste Prüfungsbereich T21, bei dem eine Projektarbeit zu leisten ist, ist aufgeteilt in eine Dokumentation T21a (50\%) und eine Präsentation mit anschließendem Fachgespräch (50\%) T21b und ergibt so die Note von T21.
+
+Bei der letzten Prüfung der IHK geht es im wesentlichen um diesen Prüfungsteil. Die anderen Prüfungsbereiche bestehen aus schon absolvierten Klausuren (T22, T23 und T24 (Wiso)). 
 \subsubsection*{T21}
-Das Ergebnis der Dokumentation liegt meistens schon vor und kann im Feld T21a eingetragen werden.
+Das Ergebnis der Dokumentation liegt in der Regel schon vor und kann im Feld T21a eingetragen werden.
 Das Ergebnis der Präsentation zusammen mit dem Fachgespräch wird im Feld T21b eingetragen.
 Für dieses Feld wird eine Simulation berechnet und im rechten Simulationsfenster dargestellt.
 
-\subsubsection*{Simulation}
+\subsubsection*{Simulation für das Feld T21b}
 Es werden alle möglichen Punktzahlen für die Präsentation+Fachgespräch eingesetzt und nur dann, wenn sich die Note im Teilbereich T21, im Teilbereich 2 oder in der Gesamtbewertung ändert eine Zeile für diese Punktzahl generiert. 
 
 Es gibt auch Fälle, in denen die Punktzahl für die erfolgreiche Gesamtbewertung erreicht ist, aber andere Bedingungen nicht erfüllt sind (z.B. ein Prüfbereich mit \emph{ungenügend} bewertet). Diese Fälle werden mit einem Minuszeichen vor dem G in der Simulation gekennzeichnet. Ein Pluszeichen kennzeichnet eine defacto bestandene Prüfung.
 
-Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl in das entsprechende Fenster.
+Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl ganz links in das entsprechende Fenster (T21b).
+
 \subsubsection*{T22,T23 und T24}
-Ebenfalls sind die Klausurergebnisse für die Bereiche T22, T23 und T24 (Wiso) schon bekannt und können in die Felder T22, T23 und T24(Wiso) eingetragen werden. 
+Ebenfalls sind die Klausurergebnisse für die Bereiche T22, T23 und T24 (Wiso) in der Regel schon bekannt und können in die Felder eingetragen werden. 
 
 Falls die Bedingungen für eine mündliche Prüfung vorliegen, kann in den Prüfungsbereichen T22, T23 oder T24 genau eine mündliche Ergänzungsprüfung durchgeführt werden. Sofern dies der Fall ist, werden die Selektoren unter diesen Bereichen aktiviert und können ausgewählt werden (manchmal sind 2 Prüfbereiche für eine mündliche Ergänzungsprüfung möglich und der Prüfling muss sich für einen Prüfungsbereich entscheiden).
 
-Es erscheint dann ein weiteres Feld zur Eingabe des Ergebnisses der mündlichen Ergänzungsprüfung.
-Für dieses Feld wird auf der rechten Seite ebenfalls eine Simulation berechnet.
+Sowie eines der Selektoren ausgewählt ist, erscheint dann ein weiteres Feld zur Eingabe des Ergebnisses der mündlichen Ergänzungsprüfung und wird immer mit 0 initialisiert.
 
-\subsubsection*{Simulation}
-Es werden alle möglichen Punktzahlen für die mündliche Ergänzungsprüfung eingesetzt und nur dann, wenn sich die Note im aktuellen Teilbereich, im Teilbereich 2 oder in der Gesamtbewertung ändert eine Zeile für diese Punktzahl generiert. 
-
-Es gibt auch Fälle, in denen die Punktzahl für die erfolgreiche Gesamtbewertung erreicht ist, aber andere Bedingungen nicht erfüllt sind (z.B. ein Prüfbereich mit \emph{ungenügend} bewertet). Diese Fälle werden mit einem Minuszeichen vor dem G in der Simulation gekennzeichnet. Ein Pluszeichen kennzeichnet eine defacto bestandene Prüfung.
-
-Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl in das entsprechende Fenster.
+\subsubsection*{Simulation für das Feld T22/T23/T24}
+Für dieses Feld T2x wird auf der rechten Seite ebenfalls eine Simulation berechnet und die Konsequenzen bei den anderen Noten aufgezeigt. Ein Klicken befördert wieder die simulierte Punktezahl in das gewählte Feld T2x.
 
 \subsection{Prüfungsausschuss}
 Der Prüfungsausschuss kann in diesem Bereich angewählt werden und es erscheint eine Liste der Prüfer.
-Diese Prüferliste muss einmalig in den Einstellungen vorgenommen werden und wird dann beim Verlassen des Programms abgespeichert und steht nächstes mal zur Verfügung.
+Diese Prüferliste muss einmalig in den Einstellungen vorgenommen werden und wird dann beim Verlassen des Programms (wahlweise) abgespeichert und steht dann nächstes mal gleich zur Verfügung.
 
-In der Prüferliste kann man duch Anklicken die 1. und 2. Korrektoren auswählen und die anwesenden Prüfer selektieren. Wird dies nicht ordnungsgemäß durchgeführt (z.B. nur 2 anwesende Prüfer oder derselbe Korrektor für 1. und 2. Korrektur, etc.), so erscheint beim Abspeichern später eine Warnmeldung.
+In der Prüferliste kann man duch Anklicken die 1. und 2. Korrektoren auswählen und die anwesenden Prüfer selektieren. Wird dies nicht ordnungsgemäß durchgeführt (z.B. nur 2 anwesende Prüfer oder derselbe Korrektor für 1. und 2. Korrektur, etc.), so erscheint beim Abspeichern später eine Warnmeldung, die man aber auch optional ignorieren kann. Die Daten dienen hier nur zum Erfassen der vollständigen Prüfungsdaten beim Abspeichern als \emph{JSON}--Datei.
 
 \subsection{Prüfungsinformationen}
 Links unten findet man Angaben zur Prüfung, wie Datum der Prüfung und Name und Nummer des Prüflings.
@@ -222,8 +223,14 @@ Der aktuelle Ordner kann dabei mit dem \framebox{Wähle...}--Button eingestellt 
 
 Der \framebox{Sichern}--Button sichert die Datei mit dem eingestellten Muster für den Dateinamen (s.a. Abschnitt \emph{Einstellungen}) und wird anschließend deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
 
+Die gemachten Einstellungen zum Dateinamen werden beim Beenden des Programms (optional) abgespeichert und stehen beim nächsten Start wieder zur Verfügung.
+
 \subsection{Timer}
-Die Länge des Timers kann im Einstellungsdialog von 1 bis 99 eingestellt werden. Bei Überschreiten der eingestellten Zeit beginnt der Zähler wieder bei 0 und man kann direkt die überzogene Zeit ablesen.
+Mit dem Timer hat man die Möglichkeit, die Vortragslänge abzustoppen.
+Die Länge des Timers kann im Einstellungsdialog von 1 bis 99 eingestellt werden und ist anfänglich auf 15 Minuten eingestellt.
+
+Bei Überschreiten der eingestellten Zeit beginnt der Zähler wieder bei 0 und man kann direkt die überzogene Zeit ablesen.
+
 Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \framebox{Start} weiter laufen gelassen werden. Mit \framebox{Reset} setzt man den Timer wieder zurück.
 
 \section{Einstellungen}
@@ -235,8 +242,9 @@ Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \fr
   \label{fig:einstellungen}
 \end{figure}
 
-Der Einstellungsdialog wird durch einen entsprechenden Menüeintrag angezeigt.
-Änderungen in diesem Einstellungsdialog sind immer sofort gültig und die alten Werte werden nicht zwischengespeichert.
+Der Einstellungsdialog wird durch einen entsprechenden (Applikations--)Menüeintrag (macOS) bzw. Im Datei--Menü (Windows) angezeigt.
+
+Änderungen in diesem Einstellungsdialog sind \emph{immer sofort gültig} und die alten Werte werden nicht zwischengespeichert.
 
 Hier kann man das Namensmuster des Dateinamens einstellen und die Trennzeichen im Namen definieren.
 
@@ -262,61 +270,35 @@ Nun kann man entweder
 
 Den Platzhaltertext der neuen Zeile kann man dann löschen und eigenen Text einfügen.
 
+\begin{marker}
 Das Programm erwartet auf der ersten Ebene immer die Fachrichtung, als 2. Ebene einen Prüfungsauschuss und als 3. Ebene den Namen des Prüfers. Weitere Ebenen können hinzugefügt werden (z.B. Kontaktdaten,etc.) werden aber nicht angezeigt und ausgewertet.
+\end{marker}
 
 Das Programm ist nicht vollständig sicher gemacht und scheitert bei unsinnigen Eingaben.
 
 Auch wenn eine Prüfung abgespeichert wird und später diese Daten im Prüfungsauschuss gelöscht werden und dann diese Datei wieder geladen wird, kann zwar der Name eines unbekannten Prüfers wieder eingefügt werden, aber gelöschte Prüfungsausschüsse dürften zu Problemen führen.
 
-% Ohne mündliche Ergänzungsprüfung werden nur ganze Zahlen als Punktwerte eingetragen und am Ende für die 3 Prüfbereiche berechnet;
-% hier erfolgt dann die einzige vorzunehmende Rundung des Ergebnisses.
-
-% Anders sieht es beim Vorhandensein einer mündlichen Ergänzunmgsprüfung aus. Diese geht mit ihrer ganzzahligen Punktzahl nur zu einem Drittel in die Punktzahl des Prüfbereichs ein. Das Ergebnis für diesen Prüfbereich ergibt sich daher durch eine Division und müsste
-% in das IHK--Prüfungsformular eingetragen werden. Hierbei soll eine Rundung auf einen ganzahligen Wert erfolgen. Die weitere Rechnung ergibt dann wieder den Wert für alle Prüfbereiche und muss muss daher ebenfalls gerundet werden.
-
-% Bei einer korrekten 2-maligen Rundung wird also zum ersten mal bei der Berechnung des nachgeprüften Prüfbereiches inklusive der mündlichen Ergänzungsprüfung gerundet und das zweite mal bei der Berechnung aller Prüfungsbereiche.
-% \vskip2ex
-
-% \fcolorbox{black}{listinggray}{\parbox{\linewidth}{%
-% \vskip1ex
-% Gegeben seien beispielsweise folgende Punkte im Teilbereich B:
-% \begin{center}GA1=30,  GA2=49,  WISO=82, MEPR in GA2E= 60\end{center}
-% Mit \emph{einer} Rundung ergäbe sich als Note für Teilbereich B =49 Punkte und damit mangelhaft:
-% $$Round( ( ((GA2*2+MEPR)/3) * 2 + GA1 * 2 + WISO)/5)$$
-% $$Round( ( ((49*2+60)/3) * 2 + 30*2+82)/5)=49,47=49$$
-% Mit \emph{zwei} Rundungen ergibt sich als Note für den Teilbereich B =50 Punkte und damit ausreichend:
-% $$Round( ( Round((GA2*2+MEPR)/3)*2+GA1*2+WISO)/5) $$
-% $$Round( ( Round((49*2+60)/3) * 2 + 30*2+82 )/5)=49,6=50$$
-
-% }}
-% \vskip2ex
-
-% Das zeigt, dass es für den Prüfling  manchmal sehr entscheidend ist, wann und wo gerundet wird!
-
-% Die doppelte Rundung ist aus dem \emph{Prüfungskompass, IHK--Hannover (Handbuch zum Prüfungswesen~1,2014,S.147, ISBN:978-3-942951-13-5)} entnommen.
-
-% Das Programm führt nach dieser Empfehlung daher zwei Rundungen aus.
-
 \section{Benutzung}
-Das Programm erfordert keine Installation und kann von jedem Ort gestartet werden.
 
-Ein empfohlener Arbeitsfluss (kann ansonsten beliebig sein):
+Ein empfohlener Arbeitsfluss:
 
 \begin{enumerate}
-\item Erstmalig im Einstellungsdialog den Prüfungsausschuss eintragen und mit Namen füllen.
-\item Im Einstellungsdialog das Dateinamensmuster definieren.
-\item Prüfungsausschuss wählen
-\item Anwesende Prüfer und 1.-- und 2.--Korrektoren wählen
-\item Prüfungsdatum, Name des Prüflings und ggfs. Nummer eintragen
-\item (Optional) Eigenen Ordner für Prüfung wählen
-\item T1, T21a, T22,T23,T24 eintragen
-\item Nach Fachgespräch (unter Berücksichtigung der Simulation) die Punkte in T21b eintragen.
-\item Bei möglicher MEPR: Prüfungsbereich anwählen und (Simulation!) Punkte eintragen T2x
-\item Am Ende auf den \framebox{Sichern}--Button drücken und die Daten werden als JSON--Datei abgespeichert.
+\item Erstmalig im Einstellungsdialog den Prüfungsausschuss eintragen und mit Namen des Ausschusses und der Prüfer füllen.
+\item[1] Im Einstellungsdialog das Dateinamensmuster definieren, um die gesicherten Dateien gut zu beschreiben.
+\item[2] Prüfungsausschuss wählen
+\item[3] Anwesende Prüfer und 1.-- und 2.--Korrektoren wählen
+\item[4] Prüfungsdatum, Name des Prüflings und ggfs. Nummer eintragen
+\item[5] (Optional) Eigenen Ordner für Prüfungdateien erzeugen/wählen
+\item[6] T1, T21a, T22,T23,T24 eintragen
+\item[7] Nach Fachgespräch (unter Berücksichtigung der Simulation) die Punkte in T21b eintragen.
+\item[8] Bei möglicher MEPR: Prüfungsbereich anwählen und (Simulation!) Punkte eintragen T2x
+\item[9] Am Ende auf den \framebox{Sichern}--Button drücken und die Daten werden als JSON--Datei abgespeichert.
+\item[10] Ein Reset der Prüfungsdaten durchführen (standardmäßig bleiben die anwesenden Prüfer eingetragen).
+\item[11] Weiter bei Punkt 4
 \end{enumerate}
 
 \section{Ausgabe}
-Die Datei, die gespeichert wird, hat folgenden Inhalt:
+Die \emph{JSON}--Datei, die gespeichert wird, hat folgenden Inhalt:
 \nopagebreak[4]
 
 \begin{minipage}[t]{\textwidth}
@@ -359,14 +341,15 @@ Die Datei, die gespeichert wird, hat folgenden Inhalt:
 \end{minipage}
 
 \section{Plattform}
-Das Programm wurde sowohl für Microsoft Windows als auch für Apple OSX programmiert und steht für beide Plattformen zur Verfügung.
+Das Programm wurde sowohl für Microsoft Windows als auch für Apple OSX programmiert und steht für beide Plattformen zur Verfügung. 
 
-Getestet und entwickelt wurde für MS Windows auf Win~10 und für Apple~OSX auf Big Sur(11.x).
+Entwickelt wurde das Programm hauptsächlich auf macOS 10.14.
 
+Getestet  wurde für MS Windows auf Win~10 und für Apple~OSX auf Big Sur(11.x).
 Es wird für MS~Windows als \texttt{.exe} und für Apple~OSX als \texttt{.dmg} Datei zur Verfügung gestellt. 
 
 \section{Programmpflege}
-Das Programm wurde ohne finanzielles Interesse zur Erleichterung der eigenen Arbeit erstellt.
+Das Programm wurde ohne finanzielles Interesse zur Erleichterung der eigenen Arbeit im Prüfungsausschuss erstellt.
 Das Programm kann von anderen frei genutzt werden, eine Verantwortung zur Pflege des Programms erwächst dem Autor deshalb nicht.
 
 Sollten dem Autor Fehler gemeldet werden, so werden diese \emph{nach Möglichkeit} korrigiert. Hinweise und Fehler sollten per Email an die hier angegebene Adresse gesendet werden.
@@ -383,7 +366,7 @@ Es sei darauf hingewiesen, dass die IHK--Hannover keinerlei Verantwortlichkeiten
 \hline
 Datum & Änderung &Version\\
 \hline
-5.11.2021&	Anpassung an neue Prüfungsordnung	&  3.0.0\\
+6.11.2021&	Anpassung an neue Prüfungsordnung	&  3.0.0\\
 11.2.2020&	Windows Version						&  2.2.0\\
 4.7.2016&	Initiale, ungetestete Version		&  2.1.0\\
 23.6.2016&	XPlattform-Version, doppelte Rundung&  2.0.1\\
@@ -394,9 +377,14 @@ Datum & Änderung &Version\\
 \end{table}
 
 \begin{marker}
-In der heutigen Zeit verlangen viele Platformen eine relativ teure Registrierung für Entwickler, damit die Programme leicht auf den Platformen installiert werden können. Erfolgt keine Signierung und Authentfizierung melden die Platformen i.a. gefährlichen Code. Dieses Programm enthält keinen Schadcode und kann problemlos geöffnet werden (sofern es aus seriösen Quellen persönlich/Github bezogen worden ist). Bei macOS öffnet man das Kontextmenü direkt im Programmordner und bestätigt, dass man dieses Programm öffnen möchte.
-Bei weiteren Starts wird keine Abfrage mehr vorgenommen. (Ein Doppelklick führt dagegen nur zu einer Sicherheitswarnung, die es verbietet dieses Programm zu öffnen).
-Bei Windows gibt es ähnliche Sicherheitsvorkehrungen, die man aber durchaus auch umgehen kann.
+In der heutigen Zeit verlangen viele Platformen eine relativ teure Registrierung für Entwickler, damit die Programme leicht auf den Platformen installiert werden können (Signierung/Notarisierung). Erfolgt keine Signierung und Authentfizierung melden die Platformen standardmäßig i.a. gefährlichen Code!. Dieses Programm enthält keinen Schadcode und kann problemlos geöffnet werden.
+Erhältlich ist das Programm entweder direkt vom Autor oder über die Github--Seite.
+Das Programm kann auch gegen einen Hashcode verglichen werden, was das Risiko weiter minimiert.
+Da das Programm aber hauptsächlig zur eigenen Verwendung geschrieben wurde, wird auf eine Signierung und Notarisierung verzichtet.
+
+Bei macOS kann man erstmalig in das Programm--Verzeichnis gehen und mit Öffnen des Kontextmenüs auf das Programm PIHK bestätigen, dass man dieses Programm öffnen möchte.
+Bei weiteren Starts wird dann keine Abfrage mehr vorgenommen. (Ein Doppelklick führt dagegen nur zu einer Sicherheitswarnung, die es verbietet dieses Programm zu öffnen).
+Bei Windows gibt es ähnliche Sicherheitsvorkehrungen, die man aber durchaus auch umgehen kann, wenn man der Quelle vertrauen schenkt.
 \end{marker}
 
 \end{document}
