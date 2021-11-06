@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>955</width>
-    <height>621</height>
+    <width>907</width>
+    <height>726</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -17,11 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Pihk Version 2.0.0</string>
+   <string>Pihk Version 3.0.0</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>Icon1024.ico</normaloff>Icon1024.ico</iconset>
+   <iconset theme="myLogoPIHK3a.icns">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
@@ -36,7 +36,7 @@
    <widget class="QPushButton" name="buttonSimPRFG">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>450</x>
       <y>20</y>
       <width>431</width>
       <height>32</height>
@@ -49,7 +49,7 @@
    <widget class="QPushButton" name="buttonSimMEPR">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>450</x>
       <y>270</y>
       <width>431</width>
       <height>32</height>
@@ -63,280 +63,165 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>10</y>
-      <width>471</width>
-      <height>141</height>
+      <y>20</y>
+      <width>171</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>Ergebnisse der Dokumentation+Fachgespräch</string>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
     <property name="title">
-     <string> Teilprüfung A  </string>
+     <string/>
     </property>
-    <widget class="QDoubleSpinBox" name="spinboxDocumentation">
+    <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>30</y>
-       <width>51</width>
-       <height>24</height>
+       <x>0</x>
+       <y>0</y>
+       <width>151</width>
+       <height>21</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>51</width>
-       <height>0</height>
-      </size>
      </property>
      <property name="font">
       <font>
        <pointsize>12</pointsize>
       </font>
      </property>
-     <property name="autoFillBackground">
+     <property name="text">
+      <string>Teil 1</string>
+     </property>
+     <property name="wordWrap">
       <bool>true</bool>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-     <property name="buttonSymbols">
-      <enum>QAbstractSpinBox::PlusMinus</enum>
-     </property>
-     <property name="decimals">
-      <number>0</number>
-     </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>30</y>
-       <width>241</width>
-       <height>20</height>
+       <x>60</x>
+       <y>10</y>
+       <width>81</width>
+       <height>34</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Dokumentation</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QDoubleSpinBox" name="spinboxExamination">
-     <property name="geometry">
-      <rect>
-       <x>400</x>
-       <y>60</y>
-       <width>51</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>51</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-     <property name="decimals">
-      <number>0</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>60</y>
-       <width>241</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Präsentation+Fachgespräch</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>110</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Ergebnis</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelPointsA">
-     <property name="geometry">
-      <rect>
-       <x>410</x>
-       <y>110</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>0</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelGradeA">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>110</y>
-       <width>211</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>ungenügend</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="startTimer">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>Startet/Stoppt den 15min Zähler</string>
-     </property>
-     <property name="text">
-      <string>Start</string>
-     </property>
-    </widget>
-    <widget class="QLCDNumber" name="lcdNumber">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>40</y>
-       <width>51</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="lineWidth">
-      <number>1</number>
-     </property>
-     <property name="digitCount">
-      <number>3</number>
-     </property>
-     <property name="segmentStyle">
-      <enum>QLCDNumber::Flat</enum>
-     </property>
-     <property name="value" stdset="0">
-      <double>0.000000000000000</double>
-     </property>
-    </widget>
-    <widget class="QProgressBar" name="progressBar">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>441</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
-     <property name="maximum">
-      <number>15</number>
-     </property>
-     <property name="value">
-      <number>-1</number>
-     </property>
-     <property name="textVisible">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="resetTimer">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>Setzt 15min Zähler auf 0</string>
-     </property>
-     <property name="text">
-      <string>Reset</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_8">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>51</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string> 15min  </string>
-     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QDoubleSpinBox" name="spinboxGa0">
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>51</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Ergebnis der ersten Klausur in Teil 1</string>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="decimals">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_24">
+        <property name="maximumSize">
+         <size>
+          <width>51</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>T1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>160</y>
-      <width>471</width>
-      <height>141</height>
+      <y>70</y>
+      <width>411</width>
+      <height>221</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>Ergebnisse der Klausuren</string>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
     <property name="title">
-     <string> Teilprüfung B  </string>
+     <string/>
     </property>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="lineWidth">
+      <number>-2</number>
+     </property>
+     <property name="text">
+      <string>Teil 2</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
     <widget class="QDoubleSpinBox" name="spinboxGa1">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>30</y>
+       <x>180</x>
+       <y>110</y>
        <width>51</width>
        <height>24</height>
       </rect>
@@ -355,7 +240,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="toolTip">
@@ -374,8 +259,8 @@
     <widget class="QLabel" name="label_20">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>10</y>
+       <x>180</x>
+       <y>90</y>
        <width>51</width>
        <height>20</height>
       </rect>
@@ -386,8 +271,13 @@
        <height>16777215</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
-      <string>GA1</string>
+      <string>T22</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -396,14 +286,19 @@
     <widget class="QLabel" name="label_21">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>10</y>
+       <x>260</x>
+       <y>90</y>
        <width>51</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
-      <string>GA2</string>
+      <string>T23</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -412,8 +307,8 @@
     <widget class="QDoubleSpinBox" name="spinboxGa2">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>30</y>
+       <x>260</x>
+       <y>110</y>
        <width>51</width>
        <height>24</height>
       </rect>
@@ -426,7 +321,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="toolTip">
@@ -445,8 +340,8 @@
     <widget class="QDoubleSpinBox" name="spinboxWiso">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>30</y>
+       <x>340</x>
+       <y>110</y>
        <width>51</width>
        <height>24</height>
       </rect>
@@ -459,7 +354,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="toolTip">
@@ -478,11 +373,16 @@
     <widget class="QLabel" name="label_22">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>10</y>
+       <x>340</x>
+       <y>90</y>
        <width>51</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>WISO</string>
@@ -494,24 +394,40 @@
     <widget class="QLabel" name="label_23">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>60</y>
-       <width>91</width>
+       <x>110</x>
+       <y>140</y>
+       <width>71</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
-      <string> MüErgPrüfung  </string>
+      <string>MüErgPrü.</string>
      </property>
     </widget>
-    <widget class="QLabel" name="labelGradeB">
+    <widget class="QLabel" name="labelGradeT2">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>110</y>
-       <width>201</width>
-       <height>31</height>
+       <x>260</x>
+       <y>190</y>
+       <width>92</width>
+       <height>21</height>
       </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>ungenügend</string>
@@ -523,28 +439,45 @@
     <widget class="QLabel" name="label_25">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>110</y>
-       <width>81</width>
-       <height>31</height>
+       <x>140</x>
+       <y>190</y>
+       <width>111</width>
+       <height>21</height>
       </rect>
      </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
-      <string>Ergebnis</string>
+      <string>Ergebnis Teil 2</string>
      </property>
     </widget>
     <widget class="QLabel" name="labelPointsB">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>110</y>
+       <x>357</x>
+       <y>190</y>
        <width>41</width>
-       <height>31</height>
+       <height>20</height>
       </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="text">
@@ -560,8 +493,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>80</y>
+       <x>340</x>
+       <y>160</y>
        <width>51</width>
        <height>24</height>
       </rect>
@@ -574,7 +507,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="toolTip">
@@ -596,8 +529,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>80</y>
+       <x>260</x>
+       <y>160</y>
        <width>51</width>
        <height>24</height>
       </rect>
@@ -610,7 +543,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="toolTip">
@@ -632,8 +565,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>80</y>
+       <x>180</x>
+       <y>160</y>
        <width>51</width>
        <height>24</height>
       </rect>
@@ -652,7 +585,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="toolTip">
@@ -674,8 +607,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>60</y>
+       <x>190</x>
+       <y>140</y>
        <width>19</width>
        <height>18</height>
       </rect>
@@ -693,8 +626,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>60</y>
+       <x>270</x>
+       <y>140</y>
        <width>19</width>
        <height>18</height>
       </rect>
@@ -712,8 +645,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>60</y>
+       <x>350</x>
+       <y>140</y>
        <width>19</width>
        <height>18</height>
       </rect>
@@ -725,153 +658,380 @@
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>22</y>
+       <width>262</width>
+       <height>72</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Dokumentation (T21a)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDoubleSpinBox" name="spinboxDocumentation">
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Ergebnis der Dokumentation</string>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::PlusMinus</enum>
+        </property>
+        <property name="decimals">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Präsentation+Fachgespräch (T21b)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="spinboxExamination">
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Summe aus Präsentation un Fachgespräch</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="decimals">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>309</x>
+       <y>0</y>
+       <width>91</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Ergebnis aus Dokumentation und PRFG</string>
+     </property>
+     <property name="title">
+      <string>T21</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>26</y>
+        <width>91</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="topMargin">
+        <number>3</number>
+       </property>
+       <property name="bottomMargin">
+        <number>3</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="labelGradeT21">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Ergebnis aus Dokumentation und PRFG</string>
+         </property>
+         <property name="text">
+          <string>ungenügend</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelPointsT21">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Ergebnis aus Dokumentation und PRFG</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : red</string>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>91</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="title">
+      <string>Prüfungsbereiche</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>71</width>
+        <height>108</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>T21 =</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_t21">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>T22 =</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_t22">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_12">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>T23 =</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_t23">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>T24 =</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_t24">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>310</y>
-      <width>471</width>
-      <height>201</height>
+      <y>300</y>
+      <width>411</width>
+      <height>351</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>Ergebnisse der Prüfung</string>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
     <property name="title">
-     <string> Gesamtergebnis  </string>
+     <string>Gesamtergebnis</string>
     </property>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelResultT2">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>151</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Prüfungsdatum</string>
-     </property>
-    </widget>
-    <widget class="QDateEdit" name="pDate">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>151</width>
-       <height>24</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_11">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>110</y>
-       <width>97</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="palette">
-      <palette>
-       <active>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </active>
-       <inactive>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </inactive>
-       <disabled>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>127</red>
-           <green>127</green>
-           <blue>127</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </disabled>
-      </palette>
-     </property>
-     <property name="text">
-      <string>Teilprüfung A</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelGradeResultA">
-     <property name="geometry">
-      <rect>
-       <x>252</x>
-       <y>110</y>
-       <width>141</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="palette">
-      <palette>
-       <active>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </active>
-       <inactive>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </inactive>
-       <disabled>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>127</red>
-           <green>127</green>
-           <blue>127</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </disabled>
-      </palette>
-     </property>
-     <property name="text">
-      <string>ungenügend</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelResultA">
-     <property name="geometry">
-      <rect>
-       <x>410</x>
-       <y>110</y>
+       <x>357</x>
+       <y>290</y>
        <width>41</width>
        <height>20</height>
       </rect>
@@ -915,65 +1075,9 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>0</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelResultB">
-     <property name="geometry">
-      <rect>
-       <x>410</x>
-       <y>140</y>
-       <width>41</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="palette">
-      <palette>
-       <active>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </active>
-       <inactive>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </inactive>
-       <disabled>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>127</red>
-           <green>127</green>
-           <blue>127</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </disabled>
-      </palette>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -986,8 +1090,8 @@
     <widget class="QLabel" name="label_15">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>140</y>
+       <x>140</x>
+       <y>290</y>
        <width>97</width>
        <height>19</height>
       </rect>
@@ -1029,17 +1133,24 @@
        </disabled>
       </palette>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>Teilprüfung B</string>
+      <string>Teilprüfung 2</string>
      </property>
     </widget>
-    <widget class="QLabel" name="labelGradeResultB">
+    <widget class="QLabel" name="labelGradeResultT2">
      <property name="geometry">
       <rect>
-       <x>252</x>
-       <y>140</y>
-       <width>141</width>
-       <height>20</height>
+       <x>260</x>
+       <y>290</y>
+       <width>93</width>
+       <height>19</height>
       </rect>
      </property>
      <property name="palette">
@@ -1079,6 +1190,13 @@
        </disabled>
       </palette>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>ungenügend</string>
      </property>
@@ -1089,8 +1207,8 @@
     <widget class="QLabel" name="labelResultAll">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>170</y>
+       <x>357</x>
+       <y>320</y>
        <width>41</width>
        <height>20</height>
       </rect>
@@ -1134,7 +1252,9 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1147,10 +1267,10 @@
     <widget class="QLabel" name="labelGradeResult">
      <property name="geometry">
       <rect>
-       <x>252</x>
-       <y>170</y>
-       <width>141</width>
-       <height>20</height>
+       <x>260</x>
+       <y>320</y>
+       <width>93</width>
+       <height>19</height>
       </rect>
      </property>
      <property name="palette">
@@ -1190,6 +1310,13 @@
        </disabled>
       </palette>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>ungenügend</string>
      </property>
@@ -1200,8 +1327,8 @@
     <widget class="QLabel" name="label_19">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>170</y>
+       <x>140</x>
+       <y>320</y>
        <width>97</width>
        <height>19</height>
       </rect>
@@ -1243,6 +1370,13 @@
        </disabled>
       </palette>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>Gesamt</string>
      </property>
@@ -1250,22 +1384,173 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>70</y>
-       <width>271</width>
-       <height>31</height>
+       <x>10</x>
+       <y>220</y>
+       <width>381</width>
+       <height>33</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="label_10">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="text">
-         <string> Prüflingsnummer  </string>
+         <string>Prüfling</string>
         </property>
        </widget>
       </item>
       <item>
+       <widget class="QLineEdit" name="pname">
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Name des Prüflings: Vorname Nachname</string>
+        </property>
+        <property name="inputMask">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Max Mustermann</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QComboBox" name="comboBoxExam">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Auswahl der Fachrichtung</string>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>FI Systemintegration</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FI Anwendungsentwicklung</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FI Daten- und Prozeßanalyse</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FI Digitale Vernetzung</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBoxExam_2">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>30</y>
+       <width>161</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Auswahl des Prüfungsausschuss</string>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>FISI 5</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FISI 6</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>250</y>
+       <width>381</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <property name="labelAlignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="formAlignment">
+       <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Prüflingsnummer</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
        <widget class="QLineEdit" name="pnummer">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="toolTip">
          <string>IHK Prüfungsnummer</string>
         </property>
@@ -1273,7 +1558,25 @@
          <string/>
         </property>
         <property name="inputMask">
-         <string>9999999999</string>
+         <string/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="cursorPosition">
+         <number>0</number>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="placeholderText">
+         <string>1234567890</string>
+        </property>
+        <property name="cursorMoveStyle">
+         <enum>Qt::LogicalMoveStyle</enum>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -1282,47 +1585,105 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>31</y>
-       <width>271</width>
-       <height>31</height>
+       <x>9</x>
+       <y>290</y>
+       <width>121</width>
+       <height>63</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_5">
+     <layout class="QFormLayout" name="formLayout_2">
+      <property name="labelAlignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="text">
-         <string> Prüfling  </string>
+         <string>Prüfungsdatum</string>
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QLineEdit" name="pname">
-        <property name="toolTip">
-         <string>Name des Prüflings: Vorname Nachname</string>
+      <item row="1" column="0">
+       <widget class="QDateEdit" name="pDate">
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
         </property>
-        <property name="inputMask">
-         <string/>
+        <property name="toolTip">
+         <string>Datum der Prüfung</string>
+        </property>
+        <property name="displayFormat">
+         <string>dd.MM.yyyy</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
+    <widget class="QTableView" name="tableView">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>381</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Prüfer werden namentlich im Einstellungsmenü eingepflegt</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+      <bool>true</bool>
+     </attribute>
+    </widget>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>450</x>
       <y>550</y>
-      <width>911</width>
+      <width>421</width>
       <height>33</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QPushButton" name="saveFile">
+      <widget class="QLabel" name="label_9">
        <property name="text">
-        <string>Sichern</string>
+        <string>Datei</string>
        </property>
       </widget>
      </item>
@@ -1331,6 +1692,22 @@
        <property name="toolTip">
         <string>Vollständiger Dateiname</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>aktuelle Datei</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="saveFile">
+       <property name="toolTip">
+        <string>Sichere in die angegebene Datei</string>
+       </property>
+       <property name="text">
+        <string>Sichern</string>
+       </property>
       </widget>
      </item>
     </layout>
@@ -1338,17 +1715,17 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>450</x>
       <y>520</y>
-      <width>911</width>
-      <height>30</height>
+      <width>421</width>
+      <height>33</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="label_27">
        <property name="text">
-        <string> In vorhandenen Ordner  </string>
+        <string>Ordner</string>
        </property>
       </widget>
      </item>
@@ -1357,6 +1734,22 @@
        <property name="toolTip">
         <string>Existierender Ordner im Home-Verzeichnis</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>aktueller Ordner</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_SelectDir">
+       <property name="toolTip">
+        <string>Wahl des Default-Ordners</string>
+       </property>
+       <property name="text">
+        <string>Wähle...</string>
+       </property>
       </widget>
      </item>
     </layout>
@@ -1364,11 +1757,19 @@
    <widget class="QListView" name="listViewPRFG">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>60</y>
+      <x>450</x>
+      <y>50</y>
       <width>431</width>
-      <height>201</height>
+      <height>211</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>Zeigt die Grenzen (Präs.+Fach.) für eine Notenänderung an</string>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
@@ -1386,11 +1787,19 @@
    <widget class="QListView" name="listViewMEPR">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>310</y>
+      <x>450</x>
+      <y>300</y>
       <width>431</width>
-      <height>201</height>
+      <height>211</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>Zeigt die Grenzen (Mü.Erg.Prüfung) für eine Notenänderung an</string>
     </property>
     <property name="horizontalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1399,8 +1808,392 @@
      <enum>QAbstractItemView::SingleSelection</enum>
     </property>
    </widget>
+   <widget class="QSplitter" name="splitter">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>590</y>
+      <width>421</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <widget class="QPushButton" name="pushButton_DeleteAll">
+     <property name="minimumSize">
+      <size>
+       <width>127</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>Setzt die Daten für den Prüfling zurück</string>
+     </property>
+     <property name="text">
+      <string>Prüfling Reset</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>85</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Email...</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButtonIhk">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>145</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Zeige IHK Seite...</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QCheckBox" name="checkBoxAll">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>620</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Setzt auch alle Prüfer auf NICHT anwesend</string>
+    </property>
+    <property name="text">
+     <string>Incl. anwesende Prüfer</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>0</y>
+      <width>801</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>15</number>
+    </property>
+    <property name="value">
+     <number>-1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_minutes">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>0</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>15min</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>21</y>
+      <width>231</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout_4">
+     <property name="labelAlignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="formAlignment">
+      <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QPushButton" name="startTimer">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Startet/Stoppt den konfigurierbaren Zähler</string>
+         </property>
+         <property name="text">
+          <string>Start</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="resetTimer">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Setzt konfigurierbaren Zähler auf 0</string>
+         </property>
+         <property name="text">
+          <string>Reset</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLCDNumber" name="lcdNumber">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Zeigt den Timerwert/Überschreitung an</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>1</number>
+       </property>
+       <property name="digitCount">
+        <number>3</number>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Flat</enum>
+       </property>
+       <property name="value" stdset="0">
+        <double>0.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>620</y>
+      <width>259</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_6">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_info1">
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: red</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_info2">
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: red</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>907</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatei">
+    <property name="title">
+     <string>Datei</string>
+    </property>
+    <addaction name="actionOeffnen"/>
+    <addaction name="actionSichern"/>
+    <addaction name="actionSichernAls"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionPreferences"/>
+    <addaction name="actionQuit_2"/>
+   </widget>
+   <widget class="QMenu" name="menuAnsicht">
+    <property name="title">
+     <string>Ansicht</string>
+    </property>
+    <addaction name="actionAusgabeblatt"/>
+   </widget>
+   <widget class="QMenu" name="menuHilfe">
+    <property name="title">
+     <string>Hilfe</string>
+    </property>
+    <addaction name="actionRegularien"/>
+    <addaction name="actionLizenz"/>
+   </widget>
+   <addaction name="menuDatei"/>
+   <addaction name="menuAnsicht"/>
+   <addaction name="menuHilfe"/>
+  </widget>
+  <action name="actionOeffnen">
+   <property name="text">
+    <string>Öffnen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSichern">
+   <property name="text">
+    <string>Sichern</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSichernAls">
+   <property name="text">
+    <string>Sichern als...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionUpdates">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Nach Updates suchen...</string>
+   </property>
+  </action>
+  <action name="actionRegularien">
+   <property name="text">
+    <string>Regularien</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionLizenz">
+   <property name="text">
+    <string>Lizenz</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>Über</string>
+   </property>
+   <property name="toolTip">
+    <string>Über PIHK</string>
+   </property>
+  </action>
+  <action name="actionAusgabeblatt">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Ausgabeblatt</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Einstellungen...</string>
+   </property>
+   <property name="toolTip">
+    <string>Einstellungen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
+   </property>
+  </action>
+  <action name="actionQuit_2">
+   <property name="text">
+    <string>Beenden</string>
+   </property>
+   <property name="toolTip">
+    <string>Beenden</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -1415,14 +2208,13 @@
   <tabstop>spinboxGa1E</tabstop>
   <tabstop>spinboxGa2E</tabstop>
   <tabstop>spinboxWisoE</tabstop>
+  <tabstop>resetTimer</tabstop>
+  <tabstop>startTimer</tabstop>
   <tabstop>pDate</tabstop>
   <tabstop>pname</tabstop>
   <tabstop>pnummer</tabstop>
-  <tabstop>folder</tabstop>
   <tabstop>path</tabstop>
-  <tabstop>startTimer</tabstop>
-  <tabstop>resetTimer</tabstop>
-  <tabstop>saveFile</tabstop>
+  <tabstop>folder</tabstop>
   <tabstop>buttonSimPRFG</tabstop>
   <tabstop>listViewPRFG</tabstop>
   <tabstop>buttonSimMEPR</tabstop>

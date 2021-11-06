@@ -1,0 +1,60 @@
+FI Anwendungsentwicklung   		0	0	0
+    Ausschuss1                		0	0	0
+        Prüfer1 aus Ausschuss1		0	0	0
+        Prüfer2 aus Ausschuss1		0	0	0
+        Prüfer3 aus Ausschuss1		0	0	0
+        Prüfer4 aus Ausschuss1		0	0	0
+        Prüfer5 aus Ausschuss1		0	0	0
+        Prüfer6 aus Ausschuss1		0	0	0
+    Ausschuss2                 		0	0	0
+        Prüfer1 aus Ausschuss2		0	0	0
+        Prüfer2 aus Ausschuss2		0	0	0
+        Prüfer3 aus Ausschuss2		0	0	0
+        Prüfer4 aus Ausschuss2		0	0	0
+        Prüfer5 aus Ausschuss2		0	0	0
+        Prüfer6 aus Ausschuss2		0	0	0
+FI Daten- und Prozeßanalyse		0	0	0
+    Ausschuss1                		0	0	0
+        Prüfer1 aus Ausschuss1		0	0	0
+        Prüfer2 aus Ausschuss1		0	0	0
+        Prüfer3 aus Ausschuss1		0	0	0
+        Prüfer4 aus Ausschuss1		0	0	0
+        Prüfer5 aus Ausschuss1		0	0	0
+        Prüfer6 aus Ausschuss1		0	0	0
+    Ausschuss2                 		0	0	0
+        Prüfer1 aus Ausschuss2		0	0	0
+        Prüfer2 aus Ausschuss2		0	0	0
+        Prüfer3 aus Ausschuss2		0	0	0
+        Prüfer4 aus Ausschuss2		0	0	0
+        Prüfer5 aus Ausschuss2		0	0	0
+        Prüfer6 aus Ausschuss2		0	0	0
+FI Digitale Vernetzung     		0	0	0
+    Ausschuss1                		0	0	0
+        Prüfer1 aus Ausschuss1		0	0	0
+        Prüfer2 aus Ausschuss1		0	0	0
+        Prüfer3 aus Ausschuss1		0	0	0
+        Prüfer4 aus Ausschuss1		0	0	0
+        Prüfer5 aus Ausschuss1		0	0	0
+        Prüfer6 aus Ausschuss1		0	0	0
+    Ausschuss2                 		0	0	0
+        Prüfer1 aus Ausschuss2		0	0	0
+        Prüfer2 aus Ausschuss2		0	0	0
+        Prüfer3 aus Ausschuss2		0	0	0
+        Prüfer4 aus Ausschuss2		0	0	0
+        Prüfer5 aus Ausschuss2		0	0	0
+        Prüfer6 aus Ausschuss2		0	0	0
+FI Systemintegration		0	0	0
+    Ausschuss1                		0	0	0
+        Prüfer1 aus Ausschuss1		0	0	0
+        Prüfer2 aus Ausschuss1		0	0	0
+        Prüfer3 aus Ausschuss1		0	0	0
+        Prüfer4 aus Ausschuss1		0	0	0
+        Prüfer5 aus Ausschuss1		0	0	0
+        Prüfer6 aus Ausschuss1		0	0	0
+    Ausschuss2                 		0	0	0
+        Prüfer1 aus Ausschuss2		0	0	0
+        Prüfer2 aus Ausschuss2		0	0	0
+        Prüfer3 aus Ausschuss2		0	0	0
+        Prüfer4 aus Ausschuss2		0	0	0
+        Prüfer5 aus Ausschuss2		0	0	0
+        Prüfer6 aus Ausschuss2		0	0	0

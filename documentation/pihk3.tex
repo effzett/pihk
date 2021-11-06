@@ -1,0 +1,402 @@
+\documentclass[a4paper,notitlepage,parskip=half]{scrartcl}
+
+\usepackage{color}
+\usepackage{ngerman}
+\usepackage{graphicx}
+\areaset[1cm]{16cm}{26cm}
+\usepackage{float}
+\usepackage{fancybox}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pifont}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{listingsutf8}
+\usepackage[german]{varioref}
+\usepackage{colortbl} % Farbige Tabellen
+\usepackage{tabularx} % Mehrzeilige Tabellenzellen (nicht benutzt)
+\usepackage{longtable}
+%\usepackage[german,scrtime,time]{prelim2e}
+%\usepackage{svn}
+\usepackage{marginnote}
+\usepackage{xcolor}
+\graphicspath{{./jpg/}}
+\DeclareGraphicsExtensions{.jpg,.eps,.png}
+%\usepackage{courier}
+
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+\usetikzlibrary{
+  arrows,
+  decorations.pathreplacing,
+  shapes.symbols
+}
+
+% Wenn pdflatex benutzt wird sollen die 
+% installierten! frutiger-Fonts verwendet werden
+% Ansonsten cmbright
+\ifpdfoutput %
+{%
+\usepackage[scaled=0.90]{frutiger}
+\renewcommand\familydefault{\sfdefault}
+%\DeclareFixedFont\ott{T1}{phv}{mc}{n}{10pt
+}%
+{%
+\usepackage{cmbright}
+}%
+
+
+% falls man das auch noch ändern möchte
+\newcommand{\pihk}{PIHK\ }
+\newcommand{\titel}{PIHK}
+\newcommand{\vnr}{3.0.0}
+
+%\newcommand{\ffile}[1]{\par\centerline{\tt#1}\par}
+\newcommand{\ffile}[1]{{\texttt{#1}}}
+\newcommand{\cfile}[1]{{\texttt{#1}}}
+\newcommand{\ttctable}[1]{\centerline{\texttt{#1}}}
+\newcommand{\sname}[1]{\emph{#1}}
+\definecolor{listinggray}{gray}{0.95}
+\definecolor{OliveGreen}{rgb}{0,0.5,0}
+\definecolor{pastellblau}{rgb}{0.85,0.95,1.0} 
+
+\newcolumntype{g}{>{\columncolor{pastellblau}}l}
+
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
+\lstset{numbers=left,numbersep=5pt,numberstyle=\tiny,%
+    frame=none,basicstyle=\scriptsize\ttfamily,breaklines=true,%
+    captionpos=b,backgroundcolor=\color{listinggray},frame=single}
+
+% \parindent0cm
+% \parskip1ex
+\setlength{\parindent}{0em}
+
+%\usepackage{courier}
+\newtcolorbox{marker}[1][]{enhanced,
+  before skip=2mm,after skip=3mm,
+  boxrule=0.4pt,left=5mm,right=2mm,top=1mm,bottom=1mm,
+  colback=yellow!50,
+  colframe=yellow!20!black,
+  sharp corners,rounded corners=southeast,arc is angular,arc=3mm,
+  underlay={%
+    \path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+    \path[draw=tcbcolframe,shorten <=-0.05mm,shorten >=-0.05mm] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+    \path[fill=yellow!50!black,draw=none] (interior.south west) rectangle node[red!20!white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
+    },
+  drop fuzzy shadow,#1}
+
+
+\begin{document}
+
+\titlehead{\centerline{Frank Zimmermann \ding{70} Software \ding{70} Tools }}
+% %\titlehead{\includegraphics{zenlogo}}
+% \subject{Dokumentation}
+
+\title{\begin{center}
+\includegraphics[width=2cm]{myLogoPIHK3a.png}
+\end{center}PIHK\\{\small Version \vnr}}
+\subtitle{Programm zur Unterstützung bei IHK--Prüfungen\\[2ex]{\small Letztes Änderungsdatum:  \today} }
+\author{Frank Zimmermann\\[0.5ex]{\small fz@zenmeister.de}}
+\date{\small Erstellungsdatum: 20.06.2016}
+\maketitle
+
+\begin{abstract}
+\setlength{\parindent}{0em}
+Diese Dokumentation beschreibt das Programm \pihk in der Version \vnr.\\ 
+\end{abstract}
+\rule{\linewidth}{1pt}
+\tableofcontents
+\rule{\linewidth}{1pt}
+
+\newpage
+
+
+\section{Motivation}
+Das Programm \pihk wurde geschrieben, um bei IHK--Prüfungen der Fachinformatiker
+bei der IHK--Hannover eine Hilfe bei der Berechnung und Vergabe der Punkte zu sein. Dabei wurden die 
+Regularien der IHK--Hannover zugrunde gelegt. Eine Verwendung bei anderen Prüfungen
+ist natürlich möglich, sofern die Regularien zur Berechnung identisch sind.
+Die genauen Regularien stammen aus dem Dokument:
+
+\begin{quote}
+\emph{Verordnung über die Berufsausbildung im Bereich der Informations-- und Telekommunikationstechnik  (veröffentlicht im Bundesgesetzblatt Teil I Nr. 9 vom 05. März 2020)}
+\end{quote}
+
+\section{Neue Prüfungordnung}
+Die neue Prüfungsordnung gliedert die Ausbildung neu und sieht eine etwas andere Berechnungsart vor. Details zeigt Abb.~\ref{fig:pihk}.
+
+\begin{figure}[ht]
+    \centering
+\includegraphics[width=15cm]{FIGrafik.png}
+    \caption{Struktur der Prüfung mit Gewichtungen}
+    \label{fig:berechnung}
+\end{figure}
+
+\section{Funktion des Programms}
+Die erste Funktion des Programms ist die Berechnung der Punkte/Noten in den Teilen 1 und 2 der Prüfung und die Berechnung der Gesamtpunktzahl/Gesamtnote.
+
+Dabei ist die Berechnung der Punkte gerade bei einer mündlichen Ergänzungsprüfung (MEPR) von großem Nutzen, da während einer Prüfung  das Berechnungsverfahren recht unübersichtlich ist.
+
+Die zweite Funktion des Programms ist eine Simulation der Gesamtergebnisse und der Teilergebnisse in der Teilprüfung T21 (Präsentation und Fachgespräch )  und bei der Vergabe der Punkte in der MEPR (für T22,T23 oder T24).
+
+Damit ist es leicht möglich, Notengrenzen zu erkennen und ggfs. Notengrenzen bei der Vergabe der Punkte zu beachten.
+Ein Klick auf diese Notengrenzen übertragt die Punktzahl in die simulierten Felder (T21b bzw. T2x in der mündlichen Ergänzungsprüfung).
+
+\section{Das Programm}
+
+\begin{figure}[ht]
+	\centering
+    \includegraphics[width=\textwidth]{Hauptfenster.png}
+	\caption{Programmoberfläche}
+	\label{fig:pihk}
+\end{figure}
+
+Das Programm (siehe Abb.\ref{fig:pihk}) gliedert sich grob in 5 Bereiche (A,B,C,D,E):
+
+\begin{itemize}
+\item[(A)] Links oben ist der Bereich zur Eingabe und Berechnung der Punktzahlen und Noten. 
+Hier werden alle bisher erreichten Punktzahlen sowie die in der Prüfung erzielten Punkte eingegeben.
+Weiterhin beinhaltet dieser Bereich auch einen Timer, mit dem man die Vortragszeit abstoppen kann.
+\item[(B)] Rechts oben und in der Mitte befinden sich 2 Fenster zur Anzeige der Simulationsergebnisse.
+\item[(C)] Im mittleren linken Bereich kann der Prüfungsausschuss eingegeben werden und die 1. und 2. Korrektoren sowie die anwesenden Prüfer. Die Prüfer, die hier gelistet werden können im Einstellungsdialog eingegeben werden und werden im System gespeichert.
+\item[(D)] Im unteren linken Bereich werden Daten zur Prüfung und zum Prüfling eingegeben.
+\item[(E)] Im rechten unteren Bereich befinden sich die Funktionen zum Sichern der aktuellen Prüfung und zum Zurücksetzen der aktuellen Prüfung.
+\end{itemize} 
+
+\subsection{Prüfungsbereich Teil 1}
+In den oberen Bereich (A) trägt man die Klausurergebnisse für den Teilbereich~1 ein, der mit 20\% in die Gesamtnote eingeht.
+Dieser Bereich hat keine Relevanz hinsichtlich einer Schwelle für die Bestehensregelung und dient lediglich zur \emph{Anfütterung} von Punkten. Ein \emph{ungenügend} ist hier nicht möglich, denn alle Punkte zählen zu 20\% für die Gesamtnote.
+
+\subsection{Prüfungsbereich Teil 2} 
+\subsubsection*{T21}
+Das Ergebnis der Dokumentation liegt meistens schon vor und kann im Feld T21a eingetragen werden.
+Das Ergebnis der Präsentation zusammen mit dem Fachgespräch wird im Feld T21b eingetragen.
+Für dieses Feld wird eine Simulation berechnet und im rechten Simulationsfenster dargestellt.
+
+\subsubsection*{Simulation}
+Es werden alle möglichen Punktzahlen für die Präsentation+Fachgespräch eingesetzt und nur dann, wenn sich die Note im Teilbereich T21, im Teilbereich 2 oder in der Gesamtbewertung ändert eine Zeile für diese Punktzahl generiert. 
+
+Es gibt auch Fälle, in denen die Punktzahl für die erfolgreiche Gesamtbewertung erreicht ist, aber andere Bedingungen nicht erfüllt sind (z.B. ein Prüfbereich mit \emph{ungenügend} bewertet). Diese Fälle werden mit einem Minuszeichen vor dem G in der Simulation gekennzeichnet. Ein Pluszeichen kennzeichnet eine defacto bestandene Prüfung.
+
+Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl in das entsprechende Fenster.
+\subsubsection*{T22,T23 und T24}
+Ebenfalls sind die Klausurergebnisse für die Bereiche T22, T23 und T24 (Wiso) schon bekannt und können in die Felder T22, T23 und T24(Wiso) eingetragen werden. 
+
+Falls die Bedingungen für eine mündliche Prüfung vorliegen, kann in den Prüfungsbereichen T22, T23 oder T24 genau eine mündliche Ergänzungsprüfung durchgeführt werden. Sofern dies der Fall ist, werden die Selektoren unter diesen Bereichen aktiviert und können ausgewählt werden (manchmal sind 2 Prüfbereiche für eine mündliche Ergänzungsprüfung möglich und der Prüfling muss sich für einen Prüfungsbereich entscheiden).
+
+Es erscheint dann ein weiteres Feld zur Eingabe des Ergebnisses der mündlichen Ergänzungsprüfung.
+Für dieses Feld wird auf der rechten Seite ebenfalls eine Simulation berechnet.
+
+\subsubsection*{Simulation}
+Es werden alle möglichen Punktzahlen für die mündliche Ergänzungsprüfung eingesetzt und nur dann, wenn sich die Note im aktuellen Teilbereich, im Teilbereich 2 oder in der Gesamtbewertung ändert eine Zeile für diese Punktzahl generiert. 
+
+Es gibt auch Fälle, in denen die Punktzahl für die erfolgreiche Gesamtbewertung erreicht ist, aber andere Bedingungen nicht erfüllt sind (z.B. ein Prüfbereich mit \emph{ungenügend} bewertet). Diese Fälle werden mit einem Minuszeichen vor dem G in der Simulation gekennzeichnet. Ein Pluszeichen kennzeichnet eine defacto bestandene Prüfung.
+
+Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl in das entsprechende Fenster.
+
+\subsection{Prüfungsausschuss}
+Der Prüfungsausschuss kann in diesem Bereich angewählt werden und es erscheint eine Liste der Prüfer.
+Diese Prüferliste muss einmalig in den Einstellungen vorgenommen werden und wird dann beim Verlassen des Programms abgespeichert und steht nächstes mal zur Verfügung.
+
+In der Prüferliste kann man duch Anklicken die 1. und 2. Korrektoren auswählen und die anwesenden Prüfer selektieren. Wird dies nicht ordnungsgemäß durchgeführt (z.B. nur 2 anwesende Prüfer oder derselbe Korrektor für 1. und 2. Korrektur, etc.), so erscheint beim Abspeichern später eine Warnmeldung.
+
+\subsection{Prüfungsinformationen}
+Links unten findet man Angaben zur Prüfung, wie Datum der Prüfung und Name und Nummer des Prüflings.
+
+Hier werden die relevanten Prüfungsergebnisse dargestellt.
+
+\subsection{Speichern und Zurücksetzen}
+Die Angaben aus den Prüfungsinformationen können dazu benutzt werden, um einen eindeutigen Dateinamen zu generieren, der unten rechts angezeigt wird und beim Sichern benutzt wird.
+
+Der aktuelle Ordner kann dabei mit dem \framebox{Wähle...}--Button eingestellt werden.
+
+Der \framebox{Sichern}--Button sichert die Datei mit dem eingestellten Muster für den Dateinamen (s.a. Abschnitt \emph{Einstellungen}) und wird anschließend deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
+
+\subsection{Timer}
+Die Länge des Timers kann im Einstellungsdialog von 1 bis 99 eingestellt werden. Bei Überschreiten der eingestellten Zeit beginnt der Zähler wieder bei 0 und man kann direkt die überzogene Zeit ablesen.
+Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \framebox{Start} weiter laufen gelassen werden. Mit \framebox{Reset} setzt man den Timer wieder zurück.
+
+\section{Einstellungen}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{Einstellungen.png}
+  \caption{Einstellungen}
+  \label{fig:einstellungen}
+\end{figure}
+
+Der Einstellungsdialog wird durch einen entsprechenden Menüeintrag angezeigt.
+Änderungen in diesem Einstellungsdialog sind immer sofort gültig und die alten Werte werden nicht zwischengespeichert.
+
+Hier kann man das Namensmuster des Dateinamens einstellen und die Trennzeichen im Namen definieren.
+
+Dadurch erhält man einen eindeutigen Dateinamen und muss später nur noch auf den \framebox{Sichern}--Button drücken, um die aktuelle Prüfung abzuspeichern.
+
+Im Einstellungsdialog wird auch die Liste der Prüfer gepflegt, die später angezeigt werden können.
+
+Dazu klickt man mit der rechten Maustaste auf einen vorandenen Eintrag und es öffnet sich ein Kontextmenü.
+Nun kann man entweder
+
+\begin{itemize}
+\item eine Zeile hinzufügen
+\item die aktuelle Zeile löschen oder
+\item eine Unterkategorie einfügen. 
+\end{itemize}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{Einstellungen2.png}
+  \caption{Einpflegen der Prüfer}
+  \label{fig:einstellungen2}
+\end{figure}
+
+Den Platzhaltertext der neuen Zeile kann man dann löschen und eigenen Text einfügen.
+
+Das Programm erwartet auf der ersten Ebene immer die Fachrichtung, als 2. Ebene einen Prüfungsauschuss und als 3. Ebene den Namen des Prüfers. Weitere Ebenen können hinzugefügt werden (z.B. Kontaktdaten,etc.) werden aber nicht angezeigt und ausgewertet.
+
+Das Programm ist nicht vollständig sicher gemacht und scheitert bei unsinnigen Eingaben.
+
+Auch wenn eine Prüfung abgespeichert wird und später diese Daten im Prüfungsauschuss gelöscht werden und dann diese Datei wieder geladen wird, kann zwar der Name eines unbekannten Prüfers wieder eingefügt werden, aber gelöschte Prüfungsausschüsse dürften zu Problemen führen.
+
+% Ohne mündliche Ergänzungsprüfung werden nur ganze Zahlen als Punktwerte eingetragen und am Ende für die 3 Prüfbereiche berechnet;
+% hier erfolgt dann die einzige vorzunehmende Rundung des Ergebnisses.
+
+% Anders sieht es beim Vorhandensein einer mündlichen Ergänzunmgsprüfung aus. Diese geht mit ihrer ganzzahligen Punktzahl nur zu einem Drittel in die Punktzahl des Prüfbereichs ein. Das Ergebnis für diesen Prüfbereich ergibt sich daher durch eine Division und müsste
+% in das IHK--Prüfungsformular eingetragen werden. Hierbei soll eine Rundung auf einen ganzahligen Wert erfolgen. Die weitere Rechnung ergibt dann wieder den Wert für alle Prüfbereiche und muss muss daher ebenfalls gerundet werden.
+
+% Bei einer korrekten 2-maligen Rundung wird also zum ersten mal bei der Berechnung des nachgeprüften Prüfbereiches inklusive der mündlichen Ergänzungsprüfung gerundet und das zweite mal bei der Berechnung aller Prüfungsbereiche.
+% \vskip2ex
+
+% \fcolorbox{black}{listinggray}{\parbox{\linewidth}{%
+% \vskip1ex
+% Gegeben seien beispielsweise folgende Punkte im Teilbereich B:
+% \begin{center}GA1=30,  GA2=49,  WISO=82, MEPR in GA2E= 60\end{center}
+% Mit \emph{einer} Rundung ergäbe sich als Note für Teilbereich B =49 Punkte und damit mangelhaft:
+% $$Round( ( ((GA2*2+MEPR)/3) * 2 + GA1 * 2 + WISO)/5)$$
+% $$Round( ( ((49*2+60)/3) * 2 + 30*2+82)/5)=49,47=49$$
+% Mit \emph{zwei} Rundungen ergibt sich als Note für den Teilbereich B =50 Punkte und damit ausreichend:
+% $$Round( ( Round((GA2*2+MEPR)/3)*2+GA1*2+WISO)/5) $$
+% $$Round( ( Round((49*2+60)/3) * 2 + 30*2+82 )/5)=49,6=50$$
+
+% }}
+% \vskip2ex
+
+% Das zeigt, dass es für den Prüfling  manchmal sehr entscheidend ist, wann und wo gerundet wird!
+
+% Die doppelte Rundung ist aus dem \emph{Prüfungskompass, IHK--Hannover (Handbuch zum Prüfungswesen~1,2014,S.147, ISBN:978-3-942951-13-5)} entnommen.
+
+% Das Programm führt nach dieser Empfehlung daher zwei Rundungen aus.
+
+\section{Benutzung}
+Das Programm erfordert keine Installation und kann von jedem Ort gestartet werden.
+
+Ein empfohlener Arbeitsfluss (kann ansonsten beliebig sein):
+
+\begin{enumerate}
+\item Erstmalig im Einstellungsdialog den Prüfungsausschuss eintragen und mit Namen füllen.
+\item Im Einstellungsdialog das Dateinamensmuster definieren.
+\item Prüfungsausschuss wählen
+\item Anwesende Prüfer und 1.-- und 2.--Korrektoren wählen
+\item Prüfungsdatum, Name des Prüflings und ggfs. Nummer eintragen
+\item (Optional) Eigenen Ordner für Prüfung wählen
+\item T1, T21a, T22,T23,T24 eintragen
+\item Nach Fachgespräch (unter Berücksichtigung der Simulation) die Punkte in T21b eintragen.
+\item Bei möglicher MEPR: Prüfungsbereich anwählen und (Simulation!) Punkte eintragen T2x
+\item Am Ende auf den \framebox{Sichern}--Button drücken und die Daten werden als JSON--Datei abgespeichert.
+\end{enumerate}
+
+\section{Ausgabe}
+Die Datei, die gespeichert wird, hat folgenden Inhalt:
+\nopagebreak[4]
+
+\begin{minipage}[t]{\textwidth}
+\begin{lstlisting}[numbers=none,caption={\cfile{Gesicherte Datei: $20160621Max\_Mustermann13145678.txt$}},label=lst:datei]
+{
+    "Anwesend": [
+        "Prüfer 1 aus FIAE 2",
+        "Prüfer 2 aus FIAE 2",
+        "Prüfer 4 aus FIAE 2"
+    ],
+    "Ausschuss": "FIAE 2",
+    "Datum": "01.11.2021",
+    "Doku": "61",
+    "Ergebnis": " 50 ( ausreichend)",
+    "Ergebnis B": " 52 ( ausreichend)",
+    "Fachrichtung": "FI Anwendungsentwicklung",
+    "GA0": "39",
+    "GA1": "49",
+    "GA2": "44",
+    "Id-Nummer": "007",
+    "Korr1": [
+        "Prüfer 1 aus FIAE 2"
+    ],
+    "Korr2": [
+        "Prüfer 2 aus FIAE 2"
+    ],
+    "MEP-GA1": "0",
+    "MEP-GA2": "61",
+    "MEP-WISO": "0",
+    "Name": "Max Mustermann",
+    "PIHKVersion": "3.0.0",
+    "PRFG": "44",
+    "Prüfungsergebnis": "NICHT bestanden",
+    "Prüfungszeit": 0,
+    "Wiso": "55"
+}
+
+
+\end{lstlisting}
+\end{minipage}
+
+\section{Plattform}
+Das Programm wurde sowohl für Microsoft Windows als auch für Apple OSX programmiert und steht für beide Plattformen zur Verfügung.
+
+Getestet und entwickelt wurde für MS Windows auf Win~10 und für Apple~OSX auf Big Sur(11.x).
+
+Es wird für MS~Windows als \texttt{.exe} und für Apple~OSX als \texttt{.dmg} Datei zur Verfügung gestellt. 
+
+\section{Programmpflege}
+Das Programm wurde ohne finanzielles Interesse zur Erleichterung der eigenen Arbeit erstellt.
+Das Programm kann von anderen frei genutzt werden, eine Verantwortung zur Pflege des Programms erwächst dem Autor deshalb nicht.
+
+Sollten dem Autor Fehler gemeldet werden, so werden diese \emph{nach Möglichkeit} korrigiert. Hinweise und Fehler sollten per Email an die hier angegebene Adresse gesendet werden.
+
+Das Programm wurde erstellt von:
+
+Frank Zimmermann\\
+fz@zenmeister.de
+
+Es sei darauf hingewiesen, dass die IHK--Hannover keinerlei Verantwortlichkeiten für dieses Programm besitzt.
+\section{Änderungshistorie}
+\begin{table}[H]\centering
+\begin{tabular}{|l|l|r|}
+\hline
+Datum & Änderung &Version\\
+\hline
+5.11.2021&	Anpassung an neue Prüfungsordnung	&  3.0.0\\
+11.2.2020&	Windows Version						&  2.2.0\\
+4.7.2016&	Initiale, ungetestete Version		&  2.1.0\\
+23.6.2016&	XPlattform-Version, doppelte Rundung&  2.0.1\\
+04.7.2016&	Klick in Simulation trägt Punkte ein&  2.0.2\\
+\hline
+\end{tabular}
+\caption{Änderungshistorie}
+\end{table}
+
+\begin{marker}
+In der heutigen Zeit verlangen viele Platformen eine relativ teure Registrierung für Entwickler, damit die Programme leicht auf den Platformen installiert werden können. Erfolgt keine Signierung und Authentfizierung melden die Platformen i.a. gefährlichen Code. Dieses Programm enthält keinen Schadcode und kann problemlos geöffnet werden (sofern es aus seriösen Quellen persönlich/Github bezogen worden ist). Bei macOS öffnet man das Kontextmenü direkt im Programmordner und bestätigt, dass man dieses Programm öffnen möchte.
+Bei weiteren Starts wird keine Abfrage mehr vorgenommen. (Ein Doppelklick führt dagegen nur zu einer Sicherheitswarnung, die es verbietet dieses Programm zu öffnen).
+Bei Windows gibt es ähnliche Sicherheitsvorkehrungen, die man aber durchaus auch umgehen kann.
+\end{marker}
+
+\end{document}
