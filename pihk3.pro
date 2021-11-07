@@ -38,6 +38,7 @@ HEADERS  += mainwindow.h \
 #ifdef Q_OS_DARWIN
 FORMS    += mainwindow.ui
 #elif defined(Q_OS_WIN)
+QMAKE_LFLAGS += -static
 FORMS    += mainwindowwin.ui
 #else
 #error "System not supported!"
