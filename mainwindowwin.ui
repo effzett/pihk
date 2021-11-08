@@ -394,10 +394,10 @@
     <widget class="QLabel" name="label_23">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>140</y>
-       <width>71</width>
-       <height>20</height>
+       <x>120</x>
+       <y>139</y>
+       <width>61</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="font">
@@ -664,7 +664,7 @@
        <x>10</x>
        <y>22</y>
        <width>262</width>
-       <height>72</height>
+       <height>61</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_3">
@@ -760,7 +760,7 @@
        <x>309</x>
        <y>0</y>
        <width>91</width>
-       <height>71</height>
+       <height>81</height>
       </rect>
      </property>
      <property name="font">
@@ -783,7 +783,7 @@
         <x>0</x>
         <y>26</y>
         <width>91</width>
-        <height>41</height>
+        <height>51</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -839,8 +839,8 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>90</y>
-       <width>91</width>
+       <y>80</y>
+       <width>101</width>
        <height>131</height>
       </rect>
      </property>
@@ -852,6 +852,9 @@
      <property name="title">
       <string>Prüfungsbereiche</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
@@ -862,6 +865,12 @@
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>3</number>
+       </property>
+       <property name="rightMargin">
+        <number>3</number>
+       </property>
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="0">
@@ -1033,7 +1042,7 @@
        <x>357</x>
        <y>290</y>
        <width>41</width>
-       <height>20</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -1075,7 +1084,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>14</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
@@ -1093,124 +1102,7 @@
        <x>140</x>
        <y>290</y>
        <width>97</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="palette">
-      <palette>
-       <active>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </active>
-       <inactive>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </inactive>
-       <disabled>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>127</red>
-           <green>127</green>
-           <blue>127</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </disabled>
-      </palette>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Teilprüfung 2</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelGradeResultT2">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>290</y>
-       <width>93</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="palette">
-      <palette>
-       <active>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </active>
-       <inactive>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>128</red>
-           <green>0</green>
-           <blue>128</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </inactive>
-       <disabled>
-        <colorrole role="WindowText">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>127</red>
-           <green>127</green>
-           <blue>127</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </disabled>
-      </palette>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>ungenügend</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelResultAll">
-     <property name="geometry">
-      <rect>
-       <x>357</x>
-       <y>320</y>
-       <width>41</width>
-       <height>20</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -1258,19 +1150,16 @@
       </font>
      </property>
      <property name="text">
-      <string>0</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <string>Teilprüfung 2</string>
      </property>
     </widget>
-    <widget class="QLabel" name="labelGradeResult">
+    <widget class="QLabel" name="labelGradeResultT2">
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>320</y>
+       <y>290</y>
        <width>93</width>
-       <height>19</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -1312,7 +1201,127 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ungenügend</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelResultAll">
+     <property name="geometry">
+      <rect>
+       <x>357</x>
+       <y>320</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>128</red>
+           <green>0</green>
+           <blue>128</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>128</red>
+           <green>0</green>
+           <blue>128</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>127</red>
+           <green>127</green>
+           <blue>127</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelGradeResult">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>320</y>
+       <width>93</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>128</red>
+           <green>0</green>
+           <blue>128</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>128</red>
+           <green>0</green>
+           <blue>128</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>127</red>
+           <green>127</green>
+           <blue>127</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
@@ -1330,7 +1339,7 @@
        <x>140</x>
        <y>320</y>
        <width>97</width>
-       <height>19</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -1372,7 +1381,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <pointsize>12</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
@@ -1409,7 +1418,7 @@
        <widget class="QLineEdit" name="pname">
         <property name="font">
          <font>
-          <pointsize>8</pointsize>
+          <pointsize>10</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -1546,7 +1555,7 @@
         </property>
         <property name="font">
          <font>
-          <pointsize>8</pointsize>
+          <pointsize>10</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -1613,7 +1622,7 @@
        <widget class="QDateEdit" name="pDate">
         <property name="font">
          <font>
-          <pointsize>8</pointsize>
+          <pointsize>10</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -1648,7 +1657,7 @@
       <string>Prüfer werden namentlich im Einstellungsmenü eingepflegt</string>
      </property>
      <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
+      <enum>Qt::ScrollBarAsNeeded</enum>
      </property>
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1731,6 +1740,11 @@
      </item>
      <item>
       <widget class="QLineEdit" name="folder">
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
        <property name="toolTip">
         <string>Existierender Ordner im Home-Verzeichnis</string>
        </property>
@@ -1832,20 +1846,6 @@
      </property>
      <property name="text">
       <string>Prüfling Reset</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>85</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Email...</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButtonIhk">
