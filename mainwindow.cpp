@@ -1117,7 +1117,7 @@ QString MainWindow::makeFileDelim(qint32 index){
     return retVal;
 }
 
-// make file name from selected categories TODO
+// make file name from selected categories
 QString MainWindow::makeFilename(){
     QString fnd1="";
     QString fnd2="";
@@ -1165,12 +1165,67 @@ QString MainWindow::makeFilename(){
 
     fn = fnd1 + fnt1 + fnd2 + fnt2 + fnd3 + ".json";
 
+    // check filename for a valid filename for this platform
+    if( !isValidFilename(fn) ){
+#ifdef Q_OS_OSX        
+        QMessageBox::warning(this,"Achtung","Der gewählte Filename kann zu Problemen auf anderen Platform führen!", QMessageBox::Ok); 
+#else
+        QMessageBox::warning(this,"Achtung","Der gewählte Filename wird zu Problemen auf dieser Platform führen!", QMessageBox::Ok); 
+#endif
+    }
+    
     ui->path->setText(fn);
     ui->saveFile->setEnabled(true);
     this->fileName=fn;
     return fn;
 }
 
+bool MainWindow::isValidFilename(QString fn){
+    bool isLegal=true;
+    QString illegal="<>:\"|?*";
+    // Windows filenames are not case sensitive.
+    fn = fn.toUpper();
+    foreach (const QChar& c, fn)
+    {
+        // Check for control characters
+        if (c.toLatin1() > 0 && c.toLatin1() < 32)
+            isLegal = false;
+    
+        // Check for illegal characters
+        if (illegal.contains(c))
+            isLegal = false;
+    }
+    // Check for device names in filenames
+    QStringList devices;
+    devices << "CON" << "PRN" << "AUX" << "NUL" << "COM0" << "COM1" << "COM2"
+            << "COM3" << "COM4" << "COM5" << "COM6" << "COM7" << "COM8" << "COM9" << "LPT0"
+            << "LPT1" << "LPT2" << "LPT3" << "LPT4" << "LPT5" << "LPT6" << "LPT7" << "LPT8"
+            << "LPT9";
+    QFileInfo fi(fn);
+    QString basename = fi.baseName();
+    foreach (const QString& s, devices){
+        if (basename == s){
+            isLegal = false;
+        }
+    }
+    // Check for trailing periods or spaces
+    if (fn.right(1)=="." || fn.right(1)==" "){
+        isLegal = false;
+    }
+    // Check for pathnames that are too long (disregarding raw pathnames)
+    if (fn.length()>260){
+        isLegal = false;
+    }
+    // Exclude raw device names
+    if (fn.left(4)=="\\\\.\\"){
+        isLegal = false;
+    }
+    // Since we are checking for a filename, it mustn't be a directory
+    if (fn.right(1)=="\\"){
+        isLegal = false;
+    }
+    return isLegal;
+}
 
 void MainWindow::on_saveFile_clicked()
 {
