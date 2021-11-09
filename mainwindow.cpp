@@ -26,8 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     app.email= APP_EMAIL;
     app.domain = APP_DOMAIN;
     app.organization = APP_ORGANIZATION;
-    app.date=QDate::currentDate().toString("dd.MM.yyyy");
-    // "xx.xx.2021";  // static
+    app.date = getBuildDate();
     app.versionLong = app.name + "   (V" +app.version +", vom " + app.date + ")"; // for printing as window title 
 
     // other needful variables
@@ -1682,5 +1681,22 @@ void MainWindow::on_buttonSimPRFG_clicked()
 void MainWindow::on_buttonSimMEPR_clicked()
 {
     fillMEPR();
+}
+
+QString MainWindow::getBuildDate(){
+    QString macroDate = __DATE__;
+    QString buildDate;
+    QStringList months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    QString day = macroDate.mid(4,2);
+    QString month="00";
+    QString year = macroDate.mid(7,4);
+
+    for (int i = 0; i < 12; i++){
+        if(months[i].compare(macroDate.mid(0,3)) == 0){
+            month = QString("%1").arg(i+1,2,10,QLatin1Char('0'));
+        }
+    }
+    buildDate = day+"."+month+"."+year;
+    return buildDate;
 }
 
