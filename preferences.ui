@@ -73,7 +73,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>Dateinamensmuster zur schnellen Sichern</string>
+    <string>Dateinamensmuster zur schnellen Sicherung</string>
    </property>
    <widget class="QSplitter" name="splitter">
     <property name="geometry">

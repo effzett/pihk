@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QString>
 #include <QFile>
+#include <QFileInfo>
 #include <QTextStream>
 #include <QStringListModel>
 #include <QFont>
@@ -95,6 +96,8 @@ private:
     void saveSettings(bool withModel);
     void loadSettings(bool withModel,QStringList headers);
     void closeEvent (QCloseEvent *event);
+    bool isValidFilename(QString fn);
+    
     qint32 t11();
     qint32 t21(qint32 exam=-1);
     qint32 t22(qint32 mueergpr=-1);    
