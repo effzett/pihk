@@ -51,3 +51,4 @@ pihk2.toc
 pihk3.synctex.gz
 pihk3.toc
 mainwindow.cpp.oldversion
+*.oldversion
