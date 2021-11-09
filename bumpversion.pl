@@ -30,9 +30,9 @@ my $file1 = "./documentation/pihk3.tex";
 my $cnt1=0;	# counts the changed lines
 my $cnt1expectation=1;	# expected changed lines
 
-my $file2="./mainwindow.cpp";
+my $file2="./app.h";
 my $cnt2=0;	# counts the changed lines
-my $cnt2expectation=2;	# expected changed lines
+my $cnt2expectation=1;	# expected changed lines
 #####################################################
 # backup of original files
 my $ext='.oldversion';
@@ -53,11 +53,7 @@ $retval=0;
 $cnt2=0;
 local @ARGV = "$file2";
 while(<>){
-	$retval = s/(const\s+QString\s+app.version=\s*\")\d+\.\d+\.\d+/$1$version/ ;
-	if($retval){
-		$cnt2++;
-	}
-	$retval = s/(const\s+QString\s+app.date=\s*\")\d+\.\d+\.\d\d+/$1$date/ ;
+	$retval = s/(#define APP_VERSION s*\")\d+\.\d+\.\d+/$1$version/ ;
 	if($retval){
 		$cnt2++;
 	}
