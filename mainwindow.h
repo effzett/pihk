@@ -97,6 +97,7 @@ private:
     void loadSettings(bool withModel,QStringList headers);
     void closeEvent (QCloseEvent *event);
     bool isValidFilename(QString fn);
+    QString getBuildDate();
     
     qint32 t11();
     qint32 t21(qint32 exam=-1);
