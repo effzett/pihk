@@ -1097,8 +1097,8 @@ QString MainWindow::makeFilePart(qint32 index, QString filler){
     case DATUM: retVal = ui->pDate->date().toString("yyyyMMdd");break;
     case NAME: retVal = ui->pname->text().replace(" ",filler);break;
     case NUMMER: retVal = ui->pnummer->text();break;
-    case FACHRICHTUNG: retVal = ui->comboBoxExam->currentText().replace(" ",filler);break;
-    case AUSSCHUSS: retVal = ui->comboBoxExam_2->currentText().replace(" ",filler);break;
+    case FACHRICHTUNG: retVal = ui->comboBoxExam->currentText().trimmed().replace(" ",filler);break;
+    case AUSSCHUSS: retVal = ui->comboBoxExam_2->currentText().trimmed().replace(" ",filler);break;
     case LEER: retVal = "" ;break;
     }
     return retVal;
