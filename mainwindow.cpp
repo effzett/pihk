@@ -1167,9 +1167,9 @@ QString MainWindow::makeFilename(){
     // check filename for a valid filename for this platform
     if( !isValidFilename(fn) ){
 #ifdef Q_OS_OSX        
-        QMessageBox::warning(this,"Achtung","Der gewählte Filename kann zu Problemen auf anderen Platform führen!", QMessageBox::Ok); 
+        QMessageBox::warning(this,"Achtung","Der gewählte Filename kann zu Problemen auf anderen Plattform führen!", QMessageBox::Ok);
 #else
-        QMessageBox::warning(this,"Achtung","Der gewählte Filename wird zu Problemen auf dieser Platform führen!", QMessageBox::Ok); 
+        QMessageBox::warning(this,"Achtung","Der gewählte Filename wird zu Problemen auf dieser Plattform führen!", QMessageBox::Ok);
 #endif
     }
     
