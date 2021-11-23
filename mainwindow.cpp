@@ -45,7 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->pushButtonIhk->setVisible(false);
     ui->menuAnsicht->menuAction()->setVisible(false);
-    
+    ui->folder->setPlaceholderText(QDir::homePath());
+    ui->folder->setText(QDir::homePath());
     ui->lcdNumber->setPalette(Qt::black);
 
     // start values will be overwritten by loadSettings(), just for first use
@@ -97,8 +98,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->radioButton1->setEnabled(false);
     ui->radioButton2->setEnabled(false);
     ui->radioButton3->setEnabled(false);
-    ui->folder->setPlaceholderText(QDir::homePath());
-    ui->folder->setText(QDir::homePath());
+//    ui->folder->setPlaceholderText(QDir::homePath());
+//    ui->folder->setText(QDir::homePath());
 
 
     // Table View
@@ -1449,6 +1450,7 @@ void MainWindow::saveSettings(bool withModel){
     }
     
     // Save other settings
+    settings.setValue("folderPath",ui->folder->text());
     settings.beginGroup("/Examination");
         settings.setValue("maxMinutes",QString::number(this->maxMinutes));
     settings.endGroup();
@@ -1496,6 +1498,7 @@ void MainWindow::loadSettings(bool withModel,QStringList headers){
     QString lines="";
     QStringList linesList;
     // Zunächst nur die Einstellungsparameter lesen...
+    ui->folder->setText(settings.value("folderPath",QDir::homePath()).toString());
     settings.beginGroup("/Examination"); 
         maxMinutes = settings.value("maxMinutes","15").toInt();
         mypref->setMinutes(maxMinutes);
