@@ -1490,6 +1490,7 @@ void MainWindow::recurseGroups(QString group,QString tab, QString &lines){
     settings.endGroup();
 }
 
+// Liest Konfigurationsdaten aus den Registry/plist Daten
 void MainWindow::loadSettings(bool withModel,QStringList headers){
     QByteArray larr;
     QString lines="";
