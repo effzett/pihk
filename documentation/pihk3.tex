@@ -47,6 +47,8 @@
 \usepackage{cmbright}
 }%
 
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 % falls man das auch noch ändern möchte
 \newcommand{\pihk}{PIHK\ }
@@ -114,12 +116,20 @@
 \setlength{\parindent}{0em}
 Diese Dokumentation beschreibt das Programm \pihk in der Version \vnr.\\ 
 \end{abstract}
+
+\begin{figure}[ht]
+    \centering
+\includegraphics[width=16cm]{frontbild.png}
+    %\caption{Programm für IHK Prüfungen}
+    \label{fig:programm}
+\end{figure}
+
+\newpage
 \rule{\linewidth}{1pt}
 \tableofcontents
 \rule{\linewidth}{1pt}
 
 \newpage
-
 
 \section{Motivation}
 Das Programm \pihk wurde geschrieben, um bei IHK--Prüfungen der Fachinformatiker
@@ -215,12 +225,12 @@ Für dieses Feld T2x wird auf der rechten Seite ebenfalls eine Simulation berech
 
 \subsection{Prüfungsausschuss}
 Der Prüfungsausschuss kann in diesem Bereich angewählt werden und es erscheint eine Liste der Prüfer.
-Diese Prüferliste muss einmalig in den Einstellungen vorgenommen werden und wird dann beim Verlassen des Programms (wahlweise) abgespeichert und steht dann nächstes mal gleich zur Verfügung.
+Diese Prüferliste muss einmalig in den Einstellungen vorgenommen werden und wird dann beim Verlassen des Programms (wahlweise) abgespeichert und steht dann nächstes mal gleich zur Verfügung (s.~Abschnitt~\ref{sec:einstellungen} auf Seite~\pageref{sec:einstellungen}).
 
 In der Prüferliste kann man duch Anklicken die 1. und 2. Korrektoren auswählen und die anwesenden Prüfer selektieren. Wird dies nicht ordnungsgemäß durchgeführt (z.B. nur 2 anwesende Prüfer oder derselbe Korrektor für 1. und 2. Korrektur, etc.), so erscheint beim Abspeichern später eine Warnmeldung, die man aber auch optional ignorieren kann. Die Daten dienen hier nur zum Erfassen der vollständigen Prüfungsdaten beim Abspeichern als \emph{JSON}--Datei.
 
 \subsection{Prüfungsinformationen}
-Links unten findet man Angaben zur Prüfung, wie Datum der Prüfung und Name und Nummer des Prüflings.
+Links unten in Abbildung~\ref{fig:pihk} findet man Angaben zur Prüfung, wie Datum der Prüfung (\circled{3}) und Name (\circled{3}) und Nummer (\circled{2}) des Prüflings.
 
 Hier werden die relevanten Prüfungsergebnisse dargestellt.
 
@@ -232,7 +242,7 @@ Der aktuelle Ordner kann dabei mit dem \framebox{Wähle...}--Button eingestellt 
 Der \framebox{Sichern}--Button sichert die Datei mit dem eingestellten Muster für den Dateinamen (s.a. Abschnitt \emph{Einstellungen}) und wird anschließend deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
 
 Die gemachten Einstellungen zum Dateinamen werden beim Beenden des Programms (optional) abgespeichert und stehen beim nächsten Start wieder zur Verfügung.
-
+ 
 \subsection{Timer}
 Mit dem Timer hat man die Möglichkeit, die Vortragslänge abzustoppen.
 Die Länge des Timers kann im Einstellungsdialog von 1 bis 99 eingestellt werden und ist anfänglich auf 15 Minuten eingestellt.
@@ -242,6 +252,15 @@ Bei Überschreiten der eingestellten Zeit beginnt der Zähler wieder bei 0 und m
 Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \framebox{Start} weiter laufen gelassen werden. Mit \framebox{Reset} setzt man den Timer wieder zurück.
 
 \section{Einstellungen}
+\label{sec:einstellungen}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.3\textwidth]{menu0.png}
+  \caption{Das Einstellungsmenü}
+  \label{fig:menu}
+\end{figure}
+
+Der Einstellungsdialog wird durch einen entsprechenden (Applikations--)Menüeintrag (macOS) bzw. Im Datei--Menü (Windows) angezeigt.
 
 \begin{figure}[ht]
   \centering
@@ -250,21 +269,21 @@ Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \fr
   \label{fig:einstellungen}
 \end{figure}
 
-Der Einstellungsdialog wird durch einen entsprechenden (Applikations--)Menüeintrag (macOS) bzw. Im Datei--Menü (Windows) angezeigt.
 
-Änderungen in diesem Einstellungsdialog sind \emph{immer sofort gültig} und die alten Werte werden nicht zwischengespeichert.
+Achtung: Änderungen in diesem Einstellungsdialog sind \emph{immer sofort gültig} und die alten Werte werden nicht zwischengespeichert.
 
 Hier kann man das Namensmuster des Dateinamens einstellen und die Trennzeichen im Namen definieren.
 
 Dadurch erhält man einen eindeutigen Dateinamen und muss später nur noch auf den \framebox{Sichern}--Button drücken, um die aktuelle Prüfung abzuspeichern.
 
-Im Einstellungsdialog wird auch die Liste der Prüfer gepflegt, die später angezeigt werden können.
+\subsection{Eintrag der möglichen Prüfer}
+Im Einstellungsdialog wird auch die Liste der Prüfer gepflegt, die später angezeigt werden können und aus denen pro Prüfung die jeweiligen Korrektoren ausgewählt werden können.
 
-Dazu klickt man mit der rechten Maustaste auf einen vorandenen Eintrag und es öffnet sich ein Kontextmenü.
+Dazu klickt man mit der rechten Maustaste auf einen vorhandenen Eintrag und es öffnet sich ein Kontextmenü.
 Nun kann man entweder
 
 \begin{itemize}
-\item eine Zeile hinzufügen
+\item eine Zeile hinzufügen,
 \item die aktuelle Zeile löschen oder
 \item eine Unterkategorie einfügen. 
 \end{itemize}
@@ -312,35 +331,35 @@ Die \emph{JSON}--Datei, die gespeichert wird, hat folgenden Inhalt:
 \begin{minipage}[t]{\textwidth}
 \begin{lstlisting}[numbers=none,caption={\cfile{Gesicherte Datei: $20160621Max\_Mustermann13145678.txt$}},label=lst:datei]
 {
+    "Fachrichtung": "FI Anwendungsentwicklung",
+    "Ausschuss": "FIAE 2",
     "Anwesend": [
         "Prüfer 1 aus FIAE 2",
         "Prüfer 2 aus FIAE 2",
         "Prüfer 4 aus FIAE 2"
     ],
-    "Ausschuss": "FIAE 2",
-    "Datum": "01.11.2021",
-    "Doku": "61",
-    "Ergebnis": " 50 ( ausreichend)",
-    "Ergebnis B": " 52 ( ausreichend)",
-    "Fachrichtung": "FI Anwendungsentwicklung",
-    "GA0": "39",
-    "GA1": "49",
-    "GA2": "44",
-    "Id-Nummer": "007",
     "Korr1": [
         "Prüfer 1 aus FIAE 2"
     ],
     "Korr2": [
         "Prüfer 2 aus FIAE 2"
     ],
+    "Datum": "01.11.2021",
+    "Doku": "61",
+    "PRFG": "44",
+    "GA0": "39",
+    "GA1": "49",
+    "GA2": "44",
     "MEP-GA1": "0",
     "MEP-GA2": "61",
     "MEP-WISO": "0",
     "Name": "Max Mustermann",
-    "PIHKVersion": "3.0.0",
-    "PRFG": "44",
+    "Id-Nummer": "007",
+    "Ergebnis B": " 52 ( ausreichend)",
+    "Ergebnis": " 50 ( ausreichend)",
     "Prüfungsergebnis": "NICHT bestanden",
     "Prüfungszeit": 0,
+    "PIHKVersion": "3.0.0",
     "Wiso": "55"
 }
 
