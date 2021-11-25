@@ -143,7 +143,8 @@ Die genauen Regularien stammen aus dem Dokument:
 \end{quote}
 
 \section{Neue Prüfungordnung}
-Die neue Prüfungsordnung gliedert die Ausbildung neu und sieht eine etwas andere Berechnungsart vor. Details zeigt Abb.~\ref{fig:pihk}.
+Die neue Prüfungsordnung gliedert die Ausbildung neu und sieht eine etwas andere Berechnungsart vor, in der die Gewichtungen 
+und die Prüfungsbereiche verändert wurden  (siehe dazu Abbildung~\ref{fig:berechnung}).
 
 \begin{figure}[ht]
     \centering
@@ -155,7 +156,7 @@ Die neue Prüfungsordnung gliedert die Ausbildung neu und sieht eine etwas ander
 \section{Funktion des Programms}
 Die erste Funktion des Programms ist die Berechnung der Punkte/Noten in den Teilen 1 und 2 der Prüfung und die Berechnung der Gesamtpunktzahl/Gesamtnote.
 
-Dabei ist die Berechnung der Punkte gerade bei einer mündlichen Ergänzungsprüfung (MEPR) von großem Nutzen, da unter dem Zeitdruck einer Prüfung  das Berechnungsverfahren (2:1 Gewichtung) fehleranfällig ist.
+Dabei ist die Berechnung der Punkte gerade bei einer mündlichen Ergänzungsprüfung (MEPR) von großem Nutzen, da unter dem Zeitdruck einer Prüfung  das Berechnungsverfahren (2:1 Gewichtung) fehleranfällig ist. Man beachte auch, dass der Zeitpunkt der Rundung die Note/Endnote beinflussen kann, daher muss bei jedem Stufenwechsel (s. Abbildung~\ref{fig:berechnung}) auf ganze Zahlen gerundet werden.
 
 Die zweite Funktion des Programms ist eine Simulation der Gesamtergebnisse und der Teilergebnisse in der Teilprüfung T21 (Präsentation und Fachgespräch )  und bei der Vergabe der Punkte in der MEPR (für T22,T23 oder T24).
 
@@ -166,11 +167,11 @@ Mit dieser Simulation ist es leicht möglich, Notengrenzen zu erkennen und ggfs.
 \begin{figure}[ht]
 	\centering
     \includegraphics[width=\textwidth]{HauptfensterAufteilung.png}
-	\caption{Programmoberfläche -- Struktur}
+	\caption{Programmoberfläche -- Bereiche}
 	\label{fig:pihk}
 \end{figure}
 
-Das Programm (siehe Abb.\ref{fig:pihk}) gliedert sich grob in 5 Bereiche (A,B,C,D,E):
+Das Programm (siehe Abbildung~\ref{fig:pihk}) gliedert sich grob in 5 Bereiche (A,B,C,D,E):
 
 \begin{itemize}
 \item[(A)] Links oben ist der Bereich zur Eingabe und Berechnung der Punktzahlen und Noten. 
@@ -181,6 +182,13 @@ Weiterhin beinhaltet dieser Bereich auch einen Timer, mit dem man die Vortragsze
 \item[(D)] Im unteren linken Bereich werden Daten zur Prüfung und zum Prüfling eingegeben.
 \item[(E)] Im rechten unteren Bereich befinden sich die Funktionen zum Sichern der aktuellen Prüfung und zum Zurücksetzen der aktuellen Prüfung.
 \end{itemize} 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{HauptfensterKommentiert2.png}
+    \caption{Programmoberfläche}
+    \label{fig:hauptfensterKommentiert2}
+\end{figure}
 
 \subsection{Prüfungsbereich Teil 1}
 In den oberen Bereich (A) trägt man die Klausurergebnisse für den Teilbereich~1 ein, der mit 20\% in die Gesamtnote eingeht und schon vor der Prüfung bekannt ist.
@@ -200,48 +208,52 @@ Das Ergebnis der Präsentation zusammen mit dem Fachgespräch wird im Feld T21b 
 Für dieses Feld wird eine Simulation berechnet und im rechten Simulationsfenster dargestellt.
 
 \subsubsection*{Simulation für das Feld T21b}
-Es werden alle möglichen Punktzahlen für die Präsentation+Fachgespräch eingesetzt und nur dann, wenn sich die Note im Teilbereich T21, im Teilbereich 2 oder in der Gesamtbewertung ändert eine Zeile für diese Punktzahl generiert. 
+Für das Feld \circled{1} in Abbildung\ref{fig:hauptfensterKommentiert2} werden die Punkte simuliert.
+Es werden alle möglichen Punktzahlen für die Präsentation+Fachgespräch eingesetzt und nur dann, wenn sich die Note im Teilbereich T21, im Teilbereich 2 oder in der Gesamtbewertung ändert eine Zeile für diese Punktzahl im rechten Simulationsfenster generiert. 
 
-Es gibt auch Fälle, in denen die Punktzahl für die erfolgreiche Gesamtbewertung erreicht ist, aber andere Bedingungen nicht erfüllt sind (z.B. ein Prüfbereich mit \emph{ungenügend} bewertet). Diese Fälle werden mit einem Minuszeichen vor dem G in der Simulation gekennzeichnet. Ein Pluszeichen kennzeichnet eine defacto bestandene Prüfung.
+Es gibt auch Fälle, in denen die Punktzahl für die erfolgreiche Gesamtbewertung erreicht ist, aber andere Bedingungen nicht erfüllt sind (z.B. ein Prüfungsbereich mit \emph{ungenügend} bewertet). Diese Fälle werden mit einem Minuszeichen vor dem G in der Simulation gekennzeichnet. Ein Pluszeichen kennzeichnet eine defacto bestandene Prüfung.
 
-Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl ganz links in das entsprechende Fenster (T21b).
+Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl ganz links in das entsprechende Fenster (T21b) und spart Tipparbeit.
  
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\textwidth]{HauptfensterKommentiert.png}
-    \caption{Programmoberfläche}
-    \label{fig:pihk}
-\end{figure}
-
 \subsubsection*{T22,T23 und T24}
 Ebenfalls sind die Klausurergebnisse für die Bereiche T22, T23 und T24 (Wiso) in der Regel schon bekannt und können in die Felder eingetragen werden. 
 
 Falls die Bedingungen für eine mündliche Prüfung vorliegen, kann in den Prüfungsbereichen T22, T23 oder T24 genau eine mündliche Ergänzungsprüfung durchgeführt werden. Sofern dies der Fall ist, werden die Selektoren unter diesen Bereichen aktiviert und können ausgewählt werden (manchmal sind 2 Prüfbereiche für eine mündliche Ergänzungsprüfung möglich und der Prüfling muss sich für einen Prüfungsbereich entscheiden).
 
-Sowie eines der Selektoren ausgewählt ist, erscheint dann ein weiteres Feld zur Eingabe des Ergebnisses der mündlichen Ergänzungsprüfung und wird immer mit 0 initialisiert.
+Sowie eines der Selektoren ausgewählt ist, erscheint dann ein weiteres Feld zur Eingabe des Ergebnisses der mündlichen Ergänzungsprüfung (MEPR) und wird immer mit 0 initialisiert.
 
 \subsubsection*{Simulation für das Feld T22/T23/T24}
+Für das Feld \circled{2} in Abbildung~\ref{fig:hauptfensterKommentiert2} werden die Punkte simuliert.
 Für dieses Feld T2x wird auf der rechten Seite ebenfalls eine Simulation berechnet und die Konsequenzen bei den anderen Noten aufgezeigt. Ein Klicken befördert wieder die simulierte Punktezahl in das gewählte Feld T2x.
 
 \subsection{Prüfungsausschuss}
-Der Prüfungsausschuss kann in diesem Bereich angewählt werden und es erscheint eine Liste der Prüfer.
-Diese Prüferliste muss einmalig in den Einstellungen vorgenommen werden und wird dann beim Verlassen des Programms (wahlweise) abgespeichert und steht dann nächstes mal gleich zur Verfügung (s.~Abschnitt~\ref{sec:einstellungen} auf Seite~\pageref{sec:einstellungen}).
+Die Fachrichtung und der Prüfungsausschuss können im Bereich \circled{C} in Abbildung~\ref{fig:pihk} angewählt werden und es erscheint eine Liste der Prüfer.
 
-In der Prüferliste kann man duch Anklicken die 1. und 2. Korrektoren auswählen und die anwesenden Prüfer selektieren. Wird dies nicht ordnungsgemäß durchgeführt (z.B. nur 2 anwesende Prüfer oder derselbe Korrektor für 1. und 2. Korrektur, etc.), so erscheint beim Abspeichern später eine Warnmeldung, die man aber auch optional ignorieren kann. Die Daten dienen hier nur zum Erfassen der vollständigen Prüfungsdaten beim Abspeichern als \emph{JSON}--Datei.
+Diese Prüferliste muss zuvor einmalig in den Einstellungen vorgenommen werden und wird dann beim Verlassen des Programms (optional) abgespeichert und steht dann nächstes mal gleich zur Verfügung (s.~Abschnitt~\ref{sec:einstellungen} auf Seite~\pageref{sec:einstellungen}).
+
+In der Prüferliste kann man duch Anklicken die 1. und 2. Korrektoren auswählen und die anwesenden Prüfer selektieren. Wird dies nicht ordnungsgemäß durchgeführt (z.B. nur 2 anwesende Prüfer oder derselbe Korrektor für 1. und 2. Korrektur, etc.), so erscheint beim Abspeichern später eine Warnmeldung, die man aber auch optional ignorieren kann. Die Daten dienen hier nur zum Erfassen der vollständigen Prüfungsdaten beim Abspeichern als \emph{JSON}--Datei. 
 
 \subsection{Prüfungsinformationen}
-Links unten in Abbildung~\ref{fig:pihk} findet man Angaben zur Prüfung, wie Datum der Prüfung (\circled{3}) und Name (\circled{3}) und Nummer (\circled{2}) des Prüflings.
+Links unten in Abbildung~\ref{fig:pihk} im Bereich \circled{D} findet man Angaben zur Prüfung, wie Datum der Prüfung , Name und Nummer des Prüflings.
 
-Hier werden die relevanten Prüfungsergebnisse dargestellt.
+Hier werden auch die relevanten Prüfungsergebnisse dargestellt.
+
+Zu beachten ist noch, dass es Situationen geben kann, die zwar hinreichend viele Punkte im Teil~2 oder der Gesamtnote liefern, aber wegen des Fehlens einer weiteren Bedingung zu einem Nichtbestehen der Prüfung führen.
+
+In einem solchen Fall ist die entsprechende Note zwar \emph{ausreichend} oder besser, aber die Farbe ist \emph{rot}. Gleichzeitig wird die entsprechende Bedingung in rot im Bereich \circled{E} angezeigt (s. Abbildung~\ref{fig:hauptfensterKommentiert2}).
 
 \subsection{Speichern und Zurücksetzen}
-Die Angaben aus den Prüfungsinformationen können dazu benutzt werden, um einen eindeutigen Dateinamen zu generieren, der unten rechts angezeigt wird und beim Sichern benutzt wird. Werden für den Dateinamen Zeichen benutzt, die auf bestimmten Plattformen Probleme bereiten könnten, so wird eine Warnung ausgegeben. 
+Im Bereich \circled{E} kann die Prüfung abgespeichert und resettet werden.
+
+Die Angaben aus den Prüfungsinformationen können dazu benutzt werden, um einen eindeutigen Dateinamen zu generieren, der unten rechts immer angezeigt wird und beim Sichern benutzt wird. 
+
+Werden für den Dateinamen Zeichen benutzt, die auf bestimmten Plattformen Probleme bereiten könnten, so wird eine Warnung ausgegeben, die aber optional ignoriert werden kann. 
 
 Der aktuelle Ordner kann dabei mit dem \framebox{Wähle...}--Button eingestellt werden.
 
 Der \framebox{Sichern}--Button sichert die Datei mit dem eingestellten Muster für den Dateinamen (s.a. Abschnitt \emph{Einstellungen}) und wird anschließend deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
 
-Die gemachten Einstellungen zum Dateinamen werden beim Beenden des Programms (optional) abgespeichert und stehen beim nächsten Start wieder zur Verfügung.
+Die gemachten Einstellungen zum Dateinamen und zum Ordner werden beim Beenden des Programms (optional) abgespeichert und stehen beim nächsten Start sofort wieder zur Verfügung.
  
 \subsection{Timer}
 Mit dem Timer hat man die Möglichkeit, die Vortragslänge abzustoppen.
@@ -249,7 +261,7 @@ Die Länge des Timers kann im Einstellungsdialog von 1 bis 99 eingestellt werden
 
 Bei Überschreiten der eingestellten Zeit beginnt der Zähler wieder bei 0 und man kann direkt die überzogene Zeit ablesen.
 
-Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \framebox{Start} weiter laufen gelassen werden. Mit \framebox{Reset} setzt man den Timer wieder zurück.
+Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \framebox{Start} wieder gestartet werden. Mit \framebox{Reset} setzt man den Timer wieder zurück.
 
 \section{Einstellungen}
 \label{sec:einstellungen}
@@ -260,7 +272,7 @@ Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \fr
   \label{fig:menu}
 \end{figure}
 
-Der Einstellungsdialog wird durch einen entsprechenden (Applikations--)Menüeintrag (macOS) bzw. Im Datei--Menü (Windows) angezeigt.
+Der Einstellungsdialog wird durch einen entsprechenden (Applikations--)Menüeintrag (\emph{macOS}) bzw. im Datei--Menü (\emph{Windows}) angezeigt.
 
 \begin{figure}[ht]
   \centering
@@ -272,14 +284,21 @@ Der Einstellungsdialog wird durch einen entsprechenden (Applikations--)Menüeint
 
 Achtung: Änderungen in diesem Einstellungsdialog sind \emph{immer sofort gültig} und die alten Werte werden nicht zwischengespeichert.
 
+\subsection{Namensmuster}
 Hier kann man das Namensmuster des Dateinamens einstellen und die Trennzeichen im Namen definieren.
 
-Dadurch erhält man einen eindeutigen Dateinamen und muss später nur noch auf den \framebox{Sichern}--Button drücken, um die aktuelle Prüfung abzuspeichern.
+Dadurch erhält man einen konsistenten und eindeutigen Dateinamen und muss später nur noch auf den \framebox{Sichern}--Button drücken, um die aktuelle Prüfung abzuspeichern.
+
+Das Muster für den Dateinamen und die Trennzeichen werden beim Verlassen des Programms (optional) gesichert.
+
+\subsection{Prüfungszeit}
+Unten links kann man die Prüfungszeit im Bereich von 1 bis 99 Minuten verändern, was aber im Normalfall nicht notwendig sein sollte. Der Wert wird beim Verlassen des Programms (optional) gesichert.
 
 \subsection{Eintrag der möglichen Prüfer}
 Im Einstellungsdialog wird auch die Liste der Prüfer gepflegt, die später angezeigt werden können und aus denen pro Prüfung die jeweiligen Korrektoren ausgewählt werden können.
 
 Dazu klickt man mit der rechten Maustaste auf einen vorhandenen Eintrag und es öffnet sich ein Kontextmenü.
+
 Nun kann man entweder
 
 \begin{itemize}
@@ -303,6 +322,8 @@ Das Programm erwartet auf der ersten Ebene immer die Fachrichtung, als 2. Ebene 
 
 Das Programm ist nicht vollständig sicher gemacht und scheitert bei unsinnigen Eingaben.
 
+In der Regel muß auch nur der Prüfungsausschuss umbenannt werden oder neu eingefügt werden und die Prüfer müssen eingetragen werden. Auf der Ebene der Fachrichtung sollten keine Änderungen notwendig werden.
+
 Auch wenn eine Prüfung abgespeichert wird und später diese Daten im Prüfungsauschuss gelöscht werden und dann diese Datei wieder geladen wird, kann zwar der Name eines unbekannten Prüfers wieder eingefügt werden, aber gelöschte Prüfungsausschüsse dürften zu Problemen führen.
 
 \section{Benutzung}
@@ -312,7 +333,7 @@ Ein empfohlener Arbeitsfluss:
 \begin{enumerate}
 \item Erstmalig im Einstellungsdialog den Prüfungsausschuss eintragen und mit Namen des Ausschusses und der Prüfer füllen.
 \item[1] Im Einstellungsdialog das Dateinamensmuster definieren, um die gesicherten Dateien gut zu beschreiben.
-\item[2] Prüfungsausschuss wählen
+\item[2] Im Hauptfenster den Prüfungsausschuss wählen (es erscheinen die Prüfer)
 \item[3] Anwesende Prüfer und 1.-- und 2.--Korrektoren wählen
 \item[4] Prüfungsdatum, Name des Prüflings und ggfs. Nummer eintragen
 \item[5] (Optional) Eigenen Ordner für Prüfungdateien erzeugen/wählen
@@ -325,7 +346,7 @@ Ein empfohlener Arbeitsfluss:
 \end{enumerate}
 
 \section{Ausgabe}
-Die \emph{JSON}--Datei, die gespeichert wird, hat folgenden Inhalt:
+Die \emph{JSON}--Datei, die gespeichert wird, hat folgenden Inhalt (im Original alphabetisch sortiert):
 \nopagebreak[4]
 
 \begin{minipage}[t]{\textwidth}
@@ -350,6 +371,7 @@ Die \emph{JSON}--Datei, die gespeichert wird, hat folgenden Inhalt:
     "GA0": "39",
     "GA1": "49",
     "GA2": "44",
+    "Wiso": "55"
     "MEP-GA1": "0",
     "MEP-GA2": "61",
     "MEP-WISO": "0",
@@ -359,8 +381,7 @@ Die \emph{JSON}--Datei, die gespeichert wird, hat folgenden Inhalt:
     "Ergebnis": " 50 ( ausreichend)",
     "Prüfungsergebnis": "NICHT bestanden",
     "Prüfungszeit": 0,
-    "PIHKVersion": "3.0.0",
-    "Wiso": "55"
+    "PIHKVersion": "3.0.2",
 }
 
 
@@ -372,11 +393,12 @@ Das Programm wurde sowohl für Microsoft Windows als auch für Apple OSX program
 
 Entwickelt wurde das Programm hauptsächlich auf macOS 10.14.
 
-Getestet  wurde für MS Windows auf Win~10 und für Apple~OSX auf Big Sur(11.x).
+Getestet  wurde für MS Windows auf Win~10/11 und für Apple~OSX auf Mojave(10.14) und Big Sur(11.x).
 Es wird für MS~Windows als \texttt{.exe} und für Apple~OSX als \texttt{.dmg} Datei zur Verfügung gestellt. 
 
 \section{Programmpflege}
 Das Programm wurde ohne finanzielles Interesse zur Erleichterung der eigenen Arbeit im Prüfungsausschuss erstellt.
+
 Das Programm kann von anderen frei genutzt werden, eine Verantwortung zur Pflege des Programms erwächst dem Autor deshalb nicht.
 
 Sollten dem Autor Fehler gemeldet werden, so werden diese \emph{nach Möglichkeit} korrigiert. Hinweise und Fehler sollten per Email an die hier angegebene Adresse gesendet werden.
