@@ -1015,8 +1015,8 @@ void MainWindow::on_pushButton_DeleteAll_clicked()
     ui->lcdNumber->display(0);
     if(isTimerStarted){
         toggleStartStop();
-        timerReset();
     }
+    timerReset();
     clearModelCheckboxes(ui->checkBoxAll->isChecked());
     // model checkboxen löschen
 }
