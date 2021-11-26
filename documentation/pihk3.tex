@@ -254,6 +254,15 @@ Der aktuelle Ordner kann dabei mit dem \framebox{Wähle...}--Button eingestellt 
 Der \framebox{Sichern}--Button sichert die Datei mit dem eingestellten Muster für den Dateinamen (s.a. Abschnitt \emph{Einstellungen}) und wird anschließend deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
 
 Die gemachten Einstellungen zum Dateinamen und zum Ordner werden beim Beenden des Programms (optional) abgespeichert und stehen beim nächsten Start sofort wieder zur Verfügung.
+
+Folgende Daten werden beim Verlassen des Programms im Hintergrund abgespeichert:
+\begin{enumerate}
+\item Dateinamensmuster inklusive der Trennzeichen und das Ersetzungszeichen für Leerzeichen.
+\item Die Länge der Prüfung in Minuten.
+\item Der Ordner, in den die Dateien gespeichert werden und der mit dem \framebox{Wählen...} Button ausgewählt wurde.
+\item Die Struktur der Fachrichtungen, Ausschüsse und die Prüferlisten
+\item Die aktuell angewählte Fachrichtung und Prüfungsausschuss
+\end{enumerate}
  
 \subsection{Timer}
 Mit dem Timer hat man die Möglichkeit, die Vortragslänge abzustoppen.
@@ -387,6 +396,10 @@ Die \emph{JSON}--Datei, die gespeichert wird, hat folgenden Inhalt (im Original 
 
 \end{lstlisting}
 \end{minipage}
+
+\section{Hilfen}
+Im Menü \emph{Hilfe} findet man neben der Lizenzvereinbarung (LGPL3) auch die aktuelle Version der Prüfungsordnung
+(Verordnung über die Berufsausbildung zum Fachinformatiker und zur Fachinformatikerin* (Fachinformatikerausbildungsverordnung - FIAusbV)), mit deren Hilfe man strittige Fälle leichter klären kann.
 
 \section{Plattform}
 Das Programm wurde sowohl für Microsoft Windows als auch für Apple OSX programmiert und steht für beide Plattformen zur Verfügung. 
