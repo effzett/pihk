@@ -75,10 +75,10 @@ private:
     qint32 maxMinutes;      // maximale Vortragszeit
     QSettings settings = QSettings("zenmeister.de", "PIHK");      // zum Abspeichern in pList/Registry
 
-    quint32 calcAll(qint32 epnr, qint32 mueergpr);
+    qint32 calcAll(qint32 epnr, qint32 mueergpr);
     qint32 getOralNr();
     qint32 getOralPoints();
-    QString getGrade(qint32 points, QUALITY  q=LONG);
+    QString getGrade(qint32 points, QUALITY  q=QUALITY::LONG);
     void colorLabel(QLabel *label, qint32 points);
     bool checkModel();
     QTimer *timer;

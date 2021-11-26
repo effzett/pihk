@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lcdNumber->setPalette(Qt::black);
 
     // start values will be overwritten by loadSettings(), just for first use
-    mypref = new Prefs(maxMinutes,DATUM,MINUS,NAME,MINUS,NUMMER,UNDERSCORE);
+    mypref = new Prefs(maxMinutes,FILEPARTS::DATUM,FILEPARTSDELIM::MINUS,FILEPARTS::NAME,FILEPARTSDELIM::MINUS,FILEPARTS::NUMMER,FILESPACECHAR::UNDERSCORE);
     const QStringList headers({tr("Prüfer"),tr("K1"),tr("K2"),tr("Anw")});
     loadSettings(true,headers);  // setzt auch das Model fuer Tree und comboboxen
     // From resource file (1. Nutzung)  or from Qsettings data (Einmal Werte abgespeichert.)...
@@ -203,8 +203,8 @@ void MainWindow::timerReset(){
 }
 
 
-quint32 MainWindow::calcAll(qint32 epnr,qint32 mueergpr){  
-    quint32 pointsAll=0;
+qint32 MainWindow::calcAll(qint32 epnr,qint32 mueergpr){
+    qint32 pointsAll=0;
     qint32 pointst1 = ui->spinboxGa0->text().toInt();
     switch(epnr){
     case 0:
@@ -232,9 +232,9 @@ void MainWindow::writeResults(){
     qint32 status=0;
     
     // Relevante Werte einlesen
-    qint32 ga1 = (qint32) ui->spinboxGa1->value();
-    qint32 ga2  = (qint32) ui->spinboxGa2->value();
-    qint32 wiso  = (qint32) ui->spinboxWiso->value();
+    qint32 ga1 = static_cast<qint32>(ui->spinboxGa1->value());
+    qint32 ga2  = static_cast<qint32>(ui->spinboxGa2->value());
+    qint32 wiso  = static_cast<qint32>(ui->spinboxWiso->value());
 
     qint32 pointsT21 = t21();
     // Werte in die GUI schreiben...
@@ -251,7 +251,7 @@ void MainWindow::writeResults(){
                 ui->spinboxGa1E->setFocus();
                 ui->spinboxGa1E->show();
                 nr=1;
-                points=ui->spinboxGa1E->value();
+                points=static_cast<qint32>(qRound(ui->spinboxGa1E->value()));
             }
             else{ // mit 0 initialisieren und verstecken
                 ui->spinboxGa1E->setValue(0);
@@ -278,7 +278,7 @@ void MainWindow::writeResults(){
                  ui->spinboxGa2E->setFocus();
                  ui->spinboxGa2E->show();
                  nr=2;
-                 points=ui->spinboxGa2E->value();
+                 points=static_cast<qint32>(qRound(ui->spinboxGa2E->value()));
                  qDebug()<<"Nachher"<<points;
              }
              else{ // mit 0 initialisieren und verstecken
@@ -306,7 +306,7 @@ void MainWindow::writeResults(){
                 ui->spinboxWisoE->setFocus();
                 ui->spinboxWisoE->show();
                 nr=3;
-                points=ui->spinboxWisoE->value();
+                points=static_cast<qint32>(qRound(ui->spinboxWisoE->value()));
             }
             else{   // mit 0 initialisieren und verstecken
                 ui->spinboxWisoE->setValue(0);
@@ -365,7 +365,7 @@ void MainWindow::writeResults(){
     colorLabel(ui->labelGradeResultT2,pointsT2);
 
     // All
-    quint32 pointsAll = calcAll(nr,points);
+    qint32 pointsAll = calcAll(nr,points);
     ui->labelResultAll->setText(QString::number(pointsAll).rightJustified(3,' '));
     ui->labelGradeResult->setText(getGrade(pointsAll).rightJustified(12,' '));
 
@@ -512,9 +512,9 @@ bool MainWindow::couldPass(qint32 nr){
 
 
 bool MainWindow::checkMAllowed(){
-    quint32 ga1 = ui->spinboxGa1->value();
-    quint32 ga2 = ui->spinboxGa2->value();
-    quint32 wiso = ui->spinboxWiso->value();
+    qint32 ga1 = static_cast<qint32>(qRound(ui->spinboxGa1->value()));
+    qint32 ga2 = static_cast<qint32>(qRound(ui->spinboxGa2->value()));
+    qint32 wiso = static_cast<qint32>(qRound(ui->spinboxWiso->value()));
     
     if(couldPass()){     // zu gut
         return false;   // keine weiteren Prüfungen notwendig
@@ -611,9 +611,9 @@ void MainWindow::fillPRFG(){
     qint32 a; // simulated T21
     qint32 b; // simulated T2
     qint32 g; // simulated Result    
-    QString aGrade=getGrade(0,LONG);
-    QString bGrade=getGrade(0,LONG);
-    QString gGrade=getGrade(0,LONG);
+    QString aGrade=getGrade(0,QUALITY::LONG);
+    QString bGrade=getGrade(0,QUALITY::LONG);
+    QString gGrade=getGrade(0,QUALITY::LONG);
     bool passedOld=false;
     bool passed=false;
 
@@ -648,23 +648,23 @@ void MainWindow::fillPRFG(){
         }
         
         // Bei Veränderung...
-        if(     aGrade.compare(getGrade(a,LONG))!=0 ||
-                bGrade.compare(getGrade(b,LONG))!=0 ||
-                gGrade.compare(getGrade(g,LONG))!=0 ||  passed!=passedOld){
+        if(     aGrade.compare(getGrade(a,QUALITY::LONG))!=0 ||
+                bGrade.compare(getGrade(b,QUALITY::LONG))!=0 ||
+                gGrade.compare(getGrade(g,QUALITY::LONG))!=0 ||  passed!=passedOld){
             QString item;
             if(passed == true){
                 item = QString("%1  T21=%2 T2=%3 +G=%4").arg(i,3)
-                    .arg(getGrade(a,LONG),-12).arg(getGrade(b,LONG),-12).arg(getGrade(g,LONG),-12);
+                    .arg(getGrade(a,QUALITY::LONG),-12).arg(getGrade(b,QUALITY::LONG),-12).arg(getGrade(g,QUALITY::LONG),-12);
 
                 passedOld = passed;
             }else{
                 item = QString("%1  T21=%2 T2=%3 -G=%6").arg(i,3)
-                                    .arg(getGrade(a,LONG),-12).arg(getGrade(b,LONG),-12).arg(getGrade(g,LONG),-12);
+                                    .arg(getGrade(a,QUALITY::LONG),-12).arg(getGrade(b,QUALITY::LONG),-12).arg(getGrade(g,QUALITY::LONG),-12);
             }
             list << item;
-            aGrade=getGrade(a,LONG);
-            bGrade=getGrade(b,LONG);
-            gGrade=getGrade(g,LONG);
+            aGrade=getGrade(a,QUALITY::LONG);
+            bGrade=getGrade(b,QUALITY::LONG);
+            gGrade=getGrade(g,QUALITY::LONG);
         }
     }
 
@@ -694,9 +694,9 @@ void MainWindow::fillMEPR(){
     qint32 g; // Resultat simuliert
     bool passed = false;
     bool passedOld=false;
-    QString aGrade = getGrade(0,LONG);
-    QString bGrade = getGrade(0,LONG);
-    QString gGrade = getGrade(0,LONG);
+    QString aGrade = getGrade(0,QUALITY::LONG);
+    QString bGrade = getGrade(0,QUALITY::LONG);
+    QString gGrade = getGrade(0,QUALITY::LONG);
 
     if(checkMAllowed() && nr>0){
         for(int i=0;i<=100;i++){
@@ -734,23 +734,23 @@ void MainWindow::fillMEPR(){
             }
             
             // es hat sich was verändert...
-            if(     aGrade.compare(getGrade(a,LONG))!=0 || 
-                    bGrade.compare(getGrade(b,LONG))!=0 || 
-                    gGrade.compare(getGrade(g,LONG))!=0 || (passed!=passedOld)){
+            if(     aGrade.compare(getGrade(a,QUALITY::LONG))!=0 ||
+                    bGrade.compare(getGrade(b,QUALITY::LONG))!=0 ||
+                    gGrade.compare(getGrade(g,QUALITY::LONG))!=0 || (passed!=passedOld)){
                 QString item;
                 if(passed==true){
                     item = QString("%1  T2%2=%3 T2=%4 +G=%5").arg(i,3).arg((nr+1),1)
-                            .arg(getGrade(a,LONG),-12).arg(getGrade(b,LONG),-12).arg(getGrade(g,LONG),-12);
+                            .arg(getGrade(a,QUALITY::LONG),-12).arg(getGrade(b,QUALITY::LONG),-12).arg(getGrade(g,QUALITY::LONG),-12);
                     passedOld = passed;
                 }
                 else{
                     item = QString("%1  T2%2=%3 T2=%4 -G=%5").arg(i,3).arg((nr+1),1)
-                            .arg(getGrade(a,LONG),-12).arg(getGrade(b,LONG),-12).arg(getGrade(g,LONG),-12);
+                            .arg(getGrade(a,QUALITY::LONG),-12).arg(getGrade(b,QUALITY::LONG),-12).arg(getGrade(g,QUALITY::LONG),-12);
                 }
                 list << item;
-                aGrade = getGrade(a,LONG);
-                bGrade = getGrade(b,LONG);
-                gGrade = getGrade(g,LONG);
+                aGrade = getGrade(a,QUALITY::LONG);
+                bGrade = getGrade(b,QUALITY::LONG);
+                gGrade = getGrade(g,QUALITY::LONG);
             }
         } // for...
     }else{
@@ -802,21 +802,21 @@ MainWindow::~MainWindow()
 // transforms points to grades
 QString MainWindow::getGrade(qint32 points, QUALITY q){
 
-    QString grade = (q==LONG)?"ungenügend":"6";
+    QString grade = (q==QUALITY::LONG)?"ungenügend":"6";
     if(points>=30){
-        grade = (q==LONG)?"mangelhaft":"5";
+        grade = (q==QUALITY::LONG)?"mangelhaft":"5";
     }
     if(points>=50){
-        grade = (q==LONG)?"ausreichend":"4";
+        grade = (q==QUALITY::LONG)?"ausreichend":"4";
     }
     if(points>=67){
-        grade = (q==LONG)?"befriedigend":"3";
+        grade = (q==QUALITY::LONG)?"befriedigend":"3";
     }
     if(points>=81){
-        grade = (q==LONG)?"gut":"2";
+        grade = (q==QUALITY::LONG)?"gut":"2";
     }
     if(points>=92){
-        grade = (q==LONG)?"sehr gut":"1";
+        grade = (q==QUALITY::LONG)?"sehr gut":"1";
     }
     return grade;
 }
@@ -865,6 +865,7 @@ QJsonObject MainWindow::packQJD(){
                     break;
                 case 3: // Anwesend
                     anwesend.append(name);
+                    break;
                 default:
                     break;
                 }
@@ -908,7 +909,7 @@ void MainWindow::unpackQJO(QJsonObject json ){
         ui->radioButton3->setChecked(true);
         ui->spinboxWisoE->setValue(json.value("MEP-WISO").toString().toInt());
     }
-    ui->lcdNumber->display((qint32)json["Prüfungszeit"].toInteger());
+    ui->lcdNumber->display(static_cast<qint32>(json["Prüfungszeit"].toInteger()));
 
     // Wird automatisch ermittelt:
     //   * json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")";
@@ -1095,12 +1096,12 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
 QString MainWindow::makeFilePart(qint32 index, QString filler){
     QString retVal = "";
     switch(index){
-    case DATUM: retVal = ui->pDate->date().toString("yyyyMMdd");break;
-    case NAME: retVal = ui->pname->text().replace(" ",filler);break;
-    case NUMMER: retVal = ui->pnummer->text();break;
-    case FACHRICHTUNG: retVal = ui->comboBoxExam->currentText().trimmed().replace(" ",filler);break;
-    case AUSSCHUSS: retVal = ui->comboBoxExam_2->currentText().trimmed().replace(" ",filler);break;
-    case LEER: retVal = "" ;break;
+    case static_cast<qint32>(FILEPARTS::DATUM): retVal = ui->pDate->date().toString("yyyyMMdd");break;
+    case static_cast<qint32>(FILEPARTS::NAME): retVal = ui->pname->text().replace(" ",filler);break;
+    case static_cast<qint32>(FILEPARTS::NUMMER): retVal = ui->pnummer->text();break;
+    case static_cast<qint32>(FILEPARTS::FACHRICHTUNG): retVal = ui->comboBoxExam->currentText().trimmed().replace(" ",filler);break;
+    case static_cast<qint32>(FILEPARTS::AUSSCHUSS): retVal = ui->comboBoxExam_2->currentText().trimmed().replace(" ",filler);break;
+    case static_cast<qint32>(FILEPARTS::LEER): retVal = "" ;break;
     }
     return retVal;
 }
@@ -1108,11 +1109,11 @@ QString MainWindow::makeFilePart(qint32 index, QString filler){
 QString MainWindow::makeFileDelim(qint32 index){
     QString retVal = "";
     switch(index){
-    case MINUS: retVal = "-";break;
-    case PLUS: retVal = "+" ;break;
-    case PUNKT: retVal = "." ;break;
-    case UNTERSTRICH: retVal = "_" ;break;
-    case EMPTY: retVal = "";break;
+    case static_cast<qint32>(FILEPARTSDELIM::MINUS): retVal = "-";break;
+    case static_cast<qint32>(FILEPARTSDELIM::PLUS): retVal = "+" ;break;
+    case static_cast<qint32>(FILEPARTSDELIM::PUNKT): retVal = "." ;break;
+    case static_cast<qint32>(FILEPARTSDELIM::UNTERSTRICH): retVal = "_" ;break;
+    case static_cast<qint32>(FILEPARTSDELIM::EMPTY): retVal = "";break;
     }
     return retVal;
 }
@@ -1131,11 +1132,11 @@ QString MainWindow::makeFilename(){
     // baue Filenamen aus mypref auf...
     // filler ermitteln
     switch(mypref->space()){
-    case UNDERSCORE: filler = "_"; break;
-    case ADD: filler = "+"; break;
-    case SUB: filler = "-"; break;
-    case ORIGINAL: filler = " "; break;
-    case DELETE: filler = ""; break;
+    case static_cast<qint32>(FILESPACECHAR::UNDERSCORE): filler = "_"; break;
+    case static_cast<qint32>(FILESPACECHAR::ADD): filler = "+"; break;
+    case static_cast<qint32>(FILESPACECHAR::SUB): filler = "-"; break;
+    case static_cast<qint32>(FILESPACECHAR::ORIGINAL): filler = " "; break;
+    case static_cast<qint32>(FILESPACECHAR::DELETE): filler = ""; break;
     }
 
     fnd1 = makeFilePart(mypref->d1(),filler);
@@ -1296,6 +1297,7 @@ bool MainWindow::checkModel(){
                     break;
                 case 3: // Anwesend
                     checkCount += 1;
+                    break;
                 default:
                     break;
                 }
@@ -1376,6 +1378,7 @@ void MainWindow::clearModelCheckboxes(bool all){
                     if(all){
                         treeModel->setData(ui->tableView->model()->index(row,col,start),Qt::Unchecked,Qt::CheckStateRole);                       
                     }
+                    break;
                 default:
                     break;
                 }
