@@ -2061,7 +2061,7 @@
      <x>0</x>
      <y>0</y>
      <width>907</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
@@ -2082,6 +2082,7 @@
      <string>Ansicht</string>
     </property>
     <addaction name="actionAusgabeblatt"/>
+    <addaction name="actionBericht"/>
    </widget>
    <widget class="QMenu" name="menuHilfe">
     <property name="title">
@@ -2192,6 +2193,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionBericht">
+   <property name="text">
+    <string>Bericht</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
    </property>
   </action>
  </widget>

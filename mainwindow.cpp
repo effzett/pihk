@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
     ui->pushButtonIhk->setVisible(false);
-    ui->menuAnsicht->menuAction()->setVisible(false);
+    //ui->menuAnsicht->menuAction()->setVisible(false);
     ui->folder->setPlaceholderText(QDir::homePath());
     ui->folder->setText(QDir::homePath());
     ui->lcdNumber->setPalette(Qt::black);
@@ -1705,5 +1705,24 @@ QString MainWindow::getBuildDate(){
     }
     buildDate = day+"."+month+"."+year;
     return buildDate;
+}
+
+
+void MainWindow::on_actionBericht_triggered()
+{
+    QString dirPath=ui->folder->text();
+    QString filePath="";
+    QStringList nameFilter("*.json");
+    QDir directory(dirPath);
+    QStringList jsonFilesAndDirectories = directory.entryList(nameFilter);
+    
+    for(int i=0; i<jsonFilesAndDirectories.length();i++){
+        filePath = jsonFilesAndDirectories[i];
+        if(QFileInfo(filePath).isDir()){
+            continue;
+        }
+        qDebug()<<filePath;
+    }
+
 }
 

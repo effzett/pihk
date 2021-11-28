@@ -144,6 +144,7 @@ private slots:
     void on_actionAusgabeblatt_triggered();
     void on_buttonSimPRFG_clicked();
     void on_buttonSimMEPR_clicked();
+    void on_actionBericht_triggered();
 };
 
 #endif // MAINWINDOW_H
