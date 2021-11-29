@@ -279,7 +279,6 @@ void MainWindow::writeResults(){
                  ui->spinboxGa2E->show();
                  nr=2;
                  points=static_cast<qint32>(qRound(ui->spinboxGa2E->value()));
-                 qDebug()<<"Nachher"<<points;
              }
              else{ // mit 0 initialisieren und verstecken
                  ui->spinboxGa2E->setValue(0);
@@ -843,9 +842,9 @@ QJsonObject MainWindow::packQJD(){
     json["MEP-GA2"] = ui->spinboxGa2E->text();
     json["MEP-WISO"] = ui->spinboxWisoE->text();
     json["Prüfungszeit"] = ui->lcdNumber->value();
-    //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text().trimmed()+")"; // Wird nicht wieder eingelesen!
-    json["Ergebnis B"] = ui->labelResultT2->text()+" ("+ui->labelGradeResultT2->text().trimmed()+")";   // Wird nicht wieder eingelesen!
-    json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text().trimmed()+")";    // Wird nicht wieder eingelesen!
+    //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text().trimmed()+")"; // Wird nicht eingelesen!
+    json["Ergebnis B"] = ui->labelResultT2->text().trimmed()+" ("+ui->labelGradeResultT2->text().trimmed()+")";   // Wird nur für Bericht eingelesen!
+    json["Ergebnis"] = ui->labelResultAll->text().trimmed()+" ("+ui->labelGradeResult->text().trimmed()+")";    // Wird nur für Bericht eingelesen!
     json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";                   // Wird nicht wieder eingelesen!
 
     // Auslesen der Prüfer aus dem Model
