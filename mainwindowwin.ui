@@ -2197,7 +2197,10 @@
   </action>
   <action name="actionBericht">
    <property name="text">
-    <string>Bericht</string>
+    <string>Bericht...</string>
+   </property>
+   <property name="toolTip">
+    <string>Bericht...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>

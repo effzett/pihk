@@ -843,9 +843,9 @@ QJsonObject MainWindow::packQJD(){
     json["MEP-GA2"] = ui->spinboxGa2E->text();
     json["MEP-WISO"] = ui->spinboxWisoE->text();
     json["Prüfungszeit"] = ui->lcdNumber->value();
-    //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text()+")"; // Wird nicht wieder eingelesen!
-    json["Ergebnis B"] = ui->labelResultT2->text()+" ("+ui->labelGradeResultT2->text()+")";   // Wird nicht wieder eingelesen!
-    json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text()+")";    // Wird nicht wieder eingelesen!
+    //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text().trimmed()+")"; // Wird nicht wieder eingelesen!
+    json["Ergebnis B"] = ui->labelResultT2->text()+" ("+ui->labelGradeResultT2->text().trimmed()+")";   // Wird nicht wieder eingelesen!
+    json["Ergebnis"] = ui->labelResultAll->text()+" ("+ui->labelGradeResult->text().trimmed()+")";    // Wird nicht wieder eingelesen!
     json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";                   // Wird nicht wieder eingelesen!
 
     // Auslesen der Prüfer aus dem Model
@@ -1710,19 +1710,130 @@ QString MainWindow::getBuildDate(){
 
 void MainWindow::on_actionBericht_triggered()
 {
+    QString title = "IHK-Prüfungen";
     QString dirPath=ui->folder->text();
     QString filePath="";
     QStringList nameFilter("*.json");
     QDir directory(dirPath);
     QStringList jsonFilesAndDirectories = directory.entryList(nameFilter);
     
-    for(int i=0; i<jsonFilesAndDirectories.length();i++){
+    
+    QString f = QFileDialog::getSaveFileName(this,tr("Sichern"),dirPath + "/Report.pdf",tr("PDF (*.pdf)"));
+    if(f.length() == 0){
+        return;
+    }
+
+    QPdfWriter pdfwriter(f);
+    pdfwriter.setPageSize(QPageSize(QPageSize::A4));
+    pdfwriter.setTitle(title);
+    pdfwriter.setCreator("zenmeister");
+    pdfwriter.setResolution(300);
+
+    
+    QPainter painter(&pdfwriter);
+    reportHeadFoot(painter, title); 
+    qint32 skip = 8;
+    
+    for(int i=0, k=0; i<jsonFilesAndDirectories.length();i++,k++){
         filePath = jsonFilesAndDirectories[i];
         if(QFileInfo(filePath).isDir()){
             continue;
         }
-        qDebug()<<filePath;
+        QString absFilePath= dirPath + QDir::separator() + filePath;
+        
+        QString fileContent;
+        QFile file;
+        file.setFileName(absFilePath);
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        fileContent = file.readAll();
+        file.close();
+        
+        QJsonDocument d = QJsonDocument::fromJson(fileContent.toUtf8());
+        QJsonObject jo = d.object();
+        QString name = jo["Name"].toString();
+        QString pe = jo["Prüfungsergebnis"].toString();      
+        QString datum = jo["Datum"].toString();      
+        QString ergebnis = jo["Ergebnis"].toString();      
+        QString ergebnisb = jo["Ergebnis B"].toString();      
+        QString idnr = jo["Id-Nummer"].toString();
+        QString gb = QString::number(qRound((jo["Doku"].toDouble()+jo["PRFG"].toDouble())/2)); 
+        QString ga0 = jo["GA0"].toString();
+        QString ga1 = jo["GA1"].toString();
+        QString ga2 = jo["GA2"].toString();
+        QString mepga1 = jo["MEP-GA1"].toString();
+        QString mepga2 = jo["MEP-GA2"].toString();
+        QString mepwiso = jo["MEP-WISO"].toString();
+        QString wiso = jo["Wiso"].toString();
+        QString line1 = QString("%1: %2").arg(i+1,3).arg((name.trimmed()+"/"+idnr.trimmed()),-35);
+        QString line2 = QString("%1").arg(pe,-16);
+        QString line3 = QString("%1").arg(datum,-10);
+        QString line4 = QString("T2=%1").arg(ergebnisb,-16);
+        QString line5 = QString("Gesamt=%1").arg(ergebnis,-16);
+        QString mep = "";
+        if(mepga1.compare("0")!=0)
+            mep = QString("MEP-GA1=%1").arg(mepga1);
+        if(mepga2.compare("0")!=0)
+            mep = QString("MEP-GA2=%1").arg(mepga2);
+        if(mepwiso.compare("0")!=0)
+            mep = QString("MEP-WISO=%1").arg(mepwiso);
+        QString line6 = QString("T1=%1  T21=%2  T22=%3  T23=%4  T24=%5  %6")
+                .arg(ga0,-2).arg(gb,-2).arg(ga1,-2).arg(ga2,-2).arg(wiso,-2).arg(mep,-12);
+        painter.drawText(pos(0,(k+1)*skip),line1); // Name Nummer
+        painter.drawText(pos(65,(k+1)*skip),line2); // Bestanden
+        painter.drawText(pos(95,(k+1)*skip),line3); // Datum
+        painter.drawText(pos(115,(k+1)*skip),line4); // 1
+        painter.drawText(pos(151,(k+1)*skip),line5); // 2
+        painter.setFont(QFont("times",9));
+        painter.drawText(pos(115,(k+1+0.3)*skip),line6);
+        painter.setFont(QFont("times",11));
+        
+        if((k+1)*skip > 170){
+            pdfwriter.newPage();
+            reportHeadFoot(painter,title);
+            k=-1;
+        }
+//        QJsonValue value = sett2.value(QString("appName"));
+//        qWarning() << value;
+//        QJsonObject item = value.toObject();
+//        qWarning() << tr("QJsonObject of description: ") << item;
+  
+//        /* in case of string value get value and convert into string*/
+//        qWarning() << tr("QJsonObject[appName] of description: ") << item["description"];
+//        QJsonValue subobj = item["description"];
+//        qWarning() << subobj.toString();
+  
+//        /* in case of array get array and convert into string*/
+//        qWarning() << tr("QJsonObject[appName] of value: ") << item["imp"];
+//        QJsonArray test = item["imp"].toArray();
+//        qWarning() << test[1].toString();
     }
+    painter.end();
+    
+    QMessageBox::information(this,"Information",QString("%1 erstellt").arg(f));
+}
 
+QPoint MainWindow::pos(double x, double y){
+    qint32 pRight = 2478; // 300*8.26
+    qint32 pBottom = 3507; // 300*11.69
+    double lMargin = 5; // mm
+    double tMargin = 10; // mm
+    double myX = 210.0; // mm
+    
+    QPoint pos = QPoint(static_cast<qint32>( pRight * ((x+lMargin)/myX)),
+                        static_cast<qint32>(pBottom * ((y+tMargin)/myX)));
+    return pos;
+}
+
+void MainWindow::reportHeadFoot(QPainter &p, QString title){
+    p.setFont(QFont("times",20));
+    p.drawText(pos(75,0),title);
+    p.setFont(QFont("times",11));
+    p.drawLine(pos(0,0.1),pos(1000,0));
+    p.drawLine(pos(0,190),pos(1000,190));
+
+    p.setFont(QFont("times",8));
+    p.drawText(pos(0,192),app.versionLong);
+    p.setFont(QFont("times",11));
+    
 }
 
