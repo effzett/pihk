@@ -1941,6 +1941,7 @@
      <string>Ansicht</string>
     </property>
     <addaction name="actionAusgabeblatt"/>
+    <addaction name="actionBericht"/>
    </widget>
    <widget class="QMenu" name="menuHilfe">
     <property name="title">
@@ -2051,6 +2052,17 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionBericht">
+   <property name="text">
+    <string>Bericht...</string>
+   </property>
+   <property name="toolTip">
+    <string>Bericht...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
    </property>
   </action>
  </widget>

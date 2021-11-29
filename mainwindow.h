@@ -31,6 +31,8 @@
 #include <QSortFilterProxyModel>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QPdfWriter>
+#include <QPainter>
 #include "mypihk.h"
 #include "prefs.h"
 #include "app.h"
@@ -98,6 +100,8 @@ private:
     void closeEvent (QCloseEvent *event);
     bool isValidFilename(QString fn);
     QString getBuildDate();
+    QPoint pos(double x, double y);
+    void reportHeadFoot(QPainter &p, QString title);
     
     qint32 t11();
     qint32 t21(qint32 exam=-1);
@@ -144,6 +148,7 @@ private slots:
     void on_actionAusgabeblatt_triggered();
     void on_buttonSimPRFG_clicked();
     void on_buttonSimMEPR_clicked();
+    void on_actionBericht_triggered();
 };
 
 #endif // MAINWINDOW_H
