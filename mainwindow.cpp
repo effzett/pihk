@@ -1726,12 +1726,14 @@ void MainWindow::on_actionBericht_triggered()
     pdfwriter.setPageSize(QPageSize(QPageSize::A4));
     pdfwriter.setTitle(title);
     pdfwriter.setCreator("zenmeister");
+    pdfwriter.setPdfVersion(QPagedPaintDevice::PdfVersion_A1b);
     pdfwriter.setResolution(300);
 
     
     QPainter painter(&pdfwriter);
     reportHeadFoot(painter, title); 
     qint32 skip = 8;
+    painter.setFont(QFont("Times",11));
     
     double line=1.0;
     double fline = 0.3;
@@ -1828,17 +1830,17 @@ QPoint MainWindow::pos(double x, double y){
 
 void MainWindow::reportHeadFoot(QPainter &p, QString title){
     QPen pen = QPen();
-    p.setFont(QFont("times",20));
+    p.setFont(QFont("Times",20));
     p.drawText(pos(75,0),title);
-    p.setFont(QFont("times",11));
+    p.setFont(QFont("Times",11));
     p.setPen(3);
     p.drawLine(pos(0,0.5),pos(195,0.5));
     p.setPen(pen);
     p.drawLine(pos(0,190),pos(195,190));
 
-    p.setFont(QFont("times",8));
+    p.setFont(QFont("Times",8));
     p.drawText(pos(0,192),app.versionLong);
-    p.setFont(QFont("times",11));
+    p.setFont(QFont("Times",11));
     
 }
 
