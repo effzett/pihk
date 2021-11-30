@@ -1760,7 +1760,7 @@ void MainWindow::on_actionBericht_triggered()
         QString ergebnis = jo["Ergebnis"].toString();      
         QString ergebnisb = jo["Ergebnis B"].toString();      
         QString idnr = jo["Id-Nummer"].toString();
-        QString gb = QString::number(qRound((jo["Doku"].toDouble()+jo["PRFG"].toDouble())/2)); 
+        QString gb = QString::number(qRound((jo["Doku"].toString().toDouble()+jo["PRFG"].toString().toDouble())/2)); 
         QString ga0 = jo["GA0"].toString();
         QString ga1 = jo["GA1"].toString();
         QString ga2 = jo["GA2"].toString();
