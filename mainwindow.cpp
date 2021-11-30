@@ -845,7 +845,7 @@ QJsonObject MainWindow::packQJD(){
     //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text().trimmed()+")"; // Wird nicht eingelesen!
     json["Ergebnis B"] = ui->labelResultT2->text().trimmed()+" ("+ui->labelGradeResultT2->text().trimmed()+")";   // Wird nur für Bericht eingelesen!
     json["Ergebnis"] = ui->labelResultAll->text().trimmed()+" ("+ui->labelGradeResult->text().trimmed()+")";    // Wird nur für Bericht eingelesen!
-    json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";                   // Wird nicht wieder eingelesen!
+    json["Prüfungsergebnis"] = (hasPassedExamination()==0)?"BESTANDEN":"NICHT bestanden";                   // Wird nicht wieder eingelesen!
 
     // Auslesen der Prüfer aus dem Model
     QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
@@ -1770,11 +1770,11 @@ void MainWindow::on_actionBericht_triggered()
         QString wiso = jo["Wiso"].toString();
         QString mep = "";
         if(mepga1.compare("0")!=0)
-            mep = QString("MEP-GA1=%1").arg(mepga1);
+            mep = QString("MEP-T22=%1").arg(mepga1);
         if(mepga2.compare("0")!=0)
-            mep = QString("MEP-GA2=%1").arg(mepga2);
+            mep = QString("MEP-T23=%1").arg(mepga2);
         if(mepwiso.compare("0")!=0)
-            mep = QString("MEP-WISO=%1").arg(mepwiso);
+            mep = QString("MEP-T24=%1").arg(mepwiso);
         QString line1 = QString("%1: %2").arg(i+1,3).arg((name.trimmed()+"/"+idnr.trimmed()),-35);
         QString line2 = QString("%1").arg(pe,-16);
         QString line3 = QString("%1").arg(datum,-10);
@@ -1827,11 +1827,14 @@ QPoint MainWindow::pos(double x, double y){
 }
 
 void MainWindow::reportHeadFoot(QPainter &p, QString title){
+    QPen pen = QPen();
     p.setFont(QFont("times",20));
     p.drawText(pos(75,0),title);
     p.setFont(QFont("times",11));
-    p.drawLine(pos(0,0.1),pos(1000,0));
-    p.drawLine(pos(0,190),pos(1000,190));
+    p.setPen(3);
+    p.drawLine(pos(0,0.5),pos(195,0.5));
+    p.setPen(pen);
+    p.drawLine(pos(0,190),pos(195,190));
 
     p.setFont(QFont("times",8));
     p.drawText(pos(0,192),app.versionLong);
