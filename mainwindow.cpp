@@ -1733,7 +1733,9 @@ void MainWindow::on_actionBericht_triggered()
     reportHeadFoot(painter, title); 
     qint32 skip = 8;
     
-    for(int i=0, k=0; i<jsonFilesAndDirectories.length();i++,k++){
+    double line=1.0;
+    double fline = 0.3;
+    for(int i=0; i<jsonFilesAndDirectories.length();i++){
         filePath = jsonFilesAndDirectories[i];
         if(QFileInfo(filePath).isDir()){
             continue;
@@ -1749,6 +1751,9 @@ void MainWindow::on_actionBericht_triggered()
         
         QJsonDocument d = QJsonDocument::fromJson(fileContent.toUtf8());
         QJsonObject jo = d.object();
+        QJsonArray k1 = jo["Korr1"].toArray();
+        QJsonArray k2 = jo["Korr2"].toArray();
+        QJsonArray anw = jo["Anwesend"].toArray();
         QString name = jo["Name"].toString();
         QString pe = jo["Prüfungsergebnis"].toString();      
         QString datum = jo["Datum"].toString();      
@@ -1763,11 +1768,6 @@ void MainWindow::on_actionBericht_triggered()
         QString mepga2 = jo["MEP-GA2"].toString();
         QString mepwiso = jo["MEP-WISO"].toString();
         QString wiso = jo["Wiso"].toString();
-        QString line1 = QString("%1: %2").arg(i+1,3).arg((name.trimmed()+"/"+idnr.trimmed()),-35);
-        QString line2 = QString("%1").arg(pe,-16);
-        QString line3 = QString("%1").arg(datum,-10);
-        QString line4 = QString("T2=%1").arg(ergebnisb,-16);
-        QString line5 = QString("Gesamt=%1").arg(ergebnis,-16);
         QString mep = "";
         if(mepga1.compare("0")!=0)
             mep = QString("MEP-GA1=%1").arg(mepga1);
@@ -1775,39 +1775,42 @@ void MainWindow::on_actionBericht_triggered()
             mep = QString("MEP-GA2=%1").arg(mepga2);
         if(mepwiso.compare("0")!=0)
             mep = QString("MEP-WISO=%1").arg(mepwiso);
+        QString line1 = QString("%1: %2").arg(i+1,3).arg((name.trimmed()+"/"+idnr.trimmed()),-35);
+        QString line2 = QString("%1").arg(pe,-16);
+        QString line3 = QString("%1").arg(datum,-10);
+        QString line4 = QString("T2=%1").arg(ergebnisb,-16);
+        QString line5 = QString("Gesamt=%1").arg(ergebnis,-16);
         QString line6 = QString("T1=%1  T21=%2  T22=%3  T23=%4  T24=%5  %6")
                 .arg(ga0,-2).arg(gb,-2).arg(ga1,-2).arg(ga2,-2).arg(wiso,-2).arg(mep,-12);
-        painter.drawText(pos(0,(k+1)*skip),line1); // Name Nummer
-        painter.drawText(pos(65,(k+1)*skip),line2); // Bestanden
-        painter.drawText(pos(95,(k+1)*skip),line3); // Datum
-        painter.drawText(pos(115,(k+1)*skip),line4); // 1
-        painter.drawText(pos(151,(k+1)*skip),line5); // 2
+
+        painter.drawText(pos(0,line*skip),line1); // Name Nummer
+        painter.drawText(pos(65,line*skip),line2); // Bestanden
+        painter.drawText(pos(95,line*skip),line3); // Datum
+        painter.drawText(pos(115,line*skip),line4); // 1
+        painter.drawText(pos(151,line*skip),line5); // 2
         painter.setFont(QFont("times",9));
-        painter.drawText(pos(115,(k+1+0.3)*skip),line6);
+        line += fline;
+        painter.drawText(pos(115,line*skip),line6);
+        line += fline;
+        for(int m=0; m<qMax(k1.count(),k2.count());m++,line+=fline){
+            QString kk1 = (k1.count()>m)?k1.at(m).toString():"---";
+            QString kk2 = (k2.count()>m)?k2.at(m).toString():"---";
+            QString line7 = QString("K1=%1  K2=%2").arg(kk1, kk2);            
+            painter.drawText(pos(115,line*skip),line7);
+        }
+        for(int m=0; m<anw.count();m++,line+=fline){
+            QString line8 = QString("Anwesend=%1").arg(anw.at(m).toString());            
+            painter.drawText(pos(115,line*skip),line8);
+        }
         painter.setFont(QFont("times",11));
+        line += fline;
         
-        if((k+1)*skip > 170){
+        if(line*skip > 170){
             pdfwriter.newPage();
             reportHeadFoot(painter,title);
-            k=-1;
+            line=1;
         }
-//        QJsonValue value = sett2.value(QString("appName"));
-//        qWarning() << value;
-//        QJsonObject item = value.toObject();
-//        qWarning() << tr("QJsonObject of description: ") << item;
-  
-//        /* in case of string value get value and convert into string*/
-//        qWarning() << tr("QJsonObject[appName] of description: ") << item["description"];
-//        QJsonValue subobj = item["description"];
-//        qWarning() << subobj.toString();
-  
-//        /* in case of array get array and convert into string*/
-//        qWarning() << tr("QJsonObject[appName] of value: ") << item["imp"];
-//        QJsonArray test = item["imp"].toArray();
-//        qWarning() << test[1].toString();
     }
-    painter.end();
-    
     QMessageBox::information(this,"Information",QString("%1 erstellt").arg(f));
 }
 
