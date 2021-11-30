@@ -53,7 +53,7 @@
 % falls man das auch noch ändern möchte
 \newcommand{\pihk}{PIHK\ }
 \newcommand{\titel}{PIHK}
-\newcommand{\vnr}{3.0.2}
+\newcommand{\vnr}{3.0.3}
 
 %\newcommand{\ffile}[1]{\par\centerline{\tt#1}\par}
 \newcommand{\ffile}[1]{{\texttt{#1}}}
@@ -105,7 +105,7 @@
 % \subject{Dokumentation}
 
 \title{\begin{center}
-\includegraphics[width=2cm]{myLogoPIHK3a.png}
+\includegraphics[width=3.2cm]{myLogoPIHK3a.png}
 \end{center}PIHK\\{\small Version \vnr}}
 \subtitle{Programm zur Unterstützung bei IHK--Prüfungen\\[2ex]{\small Letztes Änderungsdatum:  \today} }
 \author{Frank Zimmermann\\[0.5ex]{\small fz@zenmeister.de}}
@@ -119,7 +119,7 @@ Diese Dokumentation beschreibt das Programm \pihk in der Version \vnr.\\
 
 \begin{figure}[ht]
     \centering
-\includegraphics[width=16cm]{frontbild.png}
+\includegraphics[width=15cm]{frontbild.png}
     %\caption{Programm für IHK Prüfungen}
     \label{fig:programm}
 \end{figure}
@@ -398,6 +398,7 @@ Die \emph{JSON}--Datei, die gespeichert wird, hat folgenden Inhalt (im Original 
 \end{minipage}
 
 \section{Ansicht}
+\subsection{Bericht}
 Im Menü \emph{Ansicht} findet man die Funktion \framebox{Bericht...}.
 Hier kann man eine Datei angeben (Default: \texttt{Report.pdf}), die aus allen JSON--Dateien im angegebenen Ordner erzeugt wird und eine Zusammenfassung der Ergebnisse enthält (s. Abbildung~\ref{fig:bericht}).
 
@@ -411,6 +412,8 @@ Die Liste enthält dann
  \item Punkte im Teilbereich 2
  \item Gesamtpunkte
  \item T1, T21, T22, T23, T24 und ggfs. eine mündliche Ergänzungsprüfung
+ \item 1. und 2. Korrektoren
+ \item Anwesende Prüfer
  \end{enumerate} 
 
 \begin{figure}[ht]
