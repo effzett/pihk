@@ -1733,14 +1733,19 @@ void MainWindow::on_actionBericht_triggered()
     
 // platform specific
 #ifdef Q_OS_OSX
+    qint32 fontNormal = 11;
+    qint32 fontSmall = 9;
+    qint32 fontSmaller = 8;
     QString font = "times";
-    painter.setFont(QFont(font,11));
 #else
-    QString font = "times";
-    painter.setFont(QFont(font,10));
+    qint32 fontNormal = 10;
+    qint32 fontSmall = 8;
+    qint32 fontSmaller = 7;
+    QString font = "Times New Roman";
 #endif
 
-    reportHeadFoot(painter, title); 
+    painter.setFont(QFont(font,fontNormal));
+    reportHeadFoot(painter, title);
     qint32 skip = 8;
     
     double line=1.0;
@@ -1799,12 +1804,8 @@ void MainWindow::on_actionBericht_triggered()
         painter.drawText(pos(115,line*skip),line4); // 1
         painter.drawText(pos(151,line*skip),line5); // 2
 
-        // platform specific
-        #ifdef Q_OS_OSX
-            painter.setFont(QFont(font,9));
-        #else
-            painter.setFont(QFont(font,8));
-        #endif
+
+        painter.setFont(QFont(font,fontSmall));
         line += fline;
         painter.drawText(pos(115,line*skip),line6);
         line += fline;
@@ -1818,12 +1819,7 @@ void MainWindow::on_actionBericht_triggered()
             QString line8 = QString("Anwesend=%1").arg(anw.at(m).toString());            
             painter.drawText(pos(115,line*skip),line8);
         }
-        // platform specific
-        #ifdef Q_OS_OSX
-            painter.setFont(QFont(font,11));
-        #else
-            painter.setFont(QFont(font,10));
-        #endif
+        painter.setFont(QFont(font,fontNormal));
         line += fline;
         
         if(line*skip > 170){
@@ -1848,12 +1844,18 @@ QPoint MainWindow::pos(double x, double y){
 }
 
 void MainWindow::reportHeadFoot(QPainter &p, QString title){
+    // platform specific
+    #ifdef Q_OS_OSX
+        qint32 fontSmaller = 8;
+    #else
+        qint32 fontSmaller = 7;
+    #endif
     QPen pen = p.pen();
     QFont font = p.font();
     QFont font20 = p.font();
     QFont font8 = p.font();
     font20.setPointSize(20);
-    font8.setPointSize(8);
+    font8.setPointSize(fontSmaller);
     p.setFont(font20);
     p.drawText(pos(75,0),title);
     p.setPen(3);
