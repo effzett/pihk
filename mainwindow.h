@@ -72,7 +72,6 @@ private:
     int timerValue;         // timer value in minutes
     int offset;             // 15, after that time the excess is counted
     QLabel *statusLabel;    // line in statusbar
-    bool hasPassed;         // Bestanden=true, Nicht bestanden=false
     QStringListModel *model;
     qint32 maxMinutes;      // maximale Vortragszeit
     QSettings settings = QSettings("zenmeister.de", "PIHK");      // zum Abspeichern in pList/Registry

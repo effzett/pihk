@@ -845,7 +845,7 @@ QJsonObject MainWindow::packQJD(){
     //json["Ergebnis A"] = ui->labelResultA->text()+" ("+ui->labelGradeResultA->text().trimmed()+")"; // Wird nicht eingelesen!
     json["Ergebnis B"] = ui->labelResultT2->text().trimmed()+" ("+ui->labelGradeResultT2->text().trimmed()+")";   // Wird nur für Bericht eingelesen!
     json["Ergebnis"] = ui->labelResultAll->text().trimmed()+" ("+ui->labelGradeResult->text().trimmed()+")";    // Wird nur für Bericht eingelesen!
-    json["Prüfungsergebnis"] = (hasPassed)?"BESTANDEN":"NICHT bestanden";                   // Wird nicht wieder eingelesen!
+    json["Prüfungsergebnis"] = (hasPassedExamination()==0)?"BESTANDEN":"NICHT bestanden";                   // Wird nicht wieder eingelesen!
 
     // Auslesen der Prüfer aus dem Model
     QModelIndex parent = ui->comboBoxExam_2->rootModelIndex();
@@ -1726,11 +1726,26 @@ void MainWindow::on_actionBericht_triggered()
     pdfwriter.setPageSize(QPageSize(QPageSize::A4));
     pdfwriter.setTitle(title);
     pdfwriter.setCreator("zenmeister");
+    pdfwriter.setPdfVersion(QPagedPaintDevice::PdfVersion_A1b);
     pdfwriter.setResolution(300);
 
-    
     QPainter painter(&pdfwriter);
-    reportHeadFoot(painter, title); 
+    
+// platform specific
+#ifdef Q_OS_OSX
+    qint32 fontNormal = 11;
+    qint32 fontSmall = 9;
+    qint32 fontSmaller = 8;
+    QString font = "times";
+#else
+    qint32 fontNormal = 10;
+    qint32 fontSmall = 8;
+    qint32 fontSmaller = 7;
+    QString font = "Times New Roman";
+#endif
+
+    painter.setFont(QFont(font,fontNormal));
+    reportHeadFoot(painter, title);
     qint32 skip = 8;
     
     double line=1.0;
@@ -1760,7 +1775,7 @@ void MainWindow::on_actionBericht_triggered()
         QString ergebnis = jo["Ergebnis"].toString();      
         QString ergebnisb = jo["Ergebnis B"].toString();      
         QString idnr = jo["Id-Nummer"].toString();
-        QString gb = QString::number(qRound((jo["Doku"].toDouble()+jo["PRFG"].toDouble())/2)); 
+        QString gb = QString::number(qRound((jo["Doku"].toString().toDouble()+jo["PRFG"].toString().toDouble())/2)); 
         QString ga0 = jo["GA0"].toString();
         QString ga1 = jo["GA1"].toString();
         QString ga2 = jo["GA2"].toString();
@@ -1770,11 +1785,11 @@ void MainWindow::on_actionBericht_triggered()
         QString wiso = jo["Wiso"].toString();
         QString mep = "";
         if(mepga1.compare("0")!=0)
-            mep = QString("MEP-GA1=%1").arg(mepga1);
+            mep = QString("MEP-T22=%1").arg(mepga1);
         if(mepga2.compare("0")!=0)
-            mep = QString("MEP-GA2=%1").arg(mepga2);
+            mep = QString("MEP-T23=%1").arg(mepga2);
         if(mepwiso.compare("0")!=0)
-            mep = QString("MEP-WISO=%1").arg(mepwiso);
+            mep = QString("MEP-T24=%1").arg(mepwiso);
         QString line1 = QString("%1: %2").arg(i+1,3).arg((name.trimmed()+"/"+idnr.trimmed()),-35);
         QString line2 = QString("%1").arg(pe,-16);
         QString line3 = QString("%1").arg(datum,-10);
@@ -1788,7 +1803,9 @@ void MainWindow::on_actionBericht_triggered()
         painter.drawText(pos(95,line*skip),line3); // Datum
         painter.drawText(pos(115,line*skip),line4); // 1
         painter.drawText(pos(151,line*skip),line5); // 2
-        painter.setFont(QFont("times",9));
+
+
+        painter.setFont(QFont(font,fontSmall));
         line += fline;
         painter.drawText(pos(115,line*skip),line6);
         line += fline;
@@ -1802,7 +1819,7 @@ void MainWindow::on_actionBericht_triggered()
             QString line8 = QString("Anwesend=%1").arg(anw.at(m).toString());            
             painter.drawText(pos(115,line*skip),line8);
         }
-        painter.setFont(QFont("times",11));
+        painter.setFont(QFont(font,fontNormal));
         line += fline;
         
         if(line*skip > 170){
@@ -1827,15 +1844,26 @@ QPoint MainWindow::pos(double x, double y){
 }
 
 void MainWindow::reportHeadFoot(QPainter &p, QString title){
-    p.setFont(QFont("times",20));
+    // platform specific
+    #ifdef Q_OS_OSX
+        qint32 fontSmaller = 8;
+    #else
+        qint32 fontSmaller = 7;
+    #endif
+    QPen pen = p.pen();
+    QFont font = p.font();
+    QFont font20 = p.font();
+    QFont font8 = p.font();
+    font20.setPointSize(20);
+    font8.setPointSize(fontSmaller);
+    p.setFont(font20);
     p.drawText(pos(75,0),title);
-    p.setFont(QFont("times",11));
-    p.drawLine(pos(0,0.1),pos(1000,0));
-    p.drawLine(pos(0,190),pos(1000,190));
-
-    p.setFont(QFont("times",8));
+    p.setPen(3);
+    p.drawLine(pos(0,0.5),pos(195,0.5));
+    p.setPen(pen);
+    p.drawLine(pos(0,190),pos(195,190));
+    p.setFont(font8);
     p.drawText(pos(0,192),app.versionLong);
-    p.setFont(QFont("times",11));
-    
+    p.setFont(font);
 }
 
