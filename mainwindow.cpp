@@ -1729,11 +1729,17 @@ void MainWindow::on_actionBericht_triggered()
     pdfwriter.setPdfVersion(QPagedPaintDevice::PdfVersion_A1b);
     pdfwriter.setResolution(300);
 
-    
     QPainter painter(&pdfwriter);
+    
+// platform specific
+#ifdef Q_OS_OSX
+    QString font = "times";
+#else
+    QString font = "Times"
+#endif
+    painter.setFont(QFont(font,11));
     reportHeadFoot(painter, title); 
     qint32 skip = 8;
-    painter.setFont(QFont("Times",11));
     
     double line=1.0;
     double fline = 0.3;
@@ -1790,7 +1796,7 @@ void MainWindow::on_actionBericht_triggered()
         painter.drawText(pos(95,line*skip),line3); // Datum
         painter.drawText(pos(115,line*skip),line4); // 1
         painter.drawText(pos(151,line*skip),line5); // 2
-        painter.setFont(QFont("times",9));
+        painter.setFont(QFont(font,9));
         line += fline;
         painter.drawText(pos(115,line*skip),line6);
         line += fline;
@@ -1804,7 +1810,7 @@ void MainWindow::on_actionBericht_triggered()
             QString line8 = QString("Anwesend=%1").arg(anw.at(m).toString());            
             painter.drawText(pos(115,line*skip),line8);
         }
-        painter.setFont(QFont("times",11));
+        painter.setFont(QFont(font,11));
         line += fline;
         
         if(line*skip > 170){
@@ -1829,18 +1835,20 @@ QPoint MainWindow::pos(double x, double y){
 }
 
 void MainWindow::reportHeadFoot(QPainter &p, QString title){
-    QPen pen = QPen();
-    p.setFont(QFont("Times",20));
+    QPen pen = p.pen();
+    QFont font = p.font();
+    QFont font20 = p.font();
+    QFont font8 = p.font();
+    font20.setPointSize(20);
+    font8.setPointSize(8);
+    p.setFont(font20);
     p.drawText(pos(75,0),title);
-    p.setFont(QFont("Times",11));
     p.setPen(3);
     p.drawLine(pos(0,0.5),pos(195,0.5));
     p.setPen(pen);
     p.drawLine(pos(0,190),pos(195,190));
-
-    p.setFont(QFont("Times",8));
+    p.setFont(font8);
     p.drawText(pos(0,192),app.versionLong);
-    p.setFont(QFont("Times",11));
-    
+    p.setFont(font);
 }
 
