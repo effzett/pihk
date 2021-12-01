@@ -1734,10 +1734,12 @@ void MainWindow::on_actionBericht_triggered()
 // platform specific
 #ifdef Q_OS_OSX
     QString font = "times";
-#else
-    QString font = "Times"
-#endif
     painter.setFont(QFont(font,11));
+#else
+    QString font = "times";
+    painter.setFont(QFont(font,10));
+#endif
+
     reportHeadFoot(painter, title); 
     qint32 skip = 8;
     
@@ -1796,7 +1798,13 @@ void MainWindow::on_actionBericht_triggered()
         painter.drawText(pos(95,line*skip),line3); // Datum
         painter.drawText(pos(115,line*skip),line4); // 1
         painter.drawText(pos(151,line*skip),line5); // 2
-        painter.setFont(QFont(font,9));
+
+        // platform specific
+        #ifdef Q_OS_OSX
+            painter.setFont(QFont(font,9));
+        #else
+            painter.setFont(QFont(font,8));
+        #endif
         line += fline;
         painter.drawText(pos(115,line*skip),line6);
         line += fline;
@@ -1810,7 +1818,12 @@ void MainWindow::on_actionBericht_triggered()
             QString line8 = QString("Anwesend=%1").arg(anw.at(m).toString());            
             painter.drawText(pos(115,line*skip),line8);
         }
-        painter.setFont(QFont(font,11));
+        // platform specific
+        #ifdef Q_OS_OSX
+            painter.setFont(QFont(font,11));
+        #else
+            painter.setFont(QFont(font,10));
+        #endif
         line += fline;
         
         if(line*skip > 170){
