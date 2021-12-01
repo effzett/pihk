@@ -31,6 +31,8 @@
 #include <QSortFilterProxyModel>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QPdfWriter>
+#include <QPainter>
 #include "mypihk.h"
 #include "prefs.h"
 #include "app.h"
@@ -70,15 +72,14 @@ private:
     int timerValue;         // timer value in minutes
     int offset;             // 15, after that time the excess is counted
     QLabel *statusLabel;    // line in statusbar
-    bool hasPassed;         // Bestanden=true, Nicht bestanden=false
     QStringListModel *model;
     qint32 maxMinutes;      // maximale Vortragszeit
     QSettings settings = QSettings("zenmeister.de", "PIHK");      // zum Abspeichern in pList/Registry
 
-    quint32 calcAll(qint32 epnr, qint32 mueergpr);
+    qint32 calcAll(qint32 epnr, qint32 mueergpr);
     qint32 getOralNr();
     qint32 getOralPoints();
-    QString getGrade(qint32 points, QUALITY  q=LONG);
+    QString getGrade(qint32 points, QUALITY  q=QUALITY::LONG);
     void colorLabel(QLabel *label, qint32 points);
     bool checkModel();
     QTimer *timer;
@@ -98,6 +99,8 @@ private:
     void closeEvent (QCloseEvent *event);
     bool isValidFilename(QString fn);
     QString getBuildDate();
+    QPoint pos(double x, double y);
+    void reportHeadFoot(QPainter &p, QString title);
     
     qint32 t11();
     qint32 t21(qint32 exam=-1);
@@ -144,6 +147,7 @@ private slots:
     void on_actionAusgabeblatt_triggered();
     void on_buttonSimPRFG_clicked();
     void on_buttonSimMEPR_clicked();
+    void on_actionBericht_triggered();
 };
 
 #endif // MAINWINDOW_H

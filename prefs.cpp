@@ -17,12 +17,12 @@ Prefs::Prefs(qint32 minutes,
              QObject *parent) : QObject(parent)
 {
     m_minutes = minutes;
-    m_d1 = d1;
-    m_d2 = d2;
-    m_d3 = d3;
-    m_t1 = t1;
-    m_t2 = t2;
-    m_space = space;
+    m_d1 = (qint32)d1;
+    m_d2 = (qint32)d2;
+    m_d3 = (qint32)d3;
+    m_t1 = (qint32)t1;
+    m_t2 = (qint32)t2;
+    m_space = (qint32)space;
 }
 
 qint32 Prefs::minutes() const
