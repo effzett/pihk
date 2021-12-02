@@ -50,6 +50,12 @@
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
+\newtcbox{\button}[1][red]{on line,
+arc=3pt,colback=#1!10!white,colframe=#1!50!black,
+before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt,
+boxsep=0pt,left=2pt,right=2pt,top=1pt,bottom=.5pt}
+
+
 % falls man das auch noch ändern möchte
 \newcommand{\pihk}{PIHK\ }
 \newcommand{\titel}{PIHK}
@@ -82,6 +88,7 @@
 % \parindent0cm
 % \parskip1ex
 \setlength{\parindent}{0em}
+
 
 %\usepackage{courier}
 \newtcolorbox{marker}[1][]{enhanced,
@@ -249,9 +256,9 @@ Die Angaben aus den Prüfungsinformationen können dazu benutzt werden, um einen
 
 Werden für den Dateinamen Zeichen benutzt, die auf bestimmten Plattformen Probleme bereiten könnten, so wird eine Warnung ausgegeben, die aber optional ignoriert werden kann. 
 
-Der aktuelle Ordner kann dabei mit dem \framebox{Wähle...}--Button eingestellt werden.
+Der aktuelle Ordner kann dabei mit dem \button{Wähle...}--Button eingestellt werden.
 
-Der \framebox{Sichern}--Button sichert die Datei mit dem eingestellten Muster für den Dateinamen (s.a. Abschnitt \emph{Einstellungen}) und wird anschließend deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
+Der \button{Sichern}--Button sichert die Datei mit dem eingestellten Muster für den Dateinamen (s.a. Abschnitt \emph{Einstellungen}) und wird anschließend deaktiviert. Erst bei Änderungen wird dieser Button wieder aktiviert.
 
 Die gemachten Einstellungen zum Dateinamen und zum Ordner werden beim Beenden des Programms (optional) abgespeichert und stehen beim nächsten Start sofort wieder zur Verfügung.
 
@@ -259,7 +266,7 @@ Folgende Daten werden beim Verlassen des Programms im Hintergrund abgespeichert:
 \begin{enumerate}
 \item Dateinamensmuster inklusive der Trennzeichen und das Ersetzungszeichen für Leerzeichen.
 \item Die Länge der Prüfung in Minuten.
-\item Der Ordner, in den die Dateien gespeichert werden und der mit dem \framebox{Wählen...} Button ausgewählt wurde.
+\item Der Ordner, in den die Dateien gespeichert werden und der mit dem \button{Wähle...} Button ausgewählt wurde.
 \item Die Struktur der Fachrichtungen, Ausschüsse und die Prüferlisten
 \item Die aktuell angewählte Fachrichtung und Prüfungsausschuss
 \end{enumerate}
@@ -270,7 +277,7 @@ Die Länge des Timers kann im Einstellungsdialog von 1 bis 99 eingestellt werden
 
 Bei Überschreiten der eingestellten Zeit beginnt der Zähler wieder bei 0 und man kann direkt die überzogene Zeit ablesen.
 
-Der Timer kann jederzeit durch \framebox{Stop} unterbrochen werden und durch \framebox{Start} wieder gestartet werden. Mit \framebox{Reset} setzt man den Timer wieder zurück.
+Der Timer kann jederzeit durch \button{Stop} unterbrochen werden und durch \button{Start} wieder gestartet werden. Mit \button{Reset} setzt man den Timer wieder zurück.
 
 \section{Einstellungen}
 \label{sec:einstellungen}
@@ -296,7 +303,7 @@ Achtung: Änderungen in diesem Einstellungsdialog sind \emph{immer sofort gülti
 \subsection{Namensmuster}
 Hier kann man das Namensmuster des Dateinamens einstellen und die Trennzeichen im Namen definieren.
 
-Dadurch erhält man einen konsistenten und eindeutigen Dateinamen und muss später nur noch auf den \framebox{Sichern}--Button drücken, um die aktuelle Prüfung abzuspeichern.
+Dadurch erhält man einen konsistenten und eindeutigen Dateinamen und muss später nur noch auf den \button{Sichern}--Button drücken, um die aktuelle Prüfung abzuspeichern.
 
 Das Muster für den Dateinamen und die Trennzeichen werden beim Verlassen des Programms (optional) gesichert.
 
@@ -349,7 +356,7 @@ Ein empfohlener Arbeitsfluss:
 \item[6] T1, T21a, T22,T23,T24 eintragen
 \item[7] Nach Fachgespräch (unter Berücksichtigung der Simulation) die Punkte in T21b eintragen.
 \item[8] Bei möglicher MEPR: Prüfungsbereich anwählen und (Simulation!) Punkte eintragen T2x
-\item[9] Am Ende auf den \framebox{Sichern}--Button drücken und die Daten werden als JSON--Datei abgespeichert.
+\item[9] Am Ende auf den \button{Sichern}--Button drücken und die Daten werden als JSON--Datei abgespeichert.
 \item[10] Ein Reset der Prüfungsdaten durchführen (standardmäßig bleiben die anwesenden Prüfer eingetragen).
 \item[11] Weiter bei Punkt 4
 \end{enumerate}
@@ -454,7 +461,8 @@ Es sei darauf hingewiesen, dass die IHK--Hannover keinerlei Verantwortlichkeiten
 \hline
 Datum & Änderung &Version\\
 \hline
-11.11.2021&	Anpassung an neue Prüfungsordnung	&  3.0.2\\
+01.12.2021&	Fehlerberichtigungen, Berichtsfunktion	&  3.0.3\\
+11.11.2021& Anpassung an neue Prüfungsordnung &  3.0.2\\
 11.2.2020&	Windows Version						&  2.2.0\\
 4.7.2016&	Initiale, ungetestete Version		&  2.1.0\\
 23.6.2016&	XPlattform-Version, doppelte Rundung&  2.0.1\\
