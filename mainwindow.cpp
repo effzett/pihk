@@ -443,7 +443,7 @@ qint32 MainWindow::hasPassedExamination(){
     }
 
     // Teil 2 muss mindestens ausreichend sein
-    if(qRound((pb21+pb22+pb23+pb24)/4.0)<50){
+    if(qRound((5.0*pb21+pb22+pb23+pb24)/8.0)<50){
         retVal += 4;
     }
     
@@ -497,7 +497,7 @@ bool MainWindow::couldPass(qint32 nr){
     }
 
     // Teil 2 muss mindestens ausreichend sein
-    if(qRound((pb21+pb22+pb23+pb24)/4.0)<50){
+    if(qRound((5.0*pb21+pb22+pb23+pb24)/8.0)<50){
         return false;
     }
     
@@ -588,7 +588,7 @@ bool MainWindow::passedSimExamination(qint32 t11,qint32 t21,qint32 t22,qint32 t2
     }
 
     // Teil 2 muss mindestens ausreichend sein
-    if(qRound((pb21+pb22+pb23+pb24)/4.0)<50){
+    if(qRound((5.0*pb21+pb22+pb23+pb24)/8.0)<50){
         return false;
     }
     
@@ -620,27 +620,27 @@ void MainWindow::fillPRFG(){
         a = t21(i);
         switch(nr){
         case 0:
-            b = qRound((a+t22()+t23()+t24())/4.0);
+            b = qRound((5.0*a+t22()+t23()+t24())/8.0);
             g = qRound((t11()*2.0+a*5.0+t22()+t23()+t24())/10.0);
             passed = passedSimExamination(t11(),a,t22(),t23(),t24());
             break;
         case 1:
-            b = qRound((a+t22(points)+t23()+t24())/4.0);
+            b = qRound((5.0*a+t22(points)+t23()+t24())/8.0);
             g = qRound((t11()*2.0+a*5.0+t22(points)+t23()+t24())/10.0);
             passed = passedSimExamination(t11(),a,t22(points),t23(),t24());
             break;
         case 2:
-            b = qRound((a+t22()+t23(points)+t24())/4.0);
+            b = qRound((5.0*a+t22()+t23(points)+t24())/8.0);
             g = qRound((t11()*2.0+a*5.0+t22()+t23(points)+t24())/10.0);
             passed = passedSimExamination(t11(),a,t22(),t23(points),t24());
             break;
         case 3:
-            b = qRound((a+t22()+t23()+t24(points))/4.0);
+            b = qRound((5.0*a+t22()+t23()+t24(points))/8.0);
             g = qRound((t11()*2.0+a*5.0+t22()+t23()+t24(points))/10.0);
             passed = passedSimExamination(t11(),a,t22(),t23(),t24(points));
             break;
         default:
-            b= qRound((a+t22()+t23()+t24())/4.0);
+            b= qRound((5.0*a+t22()+t23()+t24())/8.0);
             g = qRound((t11()*2.0+a*5.0+t22()+t23()+t24())/10.0);
             passed = passedSimExamination(t11(),a,t22(),t23(),t24());
             break;
@@ -702,31 +702,31 @@ void MainWindow::fillMEPR(){
             switch(nr){
             case 0: // sollte niemals auftreten
                 a=0;
-                b = qRound((t21()+t22()+t23()+t24())/4.0);
+                b = qRound((5.0*t21()+t22()+t23()+t24())/8.0);
                 g = qRound((t11()*2.0+t21()*5.0+t22()+t23()+t24())/10.0);
                 passed = passedSimExamination(t11(),t21(),t22(),t23(),t24());
                 break;
             case 1:
                 a=t22(i);
-                b = qRound((t21()+t22(i)+t23()+t24())/4.0);
+                b = qRound((5.0*t21()+t22(i)+t23()+t24())/8.0);
                 g = qRound((t11()*2.0+t21()*5.0+t22(i)+t23()+t24())/10.0);
                 passed = passedSimExamination(t11(),t21(),t22(i),t23(),t24());
                 break;
             case 2:
                 a=t23(i);
-                b = qRound((t21()+t22()+t23(i)+t24())/4.0);
+                b = qRound((5.0*t21()+t22()+t23(i)+t24())/8.0);
                 g = qRound((t11()*2.0+t21()*5.0+t22()+t23(i)+t24())/10.0);
                 passed = passedSimExamination(t11(),t21(),t22(),t23(i),t24());
                 break;
             case 3:
                 a=t24(i);
-                b = qRound((t21()+t22()+t23()+t24(i))/4.0);
+                b = qRound((5.0*t21()+t22()+t23()+t24(i))/8.0);
                 g = qRound((t11()*2.0+t21()*5.0+t22()+t23()+t24(i))/10.0);
                 passed = passedSimExamination(t11(),t21(),t22(),t23(),t24(i));
                 break;
             default: // sollte niemals auftreten
                 a=0;
-                b= qRound((t21()+t22()+t23()+t24())/4.0);
+                b= qRound((5.0*t21()+t22()+t23()+t24())/8.0);
                 g = qRound((t11()*2.0+t21()*5.0+t22()+t23()+t24())/10.0);
                 passed = passedSimExamination(t11(),t21(),t22(),t23(),t24());
                 break;
@@ -1629,15 +1629,15 @@ qint32 MainWindow::t24(qint32 mueergpr){
 qint32 MainWindow::t2(qint32 nr, qint32 mueergpr){    // mit mündliche: nr=1,2,3   ohne: nr=0
     qint32 result=0;
     switch(nr){
-    case 0: result = qRound((t21()+t22()+t23()+t24())/4.0);
+    case 0: result = qRound((5.0*t21()+t22()+t23()+t24())/8.0);
         break;
-    case 1: result = qRound((t21()+t22(mueergpr)+t23()+t24())/4.0);
+    case 1: result = qRound((5.0*t21()+t22(mueergpr)+t23()+t24())/8.0);
         break;
-    case 2: result = qRound((t21()+t22()+t23(mueergpr)+t24())/4.0);
+    case 2: result = qRound((5.0*t21()+t22()+t23(mueergpr)+t24())/8.0);
         break;
-    case 3: result = qRound((t21()+t22()+t23()+t24(mueergpr))/4.0);
+    case 3: result = qRound((5.0*t21()+t22()+t23()+t24(mueergpr))/8.0);
         break;
-    default:result = qRound((t21()+t22()+t23()+t24())/4.0);
+    default:result = qRound((5.0*t21()+t22()+t23()+t24())/8.0);
         break;
     }
     return result;
