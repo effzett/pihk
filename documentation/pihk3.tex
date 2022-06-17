@@ -37,7 +37,7 @@
 % Wenn pdflatex benutzt wird sollen die 
 % installierten! frutiger-Fonts verwendet werden
 % Ansonsten cmbright
-\ifpdfoutput %
+\Ifpdfoutput %
 {%
 \usepackage[scaled=0.90]{frutiger}
 \renewcommand\familydefault{\sfdefault}
@@ -59,7 +59,7 @@ boxsep=0pt,left=2pt,right=2pt,top=1pt,bottom=.5pt}
 % falls man das auch noch ändern möchte
 \newcommand{\pihk}{PIHK\ }
 \newcommand{\titel}{PIHK}
-\newcommand{\vnr}{3.0.4}
+\newcommand{\vnr}{3.0.5}
 
 %\newcommand{\ffile}[1]{\par\centerline{\tt#1}\par}
 \newcommand{\ffile}[1]{{\texttt{#1}}}
