@@ -70,6 +70,8 @@ private:
     QString fileName;
     bool isTimerStarted;    // state of timer
     int timerValue;         // timer value in minutes
+    qint64 sumTime;         // counted time in msec
+    QDateTime lastTime;     // last time it was summed
     int offset;             // 15, after that time the excess is counted
     QLabel *statusLabel;    // line in statusbar
     QStringListModel *model;
