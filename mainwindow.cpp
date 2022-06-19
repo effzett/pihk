@@ -165,7 +165,10 @@ MainWindow::MainWindow(QWidget *parent) :
 // Timer and progressbar stuff
 // each shot: increment timerValue and show in progressBar and LCD
 void MainWindow::updateProgressBar(){
-    timerValue++;
+    QDateTime currTime = QDateTime::currentDateTime(); // get current time
+    sumTime += lastTime.msecsTo(currTime);
+    timerValue = qRound(sumTime/60000.0);       // rounded minutes
+    lastTime = currTime;
     if(timerValue<=maxMinutes){
         offset=0;
         ui->progressBar->setValue(timerValue);
@@ -179,10 +182,11 @@ void MainWindow::updateProgressBar(){
 // start or stop timer
 void MainWindow::toggleStartStop(){
     if(isTimerStarted==false){
+        lastTime = QDateTime::currentDateTime();  // get time from where it is counted
         ui->startTimer->setText("Stop");
         ui->resetTimer->hide();
         isTimerStarted = true;
-        timer->start(60000);    // every minute
+        timer->start(5000);    // every 5 sec
     }
     else{
         ui->startTimer->setText("Start");
@@ -194,6 +198,7 @@ void MainWindow::toggleStartStop(){
 // resets progressBar and LCD
 void MainWindow::timerReset(){
     if(isTimerStarted==false){
+        sumTime = 0;
         timerValue=0;
         ui->progressBar->setValue(timerValue);
         offset=0;
