@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     isTimerStarted=false;
     timerValue=0;
     offset=0;
+    sumTime = 0;
     timer = new QTimer(this);
 
 
