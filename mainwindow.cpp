@@ -1584,7 +1584,12 @@ void MainWindow::closeEvent (QCloseEvent *event)
 void MainWindow::on_actionAusgabeblatt_triggered()
 {
     Ihk *ihk = new Ihk(this);
-    ihk->fillIhk(ui->spinboxGa0->text().toInt());
+    ihk->fillIhk(ui->spinboxGa0->text().toInt(),
+                 ui->spinboxGa1->text().toInt(),
+                 ui->spinboxGa2->text().toInt(),
+                 ui->spinboxWiso->text().toInt(),
+                 ui->spinboxDocumentation->text().toInt(),
+                 ui->spinboxExamination->text().toInt());
     ihk->exec(); 
 }
 
