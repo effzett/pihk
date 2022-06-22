@@ -14,9 +14,11 @@ class Ihk : public QDialog
 public:
     explicit Ihk(QWidget *parent = nullptr);
     ~Ihk();
-    
+    void fillIhk(qint32);
+
 private:
     Ui::Ihk *ui;
+    QString getGrade(qint32 points);
 };
 
 #endif // IHK_H

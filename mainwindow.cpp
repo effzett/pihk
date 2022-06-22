@@ -1584,6 +1584,7 @@ void MainWindow::closeEvent (QCloseEvent *event)
 void MainWindow::on_actionAusgabeblatt_triggered()
 {
     Ihk *ihk = new Ihk(this);
+    ihk->fillIhk(ui->spinboxGa0->text().toInt());
     ihk->exec(); 
 }
 

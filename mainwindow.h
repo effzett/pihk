@@ -64,6 +64,7 @@ public:
     TreeModel *treeModel;
     Prefs *mypref;
 
+
 private:
     Ui::MainWindow *ui;
 

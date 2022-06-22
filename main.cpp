@@ -13,8 +13,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     
     QTranslator tr1;  
-    tr1.load(":/qtbase_de");
-    a.installTranslator(&tr1);
+    if(tr1.load(":/qtbase_de")){
+        a.installTranslator(&tr1);
+    }
 
     MainWindow w;
     w.show();
