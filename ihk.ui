@@ -28,7 +28,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>1180 : 20 =</string>
+           <string>0 : 20 =</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -81,7 +81,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>4</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -134,7 +134,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>1180</string>
+           <string>0</string>
           </property>
          </widget>
         </item>
@@ -170,7 +170,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>59</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -180,7 +180,7 @@
         <item row="1" column="3">
          <widget class="QLabel" name="label_13">
           <property name="text">
-           <string>Erg.1</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -190,7 +190,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>59 x 20 =</string>
+           <string>0 x 20 =</string>
           </property>
          </widget>
         </item>
@@ -251,7 +251,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>62 x 2 +</string>
+           <string>0 x 2 +</string>
           </property>
          </widget>
         </item>
@@ -261,7 +261,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>68</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -286,6 +286,9 @@
           <property name="text">
            <string>Erg.2</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
         <item row="3" column="7">
@@ -294,7 +297,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>4</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -348,12 +351,18 @@
           <property name="text">
            <string>Erg.3</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
         <item row="1" column="3">
          <widget class="QLabel" name="label_22">
           <property name="text">
            <string>Erg.1</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -376,6 +385,9 @@
           <property name="text">
            <string>MEpr</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
         <item row="4" column="0">
@@ -391,7 +403,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>68 x 2 +</string>
+           <string>0 x 2 +</string>
           </property>
          </widget>
         </item>
@@ -401,7 +413,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>61 x 2 +</string>
+           <string>0 x 2 +</string>
           </property>
          </widget>
         </item>
@@ -463,7 +475,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string> 62 x 10 =</string>
+           <string> 0 x 10 =</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -476,7 +488,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>68 x 10 =</string>
+           <string>0 x 10 =</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -489,7 +501,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>61 x 10 =</string>
+           <string>0 x 10 =</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -502,7 +514,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>620</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -515,7 +527,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>680</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -528,7 +540,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>610</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -541,7 +553,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>62</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -554,7 +566,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>61</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -567,7 +579,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>4</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -580,7 +592,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>4</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -605,22 +617,22 @@
       <item>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="4" column="5">
-         <widget class="QLabel" name="label_8">
+         <widget class="QLabel" name="label_l83">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>3600</string>
+           <string>0</string>
           </property>
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QLabel" name="label_59">
+         <widget class="QLabel" name="label_l62">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>4050</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -684,12 +696,12 @@
          </widget>
         </item>
         <item row="4" column="4">
-         <widget class="QLabel" name="label_78">
+         <widget class="QLabel" name="label_l82">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>72 * 50 =</string>
+           <string>0 * 50 =</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -697,12 +709,12 @@
          </widget>
         </item>
         <item row="3" column="2">
-         <widget class="QLabel" name="label_69">
+         <widget class="QLabel" name="label_l72">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>3100</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -717,15 +729,15 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLabel" name="label_54">
+         <widget class="QLabel" name="label_l61">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>81 x 50 =</string>
+           <string>0 x 50 =</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -790,6 +802,9 @@
           <property name="text">
            <string>Erg.1</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
         <item row="3" column="0">
@@ -800,12 +815,12 @@
          </widget>
         </item>
         <item row="4" column="2">
-         <widget class="QLabel" name="label_70">
+         <widget class="QLabel" name="label_l81">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>7150</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -823,7 +838,7 @@
          </widget>
         </item>
         <item row="5" column="7">
-         <widget class="QLabel" name="label_56">
+         <widget class="QLabel" name="label_l93">
           <property name="font">
            <font>
             <bold>true</bold>
@@ -833,7 +848,7 @@
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>4</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -914,15 +929,15 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLabel" name="label_67">
+         <widget class="QLabel" name="label_l71">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>62 x 50 =</string>
+           <string>0 x 50 =</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -957,17 +972,17 @@
          </widget>
         </item>
         <item row="5" column="5">
-         <widget class="QLabel" name="label_9">
+         <widget class="QLabel" name="label_l91">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>5510 : 80 =</string>
+           <string>0 : 80 =</string>
           </property>
          </widget>
         </item>
         <item row="5" column="6">
-         <widget class="QLabel" name="label_10">
+         <widget class="QLabel" name="label_l92">
           <property name="font">
            <font>
             <bold>true</bold>
@@ -977,7 +992,7 @@
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>66</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1017,7 +1032,7 @@
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>5510</string>
+           <string>0 )</string>
           </property>
          </widget>
         </item>
@@ -1083,7 +1098,7 @@
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>67</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1101,7 +1116,7 @@
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>3</string>
+           <string>0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1150,7 +1165,7 @@
            <string notr="true">QLabel { color : blue; }</string>
           </property>
           <property name="text">
-           <string>1180</string>
+           <string>( 0</string>
           </property>
          </widget>
         </item>
