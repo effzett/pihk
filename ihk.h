@@ -14,7 +14,7 @@ class Ihk : public QDialog
 public:
     explicit Ihk(QWidget *parent = nullptr);
     ~Ihk();
-    void fillIhk(qint32 t1, qint32 t21, qint32 t22, qint32 t23, qint32 doku, qint32 prfg );
+    void fillIhk(qint32 t1, qint32 t21, qint32 t22, qint32 t23, qint32 doku, qint32 prfg ,qint32 mepr, qint32 meprnr=0);
 
 private:
     Ui::Ihk *ui;

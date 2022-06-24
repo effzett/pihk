@@ -1583,13 +1583,30 @@ void MainWindow::closeEvent (QCloseEvent *event)
 
 void MainWindow::on_actionAusgabeblatt_triggered()
 {
+    qint32 meprnr = 0;
+    qint32 mepr = 0;
+
     Ihk *ihk = new Ihk(this);
+    if(ui->radioButton1->isChecked()){
+        meprnr=1;
+        mepr = ui->spinboxGa1E->text().toInt();
+    }
+    if(ui->radioButton2->isChecked()){
+        meprnr=2;
+        mepr = ui->spinboxGa2E->text().toInt();
+    }
+    if(ui->radioButton3->isChecked()){
+        meprnr=3;
+        mepr = ui->spinboxWisoE->text().toInt();
+    }
+
     ihk->fillIhk(ui->spinboxGa0->text().toInt(),
                  ui->spinboxGa1->text().toInt(),
                  ui->spinboxGa2->text().toInt(),
                  ui->spinboxWiso->text().toInt(),
                  ui->spinboxDocumentation->text().toInt(),
-                 ui->spinboxExamination->text().toInt());
+                 ui->spinboxExamination->text().toInt(),
+                 mepr,meprnr);
     ihk->exec(); 
 }
 

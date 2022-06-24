@@ -256,7 +256,7 @@
          </widget>
         </item>
         <item row="3" column="6">
-         <widget class="QLabel" name="label_31">
+         <widget class="QLabel" name="label_l46">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -269,7 +269,7 @@
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QLabel" name="label_35">
+         <widget class="QLabel" name="label_l32">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -292,7 +292,7 @@
          </widget>
         </item>
         <item row="3" column="7">
-         <widget class="QLabel" name="label_32">
+         <widget class="QLabel" name="label_l47">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -305,7 +305,7 @@
          </widget>
         </item>
         <item row="2" column="3">
-         <widget class="QLabel" name="label_21">
+         <widget class="QLabel" name="label_l33">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -418,7 +418,7 @@
          </widget>
         </item>
         <item row="3" column="3">
-         <widget class="QLabel" name="label_30">
+         <widget class="QLabel" name="label_l43">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -431,7 +431,7 @@
          </widget>
         </item>
         <item row="4" column="3">
-         <widget class="QLabel" name="label_39">
+         <widget class="QLabel" name="label_l53">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -444,7 +444,7 @@
          </widget>
         </item>
         <item row="3" column="2">
-         <widget class="QLabel" name="label_40">
+         <widget class="QLabel" name="label_l42">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -457,7 +457,7 @@
          </widget>
         </item>
         <item row="4" column="2">
-         <widget class="QLabel" name="label_41">
+         <widget class="QLabel" name="label_l52">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -470,7 +470,7 @@
          </widget>
         </item>
         <item row="2" column="4">
-         <widget class="QLabel" name="label_42">
+         <widget class="QLabel" name="label_l34">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -483,7 +483,7 @@
          </widget>
         </item>
         <item row="3" column="4">
-         <widget class="QLabel" name="label_43">
+         <widget class="QLabel" name="label_l44">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -496,7 +496,7 @@
          </widget>
         </item>
         <item row="4" column="4">
-         <widget class="QLabel" name="label_44">
+         <widget class="QLabel" name="label_l54">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -509,7 +509,7 @@
          </widget>
         </item>
         <item row="2" column="5">
-         <widget class="QLabel" name="label_45">
+         <widget class="QLabel" name="label_l35">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -522,7 +522,7 @@
          </widget>
         </item>
         <item row="3" column="5">
-         <widget class="QLabel" name="label_46">
+         <widget class="QLabel" name="label_l45">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -535,7 +535,7 @@
          </widget>
         </item>
         <item row="4" column="5">
-         <widget class="QLabel" name="label_47">
+         <widget class="QLabel" name="label_l55">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -548,7 +548,7 @@
          </widget>
         </item>
         <item row="2" column="6">
-         <widget class="QLabel" name="label_48">
+         <widget class="QLabel" name="label_l36">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -561,7 +561,7 @@
          </widget>
         </item>
         <item row="4" column="6">
-         <widget class="QLabel" name="label_49">
+         <widget class="QLabel" name="label_l56">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -574,7 +574,7 @@
          </widget>
         </item>
         <item row="2" column="7">
-         <widget class="QLabel" name="label_50">
+         <widget class="QLabel" name="label_l37">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
@@ -587,7 +587,7 @@
          </widget>
         </item>
         <item row="4" column="7">
-         <widget class="QLabel" name="label_51">
+         <widget class="QLabel" name="label_l57">
           <property name="styleSheet">
            <string notr="true">QLabel { color : blue; }</string>
           </property>
