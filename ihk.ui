@@ -179,6 +179,18 @@
         </item>
         <item row="1" column="3">
          <widget class="QLabel" name="label_13">
+          <property name="minimumSize">
+           <size>
+            <width>70</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>70</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -348,6 +360,18 @@
         </item>
         <item row="1" column="5">
          <widget class="QLabel" name="label_34">
+          <property name="minimumSize">
+           <size>
+            <width>70</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>70</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string>Erg.3</string>
           </property>
@@ -624,6 +648,9 @@
           <property name="text">
            <string>0</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
         <item row="2" column="2">
@@ -792,8 +819,23 @@
         </item>
         <item row="1" column="5">
          <widget class="QLabel" name="label_5">
+          <property name="minimumSize">
+           <size>
+            <width>70</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>70</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string>Erg.3</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -979,6 +1021,9 @@
           <property name="text">
            <string>0 : 80 =</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
         <item row="5" column="6">
@@ -1027,7 +1072,7 @@
          </widget>
         </item>
         <item row="5" column="4">
-         <widget class="QLabel" name="label_118">
+         <widget class="QLabel" name="label_l102">
           <property name="styleSheet">
            <string notr="true">QLabel { color : red; }</string>
           </property>
@@ -1088,7 +1133,7 @@
          </widget>
         </item>
         <item row="5" column="6">
-         <widget class="QLabel" name="label_117">
+         <widget class="QLabel" name="label_l103">
           <property name="font">
            <font>
             <bold>true</bold>
@@ -1106,7 +1151,7 @@
          </widget>
         </item>
         <item row="5" column="7">
-         <widget class="QLabel" name="label_121">
+         <widget class="QLabel" name="label_l104">
           <property name="font">
            <font>
             <bold>true</bold>
