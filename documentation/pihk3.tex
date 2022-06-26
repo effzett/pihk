@@ -33,7 +33,7 @@
   decorations.pathreplacing,
   shapes.symbols
 }
-
+ 
 % Wenn pdflatex benutzt wird sollen die 
 % installierten! frutiger-Fonts verwendet werden
 % Ansonsten cmbright
@@ -430,6 +430,18 @@ Die Liste enthält dann
   \label{fig:bericht}
 \end{figure}
 
+\subsection{Ausgabeblatt}
+Im Menü \emph{Ansicht} findet man ebenfalls die Funktion \framebox{Ausgabeblatt}.
+
+Hier wird ein Fenster geöffnet, in dem die Berechnung analog dem Berichtsbogen der IHK aufgeführt ist (Abb.~\ref{fig:ihkausgabeblatt} auf Seite~\pageref{fig:ihkausgabeblatt}). Dabei sind die blauen Zahlen meistens schon von der IHK eingetragen. Die roten Zahlen sind dann i.d.R. nach der Prüfung einzutragen. Es dient als Hilfe, wenn man dieses Berechnungsformular der IHK ebenfalls \emph{vollständig} ausfüllen möchte und nicht nur die Ergebnisse dort eintragen will.
+
+\begin{figure}[ht]
+  \centering
+  \framebox{\includegraphics[width=0.9\textwidth]{ihkausgabeblatt.png}}
+  \caption{Ergebnisse formatiert in Anlehnung an das IHK--Berechnungsblatts}
+  \label{fig:ihkausgabeblatt}
+\end{figure}
+
 \section{Hilfen}
 Im Menü \emph{Hilfe} findet man neben der Lizenzvereinbarung (LGPL3) auch die aktuelle Version der Prüfungsordnung
 (Verordnung über die Berufsausbildung zum Fachinformatiker und zur Fachinformatikerin* (Fachinformatikerausbildungsverordnung - FIAusbV)), mit deren Hilfe man strittige Fälle leichter klären kann.
@@ -461,7 +473,8 @@ Es sei darauf hingewiesen, dass die IHK--Hannover keinerlei Verantwortlichkeiten
 \hline
 Datum & Änderung &Version\\
 \hline
-01.12.2021&	Fehlerberichtigungen, Berichtsfunktion	&  3.0.3\\
+26.06.2022& Fehlerberichtigungen, IHK-Formular  &  3.1.0\\
+01.12.2021&   Fehlerberichtigungen, Berichtsfunktion  &  3.0.3\\
 11.11.2021& Anpassung an neue Prüfungsordnung &  3.0.2\\
 11.2.2020&	Windows Version						&  2.2.0\\
 4.7.2016&	Initiale, ungetestete Version		&  2.1.0\\
