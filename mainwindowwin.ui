@@ -1023,7 +1023,6 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
-      <weight>50</weight>
       <bold>false</bold>
      </font>
     </property>
@@ -1085,7 +1084,6 @@
      <property name="font">
       <font>
        <pointsize>14</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1145,7 +1143,6 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1202,7 +1199,6 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1262,7 +1258,6 @@
      <property name="font">
       <font>
        <pointsize>14</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1322,7 +1317,6 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1382,7 +1376,6 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1405,7 +1398,6 @@
         <property name="font">
          <font>
           <pointsize>10</pointsize>
-          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -1419,7 +1411,6 @@
         <property name="font">
          <font>
           <pointsize>10</pointsize>
-          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -1448,7 +1439,6 @@
      <property name="font">
       <font>
        <pointsize>8</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1491,7 +1481,6 @@
      <property name="font">
       <font>
        <pointsize>8</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1536,7 +1525,6 @@
         <property name="font">
          <font>
           <pointsize>10</pointsize>
-          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -1556,7 +1544,6 @@
         <property name="font">
          <font>
           <pointsize>10</pointsize>
-          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -1609,7 +1596,6 @@
         <property name="font">
          <font>
           <pointsize>10</pointsize>
-          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -1623,7 +1609,6 @@
         <property name="font">
          <font>
           <pointsize>10</pointsize>
-          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -1649,7 +1634,6 @@
      <property name="font">
       <font>
        <pointsize>8</pointsize>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -1828,7 +1812,7 @@
       <x>450</x>
       <y>590</y>
       <width>421</width>
-      <height>32</height>
+      <height>24</height>
      </rect>
     </property>
     <property name="orientation">
@@ -1976,7 +1960,6 @@
        <property name="font">
         <font>
          <pointsize>16</pointsize>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -2061,7 +2044,7 @@
      <x>0</x>
      <y>0</y>
      <width>907</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
@@ -2153,7 +2136,7 @@
   </action>
   <action name="actionAusgabeblatt">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Ausgabeblatt</string>
