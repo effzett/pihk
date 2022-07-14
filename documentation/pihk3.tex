@@ -24,7 +24,7 @@
 \graphicspath{{./jpg/}}
 \DeclareGraphicsExtensions{.jpg,.eps,.png}
 %\usepackage{courier}
-
+\usepackage{fourier-orns}
 \usepackage[most]{tcolorbox}
 \usepackage{tikz}
 \usetikzlibrary{intersections}
@@ -103,6 +103,8 @@ boxsep=0pt,left=2pt,right=2pt,top=1pt,bottom=.5pt}
     \path[fill=yellow!50!black,draw=none] (interior.south west) rectangle node[red!20!white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
     },
   drop fuzzy shadow,#1}
+
+
 
 
 \begin{document}
@@ -184,10 +186,10 @@ Das Programm (siehe Abbildung~\ref{fig:pihk}) gliedert sich grob in 5 Bereiche (
 \item[(A)] Links oben ist der Bereich zur Eingabe und Berechnung der Punktzahlen und Noten. 
 Hier werden alle bisher erreichten Punktzahlen sowie die in der Prüfung erzielten Punkte eingegeben.
 Weiterhin beinhaltet dieser Bereich auch einen Timer, mit dem man die Vortragszeit abstoppen kann (wird auf ganze Minute gerundet).
-\item[(B)] Rechts oben und in der Mitte befinden sich 2 Fenster zur Anzeige der Simulationsergebnisse.
-\item[(C)] Im mittleren linken Bereich kann der Prüfungsausschuss eingegeben werden und die 1. und 2. Korrektoren sowie die anwesenden Prüfer. Die Prüfer und die Ausschüsse, die hier gelistet werden, können im Einstellungsdialog eingegeben werden und werden im System gespeichert (plist bzw. Registry oder ini).
+\item[(B)] Rechts oben und in der Mitte befinden sich 2 Fenster zur Anzeige der Simulationsergebnisse. Das obere dient als Simulation für die Note in der Präsentation und Fachgespräch; das untere Fenster wird nur aktiv, wenn eine mündliche Ergänzungsprüfung möglich und ausgewählt wurde. 
+\item[(C)] Im mittleren linken Bereich kann der Prüfungsausschuss eingegeben werden und die 1. und 2. Korrektoren sowie die anwesenden Prüfer. Die Namen der Prüfer und die die Namen der Ausschüsse, die hier gelistet werden, können im Einstellungsdialog eingegeben werden und werden im System gespeichert (plist bzw. Registry oder ini). Ob diese eingegebene Werte aber abgespeichert werden sollen, kann man entscheiden, wenn das Programm verlassen wird. Erst wenn hier eine Bestätigung erfolgt, werden die Prüfungsausschüsse und Namen der Prüfer auch im System gespeichert und stehen für weitere Sitzungen sofort zur Verfügung.
 \item[(D)] Im unteren linken Bereich werden Daten zur Prüfung und zum Prüfling eingegeben.
-\item[(E)] Im rechten unteren Bereich befinden sich die Funktionen zum Sichern der aktuellen Prüfung und zum Zurücksetzen der aktuellen Prüfung.
+\item[(E)] Im rechten unteren Bereich befinden sich die Funktionen zum Sichern der aktuellen Prüfung und zum Zurücksetzen der aktuellen Prüfung. Dabei kann man auch die anwesenden Prüfer bei jedem \emph{Reset} löschen lassen (ein Tribut an Pandemiezeiten, wo die anwesenden Prüfer auch mal während einer Prüfung wechseln konnten). Beim Abspeichern wird auch die Konsitenz dieser Daten abgefragt und bei Inkonsistenz eine Warnung ausgegeben (mind. 3 Prüfer, jeweils nur ein 1. und 2. Korrektor).
 \end{itemize} 
 
 \begin{figure}[ht]
@@ -200,19 +202,19 @@ Weiterhin beinhaltet dieser Bereich auch einen Timer, mit dem man die Vortragsze
 \subsection{Prüfungsbereich Teil 1}
 In den oberen Bereich (A) trägt man die Klausurergebnisse für den Teilbereich~1 ein, der mit 20\% in die Gesamtnote eingeht und schon vor der Prüfung bekannt ist.
 
-Dieser Bereich hat keine Relevanz hinsichtlich einer Schwelle für die Bestehensregelung und dient lediglich zur \emph{Anfütterung} von Punkten. Ein \emph{ungenügend} ist hier nicht möglich, denn alle Punkte zählen zu 20\% für die Gesamtnote. Laut Prüfungsverordnung werden zum Bestehen der Gesamtprüfung in diesem Prüfungsbereich keine Anforderungen gestellt.
+Dieser Bereich hat keine Relevanz hinsichtlich einer Schwelle für die Bestehensregelung und dient lediglich zur \emph{Anfütterung} von Punkten. Ein \emph{ungenügend} ist hier nicht möglich, denn alle Punkte zählen zu 20\% für die Gesamtnote. Laut Prüfungsverordnung werden zum Bestehen der Gesamtprüfung in diesem Prüfungsbereich keine Anforderungen gestellt. Die Endnote für Teil 1 ergibt sich automatisch aus der Punktzahl für die Klausur und ist nicht extra aufgeführt, zumal diese Daten schon auf dem IHK--Formular eingetragen sind.
 
 \subsection{Prüfungsbereich Teil 2}
 Der Prüfungteil 2 untergliedert sich in 4 verschiedene Prüfungsbereiche. Zum Bestehen der Gesamtprüfung müssen hier mindestens 3 Prüfungsbereiche mit ausreichend oder besser abgeschlossen werden und in keinem Prüfungsbereich darf ein ungenügend erzielt worden sein.
 
-Der erste Prüfungsbereich T21, bei dem eine Projektarbeit zu leisten ist, ist aufgeteilt in eine Dokumentation T21a (50\%) und eine Präsentation mit anschließendem Fachgespräch (50\%) T21b und ergibt so die Note von T21.
+Der erste Prüfungsbereich T21, bei dem eine Projektarbeit zu leisten ist, ist aufgeteilt in eine Dokumentation T21a (50\%) und eine Präsentation mit anschließendem Fachgespräch T21b (50\%)  und ergibt so die Note von T21.
 
 Bei der letzten Prüfung der IHK geht es im wesentlichen um diesen Prüfungsteil. Die anderen Prüfungsbereiche bestehen aus schon absolvierten Klausuren (T22, T23 und T24 (Wiso)). 
 
 \subsubsection*{T21}
 Das Ergebnis der Dokumentation liegt in der Regel schon vor und kann im Feld T21a eingetragen werden.
 Das Ergebnis der Präsentation zusammen mit dem Fachgespräch wird im Feld T21b eingetragen.
-Für dieses Feld wird eine Simulation berechnet und im rechten Simulationsfenster dargestellt.
+Für dieses Feld wird eine Simulation berechnet und im rechten oberen Simulationsfenster dargestellt.
 
 \subsubsection*{Simulation für das Feld T21b}
 Für das Feld \circled{1} in Abbildung\ref{fig:hauptfensterKommentiert2} werden die Punkte simuliert.
@@ -220,7 +222,7 @@ Es werden alle möglichen Punktzahlen für die Präsentation+Fachgespräch einge
 
 Es gibt auch Fälle, in denen die Punktzahl für die erfolgreiche Gesamtbewertung erreicht ist, aber andere Bedingungen nicht erfüllt sind (z.B. ein Prüfungsbereich mit \emph{ungenügend} bewertet). Diese Fälle werden mit einem Minuszeichen vor dem G in der Simulation gekennzeichnet. Ein Pluszeichen kennzeichnet eine defacto bestandene Prüfung.
 
-Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl ganz links in das entsprechende Fenster (T21b) und spart Tipparbeit.
+Ein Klick auf eine dieser Simulationszeilen befördert die simulierte Punktzahl ganz links in das entsprechende Fenster (T21b) und spart Tipparbeit.\marginnote{\textcolor{red}\warning}
  
 \subsubsection*{T22,T23 und T24}
 Ebenfalls sind die Klausurergebnisse für die Bereiche T22, T23 und T24 (Wiso) in der Regel schon bekannt und können in die Felder eingetragen werden. 
@@ -231,7 +233,7 @@ Sowie eines der Selektoren ausgewählt ist, erscheint dann ein weiteres Feld zur
 
 \subsubsection*{Simulation für das Feld T22/T23/T24}
 Für das Feld \circled{2} in Abbildung~\ref{fig:hauptfensterKommentiert2} werden die Punkte simuliert.
-Für dieses Feld T2x wird auf der rechten Seite ebenfalls eine Simulation berechnet und die Konsequenzen bei den anderen Noten aufgezeigt. Ein Klicken befördert wieder die simulierte Punktezahl in das gewählte Feld T2x.
+Für dieses Feld T2x wird auf der rechten Seite ebenfalls eine Simulation berechnet und die Konsequenzen bei den anderen Noten aufgezeigt. Ein Klicken befördert wieder die simulierte Punktezahl in das gewählte Feld T2x.\marginnote{\textcolor{red}\warning}
 
 \subsection{Prüfungsausschuss}
 Die Fachrichtung und der Prüfungsausschuss können im Bereich \circled{C} in Abbildung~\ref{fig:pihk} angewählt werden und es erscheint eine Liste der Prüfer.
@@ -241,7 +243,7 @@ Diese Prüferliste muss zuvor einmalig in den Einstellungen vorgenommen werden u
 In der Prüferliste kann man duch Anklicken die 1. und 2. Korrektoren auswählen und die anwesenden Prüfer selektieren. Wird dies nicht ordnungsgemäß durchgeführt (z.B. nur 2 anwesende Prüfer oder derselbe Korrektor für 1. und 2. Korrektur, etc.), so erscheint beim Abspeichern später eine Warnmeldung, die man aber auch optional ignorieren kann. Die Daten dienen hier nur zum Erfassen der vollständigen Prüfungsdaten beim Abspeichern als \emph{JSON}--Datei. 
 
 \subsection{Prüfungsinformationen}
-Links unten in Abbildung~\ref{fig:pihk} im Bereich \circled{D} findet man Angaben zur Prüfung, wie Datum der Prüfung , Name und Nummer des Prüflings.
+Links unten in Abbildung~\ref{fig:pihk} im Bereich \circled{D} findet man Angaben zur Prüfung, wie Datum der Prüfung, Name und Nummer des Prüflings.
 
 Hier werden auch die relevanten Prüfungsergebnisse dargestellt.
 
@@ -473,13 +475,13 @@ Es sei darauf hingewiesen, dass die IHK--Hannover keinerlei Verantwortlichkeiten
 \hline
 Datum & Änderung &Version\\
 \hline
-26.06.2022& Fehlerberichtigungen, IHK-Formular  &  3.1.0\\
-01.12.2021&   Fehlerberichtigungen, Berichtsfunktion  &  3.0.3\\
-11.11.2021& Anpassung an neue Prüfungsordnung &  3.0.2\\
-11.2.2020&	Windows Version						&  2.2.0\\
-4.7.2016&	Initiale, ungetestete Version		&  2.1.0\\
-23.6.2016&	XPlattform-Version, doppelte Rundung&  2.0.1\\
-04.7.2016&	Klick in Simulation trägt Punkte ein&  2.0.2\\
+13.07.2022& Fehlerberichtigungen, IHK-Formular      &  3.1.1\\
+01.12.2021& Fehlerberichtigungen, Berichtsfunktion  &  3.0.3\\
+11.11.2021& Anpassung an neue Prüfungsordnung       &  3.0.2\\
+11.2.2020 &	Windows Version						    &  2.2.0\\
+4.7.2016  &	Initiale, ungetestete Version		    &  2.1.0\\
+23.6.2016 &	XPlattform-Version, doppelte Rundung    &  2.0.1\\
+04.7.2016 &	Klick in Simulation trägt Punkte ein    &  2.0.2\\
 \hline
 \end{tabular}
 \caption{Änderungshistorie}
@@ -489,11 +491,19 @@ Datum & Änderung &Version\\
 In der heutigen Zeit verlangen viele Platformen eine relativ teure Registrierung für Entwickler, damit die Programme leicht auf den Platformen installiert werden können (Signierung/Notarisierung). Erfolgt keine Signierung und Authentfizierung melden die Platformen standardmäßig i.a. gefährlichen Code!. Dieses Programm enthält keinen Schadcode und kann problemlos geöffnet werden.
 Erhältlich ist das Programm entweder direkt vom Autor oder über die Github--Seite.
 Das Programm kann auch gegen einen Hashcode verglichen werden, was das Risiko weiter minimiert.
-Da das Programm aber hauptsächlig zur eigenen Verwendung geschrieben wurde, wird auf eine Signierung und Notarisierung verzichtet.
+Da das Programm aber hauptsächlich zur eigenen Verwendung geschrieben wurde, wird auf eine Signierung und Notarisierung verzichtet.
 
-Bei macOS kann man erstmalig in das Programm--Verzeichnis gehen und mit Öffnen des Kontextmenüs auf das Programm PIHK bestätigen, dass man dieses Programm öffnen möchte.
+Bei macOS kann man erstmalig in das Programm--Verzeichnis gehen (via \emph{Finder}) und mit Öffnen des Kontextmenüs auf das Programm PIHK bestätigen, dass man dieses Programm öffnen möchte.
 Bei weiteren Starts wird dann keine Abfrage mehr vorgenommen. (Ein Doppelklick führt dagegen nur zu einer Sicherheitswarnung, die es verbietet dieses Programm zu öffnen).
 Bei Windows gibt es ähnliche Sicherheitsvorkehrungen, die man aber durchaus auch umgehen kann, wenn man der Quelle vertrauen schenkt.
+Sofern also \emph{Github} mit seinen Abermillionen Projekten nicht gehackt wurde (und ich möchte nicht wissen, was das dann für Konsequenzen hätte!) kann man dem Programm \emph{PIHK} also vertrauen.
 \end{marker}
+
+
+\begin{verbatim}
+Version 3.1.1:
+PIHK.dmg (sha256) : 95799c9bb663b046494589738d1fb34137ad80e752972ad070026f99d01d1e73
+PIHK.exe (sha256) : da223b4055a6f976d2300cdd9933065bfbadb0f6847b423b7bb0e29e25cdd00e
+\end{verbatim}
 
 \end{document}
